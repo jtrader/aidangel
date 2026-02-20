@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
@@ -71,15 +71,26 @@ const Index = () => {
       <header className="border-b border-border bg-card px-4 py-4">
         <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3">
           <div className="flex items-center gap-3 flex-1">
-            <img src={aidAngelLogo} alt="AidAngel logo" className="w-10 h-10 rounded-xl object-cover" />
-            <div className="flex-1">
-              <h1 className="font-display font-bold text-lg text-foreground leading-tight">
-                {t("appTitle")}
-              </h1>
-              <p className="text-xs text-muted-foreground">
-                {t("appSubtitle")}
-              </p>
-            </div>
+            {!isEmpty && (
+              <button
+                onClick={() => setMessages([])}
+                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                aria-label="Back to home"
+              >
+                <RotateCcw className="h-5 w-5" />
+              </button>
+            )}
+            <a href="/" className="flex items-center gap-3 flex-1" onClick={(e) => { e.preventDefault(); setMessages([]); }}>
+              <img src={aidAngelLogo} alt="AidAngel logo" className="w-10 h-10 rounded-xl object-cover" />
+              <div className="flex-1">
+                <h1 className="font-display font-bold text-lg text-foreground leading-tight">
+                  {t("appTitle")}
+                </h1>
+                <p className="text-xs text-muted-foreground">
+                  {t("appSubtitle")}
+                </p>
+              </div>
+            </a>
           </div>
           <div className="flex justify-center sm:justify-end">
             <LanguageSelector />
