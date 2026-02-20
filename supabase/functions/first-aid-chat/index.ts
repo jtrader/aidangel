@@ -327,6 +327,13 @@ serve(async (req) => {
     let systemPrompt = FIRST_AID_SYSTEM_PROMPT;
     if (language && language !== "en") {
       const langNames: Record<string, string> = {
+        zh: "Mandarin Chinese (普通话)",
+        yue: "Cantonese Chinese (廣東話)",
+        ar: "Arabic (العربية)",
+        vi: "Vietnamese (Tiếng Việt)",
+        pa: "Punjabi (ਪੰਜਾਬੀ)",
+        el: "Greek (Ελληνικά)",
+        it: "Italian (Italiano)",
         kriol: "Australian Kriol (a creole language spoken across Northern Australia)",
         yolngu: "Yolŋu Matha (spoken in Arnhem Land, Northern Territory)",
         pitjantjatjara: "Pitjantjatjara (spoken in Central Australia, including parts of SA, WA, and NT)",

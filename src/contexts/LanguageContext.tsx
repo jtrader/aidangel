@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-export type LanguageCode = "en" | "kriol" | "yolngu" | "pitjantjatjara" | "arrernte" | "tsi";
+export type LanguageCode = "en" | "kriol" | "yolngu" | "pitjantjatjara" | "arrernte" | "tsi" | "zh" | "ar" | "vi" | "yue" | "pa" | "el" | "it";
 
 interface Language {
   code: LanguageCode;
@@ -11,11 +11,18 @@ interface Language {
 
 export const languages: Language[] = [
   { code: "en", name: "English", nativeName: "English", region: "Australia-wide" },
+  { code: "zh", name: "Mandarin", nativeName: "普通话", region: "Chinese community" },
+  { code: "yue", name: "Cantonese", nativeName: "廣東話", region: "Chinese community" },
+  { code: "vi", name: "Vietnamese", nativeName: "Tiếng Việt", region: "Vietnamese community" },
+  { code: "ar", name: "Arabic", nativeName: "العربية", region: "Arabic community" },
+  { code: "pa", name: "Punjabi", nativeName: "ਪੰਜਾਬੀ", region: "Punjabi community" },
+  { code: "el", name: "Greek", nativeName: "Ελληνικά", region: "Greek community" },
+  { code: "it", name: "Italian", nativeName: "Italiano", region: "Italian community" },
   { code: "kriol", name: "Kriol", nativeName: "Kriol", region: "Northern Australia" },
   { code: "yolngu", name: "Yolŋu Matha", nativeName: "Yolŋu Matha", region: "Arnhem Land, NT" },
   { code: "pitjantjatjara", name: "Pitjantjatjara", nativeName: "Pitjantjatjara", region: "Central Australia" },
-  { code: "arrernte", name: "Arrernte", nativeName: "Arrernte", region: "Alice Springs region, NT" },
-  { code: "tsi", name: "Torres Strait Creole", nativeName: "Yumplatok", region: "Torres Strait Islands, QLD" },
+  { code: "arrernte", name: "Arrernte", nativeName: "Arrernte", region: "Alice Springs, NT" },
+  { code: "tsi", name: "Torres Strait Creole", nativeName: "Yumplatok", region: "Torres Strait, QLD" },
 ];
 
 type TranslationKey =
@@ -42,6 +49,97 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     bleeding: "Bleeding", fracture: "Fracture", seizure: "Seizure",
     anaphylaxis: "Anaphylaxis", heartAttack: "Heart Attack", hypothermia: "Hypothermia",
     eyeInjury: "Eye Injury", electricShock: "Electric Shock",
+  },
+  zh: {
+    emergencyBanner: "遇到危及生命的紧急情况，请立即拨打 Triple Zero (000)",
+    appTitle: "AidAngel",
+    appSubtitle: "您的急救助手 • 基于《澳大利亚急救手册》第五版",
+    welcomeHeading: "我能帮您什么？",
+    welcomeDescription: "向我询问任何急救情况，我将根据澳大利亚急救手册提供逐步指导。",
+    inputPlaceholder: "描述您的急救情况...",
+    disclaimer: "不能替代专业医疗建议。紧急情况请拨打 000。",
+    cpr: "心肺复苏", choking: "窒息", burns: "烧伤", snakeBite: "蛇咬伤",
+    bleeding: "出血", fracture: "骨折", seizure: "癫痫发作",
+    anaphylaxis: "过敏性休克", heartAttack: "心脏病发作", hypothermia: "体温过低",
+    eyeInjury: "眼部损伤", electricShock: "触电",
+  },
+  yue: {
+    emergencyBanner: "遇到危及生命嘅緊急情況，請即刻打 Triple Zero (000)",
+    appTitle: "AidAngel",
+    appSubtitle: "你嘅急救助手 • 基於《澳洲急救手冊》第五版",
+    welcomeHeading: "我可以點幫你？",
+    welcomeDescription: "問我任何急救情況，我會根據澳洲急救手冊提供逐步指導。",
+    inputPlaceholder: "描述你嘅急救情況...",
+    disclaimer: "唔可以取代專業醫療意見。緊急情況請打 000。",
+    cpr: "心肺復甦", choking: "哽塞", burns: "燒傷", snakeBite: "蛇咬傷",
+    bleeding: "流血", fracture: "骨折", seizure: "癲癇發作",
+    anaphylaxis: "過敏性休克", heartAttack: "心臟病發", hypothermia: "體溫過低",
+    eyeInjury: "眼部損傷", electricShock: "觸電",
+  },
+  ar: {
+    emergencyBanner: "في حالة الطوارئ المهددة للحياة، اتصل بـ Triple Zero (000) فوراً",
+    appTitle: "AidAngel",
+    appSubtitle: "مساعدك للإسعافات الأولية • مبني على دليل الإسعافات الأولية الأسترالي الطبعة الخامسة",
+    welcomeHeading: "كيف يمكنني مساعدتك؟",
+    welcomeDescription: "اسألني عن أي حالة إسعافات أولية. سأقدم لك إرشادات خطوة بخطوة بناءً على دليل الإسعافات الأولية الأسترالي.",
+    inputPlaceholder: "صف حالة الإسعافات الأولية...",
+    disclaimer: "ليس بديلاً عن المشورة الطبية المتخصصة. اتصل بـ 000 في حالات الطوارئ.",
+    cpr: "الإنعاش القلبي", choking: "الاختناق", burns: "الحروق", snakeBite: "لدغة أفعى",
+    bleeding: "النزيف", fracture: "الكسر", seizure: "النوبة",
+    anaphylaxis: "صدمة تحسسية", heartAttack: "نوبة قلبية", hypothermia: "انخفاض الحرارة",
+    eyeInjury: "إصابة العين", electricShock: "صعقة كهربائية",
+  },
+  vi: {
+    emergencyBanner: "Trong trường hợp khẩn cấp đe dọa tính mạng, gọi Triple Zero (000) ngay",
+    appTitle: "AidAngel",
+    appSubtitle: "Trợ lý Sơ cứu của bạn • Dựa trên Sổ tay Sơ cứu Úc Phiên bản 5",
+    welcomeHeading: "Tôi có thể giúp gì?",
+    welcomeDescription: "Hỏi tôi về bất kỳ tình huống sơ cứu nào. Tôi sẽ hướng dẫn từng bước dựa trên sổ tay sơ cứu Úc.",
+    inputPlaceholder: "Mô tả tình huống sơ cứu của bạn...",
+    disclaimer: "Không thay thế tư vấn y tế chuyên nghiệp. Gọi 000 trong trường hợp khẩn cấp.",
+    cpr: "Hồi sức tim phổi", choking: "Nghẹn", burns: "Bỏng", snakeBite: "Rắn cắn",
+    bleeding: "Chảy máu", fracture: "Gãy xương", seizure: "Co giật",
+    anaphylaxis: "Sốc phản vệ", heartAttack: "Đau tim", hypothermia: "Hạ thân nhiệt",
+    eyeInjury: "Chấn thương mắt", electricShock: "Điện giật",
+  },
+  pa: {
+    emergencyBanner: "ਜਾਨਲੇਵਾ ਐਮਰਜੈਂਸੀ ਵਿੱਚ, ਤੁਰੰਤ Triple Zero (000) ਤੇ ਕਾਲ ਕਰੋ",
+    appTitle: "AidAngel",
+    appSubtitle: "ਤੁਹਾਡਾ ਫਸਟ ਏਡ ਸਹਾਇਕ • ਆਸਟ੍ਰੇਲੀਅਨ ਫਸਟ ਏਡ 5ਵੀਂ ਐਡੀਸ਼ਨ ਤੇ ਅਧਾਰਿਤ",
+    welcomeHeading: "ਮੈਂ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ?",
+    welcomeDescription: "ਮੈਨੂੰ ਕਿਸੇ ਵੀ ਫਸਟ ਏਡ ਸਥਿਤੀ ਬਾਰੇ ਪੁੱਛੋ। ਮੈਂ ਕਦਮ-ਦਰ-ਕਦਮ ਮਾਰਗਦਰਸ਼ਨ ਦੇਵਾਂਗਾ।",
+    inputPlaceholder: "ਆਪਣੀ ਫਸਟ ਏਡ ਸਥਿਤੀ ਦੱਸੋ...",
+    disclaimer: "ਪੇਸ਼ੇਵਰ ਡਾਕਟਰੀ ਸਲਾਹ ਦਾ ਬਦਲ ਨਹੀਂ। ਐਮਰਜੈਂਸੀ ਵਿੱਚ 000 ਤੇ ਕਾਲ ਕਰੋ।",
+    cpr: "CPR", choking: "ਸਾਹ ਘੁੱਟਣਾ", burns: "ਜਲਣ", snakeBite: "ਸੱਪ ਦਾ ਡੰਗ",
+    bleeding: "ਖੂਨ ਵਗਣਾ", fracture: "ਹੱਡੀ ਟੁੱਟਣਾ", seizure: "ਦੌਰਾ",
+    anaphylaxis: "ਗੰਭੀਰ ਐਲਰਜੀ", heartAttack: "ਦਿਲ ਦਾ ਦੌਰਾ", hypothermia: "ਸਰੀਰ ਠੰਡਾ",
+    eyeInjury: "ਅੱਖ ਦੀ ਸੱਟ", electricShock: "ਬਿਜਲੀ ਦਾ ਝਟਕਾ",
+  },
+  el: {
+    emergencyBanner: "Σε απειλητική για τη ζωή κατάσταση, καλέστε αμέσως Triple Zero (000)",
+    appTitle: "AidAngel",
+    appSubtitle: "Ο Βοηθός Πρώτων Βοηθειών σας • Βασισμένο στο Αυστραλιανό Εγχειρίδιο 5η Έκδοση",
+    welcomeHeading: "Πώς μπορώ να βοηθήσω;",
+    welcomeDescription: "Ρωτήστε με για οποιαδήποτε κατάσταση πρώτων βοηθειών. Θα σας καθοδηγήσω βήμα προς βήμα.",
+    inputPlaceholder: "Περιγράψτε την κατάσταση πρώτων βοηθειών...",
+    disclaimer: "Δεν αντικαθιστά την επαγγελματική ιατρική συμβουλή. Καλέστε 000 σε επείγοντα.",
+    cpr: "ΚΑΡΠΑ", choking: "Πνιγμός", burns: "Εγκαύματα", snakeBite: "Δάγκωμα φιδιού",
+    bleeding: "Αιμορραγία", fracture: "Κάταγμα", seizure: "Επιληπτική κρίση",
+    anaphylaxis: "Αναφυλαξία", heartAttack: "Καρδιακή προσβολή", hypothermia: "Υποθερμία",
+    eyeInjury: "Τραύμα ματιού", electricShock: "Ηλεκτροπληξία",
+  },
+  it: {
+    emergencyBanner: "In un'emergenza che mette in pericolo la vita, chiama subito Triple Zero (000)",
+    appTitle: "AidAngel",
+    appSubtitle: "Il tuo Assistente di Primo Soccorso • Basato sul Manuale Australiano 5ª Edizione",
+    welcomeHeading: "Come posso aiutarti?",
+    welcomeDescription: "Chiedimi di qualsiasi situazione di primo soccorso. Ti guiderò passo dopo passo secondo il manuale australiano.",
+    inputPlaceholder: "Descrivi la tua situazione di primo soccorso...",
+    disclaimer: "Non sostituisce il parere medico professionale. Chiama il 000 in caso di emergenza.",
+    cpr: "RCP", choking: "Soffocamento", burns: "Ustioni", snakeBite: "Morso di serpente",
+    bleeding: "Emorragia", fracture: "Frattura", seizure: "Convulsioni",
+    anaphylaxis: "Anafilassi", heartAttack: "Infarto", hypothermia: "Ipotermia",
+    eyeInjury: "Lesione oculare", electricShock: "Scossa elettrica",
   },
   kriol: {
     emergencyBanner: "Wen samwan rili sik o hert, ringap Triple Zero (000) stret",
@@ -110,9 +208,15 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
 };
 
-// Language name mapping for the AI system prompt
 export const languageFullName: Record<LanguageCode, string> = {
   en: "English",
+  zh: "Mandarin Chinese (普通话)",
+  yue: "Cantonese Chinese (廣東話)",
+  ar: "Arabic (العربية)",
+  vi: "Vietnamese (Tiếng Việt)",
+  pa: "Punjabi (ਪੰਜਾਬੀ)",
+  el: "Greek (Ελληνικά)",
+  it: "Italian (Italiano)",
   kriol: "Australian Kriol (a creole language spoken across Northern Australia)",
   yolngu: "Yolŋu Matha (spoken in Arnhem Land, Northern Territory)",
   pitjantjatjara: "Pitjantjatjara (spoken in Central Australia, including parts of SA, WA, and NT)",
