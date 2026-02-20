@@ -120,7 +120,7 @@ const Index = () => {
           ) : (
             <>
               {messages.map((msg, i) => (
-                <ChatMessage key={i} message={msg} />
+                <ChatMessage key={i} message={msg} onAction={send} />
               ))}
               {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
                 <div className="flex gap-3 justify-start">

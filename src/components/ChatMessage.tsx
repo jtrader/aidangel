@@ -8,9 +8,10 @@ interface Message {
 
 interface ChatMessageProps {
   message: Message;
+  onAction?: (text: string) => void;
 }
 
-const ChatMessage = ({ message }: ChatMessageProps) => {
+const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
   const isUser = message.role === "user";
 
   return (
@@ -33,12 +34,28 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
           <div className="prose prose-sm max-w-none prose-headings:text-foreground prose-p:text-card-foreground prose-strong:text-foreground prose-li:text-card-foreground prose-ol:text-card-foreground prose-ul:text-card-foreground prose-a:text-primary prose-a:font-semibold prose-a:underline">
             <ReactMarkdown
               components={{
-                a: ({ href, children, ...props }) => (
-                  <a href={href} className="text-primary underline font-semibold hover:text-foreground transition-colors" {...props}>{children}</a>
-                ),
+                a: ({ href, children, ...props }) => {
+                  if (href === '#drsabcd') {
+                    return (
+                      <button
+                        type="button"
+                        onClick={() => onAction?.("What is DRSABCD?")}
+                        className="text-primary underline font-semibold hover:text-foreground transition-colors cursor-pointer"
+                      >
+                        {children}
+                      </button>
+                    );
+                  }
+                  return (
+                    <a href={href} className="text-primary underline font-semibold hover:text-foreground transition-colors" {...props}>{children}</a>
+                  );
+                },
               }}
             >
-              {message.content.replace(/\b000\b/g, '[000](tel:000)')}
+              {message.content
+                .replace(/\b000\b/g, '[000](tel:000)')
+                .replace(/\bDRSABCD\b/g, '[DRSABCD](#drsabcd)')
+              }
             </ReactMarkdown>
           </div>
         )}
