@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { Cross, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
 import ChatInput from "@/components/ChatInput";
 import QuickActions from "@/components/QuickActions";
 import { streamChat } from "@/lib/chat-stream";
+import aidAngelLogo from "@/assets/aidangel-logo.png";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
@@ -65,15 +66,13 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border bg-card px-4 py-4">
         <div className="max-w-3xl mx-auto flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-display font-bold text-lg">+</span>
-          </div>
+          <img src={aidAngelLogo} alt="AidAngel logo" className="w-10 h-10 rounded-xl object-cover" />
           <div>
             <h1 className="font-display font-bold text-lg text-foreground leading-tight">
-              First Aid Assistant
+              AidAngel
             </h1>
             <p className="text-xs text-muted-foreground">
-              Powered by Australian First Aid 5th Edition • St John Ambulance
+              Your First Aid Assistant • Powered by Australian First Aid 5th Edition
             </p>
           </div>
         </div>
@@ -88,9 +87,7 @@ const Index = () => {
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
               <div className="text-center space-y-3">
-                <div className="w-16 h-16 rounded-2xl bg-accent flex items-center justify-center mx-auto">
-                  <span className="text-3xl">🩺</span>
-                </div>
+                <img src={aidAngelLogo} alt="AidAngel" className="w-20 h-20 rounded-2xl object-cover mx-auto" />
                 <h2 className="font-display font-bold text-2xl text-foreground">
                   How can I help?
                 </h2>
