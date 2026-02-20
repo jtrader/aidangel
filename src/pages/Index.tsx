@@ -69,15 +69,17 @@ const Index = () => {
 
       {/* Header */}
       <header className="border-b border-border bg-card px-4 py-4">
-        <div className="max-w-3xl mx-auto flex items-center gap-3">
-          <img src={aidAngelLogo} alt="AidAngel logo" className="w-10 h-10 rounded-xl object-cover" />
-          <div className="flex-1">
-            <h1 className="font-display font-bold text-lg text-foreground leading-tight">
-              {t("appTitle")}
-            </h1>
-            <p className="text-xs text-muted-foreground">
-              {t("appSubtitle")}
-            </p>
+        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3">
+          <div className="flex items-center gap-3 flex-1">
+            <img src={aidAngelLogo} alt="AidAngel logo" className="w-10 h-10 rounded-xl object-cover" />
+            <div className="flex-1">
+              <h1 className="font-display font-bold text-lg text-foreground leading-tight">
+                {t("appTitle")}
+              </h1>
+              <p className="text-xs text-muted-foreground">
+                {t("appSubtitle")}
+              </p>
+            </div>
           </div>
           <LanguageSelector />
         </div>
