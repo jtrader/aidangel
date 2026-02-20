@@ -135,7 +135,13 @@ const Index = () => {
         <div className="max-w-3xl mx-auto">
           <ChatInput onSend={send} disabled={isLoading} />
           <p className="text-center text-xs text-muted-foreground mt-2">
-            {t("disclaimer")}
+            {t("disclaimer").split("000").map((part, i, arr) =>
+              i < arr.length - 1 ? (
+                <span key={i}>{part}<a href="tel:000" className="underline font-semibold hover:text-foreground transition-colors">000</a></span>
+              ) : (
+                <span key={i}>{part}</span>
+              )
+            )}
           </p>
         </div>
       </div>
