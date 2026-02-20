@@ -30,8 +30,16 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
         {isUser ? (
           <p className="text-sm leading-relaxed">{message.content}</p>
         ) : (
-          <div className="prose prose-sm max-w-none prose-headings:text-foreground prose-p:text-card-foreground prose-strong:text-foreground prose-li:text-card-foreground prose-ol:text-card-foreground prose-ul:text-card-foreground">
-            <ReactMarkdown>{message.content}</ReactMarkdown>
+          <div className="prose prose-sm max-w-none prose-headings:text-foreground prose-p:text-card-foreground prose-strong:text-foreground prose-li:text-card-foreground prose-ol:text-card-foreground prose-ul:text-card-foreground prose-a:text-primary prose-a:font-semibold prose-a:underline">
+            <ReactMarkdown
+              components={{
+                a: ({ href, children, ...props }) => (
+                  <a href={href} className="text-primary underline font-semibold hover:text-foreground transition-colors" {...props}>{children}</a>
+                ),
+              }}
+            >
+              {message.content.replace(/\b000\b/g, '[000](tel:000)')}
+            </ReactMarkdown>
           </div>
         )}
       </div>
