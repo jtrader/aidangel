@@ -232,8 +232,27 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
+const detectLanguage = (): LanguageCode => {
+  const browserLangs = navigator.languages || [navigator.language];
+  for (const bl of browserLangs) {
+    const lower = bl.toLowerCase();
+    // Exact match
+    const exact = languages.find((l) => l.code === lower);
+    if (exact) return exact.code;
+    // Cantonese variants
+    if (lower.startsWith("yue") || lower === "zh-hk" || lower === "zh-tw") return "yue";
+    // Mandarin variants
+    if (lower.startsWith("zh")) return "zh";
+    // Prefix match (e.g. "ar-EG" -> "ar")
+    const prefix = lower.split("-")[0];
+    const match = languages.find((l) => l.code === prefix);
+    if (match) return match.code;
+  }
+  return "en";
+};
+
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<LanguageCode>("en");
+  const [language, setLanguage] = useState<LanguageCode>(detectLanguage);
 
   const t = (key: TranslationKey): string => {
     return translations[language]?.[key] ?? translations.en[key] ?? key;
