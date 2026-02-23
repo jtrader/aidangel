@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Loader2, RotateCcw } from "lucide-react";
+import { Heart, Loader2, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
@@ -156,6 +156,13 @@ const Index = () => {
           </p>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-card px-4 py-2 text-center">
+        <p className="text-[11px] text-muted-foreground flex items-center justify-center gap-1">
+          © 2026 Love Key Web Application <Heart className="h-3 w-3 inline" />
+        </p>
+      </footer>
     </div>
   );
 };
