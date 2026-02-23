@@ -5,6 +5,7 @@ import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
 import ChatInput from "@/components/ChatInput";
 import QuickActions from "@/components/QuickActions";
+import DRSABCDPanel from "@/components/DRSABCDPanel";
 import LanguageSelector from "@/components/LanguageSelector";
 import { streamChat } from "@/lib/chat-stream";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -116,6 +117,7 @@ const Index = () => {
                 </p>
               </div>
               <QuickActions onSelect={send} />
+              <DRSABCDPanel onSelect={send} />
             </div>
           ) : (
             <>
