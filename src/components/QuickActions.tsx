@@ -10,11 +10,12 @@ import {
   Thermometer,
   Eye,
   Zap,
+  Pill,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface QuickAction {
-  labelKey: "cpr" | "choking" | "burns" | "snakeBite" | "bleeding" | "fracture" | "seizure" | "anaphylaxis" | "heartAttack" | "hypothermia" | "eyeInjury" | "electricShock";
+  labelKey: "cpr" | "choking" | "burns" | "snakeBite" | "bleeding" | "fracture" | "seizure" | "anaphylaxis" | "heartAttack" | "hypothermia" | "eyeInjury" | "electricShock" | "overdose";
   icon: React.ReactNode;
   prompt: string;
 }
@@ -32,6 +33,7 @@ const quickActions: QuickAction[] = [
   { labelKey: "hypothermia", icon: <Thermometer className="h-4 w-4" />, prompt: "How do I treat hypothermia?" },
   { labelKey: "eyeInjury", icon: <Eye className="h-4 w-4" />, prompt: "How do I treat an eye injury?" },
   { labelKey: "electricShock", icon: <Zap className="h-4 w-4" />, prompt: "Someone got an electric shock. What do I do?" },
+  { labelKey: "overdose", icon: <Pill className="h-4 w-4" />, prompt: "How do I help someone who has overdosed?" },
 ];
 
 interface QuickActionsProps {
