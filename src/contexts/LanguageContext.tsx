@@ -34,7 +34,7 @@ type TranslationKey =
   | "inputPlaceholder"
   | "disclaimer"
   | "cpr" | "choking" | "burns" | "snakeBite" | "bleeding" | "fracture"
-  | "seizure" | "anaphylaxis" | "heartAttack" | "hypothermia" | "eyeInjury" | "electricShock";
+  | "seizure" | "anaphylaxis" | "heartAttack" | "hypothermia" | "eyeInjury" | "electricShock" | "overdose";
 
 const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   en: {
@@ -48,7 +48,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "CPR", choking: "Choking", burns: "Burns", snakeBite: "Snake Bite",
     bleeding: "Bleeding", fracture: "Fracture", seizure: "Seizure",
     anaphylaxis: "Anaphylaxis", heartAttack: "Heart Attack", hypothermia: "Hypothermia",
-    eyeInjury: "Eye Injury", electricShock: "Electric Shock",
+    eyeInjury: "Eye Injury", electricShock: "Electric Shock", overdose: "Overdose",
   },
   zh: {
     emergencyBanner: "遇到危及生命的紧急情况，请立即拨打 Triple Zero (000)",
@@ -61,7 +61,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "心肺复苏", choking: "窒息", burns: "烧伤", snakeBite: "蛇咬伤",
     bleeding: "出血", fracture: "骨折", seizure: "癫痫发作",
     anaphylaxis: "过敏性休克", heartAttack: "心脏病发作", hypothermia: "体温过低",
-    eyeInjury: "眼部损伤", electricShock: "触电",
+    eyeInjury: "眼部损伤", electricShock: "触电", overdose: "药物过量",
   },
   yue: {
     emergencyBanner: "遇到危及生命嘅緊急情況，請即刻打 Triple Zero (000)",
@@ -74,7 +74,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "心肺復甦", choking: "哽塞", burns: "燒傷", snakeBite: "蛇咬傷",
     bleeding: "流血", fracture: "骨折", seizure: "癲癇發作",
     anaphylaxis: "過敏性休克", heartAttack: "心臟病發", hypothermia: "體溫過低",
-    eyeInjury: "眼部損傷", electricShock: "觸電",
+    eyeInjury: "眼部損傷", electricShock: "觸電", overdose: "藥物過量",
   },
   ar: {
     emergencyBanner: "في حالة الطوارئ المهددة للحياة، اتصل بـ Triple Zero (000) فوراً",
@@ -87,7 +87,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "الإنعاش القلبي", choking: "الاختناق", burns: "الحروق", snakeBite: "لدغة أفعى",
     bleeding: "النزيف", fracture: "الكسر", seizure: "النوبة",
     anaphylaxis: "صدمة تحسسية", heartAttack: "نوبة قلبية", hypothermia: "انخفاض الحرارة",
-    eyeInjury: "إصابة العين", electricShock: "صعقة كهربائية",
+    eyeInjury: "إصابة العين", electricShock: "صعقة كهربائية", overdose: "جرعة زائدة",
   },
   vi: {
     emergencyBanner: "Trong trường hợp khẩn cấp đe dọa tính mạng, gọi Triple Zero (000) ngay",
@@ -100,7 +100,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "Hồi sức tim phổi", choking: "Nghẹn", burns: "Bỏng", snakeBite: "Rắn cắn",
     bleeding: "Chảy máu", fracture: "Gãy xương", seizure: "Co giật",
     anaphylaxis: "Sốc phản vệ", heartAttack: "Đau tim", hypothermia: "Hạ thân nhiệt",
-    eyeInjury: "Chấn thương mắt", electricShock: "Điện giật",
+    eyeInjury: "Chấn thương mắt", electricShock: "Điện giật", overdose: "Quá liều",
   },
   pa: {
     emergencyBanner: "ਜਾਨਲੇਵਾ ਐਮਰਜੈਂਸੀ ਵਿੱਚ, ਤੁਰੰਤ Triple Zero (000) ਤੇ ਕਾਲ ਕਰੋ",
@@ -113,7 +113,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "CPR", choking: "ਸਾਹ ਘੁੱਟਣਾ", burns: "ਜਲਣ", snakeBite: "ਸੱਪ ਦਾ ਡੰਗ",
     bleeding: "ਖੂਨ ਵਗਣਾ", fracture: "ਹੱਡੀ ਟੁੱਟਣਾ", seizure: "ਦੌਰਾ",
     anaphylaxis: "ਗੰਭੀਰ ਐਲਰਜੀ", heartAttack: "ਦਿਲ ਦਾ ਦੌਰਾ", hypothermia: "ਸਰੀਰ ਠੰਡਾ",
-    eyeInjury: "ਅੱਖ ਦੀ ਸੱਟ", electricShock: "ਬਿਜਲੀ ਦਾ ਝਟਕਾ",
+    eyeInjury: "ਅੱਖ ਦੀ ਸੱਟ", electricShock: "ਬਿਜਲੀ ਦਾ ਝਟਕਾ", overdose: "ਵੱਧ ਖੁਰਾਕ",
   },
   el: {
     emergencyBanner: "Σε απειλητική για τη ζωή κατάσταση, καλέστε αμέσως Triple Zero (000)",
@@ -126,7 +126,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "ΚΑΡΠΑ", choking: "Πνιγμός", burns: "Εγκαύματα", snakeBite: "Δάγκωμα φιδιού",
     bleeding: "Αιμορραγία", fracture: "Κάταγμα", seizure: "Επιληπτική κρίση",
     anaphylaxis: "Αναφυλαξία", heartAttack: "Καρδιακή προσβολή", hypothermia: "Υποθερμία",
-    eyeInjury: "Τραύμα ματιού", electricShock: "Ηλεκτροπληξία",
+    eyeInjury: "Τραύμα ματιού", electricShock: "Ηλεκτροπληξία", overdose: "Υπερδοσολογία",
   },
   it: {
     emergencyBanner: "In un'emergenza che mette in pericolo la vita, chiama subito Triple Zero (000)",
@@ -139,7 +139,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "RCP", choking: "Soffocamento", burns: "Ustioni", snakeBite: "Morso di serpente",
     bleeding: "Emorragia", fracture: "Frattura", seizure: "Convulsioni",
     anaphylaxis: "Anafilassi", heartAttack: "Infarto", hypothermia: "Ipotermia",
-    eyeInjury: "Lesione oculare", electricShock: "Scossa elettrica",
+    eyeInjury: "Lesione oculare", electricShock: "Scossa elettrica", overdose: "Overdose",
   },
   kriol: {
     emergencyBanner: "Wen samwan rili sik o hert, ringap Triple Zero (000) stret",
@@ -152,7 +152,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "CPR", choking: "Joking", burns: "Bern", snakeBite: "Sneik Bait",
     bleeding: "Bliding", fracture: "Breikim Boun", seizure: "Fit",
     anaphylaxis: "Bad Allerji", heartAttack: "Hat Etak", hypothermia: "Tu Kol",
-    eyeInjury: "Ai Hert", electricShock: "Elektrik Shok",
+    eyeInjury: "Ai Hert", electricShock: "Elektrik Shok", overdose: "Overdose",
   },
   yolngu: {
     emergencyBanner: "Ŋunhi buku-ḏäkthun, djamarrkuliw Triple Zero (000) ŋayi",
@@ -165,7 +165,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "CPR", choking: "Choking", burns: "Wäŋa guḻun'", snakeBite: "Bäpi",
     bleeding: "Ŋayaŋu ŋal'", fracture: "Ŋayaŋu dharpa", seizure: "Fit",
     anaphylaxis: "Buku allerji", heartAttack: "Ŋayaŋu dhärra", hypothermia: "Buku ŋal'marr",
-    eyeInjury: "Mil ḏäkthun", electricShock: "Gurrtha shock",
+    eyeInjury: "Mil ḏäkthun", electricShock: "Gurrtha shock", overdose: "Overdose",
   },
   pitjantjatjara: {
     emergencyBanner: "Uwankara alatjitu pikaringkunytjaku, Triple Zero (000) telephone-angka wangka",
@@ -178,7 +178,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "CPR", choking: "Choking", burns: "Waru pika", snakeBite: "Liru katantja",
     bleeding: "Milpatjunanyi", fracture: "Tara pakantja", seizure: "Fit",
     anaphylaxis: "Pika puḻka allerji", heartAttack: "Kurrunpa pika", hypothermia: "Wari puḻka",
-    eyeInjury: "Kuru pika", electricShock: "Gurrtha shock",
+    eyeInjury: "Kuru pika", electricShock: "Gurrtha shock", overdose: "Overdose",
   },
   arrernte: {
     emergencyBanner: "Arelhe atnyeneme apeke, Triple Zero (000) aketyarte ileme",
@@ -191,7 +191,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "CPR", choking: "Choking", burns: "Ure apenteme", snakeBite: "Apme ketye",
     bleeding: "Atnye anthurre", fracture: "Altye iyerrknge", seizure: "Fit",
     anaphylaxis: "Allerji anthurre", heartAttack: "Atnye irrpentye", hypothermia: "Atnye arenge",
-    eyeInjury: "Ante apenteme", electricShock: "Gurrtha shock",
+    eyeInjury: "Ante apenteme", electricShock: "Gurrtha shock", overdose: "Overdose",
   },
   tsi: {
     emergencyBanner: "Wen big sik or hert, ringap Triple Zero (000) kwiktaim",
@@ -204,7 +204,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     cpr: "CPR", choking: "Choking", burns: "Burn", snakeBite: "Snake Bite",
     bleeding: "Bleeding", fracture: "Broken Bone", seizure: "Fit",
     anaphylaxis: "Bad Allerji", heartAttack: "Heart Attack", hypothermia: "Too Cold",
-    eyeInjury: "Eye Hert", electricShock: "Electric Shock",
+    eyeInjury: "Eye Hert", electricShock: "Electric Shock", overdose: "Overdose",
   },
 };
 
