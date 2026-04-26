@@ -7,6 +7,7 @@ import ChatInput from "@/components/ChatInput";
 import QuickActions from "@/components/QuickActions";
 import DRSABCDPanel from "@/components/DRSABCDPanel";
 import LanguageSelector from "@/components/LanguageSelector";
+import ThemeToggle from "@/components/ThemeToggle";
 import { streamChat } from "@/lib/chat-stream";
 import { useLanguage } from "@/contexts/LanguageContext";
 import aidAngelLogo from "@/assets/aidangel-logo.png";
@@ -104,6 +105,7 @@ const Index = () => {
               <HandHeart className="h-4 w-4" />
               Donate
             </a>
+            <ThemeToggle />
             <LanguageSelector />
           </div>
         </div>
