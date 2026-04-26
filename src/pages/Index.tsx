@@ -138,6 +138,16 @@ const Index = () => {
                     <ShoppingBag className="h-4 w-4" />
                     St John First Aid Shop
                   </a>
+                  <a
+                    href="https://www.stjohnvic.com.au/support-us/donations-2016-12/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                    aria-label="Donate to St John Ambulance"
+                  >
+                    <HandHeart className="h-4 w-4" />
+                    Donate
+                  </a>
                 </div>
               </div>
               <QuickActions onSelect={send} />
