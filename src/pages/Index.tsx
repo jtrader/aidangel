@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Heart, Loader2, RotateCcw, HandHeart, MapPin } from "lucide-react";
+import { Heart, Loader2, RotateCcw, HandHeart, MapPin, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
