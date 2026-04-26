@@ -118,7 +118,7 @@ const Index = () => {
           {isEmpty ? (
             <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
               <div className="text-center space-y-3">
-                <img src={aidAngelLogo} alt="Aid Angel" className="w-20 h-20 rounded-2xl object-cover mx-auto" />
+                <img src={aidAngelLogo} alt="Aid Angel" className="w-28 h-28 rounded-2xl object-cover mx-auto" />
                 <h2 className="font-display font-bold text-2xl text-foreground">
                   {t("welcomeHeading")}
                 </h2>
