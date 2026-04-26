@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Heart, Loader2, RotateCcw, HandHeart } from "lucide-react";
+import { Heart, Loader2, RotateCcw, HandHeart, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
@@ -125,6 +125,16 @@ const Index = () => {
                 <p className="text-muted-foreground text-sm max-w-md">
                   {t("welcomeDescription")}
                 </p>
+                <a
+                  href="https://www.goodsamapp.org/locatorMap"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                  aria-label="Find nearest AED"
+                >
+                  <MapPin className="h-4 w-4" />
+                  AED Finder
+                </a>
               </div>
               <QuickActions onSelect={send} />
               <DRSABCDPanel onSelect={send} />
