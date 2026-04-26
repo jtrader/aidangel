@@ -55,6 +55,27 @@
     font-family: 'Nunito Sans', 'Assistant', system-ui, sans-serif;
   }
 
+  /* CVGT partner theme — Orange #F37021 + Blue #0465A0 */
+  .partner-cvgt {
+    --primary: 20 90% 54%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 204 93% 32%;
+    --accent-foreground: 0 0% 100%;
+    --ring: 20 90% 54%;
+    --emergency: 20 90% 54%;
+    --emergency-foreground: 0 0% 100%;
+  }
+
+  .partner-cvgt.dark {
+    --primary: 20 90% 58%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 204 80% 28%;
+    --accent-foreground: 0 0% 100%;
+    --ring: 20 90% 58%;
+    --emergency: 20 90% 58%;
+    --emergency-foreground: 0 0% 100%;
+  }
+
   .dark {
     /* Inspired by Crisis Compass Victoria dark theme */
     --background: 220 39% 6%;
