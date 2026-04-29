@@ -76,6 +76,95 @@
     --emergency-foreground: 0 0% 100%;
   }
 
+  /* ===== Love Keyring theme variants (?theme=red|blue|teal|yellow) =====
+     Palettes drawn from lovekeyring.org sibling apps:
+       red    → Aid Angel       (#E60012-ish vivid red)
+       blue   → Crisis Compass  (#1E5A9C deep blue)
+       teal   → Guardian Guide  (#1AA7A0 teal)
+       yellow → warm safety yellow (#F4C20D)
+     Each variant includes a paired .dark override.
+  */
+
+  /* RED — Aid Angel */
+  .theme-red {
+    --primary: 354 99% 45%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 354 99% 96%;
+    --accent-foreground: 354 99% 38%;
+    --ring: 354 99% 45%;
+    --emergency: 354 99% 45%;
+    --emergency-foreground: 0 0% 100%;
+  }
+  .theme-red.dark {
+    --primary: 354 90% 58%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 354 60% 22%;
+    --accent-foreground: 354 90% 82%;
+    --ring: 354 90% 58%;
+    --emergency: 354 90% 58%;
+    --emergency-foreground: 0 0% 100%;
+  }
+
+  /* BLUE — Crisis Compass */
+  .theme-blue {
+    --primary: 211 68% 36%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 211 75% 95%;
+    --accent-foreground: 211 68% 30%;
+    --ring: 211 68% 36%;
+    --emergency: 354 99% 45%;
+    --emergency-foreground: 0 0% 100%;
+  }
+  .theme-blue.dark {
+    --primary: 211 75% 58%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 211 55% 22%;
+    --accent-foreground: 211 75% 82%;
+    --ring: 211 75% 58%;
+    --emergency: 354 90% 58%;
+    --emergency-foreground: 0 0% 100%;
+  }
+
+  /* TEAL — Guardian Guide */
+  .theme-teal {
+    --primary: 177 72% 38%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 177 65% 94%;
+    --accent-foreground: 177 72% 28%;
+    --ring: 177 72% 38%;
+    --emergency: 354 99% 45%;
+    --emergency-foreground: 0 0% 100%;
+  }
+  .theme-teal.dark {
+    --primary: 177 70% 48%;
+    --primary-foreground: 0 0% 10%;
+    --accent: 177 50% 20%;
+    --accent-foreground: 177 70% 82%;
+    --ring: 177 70% 48%;
+    --emergency: 354 90% 58%;
+    --emergency-foreground: 0 0% 100%;
+  }
+
+  /* YELLOW — warm safety yellow */
+  .theme-yellow {
+    --primary: 45 95% 50%;
+    --primary-foreground: 30 40% 12%;
+    --accent: 45 95% 94%;
+    --accent-foreground: 30 60% 22%;
+    --ring: 45 95% 50%;
+    --emergency: 354 99% 45%;
+    --emergency-foreground: 0 0% 100%;
+  }
+  .theme-yellow.dark {
+    --primary: 45 95% 58%;
+    --primary-foreground: 30 40% 10%;
+    --accent: 45 50% 22%;
+    --accent-foreground: 45 95% 82%;
+    --ring: 45 95% 58%;
+    --emergency: 354 90% 58%;
+    --emergency-foreground: 0 0% 100%;
+  }
+
   .dark {
     /* Inspired by Crisis Compass Victoria dark theme */
     --background: 220 39% 6%;
