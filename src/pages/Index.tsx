@@ -1,205 +1,154 @@
-import { useState, useRef, useEffect } from "react";
-import { Heart, Loader2, RotateCcw, HandHeart, MapPin, ShoppingBag } from "lucide-react";
-import { toast } from "sonner";
-import EmergencyBanner from "@/components/EmergencyBanner";
-import ChatMessage from "@/components/ChatMessage";
-import ChatInput from "@/components/ChatInput";
-import QuickActions from "@/components/QuickActions";
-import DRSABCDPanel from "@/components/DRSABCDPanel";
-import LanguageSelector from "@/components/LanguageSelector";
-import ThemeToggle from "@/components/ThemeToggle";
-import { streamChat } from "@/lib/chat-stream";
-import { useLanguage } from "@/contexts/LanguageContext";
-import aidAngelLogo from "@/assets/aidangel-logo.png";
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  Heart,
+  HandCoins,
+  Home as HomeIcon,
+  HeartPulse,
+  Sparkles,
+} from "lucide-react";
+import SiteLayout from "@/components/SiteLayout";
+import { pillarMeta, type Pillar } from "@/data/programs";
 
-type Msg = { role: "user" | "assistant"; content: string };
+const pillarIcons: Record<Pillar, React.ReactNode> = {
+  immediate: <Sparkles className="h-5 w-5" />,
+  financial: <HandCoins className="h-5 w-5" />,
+  housing: <HomeIcon className="h-5 w-5" />,
+  emotional: <HeartPulse className="h-5 w-5" />,
+  business: <HandCoins className="h-5 w-5" />,
+};
+
+const pillarOrder: Pillar[] = ["immediate", "financial", "housing", "emotional"];
 
 const Index = () => {
-  const [messages, setMessages] = useState<Msg[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const { t, language } = useLanguage();
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  const send = async (input: string) => {
-    const userMsg: Msg = { role: "user", content: input };
-    setMessages((prev) => [...prev, userMsg]);
-    setIsLoading(true);
-
-    let assistantSoFar = "";
-    const upsertAssistant = (chunk: string) => {
-      assistantSoFar += chunk;
-      setMessages((prev) => {
-        const last = prev[prev.length - 1];
-        if (last?.role === "assistant") {
-          return prev.map((m, i) =>
-            i === prev.length - 1 ? { ...m, content: assistantSoFar } : m
-          );
-        }
-        return [...prev, { role: "assistant", content: assistantSoFar }];
-      });
-    };
-
-    try {
-      await streamChat({
-        messages: [...messages, userMsg],
-        language,
-        onDelta: (chunk) => upsertAssistant(chunk),
-        onDone: () => setIsLoading(false),
-        onError: (err) => {
-          toast.error(err);
-          setIsLoading(false);
-        },
-      });
-    } catch (e) {
-      console.error(e);
-      toast.error("Failed to get a response. Please try again.");
-      setIsLoading(false);
-    }
-  };
-
-  const isEmpty = messages.length === 0;
-
   return (
-    <div className="flex flex-col h-screen bg-background">
-      <EmergencyBanner />
-
-      {/* Header */}
-      <header className="border-b border-border bg-card px-4 py-4">
-        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3">
-          <div className="flex items-center gap-3 flex-1">
-            {!isEmpty && (
-              <button
-                onClick={() => setMessages([])}
-                className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                aria-label="Back to home"
-              >
-                <RotateCcw className="h-5 w-5" />
-              </button>
-            )}
-            <a href="/" className="flex items-center gap-3 flex-1" onClick={(e) => { e.preventDefault(); setMessages([]); }}>
-              <img src={aidAngelLogo} alt="Aid Angel logo" className="w-14 h-14 rounded-xl object-cover" />
-              <div className="flex-1">
-                <h1 className="font-display font-bold text-lg text-foreground leading-tight">
-                  Aid Angel
-                </h1>
-                <p className="text-xs text-muted-foreground">
-                  {t("appSubtitle")}
-                </p>
-              </div>
-            </a>
+    <SiteLayout>
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="container max-w-4xl mx-auto px-4 pt-16 pb-20 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-card border border-border shadow-glow mb-6">
+            <Heart className="h-7 w-7 text-primary" fill="currentColor" />
           </div>
-          <div className="flex justify-center sm:justify-end items-center gap-2">
-            <ThemeToggle />
-            <LanguageSelector />
+
+          <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight">
+            A warm light on the path to{" "}
+            <span className="text-gradient-warm">recovery.</span>
+          </h1>
+
+          <p className="text-base sm:text-lg text-muted-foreground mt-6 max-w-2xl mx-auto leading-relaxed">
+            After a bushfire, flood or storm, finding the right help can feel impossible.
+            Aid Angel gently guides you to the financial support and services you may be
+            eligible for — in under five minutes.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+            <Link
+              to="/assessment"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-glow hover:opacity-90 transition-opacity"
+            >
+              Start your relief path <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/resources"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-card text-foreground font-semibold hover:bg-muted transition-colors"
+            >
+              Browse resources
+            </Link>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-primary" /> No login required</span>
+            <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4 text-primary" /> Under 5 minutes</span>
+            <span className="inline-flex items-center gap-1.5"><Heart className="h-4 w-4 text-primary" /> Free to use</span>
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* Chat Area */}
-      <div
-        ref={scrollRef}
-        className="flex-1 overflow-y-auto scrollbar-thin px-4 py-6"
-      >
-        <div className="max-w-3xl mx-auto space-y-4">
-          {isEmpty ? (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
-              <div className="text-center space-y-3">
-                <img src={aidAngelLogo} alt="Aid Angel" className="w-28 h-28 rounded-2xl object-cover mx-auto" />
-                <h2 className="font-display font-bold text-2xl text-foreground">
-                  {t("welcomeHeading")}
-                </h2>
-                <p className="text-muted-foreground text-sm max-w-md">
-                  {t("welcomeDescription")}
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-                  <a
-                    href="https://www.goodsamapp.org/locatorMap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                    aria-label="Find nearest AED"
-                  >
-                    <MapPin className="h-4 w-4" />
-                    AED Finder
-                  </a>
-                  <a
-                    href="https://shop.stjohn.org.au/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                    aria-label="St John First Aid Shop"
-                  >
-                    <ShoppingBag className="h-4 w-4" />
-                    St John First Aid Shop
-                  </a>
-                  <a
-                    href="https://www.stjohnvic.com.au/support-us/donations-2016-12/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                    aria-label="Donate to St John Ambulance"
-                  >
-                    <HandHeart className="h-4 w-4" />
-                    Donate
-                  </a>
-                </div>
-              </div>
-              <QuickActions onSelect={send} />
-              <DRSABCDPanel onSelect={send} />
-            </div>
-          ) : (
-            <>
-              {messages.map((msg, i) => (
-                <ChatMessage key={i} message={msg} onAction={send} />
-              ))}
-              {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
-                <div className="flex gap-3 justify-start">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                    <Loader2 className="h-4 w-4 text-primary-foreground animate-spin" />
-                  </div>
-                  <div className="chat-bubble-assistant px-4 py-3">
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Input Area */}
-      <div className="border-t border-border bg-card px-4 py-4">
-        <div className="max-w-3xl mx-auto">
-          <ChatInput onSend={send} disabled={isLoading} />
-          <p className="text-center text-xs text-muted-foreground mt-2">
-            {t("disclaimer").split("000").map((part, i, arr) =>
-              i < arr.length - 1 ? (
-                <span key={i}>{part}<a href="tel:000" className="underline font-semibold hover:text-foreground transition-colors">000</a></span>
-              ) : (
-                <span key={i}>{part}</span>
-              )
-            )}
+      {/* PILLARS */}
+      <section className="container max-w-6xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl">
+            Help across every part of recovery
+          </h2>
+          <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
+            From the first night of safety to rebuilding your home and your livelihood.
           </p>
         </div>
-      </div>
 
-      {/* Footer */}
-      <footer className="bg-card px-4 py-2 text-center">
-        <p className="text-[11px] text-muted-foreground flex items-center justify-center gap-1">
-          © 2026 Love Key Web Application <Heart className="h-3 w-3 inline" />
-        </p>
-      </footer>
-    </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {pillarOrder.map((key) => {
+            const meta = pillarMeta[key];
+            return (
+              <div
+                key={key}
+                className="rounded-2xl border border-border bg-card p-6 hover:border-primary/40 transition-colors"
+              >
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
+                  style={{ backgroundColor: `${meta.color}20`, color: meta.color }}
+                >
+                  {pillarIcons[key]}
+                </div>
+                <h3 className="font-display font-semibold text-lg">{meta.label}</h3>
+                <p className="text-sm text-muted-foreground mt-1.5">{meta.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* THREE STEPS */}
+      <section className="container max-w-5xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl">Three calm steps</h2>
+          <p className="text-muted-foreground mt-3">
+            No long forms. No jargon. One question at a time.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              n: "01",
+              title: "Tell us what happened",
+              body: "Share a few simple details about the disaster and how it affected you.",
+            },
+            {
+              n: "02",
+              title: "We match the help",
+              body: "Our matching engine identifies the support programs you may be eligible for.",
+            },
+            {
+              n: "03",
+              title: "Take the next step",
+              body: "Get a clear, personalised action plan with direct links to apply.",
+            },
+          ].map((step) => (
+            <div key={step.n} className="rounded-2xl border border-border bg-card p-6">
+              <div className="text-xs font-semibold tracking-widest text-primary">{step.n}</div>
+              <h3 className="font-display font-semibold text-lg mt-3">{step.title}</h3>
+              <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="container max-w-3xl mx-auto px-4 py-20 text-center">
+        <h2 className="font-display font-bold text-3xl sm:text-4xl">
+          You don't have to navigate this alone.
+        </h2>
+        <p className="text-muted-foreground mt-3">Take a breath. Then take the first step.</p>
+        <Link
+          to="/assessment"
+          className="inline-flex items-center gap-2 px-6 py-3 mt-7 rounded-full bg-primary text-primary-foreground font-semibold shadow-glow hover:opacity-90 transition-opacity"
+        >
+          Begin assessment <ArrowRight className="h-4 w-4" />
+        </Link>
+      </section>
+    </SiteLayout>
   );
 };
 
