@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { Heart, HandHeart, ShoppingBag } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translateStrings } from "@/lib/uiTranslate";
 
 type NetworkLink = {
   href: string;
@@ -7,42 +10,72 @@ type NetworkLink = {
 };
 
 const NETWORK_LINKS: NetworkLink[] = [
-  {
-    href: "https://firstaidangel.lovekeyring.org",
-    label: "First Aid Angel",
-    description: "quick first aid guidance",
-  },
-  {
-    href: "https://aidangel.lovekeyring.org",
-    label: "Aid Angel",
-    description: "financial support navigator",
-  },
-  {
-    href: "https://guardianguide.lovekeyring.org",
-    label: "Guardian Guide",
-    description: "mental health support finder",
-  },
-  {
-    href: "https://crisiscompass.lovekeyring.org",
-    label: "Crisis Compass",
-    description: "navigate emergencies",
-  },
-  {
-    href: "https://lovekeyring.org",
-    label: "Love Key Hub",
-    description: "all our companion apps",
-  },
+  { href: "https://firstaidangel.lovekeyring.org", label: "First Aid Angel", description: "quick first aid guidance" },
+  { href: "https://aidangel.lovekeyring.org", label: "Aid Angel", description: "financial support navigator" },
+  { href: "https://guardianguide.lovekeyring.org", label: "Guardian Guide", description: "mental health support finder" },
+  { href: "https://crisiscompass.lovekeyring.org", label: "Crisis Compass", description: "navigate emergencies" },
+  { href: "https://lovekeyring.org", label: "Love Key Hub", description: "all our companion apps" },
+];
+
+const STATIC_STRINGS = [
+  "Donate",
+  "St John First Aid Shop",
+  "📖 Browse the First Aid Knowledge Base",
+  "Emergency and Recovery Network",
+  "© 2026 Love Key Web Application",
 ];
 
 interface NetworkFooterProps {
-  /** Label of the current app — rendered as bold, non-linked text. Defaults to "Aid Angel". */
   currentApp?: string;
 }
 
 export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFooterProps) {
+  const { language } = useLanguage();
+  const [tr, setTr] = useState({
+    donate: "Donate",
+    shop: "St John First Aid Shop",
+    browseKb: "📖 Browse the First Aid Knowledge Base",
+    network: "Emergency and Recovery Network",
+    copyright: "© 2026 Love Key Web Application",
+    descriptions: NETWORK_LINKS.map((l) => l.description),
+  });
+
+  useEffect(() => {
+    if (language === "en") {
+      setTr({
+        donate: "Donate",
+        shop: "St John First Aid Shop",
+        browseKb: "📖 Browse the First Aid Knowledge Base",
+        network: "Emergency and Recovery Network",
+        copyright: "© 2026 Love Key Web Application",
+        descriptions: NETWORK_LINKS.map((l) => l.description),
+      });
+      return;
+    }
+    let cancelled = false;
+    const descs = NETWORK_LINKS.map((l) => l.description);
+    Promise.all([
+      translateStrings(language, STATIC_STRINGS),
+      translateStrings(language, descs),
+    ]).then(([s, d]) => {
+      if (cancelled) return;
+      setTr({
+        donate: s[0],
+        shop: s[1],
+        browseKb: s[2],
+        network: s[3],
+        copyright: s[4],
+        descriptions: d,
+      });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
+
   return (
     <footer className="border-t border-border bg-card px-4 py-6">
-      <div className="max-w-lg mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground">
+      <div className="max-w-lg mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground" lang={language}>
         <div className="flex flex-wrap items-center justify-center gap-2 pb-4">
           <a
             href="https://www.stjohnvic.com.au/support-us/donations-2016-12/"
@@ -52,7 +85,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
             aria-label="Donate to St John Ambulance"
           >
             <HandHeart className="h-4 w-4" />
-            Donate
+            {tr.donate}
           </a>
           <a
             href="https://shop.stjohn.org.au/"
@@ -62,27 +95,24 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
             aria-label="St John First Aid Shop"
           >
             <ShoppingBag className="h-4 w-4" />
-            St John First Aid Shop
+            {tr.shop}
           </a>
         </div>
         <div className="pb-2">
-          <a
-            href="/kb"
-            className="text-xs font-semibold text-primary hover:underline"
-          >
-            📖 Browse the First Aid Knowledge Base
+          <a href="/kb" className="text-xs font-semibold text-primary hover:underline">
+            {tr.browseKb}
           </a>
         </div>
         <div className="w-full pt-2">
           <h2 className="text-xs font-semibold uppercase tracking-wide text-foreground mb-2 text-center">
-            Emergency and Recovery Network
+            {tr.network}
           </h2>
           <ul className="flex flex-col items-center gap-1 text-xs">
-            {NETWORK_LINKS.map((link) =>
+            {NETWORK_LINKS.map((link, i) =>
               link.label === currentApp ? (
                 <li key={link.href}>
                   <strong className="font-bold text-foreground">
-                    {link.label} — {link.description}
+                    {link.label} — {tr.descriptions[i]}
                   </strong>
                 </li>
               ) : (
@@ -93,7 +123,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
                     rel="noopener"
                     className="hover:text-foreground transition-colors"
                   >
-                    {link.label} — {link.description}
+                    {link.label} — {tr.descriptions[i]}
                   </a>
                 </li>
               ),
@@ -101,7 +131,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
           </ul>
         </div>
         <p className="text-[11px] text-muted-foreground flex items-center justify-center gap-1 mt-2">
-          © 2026 Love Key Web Application <Heart className="h-3 w-3 inline" />
+          {tr.copyright} <Heart className="h-3 w-3 inline" />
         </p>
       </div>
     </footer>
