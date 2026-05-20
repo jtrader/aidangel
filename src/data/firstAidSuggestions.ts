@@ -1,4 +1,4 @@
-// Curated first aid help queries — Australian First Aid 5th Edition aligned.
+// Curated first aid help queries — aligned with The St John of God First Aid Manual 5th Edition.
 // Used by ChatInput for as-you-type predictive suggestions.
 
 export type Suggestion = {

@@ -5,7 +5,7 @@ export type TopicMeta = {
   slug: string;
   title: string;
   category: string;
-  /** AFA5 section name as cited in chat replies, e.g. "Burns" or "Anaphylaxis". */
+  /** Section name as cited in chat replies, e.g. "Burns" or "Anaphylaxis". */
   section: string;
   summary: string;
   keywords: string[];
