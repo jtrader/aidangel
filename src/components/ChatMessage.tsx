@@ -1,5 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import { Bot, User } from "lucide-react";
+import { Link } from "react-router-dom";
+import { findTopicBySection } from "@/lib/kb";
 
 interface Message {
   role: "user" | "assistant";
@@ -9,6 +11,26 @@ interface Message {
 interface ChatMessageProps {
   message: Message;
   onAction?: (text: string) => void;
+}
+
+/**
+ * Replace `(AFA5 — Section Name)` (or `AFA5 - Section Name`, with em/en/hyphen dashes)
+ * with a markdown link to the matching knowledge-base topic, when one exists.
+ * Falls back to a link to the KB index when no specific match is found.
+ */
+function linkAfaCitations(text: string): string {
+  return text.replace(
+    /\(?\bAFA5\s*[—–-]\s*([^)\n.]+?)\)?(?=[\s.,;:!?\n]|$)/g,
+    (match, sectionName: string) => {
+      const clean = sectionName.trim().replace(/[.,;:!?)\]]+$/, "");
+      const topic = findTopicBySection(clean);
+      const href = topic ? `/kb/${topic.slug}` : `/kb`;
+      const label = `AFA5 — ${clean}`;
+      // Preserve surrounding parens if they were in the source.
+      const wrapped = match.trim().startsWith("(") ? `([${label}](${href}))` : `[${label}](${href})`;
+      return wrapped;
+    },
+  );
 }
 
 const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
@@ -23,9 +45,7 @@ const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
       )}
       <div
         className={`max-w-[80%] px-4 py-3 ${
-          isUser
-            ? "chat-bubble-user"
-            : "chat-bubble-assistant"
+          isUser ? "chat-bubble-user" : "chat-bubble-assistant"
         }`}
       >
         {isUser ? (
@@ -35,7 +55,7 @@ const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
             <ReactMarkdown
               components={{
                 a: ({ href, children, ...props }) => {
-                  if (href === '#drsabcd') {
+                  if (href === "#drsabcd") {
                     return (
                       <button
                         type="button"
@@ -46,18 +66,35 @@ const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
                       </button>
                     );
                   }
+                  if (href?.startsWith("/")) {
+                    return (
+                      <Link
+                        to={href}
+                        className="text-primary underline font-semibold hover:text-foreground transition-colors"
+                      >
+                        {children}
+                      </Link>
+                    );
+                  }
                   return (
-                    <a href={href} className="text-primary underline font-semibold hover:text-foreground transition-colors" {...props}>{children}</a>
+                    <a
+                      href={href}
+                      className="text-primary underline font-semibold hover:text-foreground transition-colors"
+                      {...props}
+                    >
+                      {children}
+                    </a>
                   );
                 },
               }}
             >
-              {message.content
-                .replace(/\[\[(?:STEP(?::\d+\/\d+)?(?:_END)?|TRIAGE|URGENT)\]\]/g, '')
-                .trim()
-                .replace(/\b000\b/g, '[000](tel:000)')
-                .replace(/\bDRSABCD\b/g, '[DRSABCD](#drsabcd)')
-              }
+              {linkAfaCitations(
+                message.content
+                  .replace(/\[\[(?:STEP(?::\d+\/\d+)?(?:_END)?|TRIAGE|URGENT)\]\]/g, "")
+                  .trim()
+                  .replace(/\b000\b/g, "[000](tel:000)")
+                  .replace(/\bDRSABCD\b/g, "[DRSABCD](#drsabcd)"),
+              )}
             </ReactMarkdown>
           </div>
         )}
