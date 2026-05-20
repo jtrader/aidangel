@@ -53,7 +53,7 @@ const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
               }}
             >
               {message.content
-                .replace(/\[\[STEP(?:_END)?\]\]/g, '')
+                .replace(/\[\[(?:STEP(?:_END)?|TRIAGE)\]\]/g, '')
                 .trim()
                 .replace(/\b000\b/g, '[000](tel:000)')
                 .replace(/\bDRSABCD\b/g, '[DRSABCD](#drsabcd)')

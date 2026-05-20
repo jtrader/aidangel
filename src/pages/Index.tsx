@@ -195,11 +195,31 @@ const Index = () => {
               <div className="max-w-2xl mx-auto w-full">
                 {(() => {
                   const last = messages[messages.length - 1];
+                  if (isLoading || last?.role !== "assistant") return null;
+                  const isTriage = /\[\[TRIAGE\]\]/.test(last.content);
                   const inWalkthrough =
-                    !isLoading &&
-                    last?.role === "assistant" &&
                     /\[\[STEP\]\]/.test(last.content) &&
                     !/\[\[STEP_END\]\]/.test(last.content);
+                  if (isTriage) {
+                    return (
+                      <div className="flex flex-wrap items-center justify-center gap-2 mb-3 animate-fade-in">
+                        <button
+                          type="button"
+                          onClick={() => send("This is happening right now")}
+                          className="px-3 py-1.5 rounded-full bg-destructive text-destructive-foreground text-xs font-semibold hover:bg-destructive/90 transition-colors"
+                        >
+                          🚨 Happening now
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => send("I'm just brushing up for later")}
+                          className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-semibold hover:bg-secondary/80 transition-colors"
+                        >
+                          📚 Just learning
+                        </button>
+                      </div>
+                    );
+                  }
                   if (!inWalkthrough) return null;
                   return (
                     <div className="flex flex-wrap items-center justify-center gap-2 mb-3 animate-fade-in">
