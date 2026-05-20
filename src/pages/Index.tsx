@@ -120,67 +120,9 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Sticky walk-through panel — pinned above messages while active */}
-      {inWalkthrough && (
-        <div className="sticky top-0 z-30 border-b border-border bg-card/95 backdrop-blur px-4 py-3 animate-fade-in">
-          <div className="max-w-3xl mx-auto space-y-2">
-            {walkX && walkY && (
-              <div className="space-y-1">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-semibold text-foreground">
-                    Step {walkX} of {walkY}
-                  </span>
-                  <span className="text-muted-foreground">{walkPct}%</span>
-                </div>
-                <div
-                  className="h-1.5 w-full rounded-full bg-muted overflow-hidden"
-                  role="progressbar"
-                  aria-valuemin={0}
-                  aria-valuemax={walkY}
-                  aria-valuenow={walkX}
-                  aria-label={`Step ${walkX} of ${walkY}`}
-                >
-                  <div
-                    className="h-full bg-primary transition-all duration-300 ease-out"
-                    style={{ width: `${walkPct}%` }}
-                  />
-                </div>
-              </div>
-            )}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="text-xs text-muted-foreground mr-1">Walk-through:</span>
-              <button
-                type="button"
-                onClick={() => send("next")}
-                className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
-              >
-                Next →
-              </button>
-              <button
-                type="button"
-                onClick={() => send("back")}
-                className="px-3 py-1.5 rounded-full bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-colors"
-              >
-                Repeat
-              </button>
-              <button
-                type="button"
-                onClick={() => send("done")}
-                className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
-              >
-                Done ✓
-              </button>
-              <button
-                type="button"
-                onClick={() => send("stop")}
-                className="px-3 py-1.5 rounded-full border border-border text-muted-foreground text-xs font-medium hover:bg-muted transition-colors"
-              >
-                Stop
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Walk-through nav is rendered inline after the latest step message */}
+
+
 
 
       {/* Main content */}
@@ -233,9 +175,73 @@ const Index = () => {
           ) : (
             <>
               <div className="space-y-4">
-                {messages.map((msg, i) => (
-                  <ChatMessage key={i} message={msg} onAction={send} />
-                ))}
+                {messages.map((msg, i) => {
+                  const isLast = i === messages.length - 1;
+                  const showWalkNav = isLast && !isLoading && msg.role === "assistant" && inWalkthrough;
+                  return (
+                    <div key={i} className="space-y-2">
+                      <ChatMessage message={msg} onAction={send} />
+                      {showWalkNav && (
+                        <div className="ml-11 animate-fade-in space-y-2">
+                          {walkX && walkY && (
+                            <div className="space-y-1 max-w-sm">
+                              <div className="flex items-center justify-between text-xs">
+                                <span className="font-semibold text-foreground">
+                                  Step {walkX} of {walkY}
+                                </span>
+                                <span className="text-muted-foreground">{walkPct}%</span>
+                              </div>
+                              <div
+                                className="h-1.5 w-full rounded-full bg-muted overflow-hidden"
+                                role="progressbar"
+                                aria-valuemin={0}
+                                aria-valuemax={walkY}
+                                aria-valuenow={walkX}
+                                aria-label={`Step ${walkX} of ${walkY}`}
+                              >
+                                <div
+                                  className="h-full bg-primary transition-all duration-300 ease-out"
+                                  style={{ width: `${walkPct}%` }}
+                                />
+                              </div>
+                            </div>
+                          )}
+                          <div className="flex flex-wrap items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => send("next")}
+                              className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
+                            >
+                              Next →
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => send("back")}
+                              className="px-3 py-1.5 rounded-full bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-colors"
+                            >
+                              Repeat
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => send("done")}
+                              className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
+                            >
+                              Done ✓
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => send("stop")}
+                              className="px-3 py-1.5 rounded-full border border-border text-muted-foreground text-xs font-medium hover:bg-muted transition-colors"
+                            >
+                              Stop
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
                 {isLoading && (
                   <div
                     className="flex gap-3 justify-start animate-fade-in"
@@ -260,11 +266,28 @@ const Index = () => {
                 )}
               </div>
 
-              <div className="text-center">
-                <h2 className="font-display font-bold text-xl sm:text-2xl text-foreground px-2">
-                  {t("welcomeHeading")}
-                </h2>
-              </div>
+              {!isLoading && messages[messages.length - 1]?.role === "assistant" && !inWalkthrough && (
+                <div className="text-center space-y-2 animate-fade-in">
+                  <p className="text-sm font-medium text-muted-foreground">Am I helping?</p>
+                  <div className="flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => send("Yes, that's helpful — keep going.")}
+                      className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => send("Not quite — can you try a different approach?")}
+                      className="px-4 py-1.5 rounded-full border border-border text-foreground text-xs font-semibold hover:bg-muted transition-colors"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              )}
+
 
               <div className="max-w-2xl mx-auto w-full">
                 {(() => {
