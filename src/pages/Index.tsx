@@ -352,64 +352,7 @@ const Index = () => {
                           </div>
                         </div>
                       )}
-                      {inWalkthrough && (
-                        <div className="mb-3 space-y-2 animate-fade-in">
-                          {stepX && stepY && (
-                            <div className="space-y-1">
-                              <div className="flex items-center justify-between text-xs">
-                                <span className="font-semibold text-foreground">
-                                  Step {stepX} of {stepY}
-                                </span>
-                                <span className="text-muted-foreground">{stepPct}%</span>
-                              </div>
-                              <div
-                                className="h-1.5 w-full rounded-full bg-muted overflow-hidden"
-                                role="progressbar"
-                                aria-valuemin={0}
-                                aria-valuemax={stepY}
-                                aria-valuenow={stepX}
-                                aria-label={`Step ${stepX} of ${stepY}`}
-                              >
-                                <div
-                                  className="h-full bg-primary transition-all duration-300 ease-out"
-                                  style={{ width: `${stepPct}%` }}
-                                />
-                              </div>
-                            </div>
-                          )}
-                          <div className="flex flex-wrap items-center justify-center gap-2">
-                            <span className="text-xs text-muted-foreground mr-1">Walk-through:</span>
-                            <button
-                              type="button"
-                              onClick={() => send("next")}
-                              className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
-                            >
-                            Next →
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => send("back")}
-                            className="px-3 py-1.5 rounded-full bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-colors"
-                          >
-                            Repeat
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => send("done")}
-                            className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
-                          >
-                            Done ✓
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => send("stop")}
-                            className="px-3 py-1.5 rounded-full border border-border text-muted-foreground text-xs font-medium hover:bg-muted transition-colors"
-                          >
-                            Stop
-                            </button>
-                          </div>
-                        </div>
-                      )}
+                      {/* Walk-through panel is rendered sticky above messages — see top of layout */}
                     </>
                   );
                 })()}
