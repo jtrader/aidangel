@@ -177,31 +177,37 @@ const Index = () => {
               <div className="space-y-4">
                 {messages.map((msg, i) => {
                   const isLast = i === messages.length - 1;
-                  const showWalkNav = isLast && !isLoading && msg.role === "assistant" && inWalkthrough;
+                  const streaming = isLast && isLoading;
+                  const stepMatch = msg.role === "assistant" ? msg.content.match(/\[\[STEP(?::(\d+)\/(\d+))?\]\]/) : null;
+                  const ended = msg.role === "assistant" && /\[\[STEP_END\]\]/.test(msg.content);
+                  const showWalkNav = !!stepMatch && !ended && !streaming;
+                  const sx = stepMatch?.[1] ? parseInt(stepMatch[1], 10) : null;
+                  const sy = stepMatch?.[2] ? parseInt(stepMatch[2], 10) : null;
+                  const sp = sx && sy ? Math.min(100, Math.round((sx / sy) * 100)) : null;
                   return (
                     <div key={i} className="space-y-2">
                       <ChatMessage message={msg} onAction={send} />
                       {showWalkNav && (
                         <div className="ml-11 animate-fade-in space-y-2">
-                          {walkX && walkY && (
+                          {sx && sy && (
                             <div className="space-y-1 max-w-sm">
                               <div className="flex items-center justify-between text-xs">
                                 <span className="font-semibold text-foreground">
-                                  Step {walkX} of {walkY}
+                                  Step {sx} of {sy}
                                 </span>
-                                <span className="text-muted-foreground">{walkPct}%</span>
+                                <span className="text-muted-foreground">{sp}%</span>
                               </div>
                               <div
                                 className="h-1.5 w-full rounded-full bg-muted overflow-hidden"
                                 role="progressbar"
                                 aria-valuemin={0}
-                                aria-valuemax={walkY}
-                                aria-valuenow={walkX}
-                                aria-label={`Step ${walkX} of ${walkY}`}
+                                aria-valuemax={sy}
+                                aria-valuenow={sx}
+                                aria-label={`Step ${sx} of ${sy}`}
                               >
                                 <div
                                   className="h-full bg-primary transition-all duration-300 ease-out"
-                                  style={{ width: `${walkPct}%` }}
+                                  style={{ width: `${sp}%` }}
                                 />
                               </div>
                             </div>
@@ -210,28 +216,32 @@ const Index = () => {
                             <button
                               type="button"
                               onClick={() => send("next")}
-                              className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
+                              disabled={isLoading}
+                              className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
                             >
                               Next →
                             </button>
                             <button
                               type="button"
                               onClick={() => send("back")}
-                              className="px-3 py-1.5 rounded-full bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-colors"
+                              disabled={isLoading}
+                              className="px-3 py-1.5 rounded-full bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-colors disabled:opacity-50"
                             >
                               Repeat
                             </button>
                             <button
                               type="button"
                               onClick={() => send("done")}
-                              className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
+                              disabled={isLoading}
+                              className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors disabled:opacity-50"
                             >
                               Done ✓
                             </button>
                             <button
                               type="button"
                               onClick={() => send("stop")}
-                              className="px-3 py-1.5 rounded-full border border-border text-muted-foreground text-xs font-medium hover:bg-muted transition-colors"
+                              disabled={isLoading}
+                              className="px-3 py-1.5 rounded-full border border-border text-muted-foreground text-xs font-medium hover:bg-muted transition-colors disabled:opacity-50"
                             >
                               Stop
                             </button>
@@ -241,6 +251,7 @@ const Index = () => {
                     </div>
                   );
                 })}
+
 
                 {isLoading && (
                   <div
