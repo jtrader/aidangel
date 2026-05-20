@@ -186,7 +186,13 @@ const Index = () => {
                 )}
               </div>
 
-              <div className="max-w-2xl mx-auto w-full pt-2">
+              <div className="text-center pt-2">
+                <h2 className="font-display font-bold text-2xl text-foreground">
+                  {t("welcomeHeading")}
+                </h2>
+              </div>
+
+              <div className="max-w-2xl mx-auto w-full">
                 <ChatInput onSend={send} disabled={isLoading} />
                 <p className="text-center text-xs text-muted-foreground mt-2">
                   {t("disclaimer").split("000").map((part, i, arr) =>
