@@ -41,10 +41,13 @@ const KbIndex = () => {
             <ArrowLeft className="h-4 w-4" />
             Back to chat
           </Link>
-          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
-            <BookOpen className="h-4 w-4 text-primary" />
-            Knowledge base
-          </span>
+          <div className="flex items-center gap-3">
+            <LanguageSelector />
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
+              <BookOpen className="h-4 w-4 text-primary" />
+              Knowledge base
+            </span>
+          </div>
         </div>
       </header>
 
