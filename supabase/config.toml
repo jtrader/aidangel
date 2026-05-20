@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.translate-kb]
 verify_jwt = false
+
+[functions.translate-ui]
+verify_jwt = false
