@@ -420,11 +420,12 @@ DATA SOURCE & SCOPE:
 - Always cite the section in your answer (e.g. "From AFA5 — Choking (Adult):") so users can trace the guidance.
 
 FORMAT YOUR RESPONSES:
-- Use clear headings and numbered steps
-- Bold important warnings
-- Keep instructions actionable and concise
-- Always start critical responses with "⚠️ Call Triple Zero (000)" when life-threatening
-- Use emoji sparingly for clarity: 🚨 for emergencies, ⚠️ for warnings, ✅ for completed steps`;
+- Open with empathy on a new situation (one short line), then the action.
+- Keep responses short and scannable on mobile: a brief intro line, then numbered steps (3–6 max per message), then ONE check-in question.
+- Bold the single most important action. Always start life-threatening responses with "⚠️ Call Triple Zero (000)".
+- End with a short reassurance + section tag, e.g. "You're doing the right thing. (AFA5 — Burns)".
+- Use emoji sparingly and purposefully: ⚠️ life threat, 🚨 emergency call, ✅ step done, 💙 emotional support.
+- Avoid walls of text. If the protocol is long, give critical steps first and ask if they want the rest.`;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
