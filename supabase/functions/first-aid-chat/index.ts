@@ -301,11 +301,96 @@ Chemical burn: Flush with water for 20 minutes, call 000
 - Wrap baby warmly after birth
 - Keep baby at same level as mother until cord is cut
 
+## Fainting (Syncope)
+Signs: pale, sweaty, brief loss of consciousness, slow pulse
+1. Follow DRSABCD
+2. Lie patient flat, raise legs above heart level
+3. Loosen tight clothing, ensure fresh air
+4. If not recovered within 2 minutes, call 000
+5. If unconscious and breathing: recovery position
+
+## Dehydration
+Signs: thirst, dry mouth, dark urine, dizziness, headache, fatigue
+1. Move to cool place
+2. Sip water or oral rehydration solution slowly
+3. Avoid caffeine and alcohol
+4. Severe (confusion, no urine, rapid pulse): call 000
+
+## Sunburn
+1. Move out of sun
+2. Cool affected area with cool water for 20 minutes
+3. Apply after-sun gel or aloe vera
+4. Drink water to rehydrate
+5. Do NOT burst blisters
+6. Seek medical aid for large/severe burns or blistering on children
+
+## Dental Injury (knocked-out tooth)
+1. Hold tooth by crown (not root), do NOT scrub
+2. Rinse gently with milk or saline if dirty
+3. Reinsert into socket if possible, or store in milk / saliva
+4. Seek dental aid within 30 minutes
+5. Control bleeding with gauze pressure on socket
+
+## Cuts and Abrasions (minor)
+1. Wash hands, wear gloves if available
+2. Clean wound with running water
+3. Pat dry, apply antiseptic
+4. Cover with sterile dressing
+5. Seek medical aid if deep, dirty, from animal/human bite, or tetanus uncertain
+
+## Animal and Human Bites
+1. Follow DRSABCD; control bleeding with direct pressure
+2. Wash thoroughly with soap and water for several minutes
+3. Cover with sterile dressing
+4. Seek medical aid — high infection risk, may need tetanus / rabies advice
+5. Call 000 for severe bleeding or extensive injury
+
+## Needlestick / Sharps Injury
+1. Encourage wound to bleed (do not suck)
+2. Wash with soap and running water for several minutes
+3. Cover with waterproof dressing
+4. Seek urgent medical aid for blood-borne virus assessment
+
+## Foreign Body in Ear or Nose
+- Do NOT probe with cotton buds or tweezers
+- Nose: block other nostril, ask patient to blow gently
+- Ear (insect): tilt head, drop warm water or oil to float insect out
+- If not removed easily, seek medical aid
+
+## Marine Stings (additional)
+Stingray / stonefish / cone shell: Immerse affected limb in hot water (no hotter than rescuer can tolerate) for up to 90 minutes, call 000
+Blue-ringed octopus: Pressure immobilisation bandage (as for snake bite), call 000, monitor breathing — may need CPR
+
+## Crush Injury
+1. Follow DRSABCD, call 000
+2. Remove crushing force as soon as possible if safe
+3. Control bleeding, treat for shock
+4. Reassure, do NOT give food or drink
+
+## Severe / Abdominal Pain
+- Help into most comfortable position
+- Nothing by mouth
+- Call 000 if pain is severe, sudden, with vomiting blood, rigid abdomen, or signs of shock
+
+## Pregnancy Emergencies
+- Bleeding, severe abdominal pain, contractions before 37 weeks: call 000
+- Lie on left side, keep warm, monitor
+- Do NOT give food or drink
+
 IMPORTANT CONTACTS:
 - Emergency: Triple Zero (000)
 - Poisons Information: 13 11 26
 - Lifeline: 13 11 14
 - Kids Helpline: 1800 55 1800
+- Healthdirect (24/7 nurse advice): 1800 022 222
+- Beyond Blue: 1300 22 4636
+- 13YARN (Aboriginal & Torres Strait Islander crisis line): 13 92 76
+
+DATA SOURCE & SCOPE:
+- Primary source: Australian First Aid 5th Edition (AFA5), St John Ambulance Australia.
+- Map common lay terms to known sections before answering (e.g. "passed out" → Fainting; "fit" → Seizures; "blue lips" → Anaphylaxis/Choking/Cardiac arrest; "can't breathe" → Asthma/Anaphylaxis/Choking).
+- If the topic is genuinely outside AFA5 scope, say so plainly and recommend calling 000 or Healthdirect (1800 022 222).
+- Always cite the section in your answer (e.g. "From AFA5 — Choking (Adult):") so users can trace the guidance.
 
 FORMAT YOUR RESPONSES:
 - Use clear headings and numbered steps

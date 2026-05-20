@@ -106,8 +106,8 @@ const Index = () => {
           {isEmpty ? (
             <>
               <div className="text-center space-y-3">
-                <img src={aidAngelLogo} alt="First Aid Angel" className="w-20 h-20 rounded-2xl object-cover mx-auto" />
-                <h2 className="font-display font-bold text-2xl text-foreground">
+                <img src={aidAngelLogo} alt="First Aid Angel" className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover mx-auto" />
+                <h2 className="font-display font-bold text-xl sm:text-2xl text-foreground px-2">
                   {t("welcomeHeading")}
                 </h2>
               </div>
@@ -170,7 +170,7 @@ const Index = () => {
               </div>
 
               <div className="text-center">
-                <h2 className="font-display font-bold text-2xl text-foreground">
+                <h2 className="font-display font-bold text-xl sm:text-2xl text-foreground px-2">
                   {t("welcomeHeading")}
                 </h2>
               </div>
