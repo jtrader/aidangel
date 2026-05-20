@@ -39,7 +39,7 @@ type TranslationKey =
 const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   en: {
     emergencyBanner: "In a life-threatening emergency, call Triple Zero (000) immediately",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Your First Aid Assistant • Powered by St. John of God Australian First Aid 5th Edition",
     welcomeHeading: "How can I help?",
     welcomeDescription: "Ask me about any first aid situation. I'll provide step-by-step guidance based on the Australian First Aid manual.",
@@ -52,7 +52,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   zh: {
     emergencyBanner: "遇到危及生命的紧急情况，请立即拨打 Triple Zero (000)",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "您的急救助手 • 基于《澳大利亚急救手册》第五版",
     welcomeHeading: "我能帮您什么？",
     welcomeDescription: "向我询问任何急救情况，我将根据澳大利亚急救手册提供逐步指导。",
@@ -65,7 +65,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   yue: {
     emergencyBanner: "遇到危及生命嘅緊急情況，請即刻打 Triple Zero (000)",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "你嘅急救助手 • 基於《澳洲急救手冊》第五版",
     welcomeHeading: "我可以點幫你？",
     welcomeDescription: "問我任何急救情況，我會根據澳洲急救手冊提供逐步指導。",
@@ -78,7 +78,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   ar: {
     emergencyBanner: "في حالة الطوارئ المهددة للحياة، اتصل بـ Triple Zero (000) فوراً",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "مساعدك للإسعافات الأولية • مبني على دليل الإسعافات الأولية الأسترالي الطبعة الخامسة",
     welcomeHeading: "كيف يمكنني مساعدتك؟",
     welcomeDescription: "اسألني عن أي حالة إسعافات أولية. سأقدم لك إرشادات خطوة بخطوة بناءً على دليل الإسعافات الأولية الأسترالي.",
@@ -91,7 +91,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   vi: {
     emergencyBanner: "Trong trường hợp khẩn cấp đe dọa tính mạng, gọi Triple Zero (000) ngay",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Trợ lý Sơ cứu của bạn • Dựa trên Sổ tay Sơ cứu Úc Phiên bản 5",
     welcomeHeading: "Tôi có thể giúp gì?",
     welcomeDescription: "Hỏi tôi về bất kỳ tình huống sơ cứu nào. Tôi sẽ hướng dẫn từng bước dựa trên sổ tay sơ cứu Úc.",
@@ -104,7 +104,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   pa: {
     emergencyBanner: "ਜਾਨਲੇਵਾ ਐਮਰਜੈਂਸੀ ਵਿੱਚ, ਤੁਰੰਤ Triple Zero (000) ਤੇ ਕਾਲ ਕਰੋ",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "ਤੁਹਾਡਾ ਫਸਟ ਏਡ ਸਹਾਇਕ • ਆਸਟ੍ਰੇਲੀਅਨ ਫਸਟ ਏਡ 5ਵੀਂ ਐਡੀਸ਼ਨ ਤੇ ਅਧਾਰਿਤ",
     welcomeHeading: "ਮੈਂ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ?",
     welcomeDescription: "ਮੈਨੂੰ ਕਿਸੇ ਵੀ ਫਸਟ ਏਡ ਸਥਿਤੀ ਬਾਰੇ ਪੁੱਛੋ। ਮੈਂ ਕਦਮ-ਦਰ-ਕਦਮ ਮਾਰਗਦਰਸ਼ਨ ਦੇਵਾਂਗਾ।",
@@ -117,7 +117,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   el: {
     emergencyBanner: "Σε απειλητική για τη ζωή κατάσταση, καλέστε αμέσως Triple Zero (000)",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Ο Βοηθός Πρώτων Βοηθειών σας • Βασισμένο στο Αυστραλιανό Εγχειρίδιο 5η Έκδοση",
     welcomeHeading: "Πώς μπορώ να βοηθήσω;",
     welcomeDescription: "Ρωτήστε με για οποιαδήποτε κατάσταση πρώτων βοηθειών. Θα σας καθοδηγήσω βήμα προς βήμα.",
@@ -130,7 +130,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   it: {
     emergencyBanner: "In un'emergenza che mette in pericolo la vita, chiama subito Triple Zero (000)",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Il tuo Assistente di Primo Soccorso • Basato sul Manuale Australiano 5ª Edizione",
     welcomeHeading: "Come posso aiutarti?",
     welcomeDescription: "Chiedimi di qualsiasi situazione di primo soccorso. Ti guiderò passo dopo passo secondo il manuale australiano.",
@@ -143,7 +143,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   kriol: {
     emergencyBanner: "Wen samwan rili sik o hert, ringap Triple Zero (000) stret",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Yu Ferst Aid Helpa",
     welcomeHeading: "Wanim ai gin helpim yu?",
     welcomeDescription: "Askim mi enijing baut ferst aid. Ai gin shoum yu step bai step.",
@@ -156,7 +156,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   yolngu: {
     emergencyBanner: "Ŋunhi buku-ḏäkthun, djamarrkuliw Triple Zero (000) ŋayi",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Ŋarraku First Aid Helper",
     welcomeHeading: "Nhä ŋarra djäma?",
     welcomeDescription: "Ŋarrakuŋ dhäwu first aid. Ŋarra yäku djäma step by step.",
@@ -169,7 +169,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   pitjantjatjara: {
     emergencyBanner: "Uwankara alatjitu pikaringkunytjaku, Triple Zero (000) telephone-angka wangka",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Nyuntumpa First Aid Helper",
     welcomeHeading: "Nyaaku ngayulu nyuntunya alpamilantjaku?",
     welcomeDescription: "First aid tjutaku ngayunya tjapina. Step by step ngayulu watjantjaku.",
@@ -182,7 +182,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   arrernte: {
     emergencyBanner: "Arelhe atnyeneme apeke, Triple Zero (000) aketyarte ileme",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Nhenhe First Aid Helper",
     welcomeHeading: "Nhenhe iwerre ngkwe?",
     welcomeDescription: "First aid-akerte ngkwe ayerneme. Step by step ngkwe tyerre arlkeme.",
@@ -195,7 +195,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
   },
   tsi: {
     emergencyBanner: "Wen big sik or hert, ringap Triple Zero (000) kwiktaim",
-    appTitle: "Aid Angel",
+    appTitle: "First Aid Angel",
     appSubtitle: "Yupela First Aid Helpa",
     welcomeHeading: "Wanem mi save helpem yu?",
     welcomeDescription: "Askem mi eni first aid samting. Mi save showem yu step bai step.",

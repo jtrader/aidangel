@@ -1,6 +1,6 @@
 {
-  "name": "Aid Angel",
-  "short_name": "Aid Angel",
+  "name": "First Aid Angel",
+  "short_name": "First Aid Angel",
   "description": "AI-powered first aid guidance based on the Australian First Aid 5th Edition manual.",
   "start_url": "/",
   "display": "standalone",
