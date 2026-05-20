@@ -65,6 +65,14 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
             St John First Aid Shop
           </a>
         </div>
+        <div className="pb-2">
+          <a
+            href="/kb"
+            className="text-xs font-semibold text-primary hover:underline"
+          >
+            📖 Browse the First Aid Knowledge Base
+          </a>
+        </div>
         <div className="w-full pt-2">
           <h2 className="text-xs font-semibold uppercase tracking-wide text-foreground mb-2 text-center">
             Emergency and Recovery Network
