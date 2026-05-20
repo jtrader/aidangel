@@ -272,12 +272,6 @@ const Index = () => {
                   if (isLoading || last?.role !== "assistant") return null;
                   const isTriage = /\[\[TRIAGE\]\]/.test(last.content);
                   const isUrgent = /\[\[URGENT\]\]/.test(last.content);
-                  const stepMatch = last.content.match(/\[\[STEP(?::(\d+)\/(\d+))?\]\]/);
-                  const stepEnded = /\[\[STEP_END\]\]/.test(last.content);
-                  const inWalkthrough = !!stepMatch && !stepEnded;
-                  const stepX = stepMatch?.[1] ? parseInt(stepMatch[1], 10) : null;
-                  const stepY = stepMatch?.[2] ? parseInt(stepMatch[2], 10) : null;
-                  const stepPct = stepX && stepY ? Math.min(100, Math.round((stepX / stepY) * 100)) : null;
                   return (
                     <>
                       {isTriage && (
