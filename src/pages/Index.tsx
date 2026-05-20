@@ -193,6 +193,48 @@ const Index = () => {
               </div>
 
               <div className="max-w-2xl mx-auto w-full">
+                {(() => {
+                  const last = messages[messages.length - 1];
+                  const inWalkthrough =
+                    !isLoading &&
+                    last?.role === "assistant" &&
+                    /\[\[STEP\]\]/.test(last.content) &&
+                    !/\[\[STEP_END\]\]/.test(last.content);
+                  if (!inWalkthrough) return null;
+                  return (
+                    <div className="flex flex-wrap items-center justify-center gap-2 mb-3 animate-fade-in">
+                      <span className="text-xs text-muted-foreground mr-1">Walk-through:</span>
+                      <button
+                        type="button"
+                        onClick={() => send("next")}
+                        className="px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
+                      >
+                        Next →
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => send("back")}
+                        className="px-3 py-1.5 rounded-full bg-muted text-foreground text-xs font-medium hover:bg-muted/80 transition-colors"
+                      >
+                        Repeat
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => send("done")}
+                        className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium hover:bg-secondary/80 transition-colors"
+                      >
+                        Done ✓
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => send("stop")}
+                        className="px-3 py-1.5 rounded-full border border-border text-muted-foreground text-xs font-medium hover:bg-muted transition-colors"
+                      >
+                        Stop
+                      </button>
+                    </div>
+                  );
+                })()}
                 <ChatInput onSend={send} disabled={isLoading} />
                 <p className="text-center text-xs text-muted-foreground mt-2">
                   {t("disclaimer").split("000").map((part, i, arr) =>
