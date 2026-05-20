@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 import { topicsByCategory, topics } from "@/lib/kb";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import NetworkFooter from "@/components/NetworkFooter";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const KbIndex = () => {
   const grouped = topicsByCategory();
@@ -40,10 +41,13 @@ const KbIndex = () => {
             <ArrowLeft className="h-4 w-4" />
             Back to chat
           </Link>
-          <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
-            <BookOpen className="h-4 w-4 text-primary" />
-            Knowledge base
-          </span>
+          <div className="flex items-center gap-3">
+            <LanguageSelector />
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
+              <BookOpen className="h-4 w-4 text-primary" />
+              Knowledge base
+            </span>
+          </div>
         </div>
       </header>
 

@@ -2,3 +2,6 @@ project_id = "luocpjawdzwreskitrqj"
 
 [functions.first-aid-chat]
 verify_jwt = false
+
+[functions.translate-kb]
+verify_jwt = false

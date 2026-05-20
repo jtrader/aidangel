@@ -1,9 +1,13 @@
+import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
-import { ArrowLeft, BookOpen, ExternalLink, MessageCircle } from "lucide-react";
+import { ArrowLeft, BookOpen, Loader2, MessageCircle } from "lucide-react";
 import { getTopic, getBody, topics } from "@/lib/kb";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import NetworkFooter from "@/components/NetworkFooter";
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translateTopic } from "@/lib/kbTranslate";
 
 const KbTopic = () => {
   const { slug = "" } = useParams<{ slug: string }>();
@@ -15,7 +19,38 @@ const KbTopic = () => {
 
   const body = getBody(slug);
   // Strip the first "# Title" — we render it as a real <h1> ourselves.
-  const bodyWithoutTitle = body.replace(/^#\s+.*\n+/, "");
+  const sourceBody = body.replace(/^#\s+.*\n+/, "");
+
+  const { language } = useLanguage();
+  const [translated, setTranslated] = useState<{ title: string; summary: string; body: string }>({
+    title: topic.title,
+    summary: topic.summary,
+    body: sourceBody,
+  });
+  const [translating, setTranslating] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (language === "en") {
+      setTranslated({ title: topic.title, summary: topic.summary, body: sourceBody });
+      return;
+    }
+    setTranslating(true);
+    translateTopic(slug, language, {
+      title: topic.title,
+      summary: topic.summary,
+      body: sourceBody,
+    })
+      .then((res) => {
+        if (!cancelled) setTranslated(res);
+      })
+      .finally(() => {
+        if (!cancelled) setTranslating(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, language, topic.title, topic.summary, sourceBody]);
 
   const related = topic.related
     .map((s) => topics.find((t) => t.slug === s))
@@ -60,7 +95,7 @@ const KbTopic = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="border-b border-border bg-card">
-        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
           <Link
             to="/kb"
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -68,13 +103,16 @@ const KbTopic = () => {
             <ArrowLeft className="h-4 w-4" />
             All topics
           </Link>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
-          >
-            <MessageCircle className="h-4 w-4" />
-            Ask the assistant
-          </Link>
+          <div className="flex items-center gap-3">
+            <LanguageSelector />
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span className="hidden sm:inline">Ask the assistant</span>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -91,14 +129,21 @@ const KbTopic = () => {
           <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
             {topic.category}
           </p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            {topic.title}
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" lang={language}>
+            {translated.title}
           </h1>
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            {topic.summary}
+          <p className="text-lg text-muted-foreground mb-8 leading-relaxed" lang={language}>
+            {translated.summary}
           </p>
 
-          <div className="prose prose-sm sm:prose-base max-w-none prose-headings:text-foreground prose-h2:text-xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-3 prose-p:text-card-foreground prose-strong:text-foreground prose-li:text-card-foreground prose-ol:text-card-foreground prose-ul:text-card-foreground prose-a:text-primary prose-a:font-medium prose-a:underline">
+          {translating && (
+            <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
+              <Loader2 className="h-3 w-3 animate-spin" />
+              Translating…
+            </div>
+          )}
+
+          <div lang={language} className="prose prose-sm sm:prose-base max-w-none prose-headings:text-foreground prose-h2:text-xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-3 prose-p:text-card-foreground prose-strong:text-foreground prose-li:text-card-foreground prose-ol:text-card-foreground prose-ul:text-card-foreground prose-a:text-primary prose-a:font-medium prose-a:underline">
             <ReactMarkdown
               components={{
                 a: ({ href, children, ...props }) => {
@@ -123,7 +168,7 @@ const KbTopic = () => {
                 },
               }}
             >
-              {bodyWithoutTitle}
+              {translated.body}
             </ReactMarkdown>
           </div>
 
