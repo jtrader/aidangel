@@ -1,0 +1,591 @@
+[
+  {
+    "slug": "drsabcd",
+    "title": "DRSABCD Action Plan",
+    "category": "Primary Survey",
+    "section": "DRSABCD Action Plan",
+    "summary": "The DRSABCD action plan is the Australian Resuscitation Council's seven-step primary survey for any emergency: Danger, Response, Send for help, Airway, Breathing, CPR, Defibrillation.",
+    "keywords": [
+      "drsabcd",
+      "primary survey",
+      "action plan",
+      "first aid steps"
+    ],
+    "related": [
+      "cpr",
+      "aed",
+      "recovery-position"
+    ]
+  },
+  {
+    "slug": "cpr",
+    "title": "CPR — Cardiopulmonary Resuscitation",
+    "category": "Resuscitation",
+    "section": "CPR",
+    "summary": "CPR is performed on anyone who is unresponsive and not breathing normally. Use 30 chest compressions to 2 breaths at 100–120 compressions per minute, adjusting depth and technique for adults, children and infants.",
+    "keywords": [
+      "cpr",
+      "chest compressions",
+      "rescue breaths",
+      "resuscitation",
+      "cardiac arrest"
+    ],
+    "related": [
+      "drsabcd",
+      "aed",
+      "choking",
+      "drowning"
+    ]
+  },
+  {
+    "slug": "aed",
+    "title": "AED — Automated External Defibrillator",
+    "category": "Resuscitation",
+    "section": "Defibrillation (AED)",
+    "summary": "An AED delivers an electric shock to restart a heart in cardiac arrest. Modern AEDs are designed for untrained bystanders — turn it on, attach the pads as shown, and follow the voice prompts.",
+    "keywords": [
+      "aed",
+      "defibrillator",
+      "defib",
+      "pads",
+      "shock"
+    ],
+    "related": [
+      "cpr",
+      "drsabcd",
+      "cardiac-arrest"
+    ]
+  },
+  {
+    "slug": "recovery-position",
+    "title": "Recovery Position",
+    "category": "Airway",
+    "section": "Recovery Position",
+    "summary": "The recovery position protects the airway of an unconscious person who is breathing normally by keeping them on their side so the tongue cannot block the throat and fluids can drain.",
+    "keywords": [
+      "recovery position",
+      "lateral position",
+      "unconscious",
+      "airway"
+    ],
+    "related": [
+      "drsabcd",
+      "head-injury",
+      "seizures"
+    ]
+  },
+  {
+    "slug": "choking",
+    "title": "Choking — Adult, Child and Infant",
+    "category": "Airway",
+    "section": "Choking",
+    "summary": "For a person who cannot cough, speak or breathe, give 5 sharp back blows between the shoulder blades, then 5 chest thrusts, and alternate until the airway clears or they become unconscious.",
+    "keywords": [
+      "choking",
+      "back blows",
+      "chest thrusts",
+      "airway obstruction",
+      "heimlich"
+    ],
+    "related": [
+      "cpr",
+      "drsabcd"
+    ]
+  },
+  {
+    "slug": "bleeding",
+    "title": "Severe External Bleeding",
+    "category": "Wounds & Bleeding",
+    "section": "External Bleeding",
+    "summary": "Stop severe bleeding by applying firm, direct, continuous pressure to the wound, lying the person down, and treating for shock while waiting for the ambulance.",
+    "keywords": [
+      "bleeding",
+      "haemorrhage",
+      "wound",
+      "pressure",
+      "tourniquet"
+    ],
+    "related": [
+      "shock",
+      "drsabcd",
+      "fractures"
+    ]
+  },
+  {
+    "slug": "burns",
+    "title": "Burns and Scalds",
+    "category": "Burns",
+    "section": "Burns",
+    "summary": "Cool any burn under cool running water for at least 20 minutes, remove clothing and jewellery from the area unless stuck, and cover loosely with cling wrap or a sterile non-stick dressing.",
+    "keywords": [
+      "burns",
+      "scald",
+      "cool water",
+      "cling wrap",
+      "blister"
+    ],
+    "related": [
+      "sunburn",
+      "electric-shock",
+      "shock"
+    ]
+  },
+  {
+    "slug": "shock",
+    "title": "Shock (Hypovolaemic / Circulatory)",
+    "category": "Emergencies",
+    "section": "Shock",
+    "summary": "Shock is a life-threatening drop in blood flow. Signs include pale, cool, clammy skin, weak rapid pulse, nausea and confusion. Lie the person down, treat the cause, keep them warm and call 000.",
+    "keywords": [
+      "shock",
+      "hypovolaemic",
+      "pale clammy",
+      "low blood pressure"
+    ],
+    "related": [
+      "bleeding",
+      "burns",
+      "anaphylaxis",
+      "drsabcd"
+    ]
+  },
+  {
+    "slug": "asthma",
+    "title": "Asthma Attack — 4 x 4 x 4 Plan",
+    "category": "Breathing",
+    "section": "Asthma",
+    "summary": "Sit the person upright, give 4 puffs of a blue reliever puffer through a spacer (1 puff at a time, 4 breaths each), wait 4 minutes, repeat if no improvement. Call 000 if symptoms do not improve.",
+    "keywords": [
+      "asthma",
+      "puffer",
+      "ventolin",
+      "reliever",
+      "4x4x4"
+    ],
+    "related": [
+      "anaphylaxis",
+      "allergic-reactions"
+    ]
+  },
+  {
+    "slug": "anaphylaxis",
+    "title": "Anaphylaxis",
+    "category": "Allergy",
+    "section": "Anaphylaxis",
+    "summary": "Anaphylaxis is a life-threatening allergic reaction. Lay the person flat, give adrenaline (EpiPen) immediately, call 000, and give a second dose after 5 minutes if there is no improvement.",
+    "keywords": [
+      "anaphylaxis",
+      "epipen",
+      "adrenaline",
+      "severe allergy",
+      "autoinjector"
+    ],
+    "related": [
+      "allergic-reactions",
+      "asthma",
+      "shock"
+    ]
+  },
+  {
+    "slug": "allergic-reactions",
+    "title": "Mild to Moderate Allergic Reactions",
+    "category": "Allergy",
+    "section": "Allergic Reactions",
+    "summary": "For mild allergic reactions — hives, swelling of the lips or face, tingling — remove the trigger if known, give antihistamines if prescribed, and watch closely for any sign of anaphylaxis.",
+    "keywords": [
+      "allergy",
+      "hives",
+      "antihistamine",
+      "rash",
+      "mild reaction"
+    ],
+    "related": [
+      "anaphylaxis",
+      "asthma"
+    ]
+  },
+  {
+    "slug": "heart-attack",
+    "title": "Heart Attack",
+    "category": "Cardiac",
+    "section": "Heart Attack",
+    "summary": "Heart attack signs include chest pain or pressure, often spreading to the jaw, arm or back. Call 000 immediately, sit the person down, loosen clothing and give 300 mg of aspirin if they are not allergic.",
+    "keywords": [
+      "heart attack",
+      "chest pain",
+      "myocardial infarction",
+      "aspirin",
+      "cardiac"
+    ],
+    "related": [
+      "cpr",
+      "aed",
+      "stroke"
+    ]
+  },
+  {
+    "slug": "stroke",
+    "title": "Stroke — The FAST Test",
+    "category": "Neurological",
+    "section": "Stroke",
+    "summary": "Use the FAST test for stroke — Face drooping, Arms weakness, Speech slurred, Time to call 000. Every minute counts; lay the person down with head slightly raised and give nothing by mouth.",
+    "keywords": [
+      "stroke",
+      "fast",
+      "face droop",
+      "tia",
+      "brain attack"
+    ],
+    "related": [
+      "heart-attack",
+      "seizures"
+    ]
+  },
+  {
+    "slug": "seizures",
+    "title": "Seizures and Epilepsy",
+    "category": "Neurological",
+    "section": "Seizures/Epilepsy",
+    "summary": "During a seizure, protect the person from injury, time it, and never restrain them or put anything in their mouth. Afterwards, place them in the recovery position and reassure them.",
+    "keywords": [
+      "seizure",
+      "epilepsy",
+      "fit",
+      "convulsion",
+      "febrile"
+    ],
+    "related": [
+      "recovery-position",
+      "head-injury"
+    ]
+  },
+  {
+    "slug": "diabetes",
+    "title": "Diabetic Emergencies",
+    "category": "Medical",
+    "section": "Diabetes",
+    "summary": "If a person with diabetes is confused, sweaty or unwell, assume low blood sugar (hypo) and give sugary food or drink if they can swallow. Call 000 if they do not improve, lose consciousness, or seem severely dehydrated.",
+    "keywords": [
+      "diabetes",
+      "hypo",
+      "hyper",
+      "blood sugar",
+      "glucose"
+    ],
+    "related": [
+      "drsabcd",
+      "recovery-position"
+    ]
+  },
+  {
+    "slug": "head-injury",
+    "title": "Head Injury and Concussion",
+    "category": "Trauma",
+    "section": "Head Injuries",
+    "summary": "Always suspect a spinal injury with a head injury. Lay the person down, control bleeding without direct pressure on a depressed area, and call 000 for any loss of consciousness, vomiting or confusion.",
+    "keywords": [
+      "head injury",
+      "concussion",
+      "traumatic brain injury",
+      "head knock"
+    ],
+    "related": [
+      "spinal-injury",
+      "recovery-position",
+      "seizures"
+    ]
+  },
+  {
+    "slug": "spinal-injury",
+    "title": "Suspected Spinal Injury",
+    "category": "Trauma",
+    "section": "Spinal Injuries",
+    "summary": "Suspect a spinal injury in any fall from height, road crash, diving incident, or unresponsive trauma patient. Do not move the person unless they are in danger; keep the head and neck steady and call 000.",
+    "keywords": [
+      "spinal injury",
+      "neck injury",
+      "back injury",
+      "spine",
+      "log roll"
+    ],
+    "related": [
+      "head-injury",
+      "drsabcd",
+      "recovery-position"
+    ]
+  },
+  {
+    "slug": "fractures",
+    "title": "Fractures (Broken Bones)",
+    "category": "Bones & Joints",
+    "section": "Fractures",
+    "summary": "Keep the injured limb still, control any bleeding, immobilise with a padded splint or sling, check circulation every 15 minutes, and seek medical aid. Call 000 for open fractures, large bones or signs of shock.",
+    "keywords": [
+      "fracture",
+      "broken bone",
+      "splint",
+      "sling"
+    ],
+    "related": [
+      "sprains-strains",
+      "bleeding",
+      "shock"
+    ]
+  },
+  {
+    "slug": "sprains-strains",
+    "title": "Sprains and Strains — RICE",
+    "category": "Bones & Joints",
+    "section": "Sprains and Strains",
+    "summary": "Use the RICE method for sprains and strains — Rest, Ice (20 minutes every 2 hours), Compression bandage, and Elevation above heart level. Seek medical aid if pain, swelling or loss of function persist.",
+    "keywords": [
+      "sprain",
+      "strain",
+      "rice",
+      "ankle",
+      "ice",
+      "compression"
+    ],
+    "related": [
+      "fractures"
+    ]
+  },
+  {
+    "slug": "snake-bite",
+    "title": "Snake Bite — Pressure Immobilisation",
+    "category": "Bites & Stings",
+    "section": "Snake Bite",
+    "summary": "For any suspected snake bite in Australia, call 000 and apply a pressure immobilisation bandage from the bite site up the entire limb, then splint and keep the patient completely still.",
+    "keywords": [
+      "snake bite",
+      "pressure immobilisation",
+      "pib",
+      "antivenom"
+    ],
+    "related": [
+      "spider-bite",
+      "jellyfish-stings",
+      "shock"
+    ]
+  },
+  {
+    "slug": "spider-bite",
+    "title": "Spider Bites",
+    "category": "Bites & Stings",
+    "section": "Spider Bites",
+    "summary": "Funnel-web and mouse spider bites are treated with pressure immobilisation like a snake bite. Redback bites are treated with an ice pack — do not bandage. Seek medical aid for any concerning symptoms.",
+    "keywords": [
+      "spider bite",
+      "funnel-web",
+      "redback",
+      "white-tail"
+    ],
+    "related": [
+      "snake-bite"
+    ]
+  },
+  {
+    "slug": "jellyfish-stings",
+    "title": "Jellyfish and Marine Stings",
+    "category": "Bites & Stings",
+    "section": "Jellyfish Stings",
+    "summary": "For tropical jellyfish (north of Bundaberg), flood the sting with vinegar for 30 seconds, then call 000. For bluebottle and other temperate stings, remove tentacles and immerse in hot water.",
+    "keywords": [
+      "jellyfish",
+      "box jellyfish",
+      "bluebottle",
+      "irukandji",
+      "marine sting"
+    ],
+    "related": [
+      "snake-bite"
+    ]
+  },
+  {
+    "slug": "heat-illness",
+    "title": "Heat Exhaustion and Heat Stroke",
+    "category": "Environmental",
+    "section": "Heat-Induced Illness",
+    "summary": "Heat exhaustion is treated by moving to a cool place, removing clothing and sipping cool water. Heat stroke is a life-threatening emergency — call 000 and cool the person rapidly by any means available.",
+    "keywords": [
+      "heat stroke",
+      "heat exhaustion",
+      "overheating",
+      "dehydration"
+    ],
+    "related": [
+      "dehydration",
+      "sunburn",
+      "hypothermia"
+    ]
+  },
+  {
+    "slug": "hypothermia",
+    "title": "Hypothermia",
+    "category": "Environmental",
+    "section": "Hypothermia",
+    "summary": "Hypothermia is a drop in core body temperature below 35°C. Move the person to shelter, remove wet clothing, rewarm gradually with blankets and body heat, and call 000 if severe.",
+    "keywords": [
+      "hypothermia",
+      "cold",
+      "exposure",
+      "frostbite"
+    ],
+    "related": [
+      "heat-illness",
+      "drowning"
+    ]
+  },
+  {
+    "slug": "poisoning",
+    "title": "Poisoning",
+    "category": "Toxicology",
+    "section": "Poisoning",
+    "summary": "For any suspected poisoning, call the Poisons Information Centre on 13 11 26. If the person is unconscious or seriously unwell, call 000. Do not induce vomiting unless told to.",
+    "keywords": [
+      "poisoning",
+      "poison",
+      "overdose",
+      "swallowed",
+      "13 11 26"
+    ],
+    "related": [
+      "drsabcd",
+      "recovery-position"
+    ]
+  },
+  {
+    "slug": "drowning",
+    "title": "Drowning",
+    "category": "Environmental",
+    "section": "Drowning",
+    "summary": "Remove the person from the water only if safe to do so. Start CPR immediately if they are unresponsive and not breathing normally — call 000 for every drowning casualty, even if they seem to recover.",
+    "keywords": [
+      "drowning",
+      "near-drowning",
+      "water rescue",
+      "cpr"
+    ],
+    "related": [
+      "cpr",
+      "drsabcd",
+      "hypothermia"
+    ]
+  },
+  {
+    "slug": "nosebleed",
+    "title": "Nosebleed",
+    "category": "Minor",
+    "section": "Nosebleed",
+    "summary": "Sit upright, lean forward, and firmly pinch the soft part of the nose for at least 10 minutes. Seek medical aid if bleeding persists after 20 minutes or follows a head injury.",
+    "keywords": [
+      "nosebleed",
+      "epistaxis",
+      "nose bleed"
+    ],
+    "related": [
+      "head-injury"
+    ]
+  },
+  {
+    "slug": "fainting",
+    "title": "Fainting (Syncope)",
+    "category": "Medical",
+    "section": "Fainting (Syncope)",
+    "summary": "Fainting is a brief loss of consciousness from reduced blood flow to the brain. Lay the person flat, raise their legs above heart level, and look for an underlying cause if recovery is slow.",
+    "keywords": [
+      "fainting",
+      "syncope",
+      "passed out",
+      "blackout"
+    ],
+    "related": [
+      "shock",
+      "recovery-position"
+    ]
+  },
+  {
+    "slug": "dehydration",
+    "title": "Dehydration",
+    "category": "Medical",
+    "section": "Dehydration",
+    "summary": "Move the person to a cool place and let them sip water or an oral rehydration solution slowly. Severe dehydration — confusion, no urine output, rapid pulse — needs an ambulance.",
+    "keywords": [
+      "dehydration",
+      "dehydrated",
+      "thirst",
+      "hydration"
+    ],
+    "related": [
+      "heat-illness",
+      "diabetes"
+    ]
+  },
+  {
+    "slug": "sunburn",
+    "title": "Sunburn",
+    "category": "Burns",
+    "section": "Sunburn",
+    "summary": "Move out of the sun, cool the area with cool water for 20 minutes, apply after-sun gel, drink plenty of water, and never burst blisters. Seek medical aid for severe burns or blistering on children.",
+    "keywords": [
+      "sunburn",
+      "sun burn",
+      "uv",
+      "after sun"
+    ],
+    "related": [
+      "burns",
+      "dehydration",
+      "heat-illness"
+    ]
+  },
+  {
+    "slug": "dental-injury",
+    "title": "Knocked-Out Tooth",
+    "category": "Dental",
+    "section": "Dental Injury",
+    "summary": "Hold a knocked-out adult tooth by the crown, rinse gently with milk or saline if dirty, and reinsert into the socket if possible — otherwise store in milk or saliva and get to a dentist within 30 minutes.",
+    "keywords": [
+      "tooth",
+      "knocked out tooth",
+      "dental",
+      "avulsion"
+    ],
+    "related": [
+      "bleeding"
+    ]
+  },
+  {
+    "slug": "eye-injuries",
+    "title": "Eye Injuries",
+    "category": "Trauma",
+    "section": "Eye Injuries",
+    "summary": "For something in the eye, wash out with clean water or saline. Never remove an embedded object — cover both eyes and call 000. Chemical splashes need 20 minutes of running water and an ambulance.",
+    "keywords": [
+      "eye injury",
+      "foreign body eye",
+      "chemical splash",
+      "eye wash"
+    ],
+    "related": [
+      "bleeding"
+    ]
+  },
+  {
+    "slug": "electric-shock",
+    "title": "Electric Shock",
+    "category": "Trauma",
+    "section": "Electric Shock",
+    "summary": "Never touch the person until the power is off. Once safe, follow DRSABCD, call 000, treat burns and shock. Even a person who seems fine after electric shock should be assessed at hospital.",
+    "keywords": [
+      "electric shock",
+      "electrocution",
+      "electrical injury"
+    ],
+    "related": [
+      "burns",
+      "cpr",
+      "shock"
+    ]
+  }
+]
