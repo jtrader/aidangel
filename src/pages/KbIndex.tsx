@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen, Loader2 } from "lucide-react";
 import { topicsByCategory, topics } from "@/lib/kb";
@@ -11,13 +11,78 @@ import {
   prefetchTopicListMeta,
   type TopicMetaTranslation,
 } from "@/lib/kbTranslate";
+import { translateStrings } from "@/lib/uiTranslate";
+
+const STATIC_INDEX_STRINGS = [
+  "Back to chat",
+  "Knowledge base",
+  "First Aid Angel",
+  "First Aid Knowledge Base",
+  "Plain-English first aid guides for everyday Australians, organised by topic and adapted from The St John of God First Aid Manual 5th Edition.",
+  "In a real emergency, call 000 first. These guides are for learning and refresher use — not a substitute for professional medical care.",
+  "Translating topics…",
+  "Source:",
+  "The St John of God First Aid Manual 5th Edition (AFA5).",
+];
 
 const KbIndex = () => {
-  const grouped = topicsByCategory();
-  const orderedCategories = Object.keys(grouped).sort();
+  const grouped = useMemo(() => topicsByCategory(), []);
+  const orderedCategories = useMemo(() => Object.keys(grouped).sort(), [grouped]);
   const { language } = useLanguage();
   const [metaMap, setMetaMap] = useState<Record<string, TopicMetaTranslation>>({});
   const [prefetching, setPrefetching] = useState(false);
+  const [ui, setUi] = useState({
+    backToChat: "Back to chat",
+    knowledgeBase: "Knowledge base",
+    appName: "First Aid Angel",
+    pageTitle: "First Aid Knowledge Base",
+    intro: "Plain-English first aid guides for everyday Australians, organised by topic and adapted from The St John of God First Aid Manual 5th Edition.",
+    disclaimer: "In a real emergency, call 000 first. These guides are for learning and refresher use — not a substitute for professional medical care.",
+    translating: "Translating topics…",
+    sourceLabel: "Source:",
+    sourceValue: "The St John of God First Aid Manual 5th Edition (AFA5).",
+    categories: orderedCategories,
+  });
+
+  useEffect(() => {
+    if (language === "en") {
+      setUi({
+        backToChat: "Back to chat",
+        knowledgeBase: "Knowledge base",
+        appName: "First Aid Angel",
+        pageTitle: "First Aid Knowledge Base",
+        intro: STATIC_INDEX_STRINGS[4],
+        disclaimer: STATIC_INDEX_STRINGS[5],
+        translating: STATIC_INDEX_STRINGS[6],
+        sourceLabel: STATIC_INDEX_STRINGS[7],
+        sourceValue: STATIC_INDEX_STRINGS[8],
+        categories: orderedCategories,
+      });
+      return;
+    }
+    let cancelled = false;
+    translateStrings(language, STATIC_INDEX_STRINGS).then((s) => {
+      if (cancelled) return;
+      translateStrings(language, orderedCategories).then((cats) => {
+        if (cancelled) return;
+        const catMap: Record<string, string> = {};
+        orderedCategories.forEach((c, i) => { catMap[c] = cats[i] ?? c; });
+        setUi({
+          backToChat: s[2],
+          knowledgeBase: s[1],
+          appName: s[2],
+          pageTitle: s[3],
+          intro: s[4],
+          disclaimer: s[5],
+          translating: s[6],
+          sourceLabel: s[7],
+          sourceValue: s[8],
+          categories: orderedCategories.map((c) => catMap[c] ?? c),
+        });
+      });
+    });
+    return () => { cancelled = true; };
+  }, [language, orderedCategories]);
 
   useEffect(() => {
     if (language === "en") {
@@ -93,13 +158,13 @@ const KbIndex = () => {
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to chat
+            {ui.backToChat}
           </Link>
           <div className="flex items-center gap-3">
             <LanguageSelector />
             <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
               <BookOpen className="h-4 w-4 text-primary" />
-              Knowledge base
+              {ui.knowledgeBase}
             </span>
           </div>
         </div>
@@ -108,35 +173,33 @@ const KbIndex = () => {
       <main className="flex-1 px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-3">
-            <Link to="/" className="hover:text-foreground">First Aid Angel</Link>
+            <Link to="/" className="hover:text-foreground">{ui.appName}</Link>
             <span className="mx-1">/</span>
-            <span className="text-foreground">Knowledge base</span>
+            <span className="text-foreground">{ui.knowledgeBase}</span>
           </nav>
 
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            First Aid Knowledge Base
+            {ui.pageTitle}
           </h1>
           <p className="text-base text-muted-foreground max-w-2xl mb-2">
-            Plain-English first aid guides for everyday Australians, organised by topic
-            and adapted from <strong className="text-foreground">The St John of God First Aid Manual 5th Edition</strong>.
+            {ui.intro}
           </p>
           <p className="text-sm text-muted-foreground max-w-2xl mb-4">
-            In a real emergency, call <a href="tel:000" className="text-primary font-semibold underline">000</a>{" "}
-            first. These guides are for learning and refresher use — not a substitute for professional medical care.
+            {ui.disclaimer}
           </p>
 
           {prefetching && language !== "en" && (
             <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
               <Loader2 className="h-3 w-3 animate-spin" />
-              Translating topics…
+              {ui.translating}
             </div>
           )}
 
           <div className="space-y-8">
-            {orderedCategories.map((cat) => (
+            {orderedCategories.map((cat, catIdx) => (
               <section key={cat}>
-                <h2 className="text-xs font-bold uppercase tracking-wider text-primary mb-3">
-                  {cat}
+                <h2 lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-3">
+                  {ui.categories[catIdx]}
                 </h2>
                 <ul className="grid sm:grid-cols-2 gap-3">
                   {grouped[cat].map((t) => {
@@ -160,8 +223,8 @@ const KbIndex = () => {
 
           <div className="mt-12 p-4 rounded-2xl border border-border bg-card text-sm text-muted-foreground">
             <p className="mb-1">
-              <strong className="text-foreground">Source:</strong>{" "}
-              The St John of God First Aid Manual 5th Edition (AFA5).
+              <strong className="text-foreground">{ui.sourceLabel}</strong>{" "}
+              {ui.sourceValue}
             </p>
           </div>
         </div>
