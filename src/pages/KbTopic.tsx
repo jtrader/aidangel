@@ -265,9 +265,13 @@ const KbTopic = () => {
               {ui.adaptedFrom} <em>{topic.section}</em>.
             </p>
             <p lang={language} className="text-xs text-muted-foreground mt-3">
-              {ui.emergencyNote.replace("000", "")}
-              <a href="tel:000" className="text-primary font-semibold underline">000</a>
-              {ui.emergencyNote.includes("000.") ? "." : ""}
+              {ui.emergencyNote.split(/(000)/).map((part, i) =>
+                part === "000" ? (
+                  <a key={i} href="tel:000" className="text-primary font-semibold underline">000</a>
+                ) : (
+                  part
+                )
+              )}
             </p>
           </aside>
         </article>
