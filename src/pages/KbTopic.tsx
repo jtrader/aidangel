@@ -10,6 +10,18 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { translateTopic } from "@/lib/kbTranslate";
 import { translateStrings } from "@/lib/uiTranslate";
 
+const STATIC_TOPIC_STRINGS = [
+  "All topics",
+  "Ask the assistant",
+  "First Aid Angel",
+  "Knowledge base",
+  "Translating…",
+  "Related topics",
+  "Source",
+  "Adapted from The St John of God First Aid Manual 5th Edition — section",
+  "In an emergency call 000. These guides are for learning and refresher use — not a substitute for professional medical care.",
+];
+
 const KbTopic = () => {
   const { slug = "" } = useParams<{ slug: string }>();
   const topic = getTopic(slug);
@@ -29,6 +41,56 @@ const KbTopic = () => {
     body: sourceBody,
   });
   const [translating, setTranslating] = useState(false);
+  const [ui, setUi] = useState({
+    allTopics: "All topics",
+    askAssistant: "Ask the assistant",
+    appName: "First Aid Angel",
+    knowledgeBase: "Knowledge base",
+    translating: "Translating…",
+    relatedTopics: "Related topics",
+    source: "Source",
+    adaptedFrom: "Adapted from The St John of God First Aid Manual 5th Edition — section",
+    emergencyNote: "In an emergency call 000. These guides are for learning and refresher use — not a substitute for professional medical care.",
+    category: topic.category,
+  });
+
+  useEffect(() => {
+    if (language === "en") {
+      setUi({
+        allTopics: "All topics",
+        askAssistant: "Ask the assistant",
+        appName: "First Aid Angel",
+        knowledgeBase: "Knowledge base",
+        translating: "Translating…",
+        relatedTopics: "Related topics",
+        source: "Source",
+        adaptedFrom: STATIC_TOPIC_STRINGS[7],
+        emergencyNote: STATIC_TOPIC_STRINGS[8],
+        category: topic.category,
+      });
+      return;
+    }
+    let cancelled = false;
+    translateStrings(language, STATIC_TOPIC_STRINGS).then((s) => {
+      if (cancelled) return;
+      translateStrings(language, [topic.category]).then(([cat]) => {
+        if (cancelled) return;
+        setUi({
+          allTopics: s[0],
+          askAssistant: s[1],
+          appName: s[2],
+          knowledgeBase: s[3],
+          translating: s[4],
+          relatedTopics: s[5],
+          source: s[6],
+          adaptedFrom: s[7],
+          emergencyNote: s[8],
+          category: cat ?? topic.category,
+        });
+      });
+    });
+    return () => { cancelled = true; };
+  }, [language, topic.category]);
 
   useEffect(() => {
     let cancelled = false;
