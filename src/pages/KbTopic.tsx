@@ -168,7 +168,7 @@ const KbTopic = () => {
                 },
               }}
             >
-              {bodyWithoutTitle}
+              {translated.body}
             </ReactMarkdown>
           </div>
 
