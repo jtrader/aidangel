@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Loader2, RotateCcw, HandHeart, MapPin, ShoppingBag } from "lucide-react";
+import { Loader2, RotateCcw, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
@@ -95,16 +95,6 @@ const Index = () => {
             </a>
           </div>
           <div className="flex justify-center sm:justify-end items-center gap-2">
-            <a
-              href="https://www.stjohnvic.com.au/support-us/donations-2016-12/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-              aria-label="Donate to St John Ambulance"
-            >
-              <HandHeart className="h-4 w-4" />
-              Donate
-            </a>
             <LanguageSelector />
           </div>
         </div>
@@ -120,31 +110,6 @@ const Index = () => {
                 <h2 className="font-display font-bold text-2xl text-foreground">
                   {t("welcomeHeading")}
                 </h2>
-                <p className="text-muted-foreground text-sm max-w-md mx-auto">
-                  {t("welcomeDescription")}
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-                  <a
-                    href="https://www.goodsamapp.org/locatorMap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                    aria-label="Find nearest AED"
-                  >
-                    <MapPin className="h-4 w-4" />
-                    AED Finder
-                  </a>
-                  <a
-                    href="https://shop.stjohn.org.au/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-                    aria-label="St John First Aid Shop"
-                  >
-                    <ShoppingBag className="h-4 w-4" />
-                    St John First Aid Shop
-                  </a>
-                </div>
               </div>
 
               {/* Input directly below the welcome heading */}
@@ -159,6 +124,24 @@ const Index = () => {
                     )
                   )}
                 </p>
+              </div>
+
+              <div className="text-center space-y-3">
+                <p className="text-muted-foreground text-sm max-w-md mx-auto">
+                  {t("welcomeDescription")}
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+                  <a
+                    href="https://www.goodsamapp.org/locatorMap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                    aria-label="Find nearest AED"
+                  >
+                    <MapPin className="h-4 w-4" />
+                    AED Finder
+                  </a>
+                </div>
               </div>
 
               <QuickActions onSelect={send} />
