@@ -74,6 +74,17 @@ const Index = () => {
 
   const isEmpty = messages.length === 0;
 
+  // Derive walk-through state from the latest assistant message
+  const lastAssistant = !isLoading && messages[messages.length - 1]?.role === "assistant"
+    ? messages[messages.length - 1]
+    : null;
+  const walkStepMatch = lastAssistant?.content.match(/\[\[STEP(?::(\d+)\/(\d+))?\]\]/);
+  const walkEnded = !!lastAssistant && /\[\[STEP_END\]\]/.test(lastAssistant.content);
+  const inWalkthrough = !!walkStepMatch && !walkEnded;
+  const walkX = walkStepMatch?.[1] ? parseInt(walkStepMatch[1], 10) : null;
+  const walkY = walkStepMatch?.[2] ? parseInt(walkStepMatch[2], 10) : null;
+  const walkPct = walkX && walkY ? Math.min(100, Math.round((walkX / walkY) * 100)) : null;
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <EmergencyBanner />
