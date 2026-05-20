@@ -1,14 +1,6 @@
 // Knowledge base loader. Source of truth lives in /kb/*.md and /kb/_meta.json.
 import metaRaw from "/kb/_meta.json?raw";
 
-const meta = JSON.parse(metaRaw) as TopicMeta[];
-
-const bodies = import.meta.glob("/kb/*.md", {
-  query: "?raw",
-  import: "default",
-  eager: true,
-}) as Record<string, string>;
-
 export type TopicMeta = {
   slug: string;
   title: string;
@@ -20,9 +12,15 @@ export type TopicMeta = {
   related: string[];
 };
 
-export const topics: TopicMeta[] = (meta as TopicMeta[]).slice().sort((a, b) =>
-  a.title.localeCompare(b.title),
-);
+const bodies = import.meta.glob("/kb/*.md", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+}) as Record<string, string>;
+
+export const topics: TopicMeta[] = (JSON.parse(metaRaw) as TopicMeta[])
+  .slice()
+  .sort((a, b) => a.title.localeCompare(b.title));
 
 export const categories: string[] = Array.from(
   new Set(topics.map((t) => t.category)),
