@@ -1,13 +1,67 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen, Loader2 } from "lucide-react";
 import { topicsByCategory, topics } from "@/lib/kb";
 import { useSeo, SITE_URL } from "@/lib/seo";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  getCachedMeta,
+  prefetchTopicListMeta,
+  type TopicMetaTranslation,
+} from "@/lib/kbTranslate";
 
 const KbIndex = () => {
   const grouped = topicsByCategory();
   const orderedCategories = Object.keys(grouped).sort();
+  const { language } = useLanguage();
+  const [metaMap, setMetaMap] = useState<Record<string, TopicMetaTranslation>>({});
+  const [prefetching, setPrefetching] = useState(false);
+
+  useEffect(() => {
+    if (language === "en") {
+      setMetaMap({});
+      return;
+    }
+    // Seed from cache immediately.
+    const seeded: Record<string, TopicMetaTranslation> = {};
+    for (const t of topics) {
+      const m = getCachedMeta(t.slug, language);
+      if (m) seeded[t.slug] = m;
+    }
+    setMetaMap(seeded);
+
+    let cancelled = false;
+    setPrefetching(true);
+    prefetchTopicListMeta(
+      language,
+      topics.map((t) => ({ slug: t.slug, title: t.title, summary: t.summary }))
+    )
+      .then(() => {
+        if (cancelled) return;
+        const next: Record<string, TopicMetaTranslation> = {};
+        for (const t of topics) {
+          const m = getCachedMeta(t.slug, language);
+          if (m) next[t.slug] = m;
+        }
+        setMetaMap(next);
+      })
+      .finally(() => {
+        if (!cancelled) setPrefetching(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
+
+  const display = (slug: string, fallbackTitle: string, fallbackSummary: string) => {
+    const m = metaMap[slug];
+    return {
+      title: m?.title ?? fallbackTitle,
+      summary: m?.summary ?? fallbackSummary,
+    };
+  };
 
   useSeo({
     title: "First Aid Knowledge Base – quick-reference guides | First Aid Angel",
@@ -66,10 +120,17 @@ const KbIndex = () => {
             Plain-English first aid guides for everyday Australians, organised by topic
             and adapted from <strong className="text-foreground">The St John of God First Aid Manual 5th Edition</strong>.
           </p>
-          <p className="text-sm text-muted-foreground max-w-2xl mb-8">
+          <p className="text-sm text-muted-foreground max-w-2xl mb-4">
             In a real emergency, call <a href="tel:000" className="text-primary font-semibold underline">000</a>{" "}
             first. These guides are for learning and refresher use — not a substitute for professional medical care.
           </p>
+
+          {prefetching && language !== "en" && (
+            <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
+              <Loader2 className="h-3 w-3 animate-spin" />
+              Translating topics…
+            </div>
+          )}
 
           <div className="space-y-8">
             {orderedCategories.map((cat) => (
@@ -78,17 +139,20 @@ const KbIndex = () => {
                   {cat}
                 </h2>
                 <ul className="grid sm:grid-cols-2 gap-3">
-                  {grouped[cat].map((t) => (
-                    <li key={t.slug}>
-                      <Link
-                        to={`/kb/${t.slug}`}
-                        className="block p-4 rounded-2xl border border-border bg-card hover:border-primary hover:shadow-sm transition-all"
-                      >
-                        <h3 className="font-semibold text-foreground mb-1">{t.title}</h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2">{t.summary}</p>
-                      </Link>
-                    </li>
-                  ))}
+                  {grouped[cat].map((t) => {
+                    const d = display(t.slug, t.title, t.summary);
+                    return (
+                      <li key={t.slug}>
+                        <Link
+                          to={`/kb/${t.slug}`}
+                          className="block p-4 rounded-2xl border border-border bg-card hover:border-primary hover:shadow-sm transition-all"
+                        >
+                          <h3 lang={language} className="font-semibold text-foreground mb-1">{d.title}</h3>
+                          <p lang={language} className="text-sm text-muted-foreground line-clamp-2">{d.summary}</p>
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             ))}
