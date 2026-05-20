@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
+import KbIndex from "./pages/KbIndex";
+import KbTopic from "./pages/KbTopic";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +22,8 @@ const App = forwardRef(function App(_props, _ref) {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/kb" element={<KbIndex />} />
+              <Route path="/kb/:slug" element={<KbTopic />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
