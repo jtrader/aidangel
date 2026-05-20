@@ -164,7 +164,7 @@ const KbTopic = () => {
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            All topics
+            {ui.allTopics}
           </Link>
           <div className="flex items-center gap-3">
             <LanguageSelector />
@@ -173,7 +173,7 @@ const KbTopic = () => {
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
             >
               <MessageCircle className="h-4 w-4" />
-              <span className="hidden sm:inline">Ask the assistant</span>
+              <span className="hidden sm:inline">{ui.askAssistant}</span>
             </Link>
           </div>
         </div>
@@ -182,15 +182,15 @@ const KbTopic = () => {
       <main className="flex-1 px-4 py-8">
         <article className="max-w-3xl mx-auto">
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-3">
-            <Link to="/" className="hover:text-foreground">First Aid Angel</Link>
+            <Link to="/" className="hover:text-foreground">{ui.appName}</Link>
             <span className="mx-1">/</span>
-            <Link to="/kb" className="hover:text-foreground">Knowledge base</Link>
+            <Link to="/kb" className="hover:text-foreground">{ui.knowledgeBase}</Link>
             <span className="mx-1">/</span>
             <span className="text-foreground">{topic.title}</span>
           </nav>
 
-          <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
-            {topic.category}
+          <p lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
+            {ui.category}
           </p>
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" lang={language}>
             {translated.title}
@@ -202,7 +202,7 @@ const KbTopic = () => {
           {translating && (
             <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
               <Loader2 className="h-3 w-3 animate-spin" />
-              Translating…
+              {ui.translating}
             </div>
           )}
 
@@ -237,8 +237,8 @@ const KbTopic = () => {
 
           {related.length > 0 && (
             <section className="mt-12 pt-8 border-t border-border">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
-                Related topics
+              <h2 lang={language} className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
+                {ui.relatedTopics}
               </h2>
               <ul className="grid sm:grid-cols-2 gap-3">
                 {related.map((r) => (
@@ -257,17 +257,17 @@ const KbTopic = () => {
           )}
 
           <aside className="mt-12 p-4 rounded-2xl border border-border bg-card text-sm">
-            <p className="text-foreground font-semibold mb-1 inline-flex items-center gap-1.5">
+            <p lang={language} className="text-foreground font-semibold mb-1 inline-flex items-center gap-1.5">
               <BookOpen className="h-4 w-4 text-primary" />
-              Source
+              {ui.source}
             </p>
-            <p className="text-muted-foreground mb-2">
-              Adapted from <strong className="text-foreground">The St John of God First Aid Manual 5th Edition</strong>{" "}
-              — section <em>{topic.section}</em>.
+            <p lang={language} className="text-muted-foreground mb-2">
+              {ui.adaptedFrom} <em>{topic.section}</em>.
             </p>
-            <p className="text-xs text-muted-foreground mt-3">
-              In an emergency call <a href="tel:000" className="text-primary font-semibold underline">000</a>.
-              These guides are for learning and refresher use — not a substitute for professional medical care.
+            <p lang={language} className="text-xs text-muted-foreground mt-3">
+              {ui.emergencyNote.replace("000", "")}
+              <a href="tel:000" className="text-primary font-semibold underline">000</a>
+              {ui.emergencyNote.includes("000.") ? "." : ""}
             </p>
           </aside>
         </article>
