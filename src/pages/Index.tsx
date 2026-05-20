@@ -162,17 +162,25 @@ const Index = () => {
                 {messages.map((msg, i) => (
                   <ChatMessage key={i} message={msg} onAction={send} />
                 ))}
-                {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
-                  <div className="flex gap-3 justify-start">
+                {isLoading && (
+                  <div
+                    className="flex gap-3 justify-start animate-fade-in"
+                    role="status"
+                    aria-live="polite"
+                    aria-label={status === "guiding" ? "First Aid Angel is guiding you" : "First Aid Angel is thinking"}
+                  >
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                       <Loader2 className="h-4 w-4 text-primary-foreground animate-spin" />
                     </div>
-                    <div className="chat-bubble-assistant px-4 py-3">
-                      <div className="flex gap-1">
+                    <div className="chat-bubble-assistant px-4 py-3 flex items-center gap-2">
+                      <div className="flex gap-1" aria-hidden="true">
                         <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                         <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
                         <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                       </div>
+                      <span className="text-xs text-muted-foreground font-medium">
+                        {status === "guiding" ? "Guiding you…" : "Thinking…"}
+                      </span>
                     </div>
                   </div>
                 )}
