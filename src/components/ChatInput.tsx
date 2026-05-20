@@ -2,26 +2,79 @@ import { useState, useEffect, useRef, FormEvent, KeyboardEvent } from "react";
 import { Send, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { searchSuggestions, type Suggestion } from "@/data/firstAidSuggestions";
+import { translateStrings } from "@/lib/uiTranslate";
 
 interface ChatInputProps {
   onSend: (message: string) => void;
   disabled: boolean;
 }
 
+type DisplaySuggestion = {
+  /** Original English text — used for keyword matching + as fallback. */
+  original: string;
+  /** Localized text shown to the user and sent on submit. */
+  text: string;
+  /** Localized category label. */
+  category: string;
+};
+
 const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
   const [input, setInput] = useState("");
-  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [rawSuggestions, setRawSuggestions] = useState<Suggestion[]>([]);
+  const [suggestions, setSuggestions] = useState<DisplaySuggestion[]>([]);
   const [highlight, setHighlight] = useState(0);
   const [open, setOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const wrapRef = useRef<HTMLDivElement>(null);
 
+  // Recompute the underlying English suggestions as the user types.
   useEffect(() => {
     const next = searchSuggestions(input, 6);
-    setSuggestions(next);
+    setRawSuggestions(next);
     setHighlight(0);
     setOpen(next.length > 0);
   }, [input]);
+
+  // Translate visible suggestions + their categories to the selected language.
+  useEffect(() => {
+    if (rawSuggestions.length === 0) {
+      setSuggestions([]);
+      return;
+    }
+    if (language === "en") {
+      setSuggestions(
+        rawSuggestions.map((s) => ({
+          original: s.text,
+          text: s.text,
+          category: s.category,
+        })),
+      );
+      return;
+    }
+    let cancelled = false;
+    const texts = rawSuggestions.map((s) => s.text);
+    const cats = Array.from(new Set(rawSuggestions.map((s) => s.category)));
+    Promise.all([
+      translateStrings(language, texts),
+      translateStrings(language, cats),
+    ]).then(([tTexts, tCats]) => {
+      if (cancelled) return;
+      const catMap: Record<string, string> = {};
+      cats.forEach((c, i) => {
+        catMap[c] = tCats[i] ?? c;
+      });
+      setSuggestions(
+        rawSuggestions.map((s, i) => ({
+          original: s.text,
+          text: tTexts[i] ?? s.text,
+          category: catMap[s.category] ?? s.category,
+        })),
+      );
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [rawSuggestions, language]);
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
@@ -58,7 +111,6 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
       e.preventDefault();
       setInput(suggestions[highlight].text);
     } else if (e.key === "Enter") {
-      // If user is navigating with arrows (moved past first), pick highlight; otherwise send raw input.
       if (highlight > 0) {
         e.preventDefault();
         submit(suggestions[highlight].text);
@@ -78,7 +130,7 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
         >
           {suggestions.map((s, i) => (
             <li
-              key={s.text}
+              key={s.original}
               role="option"
               aria-selected={i === highlight}
               onMouseEnter={() => setHighlight(i)}
@@ -92,15 +144,20 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
             >
               <Sparkles className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" />
               <div className="flex-1 min-w-0">
-                <div className="text-foreground leading-snug">{s.text}</div>
-                <div className="text-[10px] uppercase tracking-wide text-muted-foreground mt-0.5">
+                <div className="text-foreground leading-snug" lang={language}>
+                  {s.text}
+                </div>
+                <div
+                  className="text-[10px] uppercase tracking-wide text-muted-foreground mt-0.5"
+                  lang={language}
+                >
                   {s.category}
                 </div>
               </div>
             </li>
           ))}
           <li className="px-3 py-1.5 text-[10px] text-muted-foreground bg-muted/40">
-            ↑↓ navigate · Tab complete · Enter send · Esc close
+            ↑↓ · Tab · Enter · Esc
           </li>
         </ul>
       )}

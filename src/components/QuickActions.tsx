@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Heart,
   Wind,
@@ -13,6 +14,7 @@ import {
   Pill,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { translateStrings } from "@/lib/uiTranslate";
 
 interface QuickAction {
   labelKey: "cpr" | "choking" | "burns" | "snakeBite" | "bleeding" | "fracture" | "seizure" | "anaphylaxis" | "heartAttack" | "hypothermia" | "eyeInjury" | "electricShock" | "overdose";
@@ -41,14 +43,35 @@ interface QuickActionsProps {
 }
 
 const QuickActions = ({ onSelect }: QuickActionsProps) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [promptMap, setPromptMap] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (language === "en") {
+      setPromptMap({});
+      return;
+    }
+    let cancelled = false;
+    const originals = quickActions.map((a) => a.prompt);
+    translateStrings(language, originals).then((trans) => {
+      if (cancelled) return;
+      const map: Record<string, string> = {};
+      quickActions.forEach((a, i) => {
+        map[a.prompt] = trans[i] ?? a.prompt;
+      });
+      setPromptMap(map);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
 
   return (
     <div className="flex flex-wrap gap-2 justify-center max-w-2xl mx-auto">
       {quickActions.map((action) => (
         <button
           key={action.labelKey}
-          onClick={() => onSelect(action.prompt)}
+          onClick={() => onSelect(promptMap[action.prompt] || action.prompt)}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card text-card-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-150 cursor-pointer"
         >
           {action.icon}
