@@ -266,11 +266,28 @@ const Index = () => {
                 )}
               </div>
 
-              <div className="text-center">
-                <h2 className="font-display font-bold text-xl sm:text-2xl text-foreground px-2">
-                  {t("welcomeHeading")}
-                </h2>
-              </div>
+              {!isLoading && messages[messages.length - 1]?.role === "assistant" && !inWalkthrough && (
+                <div className="text-center space-y-2 animate-fade-in">
+                  <p className="text-sm font-medium text-muted-foreground">Am I helping?</p>
+                  <div className="flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => send("Yes, that's helpful — keep going.")}
+                      className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => send("Not quite — can you try a different approach?")}
+                      className="px-4 py-1.5 rounded-full border border-border text-foreground text-xs font-semibold hover:bg-muted transition-colors"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              )}
+
 
               <div className="max-w-2xl mx-auto w-full">
                 {(() => {
