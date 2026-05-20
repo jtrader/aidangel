@@ -239,7 +239,7 @@ const Index = () => {
                             </a>
                             <button
                               type="button"
-                              onClick={() => send("Walk me through DRSABCD step by step")}
+                              onClick={() => send("Start the DRSABCD walk-through now — one step at a time. This is an active emergency, keep urgent mode on.")}
                               className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
                             >
                               <HeartPulse className="h-3.5 w-3.5" />
