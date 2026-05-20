@@ -26,8 +26,8 @@ const STATIC_INDEX_STRINGS = [
 ];
 
 const KbIndex = () => {
-  const grouped = topicsByCategory();
-  const orderedCategories = Object.keys(grouped).sort();
+  const grouped = useMemo(() => topicsByCategory(), []);
+  const orderedCategories = useMemo(() => Object.keys(grouped).sort(), [grouped]);
   const { language } = useLanguage();
   const [metaMap, setMetaMap] = useState<Record<string, TopicMetaTranslation>>({});
   const [prefetching, setPrefetching] = useState(false);
