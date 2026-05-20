@@ -22,7 +22,7 @@ const KbTopic = () => {
     .filter((t): t is NonNullable<typeof t> => !!t);
 
   useSeo({
-    title: `${topic.title} – First Aid Guide (AFA5) | First Aid Angel`,
+    title: `${topic.title} – First Aid Guide | First Aid Angel`,
     description: topic.summary,
     canonical: `${SITE_URL}/kb/${topic.slug}`,
     jsonLd: [
@@ -41,8 +41,8 @@ const KbTopic = () => {
         },
         citation: {
           "@type": "Book",
-          name: "Australian First Aid 5th Edition",
-          author: "St John Ambulance Australia",
+          name: "The St John of God First Aid Manual 5th Edition",
+          author: "St John of God",
         },
       },
       {
@@ -154,17 +154,9 @@ const KbTopic = () => {
               Source
             </p>
             <p className="text-muted-foreground mb-2">
-              Adapted from the <strong className="text-foreground">Australian First Aid 5th Edition</strong>{" "}
-              (AFA5) — section <em>{topic.section}</em> — St John Ambulance Australia.
+              Adapted from <strong className="text-foreground">The St John of God First Aid Manual 5th Edition</strong>{" "}
+              — section <em>{topic.section}</em>.
             </p>
-            <a
-              href="https://shop.stjohn.org.au/products/australian-first-aid-book"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
-            >
-              View the official AFA5 manual <ExternalLink className="h-3 w-3" />
-            </a>
             <p className="text-xs text-muted-foreground mt-3">
               In an emergency call <a href="tel:000" className="text-primary font-semibold underline">000</a>.
               These guides are for learning and refresher use — not a substitute for professional medical care.

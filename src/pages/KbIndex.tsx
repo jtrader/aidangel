@@ -9,16 +9,16 @@ const KbIndex = () => {
   const orderedCategories = Object.keys(grouped).sort();
 
   useSeo({
-    title: "First Aid Knowledge Base – AFA5 quick-reference guides | First Aid Angel",
+    title: "First Aid Knowledge Base – quick-reference guides | First Aid Angel",
     description:
-      "Free, plain-English first aid guides for Australia — CPR, choking, burns, bleeding, anaphylaxis and more. Adapted from the Australian First Aid 5th Edition manual by St John Ambulance.",
+      "Free, plain-English first aid guides for Australia — CPR, choking, burns, bleeding, anaphylaxis and more. Adapted from The St John of God First Aid Manual 5th Edition.",
     canonical: `${SITE_URL}/kb`,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       name: "First Aid Knowledge Base",
       description:
-        "Plain-English first aid guides for Australia, adapted from Australian First Aid 5th Edition.",
+        "Plain-English first aid guides for Australia, adapted from The St John of God First Aid Manual 5th Edition.",
       url: `${SITE_URL}/kb`,
       hasPart: topics.map((t) => ({
         "@type": "MedicalWebPage",
@@ -60,8 +60,7 @@ const KbIndex = () => {
           </h1>
           <p className="text-base text-muted-foreground max-w-2xl mb-2">
             Plain-English first aid guides for everyday Australians, organised by topic
-            and adapted from the <strong className="text-foreground">Australian First Aid 5th Edition</strong>{" "}
-            manual by St John Ambulance Australia.
+            and adapted from <strong className="text-foreground">The St John of God First Aid Manual 5th Edition</strong>.
           </p>
           <p className="text-sm text-muted-foreground max-w-2xl mb-8">
             In a real emergency, call <a href="tel:000" className="text-primary font-semibold underline">000</a>{" "}
@@ -94,16 +93,8 @@ const KbIndex = () => {
           <div className="mt-12 p-4 rounded-2xl border border-border bg-card text-sm text-muted-foreground">
             <p className="mb-1">
               <strong className="text-foreground">Source:</strong>{" "}
-              Australian First Aid 5th Edition (AFA5) — St John Ambulance Australia.
+              The St John of God First Aid Manual 5th Edition (AFA5).
             </p>
-            <a
-              href="https://shop.stjohn.org.au/products/australian-first-aid-book"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
-            >
-              View the official manual <ExternalLink className="h-3 w-3" />
-            </a>
           </div>
         </div>
       </main>

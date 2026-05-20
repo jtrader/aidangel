@@ -1,6 +1,6 @@
 # Knowledge Base
 
-Plain-text source for the First Aid Angel knowledge base, adapted from the **Australian First Aid 5th Edition** (AFA5) manual by St John Ambulance Australia.
+Plain-text source for the First Aid Angel knowledge base, adapted from **The St John of God First Aid Manual 5th Edition**.
 
 Each `.md` file in this directory is one topic. The chat assistant cites the section name in brackets (e.g. `(AFA5 — Burns)`) and the app turns that into a link to the matching topic page at `/kb/<slug>`.
 
@@ -14,4 +14,4 @@ The authoritative metadata index is `_meta.json`.
 
 ## Source
 
-Australian First Aid 5th Edition — St John Ambulance Australia. Always seek professional medical advice in an emergency and call **000**.
+The St John of God First Aid Manual 5th Edition. Always seek professional medical advice in an emergency and call **000**.
