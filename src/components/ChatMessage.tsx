@@ -37,6 +37,8 @@ function linkAfaCitations(text: string): string {
 
 const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
   const isUser = message.role === "user";
+  const { code: countryCode } = useCountry();
+  const emergencyNumber = emergencyNumberForCountry(countryCode);
 
   return (
     <div className={`flex gap-3 ${isUser ? "justify-end" : "justify-start"}`}>
