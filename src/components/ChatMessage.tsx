@@ -96,7 +96,7 @@ const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
                 message.content
                   .replace(/\[\[(?:STEP(?::\d+\/\d+)?(?:_END)?|TRIAGE|URGENT)\]\]/g, "")
                   .trim()
-                  .replace(/\b000\b/g, "[000](tel:000)")
+                  .replace(/\b000\b/g, `[${emergencyNumber}](tel:${emergencyNumber})`)
                   .replace(/\bDRSABCD\b/g, "[DRSABCD](#drsabcd)"),
               )}
             </ReactMarkdown>
