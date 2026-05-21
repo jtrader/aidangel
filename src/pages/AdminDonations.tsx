@@ -233,14 +233,26 @@ export default function AdminDonations() {
               </Select>
             </div>
             <div>
-              <Label className="text-xs">NGO</Label>
+              <Label className="text-xs">Event</Label>
+              <Select value={eventFilter} onValueChange={(v) => setEventFilter(v as EventFilter)}>
+                <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All referrals</SelectItem>
+                  <SelectItem value="give_click">❤️ Give (donations)</SelectItem>
+                  <SelectItem value="shop_click">🛒 Shop (first aid)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label className="text-xs">Vendor</Label>
               <Select value={ngoFilter} onValueChange={setNgoFilter}>
                 <SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All NGOs</SelectItem>
-                  {Object.values(NGOS).map((n) => (
-                    <SelectItem key={n.id} value={n.id}>{n.short}</SelectItem>
-                  ))}
+                  <SelectItem value="all">All vendors</SelectItem>
+                  <SelectItem value="redcross">Red Cross</SelectItem>
+                  <SelectItem value="msf">Doctors Without Borders</SelectItem>
+                  <SelectItem value="stjohn">St John Ambulance</SelectItem>
+                  <SelectItem value="national">National shop</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -260,14 +272,14 @@ export default function AdminDonations() {
         </Card>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <StatCard label="Total clicks" value={stats.total} />
-          <StatCard label="Unique sessions" value={new Set(rows.map(r => r.id)).size} />
-          <StatCard label="National sites" value={rows.filter(r => r.is_national).length} />
-          <StatCard label="International" value={rows.filter(r => r.is_national === false).length} />
+          <StatCard label="Total referrals" value={stats.total} />
+          <StatCard label="❤️ Give clicks" value={stats.giveCount} />
+          <StatCard label="🛒 Shop clicks" value={stats.shopCount} />
+          <StatCard label="Unique sessions" value={stats.uniqueSessions} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-3">
-          <Breakdown title="By NGO" rows={stats.byNgo.map(([k, v]) => [NGOS[k as keyof typeof NGOS]?.short ?? k, v])} />
+          <Breakdown title="By vendor" rows={stats.byVendor} />
           <Breakdown title="By country" rows={stats.byCountry.map(([k, v]) => [`${countryFlag(k)} ${k}`, v])} />
           <Breakdown title="Top pages" rows={stats.byPage} />
           <Breakdown title="Top referrers" rows={stats.byReferrer} />
