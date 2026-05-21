@@ -509,36 +509,42 @@ export function donationUrl(country: Country, ngo: NgoId): string {
 }
 
 /**
- * Country → preferred UI language code (must match one of our 13 supported
- * LanguageContext codes: en, zh, yue, ar, vi, pa, el, it, kriol, yolngu,
- * pitjantjatjara, arrernte, tsi).
- *
- * Countries that natively speak a language we don't yet translate fall back
- * to English. Multilingual countries pick the most-spoken supported tongue.
+ * Country → preferred UI language code. All values map to one of our 48
+ * supported LanguageContext codes. Multilingual countries pick the most-spoken
+ * supported tongue.
  */
 export const COUNTRY_PRIMARY_LANGUAGE: Record<string, string> = {
   // English-primary
   AU: "en", NZ: "en", GB: "en", US: "en", CA: "en", IE: "en", ZA: "en",
   SG: "en", FJ: "en", PG: "en", JM: "en", TT: "en", BB: "en", BS: "en",
   KE: "en", NG: "en", GH: "en", TZ: "en", UG: "en", ZW: "en", ZM: "en",
-  MW: "en", NA: "en", BW: "en", MU: "en", MY: "en", PH: "en", MT: "en",
-  IL: "en", ET: "en",
-  // Mandarin / Cantonese
+  MW: "en", NA: "en", BW: "en", MU: "en", ET: "en",
+  // Chinese
   HK: "yue", TW: "zh",
   // Arabic
   SA: "ar", AE: "ar", EG: "ar", MA: "ar",
-  // Vietnamese
-  VN: "vi",
-  // Italian
-  IT: "it",
-  // Greek
-  GR: "el", CY: "el",
-  // Punjabi-leaning (India is multilingual; Punjabi is one of our supported)
-  IN: "pa",
-  // Everything else falls back to English (no translation yet for de, fr, es,
-  // nl, pt, sv, no, da, fi, is, pl, cs, sk, hu, ro, bg, hr, sl, sr, uk, ee, lv,
-  // lt, tr, ja, ko, th, id, ur, bn, si, ne).
+  // Romance
+  IT: "it", ES: "es", PT: "pt", BR: "pt", MX: "es", AR: "es", CL: "es",
+  CO: "es", PE: "es", FR: "fr", BE: "fr", LU: "fr",
+  // Germanic
+  DE: "de", AT: "de", CH: "de", NL: "nl",
+  // Nordic
+  SE: "sv", NO: "no", DK: "da", FI: "fi", IS: "is",
+  // Central / Eastern Europe
+  PL: "pl", CZ: "cs", SK: "sk", HU: "hu", RO: "ro", BG: "bg", HR: "hr",
+  SI: "sl", RS: "sr", UA: "uk", EE: "et", LV: "lv", LT: "lt", TR: "tr",
+  // Mediterranean
+  GR: "el", CY: "el", MT: "en",
+  // Middle East
+  IL: "he",
+  // East Asia
+  JP: "ja", KR: "ko",
+  // Southeast Asia
+  TH: "th", ID: "id", MY: "ms", PH: "tl", VN: "vi",
+  // South Asia
+  IN: "pa", PK: "ur", BD: "bn", LK: "si", NP: "ne",
 };
+
 
 /** Get the best-supported UI language code for a country. */
 export function languageForCountry(code: string | null | undefined): string {
