@@ -9,6 +9,8 @@ import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 import DonateMenu from "@/components/DonateMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCountry } from "@/hooks/useCountry";
+import { emergencyNumberForCountry } from "@/lib/donations";
 import { translateTopic } from "@/lib/kbTranslate";
 import { translateStrings } from "@/lib/uiTranslate";
 import { buildHowToJsonLd, buildFaqJsonLd } from "@/lib/kbSchema";
