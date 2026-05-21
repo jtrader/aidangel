@@ -12,6 +12,8 @@ import DonateMenu from "@/components/DonateMenu";
 import { SeoHead } from "@/components/SeoHead";
 import { streamChat } from "@/lib/chat-stream";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useCountry } from "@/hooks/useCountry";
+import { emergencyNumberForCountry } from "@/lib/donations";
 import aidAngelLogo from "@/assets/aidangel-logo.png";
 
 type Msg = { role: "user" | "assistant"; content: string };
