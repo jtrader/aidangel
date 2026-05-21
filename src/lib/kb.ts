@@ -123,3 +123,98 @@ export function findTopicBySection(name: string): TopicMeta | undefined {
     t.keywords.some((k) => n.includes(k.toLowerCase())),
   );
 }
+
+/**
+ * Return related topic slugs for a given slug, expanded with topics that share
+ * the same category or overlapping keywords. Capped at `max` (default 6).
+ */
+export function relatedSlugs(slug: string, max = 6): string[] {
+  const base = enTopics.find((t) => t.slug === slug);
+  if (!base) return [];
+  const chosen: string[] = [...(base.related || [])];
+  const has = new Set(chosen);
+  has.add(slug);
+  const kw = new Set(base.keywords.map((k) => k.toLowerCase()));
+  const scored = enTopics
+    .filter((t) => !has.has(t.slug))
+    .map((t) => {
+      let s = 0;
+      if (t.category === base.category) s += 2;
+      for (const k of t.keywords) if (kw.has(k.toLowerCase())) s += 3;
+      return { slug: t.slug, s };
+    })
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s);
+  for (const x of scored) {
+    if (chosen.length >= max) break;
+    chosen.push(x.slug);
+    has.add(x.slug);
+  }
+  return chosen.slice(0, max);
+}
+
+function escapeRe(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Auto-link the first mention of other topics inside a markdown body.
+ * Skips code blocks, headings, blockquotes, table separators, and lines
+ * that already contain markdown links. `hrefFor` builds the link target.
+ */
+export function autoLinkBody(
+  body: string,
+  currentSlug: string,
+  lang: LanguageCode,
+  hrefFor: (slug: string) => string,
+): string {
+  const others = topicsFor(lang).filter((t) => t.slug !== currentSlug);
+  const en = enTopics.filter((t) => t.slug !== currentSlug);
+  // Build list of {term, slug} from both localized + English titles/sections,
+  // longest first to prefer multi-word matches.
+  const seen = new Set<string>();
+  const terms: Array<{ term: string; slug: string }> = [];
+  const push = (term: string | undefined, slug: string) => {
+    if (!term) return;
+    const t = term.trim();
+    if (t.length < 4) return;
+    const key = `${slug}::${t.toLowerCase()}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    terms.push({ term: t, slug });
+  };
+  for (const t of others) {
+    push(t.title, t.slug);
+    push(t.section, t.slug);
+  }
+  for (const t of en) {
+    push(t.title, t.slug);
+    push(t.section, t.slug);
+  }
+  terms.sort((a, b) => b.term.length - a.term.length);
+
+  const usedSlugs = new Set<string>();
+  let inFence = false;
+  const lines = body.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    if (/^\s*(#|>|\||!\[)/.test(line)) continue;
+    if (/\]\([^)]+\)/.test(line)) continue; // already contains a link
+    let out = line;
+    for (const { term, slug } of terms) {
+      if (usedSlugs.has(slug)) continue;
+      const re = new RegExp(`(?<![\\w\\[/])(${escapeRe(term)})(?![\\w\\]])`, "i");
+      if (re.test(out)) {
+        out = out.replace(re, `[$1](${hrefFor(slug)})`);
+        usedSlugs.add(slug);
+      }
+    }
+    lines[i] = out;
+  }
+  return lines.join("\n");
+}

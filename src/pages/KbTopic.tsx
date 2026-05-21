@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft, BookOpen, Loader2, MessageCircle } from "lucide-react";
-import { getTopic, getBody, topicsFor } from "@/lib/kb";
+import { getTopic, getBody, topicsFor, relatedSlugs, autoLinkBody } from "@/lib/kb";
 import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
@@ -123,9 +123,16 @@ const KbTopic = () => {
 
   const enTopics = topicsFor("en");
   const localTopics = topicsFor(language);
-  const related = topicEn.related
+  const related = relatedSlugs(topicEn.slug, 6)
     .map((s) => localTopics.find((t) => t.slug === s) ?? enTopics.find((t) => t.slug === s))
     .filter((t): t is NonNullable<typeof t> => !!t);
+
+  const linkedBody = autoLinkBody(
+    translated.body,
+    topicEn.slug,
+    language,
+    (s) => localizedPath(language, `/kb/${s}`),
+  );
 
   const kbPath = localizedPath(language, "/kb");
   const homePath = localizedPath(language, "/");
@@ -260,7 +267,7 @@ const KbTopic = () => {
                 },
               }}
             >
-              {translated.body}
+              {linkedBody}
             </ReactMarkdown>
           </div>
 
