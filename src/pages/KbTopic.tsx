@@ -204,7 +204,6 @@ const KbTopic = () => {
             {ui.allTopics}
           </Link>
           <div className="flex items-center gap-3">
-            <DonateMenu variant="header" />
             <LanguageSelector />
             <Link
               to={homePath}
