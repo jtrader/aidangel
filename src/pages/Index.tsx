@@ -87,6 +87,18 @@ const Index = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
+      <SeoHead
+        lang={language}
+        basePath="/"
+        title="First Aid Angel – Your First Aid Assistant"
+        description="AI-powered first aid guidance for Australia, based on The St John of God First Aid Manual 5th Edition. Plain-language steps for CPR, choking, burns, bleeding, anaphylaxis and more."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "First Aid Angel",
+          url: "https://firstaidangel.org",
+        }}
+      />
       <EmergencyBanner />
 
       {/* Header */}
