@@ -6,6 +6,7 @@ import { getTopic, getBody, topicsFor, relatedSlugs, autoLinkBody } from "@/lib/
 import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
+import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
 
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -213,6 +214,7 @@ const KbTopic = () => {
           </Link>
         </div>
       </header>
+      <SupportUsBar />
 
       <main className="flex-1 px-4 py-8">
         <article className="max-w-3xl mx-auto">

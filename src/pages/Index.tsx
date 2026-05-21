@@ -8,6 +8,7 @@ import QuickActions from "@/components/QuickActions";
 import DRSABCDPanel from "@/components/DRSABCDPanel";
 import LanguageSelector from "@/components/LanguageSelector";
 import NetworkFooter from "@/components/NetworkFooter";
+import SupportUsBar from "@/components/SupportUsBar";
 
 import { SeoHead } from "@/components/SeoHead";
 import { streamChat } from "@/lib/chat-stream";
@@ -155,6 +156,7 @@ const Index = () => {
           </div>
         </div>
       </header>
+      <SupportUsBar />
 
       {/* Walk-through nav is rendered inline after the latest step message */}
 
