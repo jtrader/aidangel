@@ -6,6 +6,7 @@ import { getTopic, getBody, topicsFor, relatedSlugs, autoLinkBody } from "@/lib/
 import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
+import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
 
 import { useLanguage } from "@/contexts/LanguageContext";
