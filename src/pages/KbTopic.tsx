@@ -133,10 +133,42 @@ const KbTopic = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SeoHead
+        lang={language}
+        basePath={`/kb/${topic.slug}`}
+        title={`${translated.title} – First Aid Guide | First Aid Angel`}
+        description={translated.summary}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "MedicalWebPage",
+            name: translated.title,
+            description: translated.summary,
+            url: `${SITE_ORIGIN}${topicPath}`,
+            about: { "@type": "MedicalCondition", name: topicEn.section },
+            keywords: topicEn.keywords.join(", "),
+            isPartOf: { "@type": "WebSite", name: "First Aid Angel", url: SITE_ORIGIN },
+            citation: {
+              "@type": "Book",
+              name: "The St John of God First Aid Manual 5th Edition",
+              author: "St John of God",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: ui.appName, item: `${SITE_ORIGIN}${homePath}` },
+              { "@type": "ListItem", position: 2, name: ui.knowledgeBase, item: `${SITE_ORIGIN}${kbPath}` },
+              { "@type": "ListItem", position: 3, name: translated.title, item: `${SITE_ORIGIN}${topicPath}` },
+            ],
+          },
+        ]}
+      />
       <header className="border-b border-border bg-card">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
           <Link
-            to="/kb"
+            to={kbPath}
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -145,7 +177,7 @@ const KbTopic = () => {
           <div className="flex items-center gap-3">
             <LanguageSelector />
             <Link
-              to="/"
+              to={homePath}
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
             >
               <MessageCircle className="h-4 w-4" />
@@ -158,12 +190,13 @@ const KbTopic = () => {
       <main className="flex-1 px-4 py-8">
         <article className="max-w-3xl mx-auto">
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-3">
-            <Link to="/" className="hover:text-foreground">{ui.appName}</Link>
+            <Link to={homePath} className="hover:text-foreground">{ui.appName}</Link>
             <span className="mx-1">/</span>
-            <Link to="/kb" className="hover:text-foreground">{ui.knowledgeBase}</Link>
+            <Link to={kbPath} className="hover:text-foreground">{ui.knowledgeBase}</Link>
             <span className="mx-1">/</span>
-            <span className="text-foreground">{topic.title}</span>
+            <span className="text-foreground">{translated.title}</span>
           </nav>
+
 
           <p lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
             {ui.category}
