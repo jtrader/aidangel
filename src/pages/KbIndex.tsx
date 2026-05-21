@@ -6,7 +6,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, SITE_ORIGIN, localizedPath } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
-import DonateMenu from "@/components/DonateMenu";
+
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
@@ -163,7 +163,6 @@ const KbIndex = () => {
             {ui.backToChat}
           </Link>
           <div className="flex items-center gap-3">
-            <DonateMenu variant="header" />
             <LanguageSelector />
             <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
               <BookOpen className="h-4 w-4 text-primary" />

@@ -1,7 +1,15 @@
-import { Globe } from "lucide-react";
+import { Globe, Check } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLanguage, languages, LanguageCode } from "@/contexts/LanguageContext";
 import { stripLangPrefix, localizedPath } from "@/lib/i18n";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const AUTO_VALUE = "__auto__";
 
@@ -16,7 +24,7 @@ const LanguageSelector = () => {
     if (target !== location.pathname) navigate(target);
   };
 
-  const handleChange = (value: string) => {
+  const handleSelect = (value: string) => {
     if (value === AUTO_VALUE) {
       const detected = setAuto();
       navigateToLang(detected);
@@ -27,32 +35,44 @@ const LanguageSelector = () => {
     navigateToLang(next);
   };
 
-
   const selectValue = isAuto ? AUTO_VALUE : language;
+  const currentLabel = isAuto
+    ? `🌐 Auto — ${language.toUpperCase()}`
+    : languages.find((l) => l.code === language)?.nativeName ?? language;
 
   return (
-    <div className="relative inline-flex items-center gap-1.5">
-      <Globe className="h-4 w-4 text-muted-foreground" />
-      <select
-        value={selectValue}
-        onChange={(e) => handleChange(e.target.value)}
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        className="inline-flex items-center justify-center gap-1.5 w-9 h-9 rounded-full bg-muted text-foreground hover:bg-muted/80 transition-colors"
         aria-label="Select language"
         title="Select language"
-        className="appearance-none bg-transparent border border-border rounded-lg px-2 py-1 pr-6 text-xs font-medium text-foreground cursor-pointer focus:outline-none focus:ring-2 focus:ring-ring"
       >
-        <option value={AUTO_VALUE}>
-          🌐 Auto-detect{isAuto ? ` — ${language.toUpperCase()}` : ""}
-        </option>
+        <Globe className="h-4 w-4" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-56 bg-popover max-h-80 overflow-y-auto">
+        <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Language
+        </DropdownMenuLabel>
+        <DropdownMenuItem
+          onSelect={() => handleSelect(AUTO_VALUE)}
+          className="cursor-pointer"
+        >
+          <span className="flex-1">🌐 Auto-detect</span>
+          {selectValue === AUTO_VALUE && <Check className="h-3.5 w-3.5 text-primary" />}
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         {languages.map((lang) => (
-          <option key={lang.code} value={lang.code}>
-            {lang.nativeName} — {lang.region}
-          </option>
+          <DropdownMenuItem
+            key={lang.code}
+            onSelect={() => handleSelect(lang.code)}
+            className="cursor-pointer"
+          >
+            <span className="flex-1">{lang.nativeName} — {lang.region}</span>
+            {selectValue === lang.code && <Check className="h-3.5 w-3.5 text-primary" />}
+          </DropdownMenuItem>
         ))}
-      </select>
-      <svg className="absolute right-1 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground pointer-events-none" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M3 5l3 3 3-3" />
-      </svg>
-    </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
