@@ -30,6 +30,8 @@ const STATIC_TOPIC_STRINGS = [
 const KbTopic = () => {
   const { slug = "" } = useParams<{ slug: string }>();
   const { language } = useLanguage();
+  const { code: countryCode } = useCountry();
+  const emergencyNumber = emergencyNumberForCountry(countryCode);
   const topicEn = getTopic(slug, "en");
 
   if (!topicEn) {
