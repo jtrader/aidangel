@@ -156,6 +156,7 @@ const Index = () => {
           </div>
         </div>
       </header>
+      <SupportUsBar />
 
       {/* Walk-through nav is rendered inline after the latest step message */}
 
