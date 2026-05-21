@@ -83,16 +83,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
       <div className="max-w-lg mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground" lang={language}>
         <div className="flex flex-wrap items-center justify-center gap-2 pb-4">
           <DonateMenu variant="footer" />
-          <a
-            href="https://shop.stjohn.org.au/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-            aria-label="St John First Aid Shop"
-          >
-            <ShoppingBag className="h-4 w-4" />
-            {tr.shop}
-          </a>
+          <ShopMenu variant="footer" />
         </div>
         <div className="pb-2">
           <a href={kbHref} className="text-xs font-semibold text-primary hover:underline">
