@@ -203,17 +203,14 @@ const KbTopic = () => {
             <ArrowLeft className="h-4 w-4" />
             {ui.allTopics}
           </Link>
-          <div className="flex items-center gap-3">
-            <LanguageSelector />
-            <Link
-              to={homePath}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
-            >
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
-              <span className="hidden sm:inline">{ui.askAssistant}</span>
-              <span className="sr-only sm:hidden">{ui.askAssistant}</span>
-            </Link>
-          </div>
+          <Link
+            to={homePath}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
+          >
+            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+            <span className="hidden sm:inline">{ui.askAssistant}</span>
+            <span className="sr-only sm:hidden">{ui.askAssistant}</span>
+          </Link>
         </div>
       </header>
 
@@ -231,9 +228,12 @@ const KbTopic = () => {
           <p lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
             {ui.category}
           </p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" lang={language}>
-            {translated.title}
-          </h1>
+          <div className="flex items-center gap-2 mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground" lang={language}>
+              {translated.title}
+            </h1>
+            <LanguageSelector />
+          </div>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed" lang={language}>
             {translated.summary}
           </p>

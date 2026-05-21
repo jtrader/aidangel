@@ -162,13 +162,10 @@ const KbIndex = () => {
             <ArrowLeft className="h-4 w-4" />
             {ui.backToChat}
           </Link>
-          <div className="flex items-center gap-3">
-            <LanguageSelector />
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
-              <BookOpen className="h-4 w-4 text-primary" />
-              {ui.knowledgeBase}
-            </span>
-          </div>
+          <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
+            <BookOpen className="h-4 w-4 text-primary" />
+            {ui.knowledgeBase}
+          </span>
         </div>
       </header>
 
@@ -180,9 +177,12 @@ const KbIndex = () => {
             <span className="text-foreground">{ui.knowledgeBase}</span>
           </nav>
 
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            {ui.pageTitle}
-          </h1>
+          <div className="flex items-center gap-2 mb-3">
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
+              {ui.pageTitle}
+            </h1>
+            <LanguageSelector />
+          </div>
           <p className="text-base text-muted-foreground max-w-2xl mb-2">
             {ui.intro}
           </p>
