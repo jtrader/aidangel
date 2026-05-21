@@ -1,6 +1,13 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-export type LanguageCode = "en" | "kriol" | "yolngu" | "pitjantjatjara" | "arrernte" | "tsi" | "zh" | "ar" | "vi" | "yue" | "pa" | "el" | "it";
+export type LanguageCode =
+  | "en" | "kriol" | "yolngu" | "pitjantjatjara" | "arrernte" | "tsi"
+  | "zh" | "ar" | "vi" | "yue" | "pa" | "el" | "it"
+  | "es" | "pt" | "de" | "fr" | "nl" | "sv" | "no" | "da" | "fi" | "is"
+  | "pl" | "cs" | "sk" | "hu" | "ro" | "bg" | "hr" | "sl" | "sr" | "uk"
+  | "et" | "lv" | "lt" | "tr" | "ja" | "ko" | "th" | "id" | "ms"
+  | "ur" | "bn" | "si" | "ne" | "tl" | "he";
+
 
 interface Language {
   code: LanguageCode;
