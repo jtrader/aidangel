@@ -127,6 +127,8 @@ export default function AdminDonations() {
   const [ngoFilter, setNgoFilter] = useState<string>("all");
   const [countryFilter, setCountryFilter] = useState<string>("all");
 
+  const [eventFilter, setEventFilter] = useState<EventFilter>("all");
+
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((_evt, s) => setSession(s));
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
@@ -146,30 +148,35 @@ export default function AdminDonations() {
     let q = supabase.from("give_clicks").select("*").order("created_at", { ascending: false }).limit(1000);
     const since = sinceFor(range);
     if (since) q = q.gte("created_at", since);
+    if (eventFilter !== "all") q = q.eq("event_name", eventFilter);
     if (ngoFilter !== "all") q = q.eq("ngo_id", ngoFilter);
     if (countryFilter !== "all") q = q.eq("country_code", countryFilter);
     q.then(({ data, error }) => {
       if (!error && data) setRows(data as Row[]);
       setLoading(false);
     });
-  }, [isAdmin, range, ngoFilter, countryFilter]);
+  }, [isAdmin, range, eventFilter, ngoFilter, countryFilter]);
 
   const stats = useMemo(() => {
     const total = rows.length;
     const uniqueSessions = new Set(rows.map((r) => r.id)).size;
-    const byNgo: Record<string, number> = {};
+    const giveCount = rows.filter((r) => r.event_name === "give_click").length;
+    const shopCount = rows.filter((r) => r.event_name === "shop_click").length;
+    const byVendor: Record<string, number> = {};
     const byCountry: Record<string, number> = {};
     const byPage: Record<string, number> = {};
     const byReferrer: Record<string, number> = {};
     for (const r of rows) {
-      if (r.ngo_id) byNgo[r.ngo_id] = (byNgo[r.ngo_id] ?? 0) + 1;
+      const label = vendorLabel(r.event_name, r.ngo_id);
+      const key = `${r.event_name === "shop_click" ? "🛒" : "❤️"} ${label}`;
+      byVendor[key] = (byVendor[key] ?? 0) + 1;
       if (r.country_code) byCountry[r.country_code] = (byCountry[r.country_code] ?? 0) + 1;
       if (r.page_path) byPage[r.page_path] = (byPage[r.page_path] ?? 0) + 1;
       const ref = r.referrer ? new URL(r.referrer, "https://x").hostname || "direct" : "direct";
       byReferrer[ref] = (byReferrer[ref] ?? 0) + 1;
     }
     const sortDesc = (o: Record<string, number>) => Object.entries(o).sort((a, b) => b[1] - a[1]);
-    return { total, uniqueSessions, byNgo: sortDesc(byNgo), byCountry: sortDesc(byCountry), byPage: sortDesc(byPage).slice(0, 8), byReferrer: sortDesc(byReferrer).slice(0, 8) };
+    return { total, uniqueSessions, giveCount, shopCount, byVendor: sortDesc(byVendor), byCountry: sortDesc(byCountry), byPage: sortDesc(byPage).slice(0, 8), byReferrer: sortDesc(byReferrer).slice(0, 8) };
   }, [rows]);
 
   if (!session) {
