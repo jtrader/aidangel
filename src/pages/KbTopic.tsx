@@ -228,9 +228,12 @@ const KbTopic = () => {
           <p lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
             {ui.category}
           </p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4" lang={language}>
-            {translated.title}
-          </h1>
+          <div className="flex items-center gap-2 mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground" lang={language}>
+              {translated.title}
+            </h1>
+            <LanguageSelector />
+          </div>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed" lang={language}>
             {translated.summary}
           </p>
