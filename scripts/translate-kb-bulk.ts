@@ -26,7 +26,7 @@ const langArgIdx = args.indexOf("--lang");
 const LANGS: string[] =
   langArgIdx >= 0 && args[langArgIdx + 1] ? args[langArgIdx + 1].split(",") : ALL_LANGS;
 
-const CONCURRENCY = 5;
+const CONCURRENCY = 8;
 
 type TopicMeta = {
   slug: string;
