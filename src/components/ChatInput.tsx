@@ -191,6 +191,7 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
           placeholder={t("inputPlaceholder")}
           disabled={disabled}
           autoComplete="off"
+          aria-label={t("inputPlaceholder")}
           aria-autocomplete="list"
           aria-expanded={open}
           aria-controls="first-aid-suggestions"
