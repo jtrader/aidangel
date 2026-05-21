@@ -1,15 +1,26 @@
 import { Globe } from "lucide-react";
-import { useLanguage, languages } from "@/contexts/LanguageContext";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useLanguage, languages, LanguageCode } from "@/contexts/LanguageContext";
+import { stripLangPrefix, localizedPath } from "@/lib/i18n";
 
 const LanguageSelector = () => {
   const { language, setLanguage } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleChange = (next: LanguageCode) => {
+    setLanguage(next);
+    const { basePath } = stripLangPrefix(location.pathname);
+    const target = localizedPath(next, basePath);
+    if (target !== location.pathname) navigate(target);
+  };
 
   return (
     <div className="relative inline-flex items-center gap-1.5">
       <Globe className="h-4 w-4 text-muted-foreground" />
       <select
         value={language}
-        onChange={(e) => setLanguage(e.target.value as typeof language)}
+        onChange={(e) => handleChange(e.target.value as LanguageCode)}
         className="appearance-none bg-transparent border border-border rounded-lg px-2 py-1 pr-6 text-xs font-medium text-foreground cursor-pointer focus:outline-none focus:ring-2 focus:ring-ring"
       >
         {languages.map((lang) => (

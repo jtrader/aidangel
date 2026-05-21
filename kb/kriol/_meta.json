@@ -1,0 +1,190 @@
+{
+  "language": "kriol",
+  "categories": {
+    "Primary Survey": "Patrol long pesin",
+    "Resuscitation": "Mekim pesin kukrul",
+    "Airway": "Winde",
+    "Wounds & Bleeding": "Mani-mani & Blud",
+    "Burns": "Bun",
+    "Emergencies": "Hurry-ap sidasin",
+    "Breathing": "Brothin",
+    "Allergy": "Allergy",
+    "Cardiac": "Hat",
+    "Neurological": "Brain langa",
+    "Medical": "Sidasin",
+    "Trauma": "Bulurru",
+    "Bones & Joints": "Bun & Jend",
+    "Bites & Stings": "Kanim-abat & Sting",
+    "Environmental": "Bush langa",
+    "Toxicology": "Poison",
+    "Minor": "Lili",
+    "Dental": "Tit-wan"
+  },
+  "topics": [
+    {
+      "slug": "drsabcd",
+      "title": "DRSABCD Akshun Plan",
+      "summary": "DRSABCD akshun plan eman Australia Resuscitation Council im seven-step primary survey blanga enijing emergency: Danger, Response, Send for help, Airway, Breathing, CPR, Defibrillation."
+    },
+    {
+      "slug": "cpr",
+      "title": "CPR — Majabana Stat Mada",
+      "summary": "Yu kani yusa CPR langa eniwan hu kani breth normalijat o hu nomo riyak. Yu kani yusa 30 kist kompresan tu 2 brej, langa 100-120 kompresan pur minit. Mani di dipnes an di wai yu duuwum langa bigman, lilwan an beibi."
+    },
+    {
+      "slug": "aed",
+      "title": "AED — Automated External Defibrillator",
+      "summary": "An AED is a machine wot sambala imapusa ontop a main enjin fiinijin wot mekem de hert blak. Modern AEDs enjiniyat fo imapusa enjin—stadjit, attachim de pets, an imapusa de main enjin. An AED is a machine wot sambala imapusa ontop a main enjin fiinijin wot mekem de hert blak."
+    },
+    {
+      "slug": "recovery-position",
+      "title": "Patjarranbala Posijan",
+      "summary": "Patjarranbala posijan seifgadm anbatbla pipul hu garra brith normal, deya tang kaan blok deya throt en plenim woda en likwids, deya komin aut, kaan lego eniweya."
+    },
+    {
+      "slug": "choking",
+      "title": "Choking — Bigwan, Pikin en Bebi",
+      "summary": "Sali enwanwan i nomo kogh, toktok o brith, gibu enwanwan 5 nating strong bak blos bitwin di sholda blet, den 5 tes trast, en jensim jensim gulum mada di erwea klia o dei nomo sabi wanim dei dum."
+    },
+    {
+      "slug": "bleeding",
+      "title": "Bala Blud Ibin Kam Owt Foa-Foa",
+      "summary": "Stopim bala blud ibin kam owt foa-foa tru long yu putum hand strong-strong, direk, kontinyuwus ontop long wun, putum det pesin daun, en helpim foa shock wile yu waintaim ambulens."
+    },
+    {
+      "slug": "burns",
+      "title": "Bungun imin hot langa skin (Burns and Scalds)",
+      "summary": "Kulumtji enijing weya bin bungun imin hot langa skin garra kol wata fo minimam 20 minit, tekum-out klos en jelri longdeiya if nomo teik-of, en kaba blanga samting klosi weya en nomo teik-out or samting klin en nomo teik-aut longdeiya."
+    },
+    {
+      "slug": "shock",
+      "title": "Shock (Blood i bin lusim nogud / Blood i nogo flow gud)",
+      "summary": "Shock em iwan dेंजरस kain sik wea blood i nogo flow gud long body. Sain blanga shock em i: skin blanga oltaim i kalt, na i drai, na i hevi, pulse i wik na i kwikwan, siklongbel na had long tingting. Lajim daon dispela pikinini, mekim gud dispela samting wea mekim engo shock, kipim em i wom na kolim 000."
+    },
+    {
+      "slug": "asthma",
+      "title": "Asthma Attack — 4 x 4 x 4 Plan",
+      "summary": "Mekem detfela pipul sidon rraitwei, giwim 4 drup op bluw riliewa pufa truda speisa (wan drup wonda taim, 4 breth ichwan), wet 4 minit, riminitim if im nomo beta. Kolum 000 if im nomo beta."
+    },
+    {
+      "slug": "anaphylaxis",
+      "title": "Anaphylaxis",
+      "summary": "Anaphylaxis em wanwan alaji riyakshan weya imin kilim pipul. Lajim det pipul la daun, gibim adrenalin (EpiPen) raitwei nomo, kolim 000, en gibim sekund wan afta 5 minit sipos yunu luk imin statim beta.\n"
+    },
+    {
+      "slug": "allergic-reactions",
+      "title": "Lagijat o mil-midul Alajik Rijkshan",
+      "summary": "Fo lagijat alajik rijkshan en — skingriin, lip o fes bin swelni, tingglin — ran offim detwan brom gada, gibim antihistamiin sapos daktur bin tok, en luk gudwan sapos eni kain anafileksis kaman."
+    },
+    {
+      "slug": "heart-attack",
+      "title": "Hat Majan",
+      "summary": "Hat majan yu kən luk eni sait, oles gulum 000, den yu garra pultum daan, loosam klos blanga im, en gibim 300 mg aspirin ilala im no bin alajik."
+    },
+    {
+      "slug": "stroke",
+      "title": "Strok — The FAST Test",
+      "summary": "Yuusim FAST test langa strok — Face bilong im drapdaun, Arms bilong im nogat strong, Speech bilong im rabi, Time bilong singoutim 000. Ebra minit kaunt; legenim daiman langa graun witim hed bilong im wangkaid haiyapdaunim, en nogat enijing bilong gibit im langa maun.\n"
+    },
+    {
+      "slug": "seizures",
+      "title": "Siza en Epilipsi",
+      "summary": "Taem sambala bin ketsim siza, yu garra protektim, lukat oltaem, en nomo holan o pudum enijing langa olabat maunt. Orta siza, pudum olabat langa rikovri posishin en kipim olabat fain. "
+    },
+    {
+      "slug": "diabetes",
+      "title": "Diabetic Emergencies",
+      "summary": "Sapos wanbala pìpul hu bin geda diabetes deya komfyus, gandan oltaem o sikwan, yu mas biliib se gula blood bin lapta daun (hypo) en gibim kain gulawan miil o wata iif dei kuud swala. Kulum 000 iif dei nomo geda beta, lus deya min, o luk jida wata bin draid ap graibala. "
+    },
+    {
+      "slug": "head-injury",
+      "title": "Het Langgurda Imbinijin en Kangkashan",
+      "summary": "Yu garra olweis teinkam bla spien imbinijin wen yu garra het imbinijin. Langgurda emda posin daun, kanchrolda bledin widaot presha direkda blain weya im garra dip wanda eria, en kol wanda 000 wen im lusingda kanchesnes, wamitin o imbin kanyfijin wanda hoda taim."
+    },
+    {
+      "slug": "spinal-injury",
+      "title": "Saposbin Hem Krait Long Bakbon (Spinal Injury)",
+      "summary": "Sapos yu smartim wanwan maintaim spoinjas, weda yu bin foldaun long hait, o kraim motoka, o bin dayvim strong, o sapos yu lukim samwan weya i bin krait fo stadaim bakbon na i no bin ansar, yu mas sapos datwan maintaim i bin krait long bakbon. Yu no garra muvim dijan pesin waila i no bin deya insai enijing weya i bin denja; kipim hed na nek stedi en koalambam 000."
+    },
+    {
+      "slug": "fractures",
+      "title": "Brukun Bun (Bun Brok)",
+      "summary": "Holim di pat we bin bin brok stil. Stopim eni blad we kambek. Holim im stil langa wan splint o sling we guda bin padim. Sekim blad de go ron gudu o nogo ebri 15 minit. Go luk medikel help. Gobek 000 if di bun brok owpen, oleta bin brok o yu lukim di pesin showim wan samting olsem shok."
+    },
+    {
+      "slug": "sprains-strains",
+      "title": "Sprains en Strains — RICE",
+      "summary": "Yuusim RICE mitit fo spes en streyns — letim bodbla sidaun, ays (20 minit ebri 2 awa), kumpreshan bandij, en liptimapoba hat lebul. Go luk medikul elit ifiya pen, swelin o nomo toku bilong enijing gobat mobli."
+    },
+    {
+      "slug": "snake-bite",
+      "title": "Neik Baid — Bandijim Strongim Blood Blaik Imobailaisayshan",
+      "summary": "Sapos yu tingim neik baid insaid Ostrelia, kulum 000 en putum wanpela bandijim strongim blood blaik imobailaisayshan fram we neik baidim ijo go antap long hol fut o han, den spilitim en kipim pesin stop olgeta."
+    },
+    {
+      "slug": "spider-bite",
+      "title": "Spider Bites",
+      "summary": "Wanba o muws spaida binbait garra bi tritbat langa presha imobelaisan laika sneik binbait. Retbek spaida binbait garra bi tritbat langa aisk peik — nomo benda. Luk medikel elp sapos eni samting luk rongwan."
+    },
+    {
+      "slug": "jellyfish-stings",
+      "title": "Jellyfish en Langka Bilong Solwara Ol I Stingim Yu",
+      "summary": "Sapos yu stap long ples olsem Bundaberg narafala hap not, en samfala jellyfish ol i stingim yu, yu mas putum vinegar long sting bilong 30 sekon, bihain yu kolim 000. Sapos bluebottle o narafala jellyfish bilong mipla ples ya, tekemaut ol 'tentacles' en putum long wata ia i hat. "
+    },
+    {
+      "slug": "heat-illness",
+      "title": "Het Igzostan en Het Strok",
+      "summary": "Het igzostan det ridim en muwum langa wan kol ples, tekum ol klosap, en sipum kol woda. Het strok det wan laif-det emadjansi – ringum 000 en kolum diwan kwikwan, bi eniwei yu sabe."
+    },
+    {
+      "slug": "hypothermia",
+      "title": "Hipotamia (Hypothermia)",
+      "summary": "Hipotamia em detfala taim we binis blong bodi i drop daon long 35°C. Move-im daon detfala pepul long seilta, teik-im of ol wetpala klos, wam-im-ap slo-slo long blankit end bodi hit, end kol-im 000 sipos i strong bikaus i nogud."
+    },
+    {
+      "slug": "poisoning",
+      "title": "Mek-im Sik Gidap",
+      "summary": "Sipoja eni brabli sik naur dija poisin, garra singaud langa Poisons Information Centre on 13 11 26. Langtaim dija pashin bin lug-garran eni laif, o dija pashin bin bad wan, garra singaud 000. No garra mek-am spew-garran, samtaim ol bin tok yu."
+    },
+    {
+      "slug": "drowning",
+      "title": "Jampella Wata",
+      "summary": "Tekem detwan autsaid di wata, sista if im seif fo yu fo dum. Statim CPR hapa taim if detwan nau sabi neitin an nau bretin normal - kolem 000 fo ebriwan ho jampella wata, sista if im luk olraet bakgen."
+    },
+    {
+      "slug": "nosebleed",
+      "title": "Blud garram nus",
+      "summary": "Sidon raitap, leanub iŋgal, en strongwanba pinjim sohpwan pat blanga nus planga leas 10 miniuts. Lukim dokta sipos blud bin blo miŋgul afta 20 miniuts o sipos im binin afta wan hed injuri."
+    },
+    {
+      "slug": "fainting",
+      "title": "Braiwanwei (Syncope)",
+      "summary": "Braiwanwei na imin bin lusim tinggaweiwanwanwan, wal blud i nomo go strongwanwan long brên. Planaimdaun im, an haisim im leg langa abop im hat laewul, an lukgimgimwanim wanem mekimbekap bin slo wanim. "
+    },
+    {
+      "slug": "dehydration",
+      "title": "Bodi Thas Am Blanga Wata",
+      "summary": "Muwum diwan pipul langa wan kul ples, en let deim sipum wata o wan 'oral rehydration solution' sloli. If deim na garra plenti wata insaid deim bodi – wida deim girring, wida deim na pimum wata, o deim haat bitin kwikwan – yus garra singaud langa wan ambulens."
+    },
+    {
+      "slug": "sunburn",
+      "title": "Sanban",
+      "summary": "Muwuwei longta san, kipum di area wit kold woda fo 20 minit, pudum afta-san jel, dringam brabli woda, en neba bosim blista. Luk medikel elp fo nogud sanban o blista pasin on pikinini."
+    },
+    {
+      "slug": "dental-injury",
+      "title": "Brukkan-Out Tiit",
+      "summary": "Wolim wun brukkan-out adult tiit long im hed (crown), washim isili blanga milk o' sol-woda sapos i' gad-gad, en den pudum bek long deya hol (socket) sapos yu kyan — o'taim kipim long milk o' spidul en tekam go langa dentist-man insaid 30 minit."
+    },
+    {
+      "slug": "eye-injuries",
+      "title": "Ai Bin Dat Injuri",
+      "summary": "Sikwan grog imin go in ai, klinimot det ai otaim garra klin woda otaim seilain. Neiba pulumot samting imin go deip insaid ai, kiba-ap boimob det ai en kolim 000. Kemikal imin go insaid ai niidim plenti woda en ambulens."
+    },
+    {
+      "slug": "electric-shock",
+      "title": "Mainja Laigit",
+      "summary": "Na bin touchim di pashin until di powa op. Wans sife, followim DRSABCD, singgaut 000, kikim wun an mainja shok. Ifin di pashin luk olrait afta mainja laigit, di pashin garra goospidal kauntam."
+    }
+  ]
+}

@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft, BookOpen, Loader2, MessageCircle } from "lucide-react";
-import { getTopic, getBody, topics } from "@/lib/kb";
-import { useSeo, SITE_URL } from "@/lib/seo";
+import { getTopic, getBody, topicsFor } from "@/lib/kb";
+import { SeoHead } from "@/components/SeoHead";
+import { canonicalUrl, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -24,17 +25,21 @@ const STATIC_TOPIC_STRINGS = [
 
 const KbTopic = () => {
   const { slug = "" } = useParams<{ slug: string }>();
-  const topic = getTopic(slug);
+  const { language } = useLanguage();
+  const topicEn = getTopic(slug, "en");
 
-  if (!topic) {
+  if (!topicEn) {
     return <Navigate to="/kb" replace />;
   }
 
-  const body = getBody(slug);
+  // Localized topic metadata + body (from static files when available)
+  const topic = getTopic(slug, language) ?? topicEn;
+  const rawBody = getBody(slug, language);
   // Strip the first "# Title" — we render it as a real <h1> ourselves.
-  const sourceBody = body.replace(/^#\s+.*\n+/, "");
+  const sourceBody = rawBody.replace(/^#\s+.*\n+/, "");
+  // Is the body in the selected language already? (true if it differs from English or English is selected)
+  const hasStaticBody = language === "en" || rawBody !== getBody(slug, "en");
 
-  const { language } = useLanguage();
   const [translated, setTranslated] = useState<{ title: string; summary: string; body: string }>({
     title: topic.title,
     summary: topic.summary,
@@ -73,36 +78,35 @@ const KbTopic = () => {
     let cancelled = false;
     translateStrings(language, STATIC_TOPIC_STRINGS).then((s) => {
       if (cancelled) return;
-      translateStrings(language, [topic.category]).then(([cat]) => {
-        if (cancelled) return;
-        setUi({
-          allTopics: s[0],
-          askAssistant: s[1],
-          appName: s[2],
-          knowledgeBase: s[3],
-          translating: s[4],
-          relatedTopics: s[5],
-          source: s[6],
-          adaptedFrom: s[7],
-          emergencyNote: s[8],
-          category: cat ?? topic.category,
-        });
+      setUi({
+        allTopics: s[0],
+        askAssistant: s[1],
+        appName: s[2],
+        knowledgeBase: s[3],
+        translating: s[4],
+        relatedTopics: s[5],
+        source: s[6],
+        adaptedFrom: s[7],
+        emergencyNote: s[8],
+        category: topic.category, // already comes from per-lang meta when available
       });
     });
     return () => { cancelled = true; };
   }, [language, topic.category]);
 
+  // Body: prefer static file; only call the AI fallback if no per-lang file exists.
   useEffect(() => {
     let cancelled = false;
-    if (language === "en") {
+    if (language === "en" || hasStaticBody) {
       setTranslated({ title: topic.title, summary: topic.summary, body: sourceBody });
+      setTranslating(false);
       return;
     }
     setTranslating(true);
     translateTopic(slug, language, {
-      title: topic.title,
-      summary: topic.summary,
-      body: sourceBody,
+      title: topicEn.title,
+      summary: topicEn.summary,
+      body: getBody(slug, "en").replace(/^#\s+.*\n+/, ""),
     })
       .then((res) => {
         if (!cancelled) setTranslated(res);
@@ -113,54 +117,58 @@ const KbTopic = () => {
     return () => {
       cancelled = true;
     };
-  }, [slug, language, topic.title, topic.summary, sourceBody]);
+  }, [slug, language, hasStaticBody, sourceBody, topic.title, topic.summary, topicEn.title, topicEn.summary]);
 
-  const related = topic.related
-    .map((s) => topics.find((t) => t.slug === s))
+  const enTopics = topicsFor("en");
+  const localTopics = topicsFor(language);
+  const related = topicEn.related
+    .map((s) => localTopics.find((t) => t.slug === s) ?? enTopics.find((t) => t.slug === s))
     .filter((t): t is NonNullable<typeof t> => !!t);
 
-  useSeo({
-    title: `${topic.title} – First Aid Guide | First Aid Angel`,
-    description: topic.summary,
-    canonical: `${SITE_URL}/kb/${topic.slug}`,
-    jsonLd: [
-      {
-        "@context": "https://schema.org",
-        "@type": "MedicalWebPage",
-        name: topic.title,
-        description: topic.summary,
-        url: `${SITE_URL}/kb/${topic.slug}`,
-        about: { "@type": "MedicalCondition", name: topic.section },
-        keywords: topic.keywords.join(", "),
-        isPartOf: {
-          "@type": "WebSite",
-          name: "First Aid Angel",
-          url: SITE_URL,
-        },
-        citation: {
-          "@type": "Book",
-          name: "The St John of God First Aid Manual 5th Edition",
-          author: "St John of God",
-        },
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "First Aid Angel", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "Knowledge base", item: `${SITE_URL}/kb` },
-          { "@type": "ListItem", position: 3, name: topic.title, item: `${SITE_URL}/kb/${topic.slug}` },
-        ],
-      },
-    ],
-  });
+  const kbPath = localizedPath(language, "/kb");
+  const homePath = localizedPath(language, "/");
+  const topicPath = localizedPath(language, `/kb/${topic.slug}`);
+
+
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SeoHead
+        lang={language}
+        basePath={`/kb/${topic.slug}`}
+        title={`${translated.title} – First Aid Guide | First Aid Angel`}
+        description={translated.summary}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "MedicalWebPage",
+            name: translated.title,
+            description: translated.summary,
+            url: `${SITE_ORIGIN}${topicPath}`,
+            about: { "@type": "MedicalCondition", name: topicEn.section },
+            keywords: topicEn.keywords.join(", "),
+            isPartOf: { "@type": "WebSite", name: "First Aid Angel", url: SITE_ORIGIN },
+            citation: {
+              "@type": "Book",
+              name: "The St John of God First Aid Manual 5th Edition",
+              author: "St John of God",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: ui.appName, item: `${SITE_ORIGIN}${homePath}` },
+              { "@type": "ListItem", position: 2, name: ui.knowledgeBase, item: `${SITE_ORIGIN}${kbPath}` },
+              { "@type": "ListItem", position: 3, name: translated.title, item: `${SITE_ORIGIN}${topicPath}` },
+            ],
+          },
+        ]}
+      />
       <header className="border-b border-border bg-card">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
           <Link
-            to="/kb"
+            to={kbPath}
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -169,7 +177,7 @@ const KbTopic = () => {
           <div className="flex items-center gap-3">
             <LanguageSelector />
             <Link
-              to="/"
+              to={homePath}
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
             >
               <MessageCircle className="h-4 w-4" />
@@ -182,12 +190,13 @@ const KbTopic = () => {
       <main className="flex-1 px-4 py-8">
         <article className="max-w-3xl mx-auto">
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-3">
-            <Link to="/" className="hover:text-foreground">{ui.appName}</Link>
+            <Link to={homePath} className="hover:text-foreground">{ui.appName}</Link>
             <span className="mx-1">/</span>
-            <Link to="/kb" className="hover:text-foreground">{ui.knowledgeBase}</Link>
+            <Link to={kbPath} className="hover:text-foreground">{ui.knowledgeBase}</Link>
             <span className="mx-1">/</span>
-            <span className="text-foreground">{topic.title}</span>
+            <span className="text-foreground">{translated.title}</span>
           </nav>
+
 
           <p lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
             {ui.category}
@@ -244,7 +253,7 @@ const KbTopic = () => {
                 {related.map((r) => (
                   <li key={r.slug}>
                     <Link
-                      to={`/kb/${r.slug}`}
+                      to={localizedPath(language, `/kb/${r.slug}`)}
                       className="block p-3 rounded-xl border border-border bg-card hover:border-primary transition-all"
                     >
                       <h3 className="font-semibold text-foreground text-sm">{r.title}</h3>

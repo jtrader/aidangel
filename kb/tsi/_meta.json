@@ -1,0 +1,190 @@
+{
+  "language": "tsi",
+  "categories": {
+    "Primary Survey": "Fes Luk",
+    "Resuscitation": "Go Bak Laef",
+    "Airway": "Troat",
+    "Wounds & Bleeding": "Kat en Blid",
+    "Burns": "Bon",
+    "Emergencies": "Emergencies",
+    "Breathing": "Brip",
+    "Allergy": "Alerji",
+    "Cardiac": "Hat",
+    "Neurological": "Hed en Nof",
+    "Medical": "Sik",
+    "Trauma": "Injuri",
+    "Bones & Joints": "Bon en Jon",
+    "Bites & Stings": "Bait en Sting",
+    "Environmental": "Weda",
+    "Toxicology": "Poison",
+    "Minor": "Nomo",
+    "Dental": "Tit"
+  },
+  "topics": [
+    {
+      "slug": "drsabcd",
+      "title": "DRSABCD Action Plan",
+      "summary": "DRSABCD action plan em i Australian Resuscitation Council im seven-step primary survey blanga evri emergency: Danger, Response, Send for help, Airway, Breathing, CPR, Defibrillation."
+    },
+    {
+      "slug": "cpr",
+      "title": "CPR — Cardiopulmonary Resuscitation",
+      "summary": "CPR is performed on anyone who is unresponsive and not breathing normally. Use 30 chest compressions to 2 breaths at 100–120 compressions per minute, adjusting depth and technique for adults, children and infants."
+    },
+    {
+      "slug": "aed",
+      "title": "AED — Automated External Defibrillator",
+      "summary": "An AED gime wan ilektrik shok blo torunop wan hat weh i bin stop. Ol nupela AED i mekem blo ol pipul weh no bin trening — torunopim, putum ol pats wia i shoum, en foloum ol vois tingting."
+    },
+    {
+      "slug": "recovery-position",
+      "title": "Posen Blo Bos",
+      "summary": "Posen blo bos i kib um patta blanga witin blo samwan unkonshas, bat i briding nomal. I kipum saitwei nomo so tang kai blokim troat, an wata o odha samting kai ranaut."
+    },
+    {
+      "slug": "choking",
+      "title": "Choking — Bigwan, Pikin en Bebi",
+      "summary": "Sopos samwan him murid, him no kowm, him no toktok o him no bret, gib 5 shap bak blow insaid imda solda bone, den 5 tes trast, en jensim jensim gwen gwen so untel imda wey blo bret him klea o garram dei him lusim wain blo laif."
+    },
+    {
+      "slug": "bleeding",
+      "title": "Big Blood Kana Autsaid",
+      "summary": "Stopim big blood kana autsaid baimbai yu holim strong, direkt, kinu tin yus presha long wound, mekim di person go daung, en triitim dem for shock wail di ambulans imin kamin."
+    },
+    {
+      "slug": "burns",
+      "title": "Sting na Hot Wata",
+      "summary": "Koolum evri sting o hot wata slip long kool wata, for atleast 20 minit, tekem aut ol kempus na jingal, if i nogat i bin sting long bodi, den yu putum wan klos o kempus blong hadap blong mekim i nomo garen."
+    },
+    {
+      "slug": "shock",
+      "title": "Shock (Hypovolaemic / Circulatory)",
+      "summary": "Shock emi wan krisis wey blood i-drop low. Sain blong shock emi skin i-pael, kol, damp, pulis i-wik mo i-fas, olsem naujia mo konfusion. Lainim daon dispela pikinini, mekim tretmon blong emi, kipim emi hot mo kolim 000."
+    },
+    {
+      "slug": "asthma",
+      "title": "Asthma Attack — 4 x 4 x 4 Plan",
+      "summary": "Mekem da persoon sidong strait, gibit 4 pafs bloo riliva pafa thru wan speisa (wan paf wan taim, 4 breditsh tich taim), wait 4 minit, rimbit if i nogud. Kol 000 if da siknis i kipsim."
+    },
+    {
+      "slug": "anaphylaxis",
+      "title": "Anaphylaxis",
+      "summary": "Anaphylaxis em nupela olgeta alergik rieksen blo ded. Putum dapeya dapeya, gibum adrenaline (EpiPen) kwiktaim, tel 000, an gibum neda wan blo afta 5 niutif im nogud yet."
+    },
+    {
+      "slug": "allergic-reactions",
+      "title": "Slight to Mediam Allergic Reactions",
+      "summary": "Suppose allergic reaction 'em no too bad — skin rash, lips or face swelni, thorni ﬁlin — teikim dawe wate make-em, give-im antihistamines suppose medicine blong hem, an luk-luk gud suppose im make-em wos o’im gowin anaphylaxis."
+    },
+    {
+      "slug": "heart-attack",
+      "title": "Hat Aitak",
+      "summary": "Ol saen blanga hat aitak iusli i stat long jes pen o presa, plaba taim i spretdan long ja, am o bak. Kal 000 instret, sidaunim da pesin, lusum lafap, en gibin aspirin 300 mg if da pesin no alergik."
+    },
+    {
+      "slug": "stroke",
+      "title": "Stroke — The FAST Test",
+      "summary": "FAST test fo' stroke — Face wek, Arms wek, Speech humbug, Time fo' ring 000. Ev'ry minit impo'tant; mekim da samwan slipdaung, jingara witim hed liklbit high, an no gib'em enijing throug da mouth."
+    },
+    {
+      "slug": "seizures",
+      "title": "Seizures an Epilepsy",
+      "summary": "Longtaim wanpela seizure i stap, yumi mas protektim datpela man o oman from injury, taimim, an neva daunim dem o putim samting insaid dem mout. Afta dat, putim dem long recovery position an tokim dem olraite."
+    },
+    {
+      "slug": "diabetes",
+      "title": "Diabetic Emergencies",
+      "summary": "Soposonwan blo diabetes i-konpius, i-sweti o i-nogud, ting dat is loba blood suga (hypo) en giwi dem suga kaikai o dring if dem ken-swola. Kol 000 if dem nomo beta, lus-konshios, o luk drai tumas."
+    },
+    {
+      "slug": "head-injury",
+      "title": "Hed Bin Sik en Konkashan",
+      "summary": "Oltaim tingk marit wan spinal injari taum marit hed injari. Putum da pesin daon, kontrolem da blad wen i ron nomo presha long wan daon eria, en kol 000 fo eni loosting aut, vomitim o konfushan."
+    },
+    {
+      "slug": "spinal-injury",
+      "title": "Hem i napat long Spinal Injury",
+      "summary": "Yu mas ting ‘hem i gat spinal injury’ sapos hem i foldan long hait, rot kraish, daiving insidan, o samwan we nōla kīmiap afta wan aksidan. No muv langa desfella pipol wīnyu tekea hem i save ded. Kipim het en nek hol langa wan sai, en kali 000."
+    },
+    {
+      "slug": "fractures",
+      "title": "Brukbun (Brukbun)",
+      "summary": "Holim di siklik han/fut animol, stopim bloot, holim im fain wit wan kain splint or sling we gat padding, lukim blood flow evri 15 minit, en lukim medikel help. Kolim 000 if di bun bruk open, or if im bikpela bun or if yu lukim saen blong shok."
+    },
+    {
+      "slug": "sprains-strains",
+      "title": "Sprains an Strains — RICE",
+      "summary": "Yuusim di RICE method blo sprains an strains — Rest, Ice (20 minutes ebri 2 hours), Compression bandage, an Elevation ova di haat lebul. Luk fo medical help if di pen, swelin o loss blo ting mait stil go on."
+    },
+    {
+      "slug": "snake-bite",
+      "title": "Snake Bite — Pressure Immobilisation",
+      "summary": "Sopos yu tink wan snake baiit yu long Australia, kol 000 an bandijim da baiit pleis strong-strong, stat long da baiit an go-go op da huul leg o han, den mek-am splint an meik da sikwan stap jast lo wan pleis."
+    },
+    {
+      "slug": "spider-bite",
+      "title": "Spider Bites",
+      "summary": "Funnel-web an mouse spider bites, yu garra treat im usin pressure immobilisation, same lik wun snake bite. Redback bites, yu garra treat im wit wun ice pack — no put bandage. Go luk wun doctor if eni siknes deya, yu wari."
+    },
+    {
+      "slug": "jellyfish-stings",
+      "title": "Jellyfish an Marine Stings",
+      "summary": "Long f’ya olgeta tropical jellyfish (long wup-an-da long Bundaberg), yu mas pourum vinega langa sting b’fo 30 sekon, den yu mas callim 000. Long f’ya olgeta bluebottle an narra stings, yu mas tekem-awe ol tenga an putum-daun insaid hot wata."
+    },
+    {
+      "slug": "heat-illness",
+      "title": "Hets bloa aut na Hets Bloa Dagulwan",
+      "summary": "Hets bloa aut ya bin tritimbat mumuvum long wan kol ples, tekemdam klos na sipim kol wata. Hets bloa Dagulwan ya wan krisnes sipos ya bin stap, kolim 000 na kolim go fasta long eni wei yu bin save."
+    },
+    {
+      "slug": "hypothermia",
+      "title": "Hypothermia",
+      "summary": "Hypothermia em i taim body blo man em i kamkol daun long 35°C. Muwim da person go insaid shelter, tekem wet klos blo dem orait, hitim dem slo-sulo wit blanket an body hit, an kol 000 sipos em i hevi."
+    },
+    {
+      "slug": "poisoning",
+      "title": "Poisoning (Garbage-Garbage)",
+      "summary": "Sopos yu tinkim samwan bin kaikai poison, yu garra ringim Poisons Information Centre long 13 11 26. Sapos datwan pikinini i no save gerap, o yu tink im i sik tumas, yu garra ringim 000. No mekim im traim blong vomitim, longtaim olsem deitwan imin tokim yu."
+    },
+    {
+      "slug": "drowning",
+      "title": "Drowning (Water binij daji)",
+      "summary": "Tekem da binij komot long wata nomo sapos em seif plen. Statim CPR hapa taim sapos imu binij nomo sabi en nomo odinari binij — kole 000 long olkain drowning keswalti, maski imu luk olsem imu orait bikgen."
+    },
+    {
+      "slug": "nosebleed",
+      "title": "Nosebleed",
+      "summary": "Sidong rait, go fores liklbit, an hol'im naus gud-gud long sop-sop pat blanga naus blo'onim fo minimim 10 minit. Luk fo medikal sevis sapos blad i gogo yet afta 20 minit o sapos i kaman afta wan hed enjri."
+    },
+    {
+      "slug": "fainting",
+      "title": "Fainting (Syncope)",
+      "summary": "Fainting da lugun briftaim longa wananisman blo mo pul blo blad go langa bren. Putum pipol splat, an hevim leg blo ol op pasa blo hat, an lukaut wananisim kaws sapos i slo olo."
+    },
+    {
+      "slug": "dehydration",
+      "title": "Bodi drai",
+      "summary": "Muvum da pipul i go insaid long wan kol ples, an mekem da pipul i drang evri lelebet wata o drai bodi wata (oral rehydration solution) slo-slo.  Sika drai bodi (severe dehydration) — haed i giris, lelebet im wata (urine) i stat stop, hat i bit i go kwik-kwik (rapid pulse) — nida kolam ambulans."
+    },
+    {
+      "slug": "sunburn",
+      "title": "Sanban (Sunburn)",
+      "summary": "Go wea san shain nomoa, putum daun kuulkul wata f'20 minit, rubum gell daat yu yus afta san, dringk heapa wata, eno neva bastum blista. Luk f'healp f'dokta or kaman medicine f'strong sanban or blista on pikinini."
+    },
+    {
+      "slug": "dental-injury",
+      "title": "Dog Out Tut",
+      "summary": "Holim wanem adalt tut i dog out long hem crown, wasim soso long milk owa solwara wata sipos i doti, than putum bak long holo blo hem sipos yu kyan — owa storim long milk owa salaywa an kaman long wan dentis insaid 30 minit."
+    },
+    {
+      "slug": "eye-injuries",
+      "title": "Ai Bin Dat",
+      "summary": "Saposi ami garram blo yu ai, woshemot long klin wata o salt wata. Neva pulumot eni samting weh him bin go insaid — jast kavam blo yu ai tupela en kol 000. Saposi kemikal bin splash pas, yu mas putumdaon blo yu ai anjala wata go kas long 20 minit en den kol ambyulans."
+    },
+    {
+      "slug": "electric-shock",
+      "title": "Electrik Sok",
+      "summary": "No bin tejet long tharran man ouman gaba bin offim power. Wen ijei seif-wei, fala DRSABCD, kol 000, kikim bons lang sok.  Ebri wan man ouman hu luk nais afta electrik sok mas go ospital lang kikim."
+    }
+  ]
+}

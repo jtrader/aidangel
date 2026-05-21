@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Heart, HandHeart, ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
+import { localizedPath } from "@/lib/i18n";
 
 type NetworkLink = {
   href: string;
@@ -73,6 +74,8 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
     };
   }, [language]);
 
+  const kbHref = localizedPath(language, "/kb");
+
   return (
     <footer className="border-t border-border bg-card px-4 py-6">
       <div className="max-w-lg mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground" lang={language}>
@@ -99,7 +102,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
           </a>
         </div>
         <div className="pb-2">
-          <a href="/kb" className="text-xs font-semibold text-primary hover:underline">
+          <a href={kbHref} className="text-xs font-semibold text-primary hover:underline">
             {tr.browseKb}
           </a>
         </div>

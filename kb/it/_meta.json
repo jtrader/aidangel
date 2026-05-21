@@ -1,0 +1,190 @@
+{
+  "language": "it",
+  "categories": {
+    "Primary Survey": "Valutazione Primaria",
+    "Resuscitation": "Rianimazione",
+    "Airway": "Vie Aeree",
+    "Wounds & Bleeding": "Ferite e Sanguinamento",
+    "Burns": "Ustioni",
+    "Emergencies": "Emergenze",
+    "Breathing": "Respirazione",
+    "Allergy": "Allergia",
+    "Cardiac": "Cardiologia",
+    "Neurological": "Neurologia",
+    "Medical": "Medicina",
+    "Trauma": "Traumi",
+    "Bones & Joints": "Ossa e Articolazioni",
+    "Bites & Stings": "Morsi e Punture",
+    "Environmental": "Ambientale",
+    "Toxicology": "Tossicologia",
+    "Minor": "Minore",
+    "Dental": "Odontoiatria"
+  },
+  "topics": [
+    {
+      "slug": "drsabcd",
+      "title": "Piano d'azione DRSABCD",
+      "summary": "Il piano d'azione DRSABCD è l'indagine primaria in sette fasi dell'Australian Resuscitation Council per qualsiasi emergenza: Danger (Pericolo), Response (Risposta), Send for help (Chiedere aiuto), Airway (Vie aeree), Breathing (Respirazione), CPR (Rianimazione cardiopolmonare), Defibrillation (Defibrillazione)."
+    },
+    {
+      "slug": "cpr",
+      "title": "CPR – Rianimazione cardiopolmonare",
+      "summary": "La CPR viene eseguita su chiunque non risponda e non respiri normalmente. Utilizzare 30 compressioni toraciche e 2 respiri a 100-120 compressioni al minuto, regolando profondità e tecnica per adulti, bambini e neonati."
+    },
+    {
+      "slug": "aed",
+      "title": "AED — Defibrillatore Esterno Automatico",
+      "summary": "Un AED eroga una scarica elettrica per riavviare un cuore in arresto cardiaco. Gli AED moderni sono progettati per soccorritori non addestrati: accendilo, applica gli elettrodi come mostrato e segui le istruzioni vocali."
+    },
+    {
+      "slug": "recovery-position",
+      "title": "Posizione laterale di sicurezza (PLS)",
+      "summary": "La posizione laterale di sicurezza protegge le vie aeree di una persona incosciente che respira normalmente, mantenendola su un fianco in modo che la lingua non possa ostruire la gola e i fluidi possano drenare."
+    },
+    {
+      "slug": "choking",
+      "title": "Soffocamento - Adulti, Bambini e Neonati",
+      "summary": "Per una persona che non riesce a tossire, parlare o respirare, dare 5 energiche pacche sulla schiena tra le scapole, poi 5 compressioni toraciche, e alternare finché le vie aeree non si liberano o la persona non perde conoscenza."
+    },
+    {
+      "slug": "bleeding",
+      "title": "Emorragia esterna grave",
+      "summary": "Ferma un'emorragia grave applicando una pressione ferma, diretta e continua sulla ferita, facendo sdraiare la persona e trattando lo shock mentre aspetti l'ambulanza."
+    },
+    {
+      "slug": "burns",
+      "title": "Ustioni e scottature",
+      "summary": "Raffreddare qualsiasi ustione sotto acqua fresca corrente per almeno 20 minuti, rimuovere indumenti e gioielli dall'area a meno che non siano attaccati e coprire senza stringere con pellicola trasparente o una medicazione sterile antiaderente."
+    },
+    {
+      "slug": "shock",
+      "title": "Shock (Ipovolemico / Circolatorio)",
+      "summary": "Lo shock è un calo del flusso sanguigno potenzialmente letale. I segni includono pelle pallida, fredda e umida, polso debole e rapido, nausea e confusione. Far sdraiare la persona, trattare la causa, tenerla al caldo e chiamare lo 000."
+    },
+    {
+      "slug": "asthma",
+      "title": "Attacco d'asma — Piano 4 x 4 x 4",
+      "summary": "Metti la persona seduta in posizione eretta, dai 4 spruzzi di un inalatore blu di “sollievo” attraverso un distanziatore (1 spruzzo alla volta, 4 respiri ciascuno), attendi 4 minuti, ripeti se non ci sono miglioramenti. Chiama il 000 se i sintomi non migliorano."
+    },
+    {
+      "slug": "anaphylaxis",
+      "title": "Anafilassi",
+      "summary": "L'anafilassi è una reazione allergica potenzialmente letale. Adagiare la persona supina, somministrare immediatamente adrenalina (EpiPen), chiamare il 000 e somministrare una seconda dose dopo 5 minuti se non c'è miglioramento."
+    },
+    {
+      "slug": "allergic-reactions",
+      "title": "Reazioni allergiche da lievi a moderate",
+      "summary": "Per reazioni allergiche lievi — orticaria, gonfiore delle labbra o del viso, formicolio — rimuovere l'agente scatenante se noto, somministrare antistaminici se prescritti e monitorare attentamente per qualsiasi segno di anafilassi."
+    },
+    {
+      "slug": "heart-attack",
+      "title": "Attacco Cardiaco",
+      "summary": "I segni di un attacco cardiaco includono dolore o pressione al petto, spesso irradiati alla mascella, al braccio o alla schiena. Chiama immediatamente lo 000, fai sedere la persona, allenta gli abiti e somministra 300 mg di aspirina se non è allergica."
+    },
+    {
+      "slug": "stroke",
+      "title": "Ictus cerebrale – Il test FAST",
+      "summary": "Usa il test FAST per l'ictus – caduta del viso, debolezza delle braccia, parola impastata, tempo di chiamare il 000. Ogni minuto conta; sdraia la persona con la testa leggermente sollevata e non dare nulla per bocca."
+    },
+    {
+      "slug": "seizures",
+      "title": "Crisi convulsive ed epilessia",
+      "summary": "Durante una crisi convulsiva, proteggere la persona da lesioni, registrarne la durata e non immobilizzarla né metterle nulla in bocca. Successivamente, metterla in posizione di recupero e rassicurarla."
+    },
+    {
+      "slug": "diabetes",
+      "title": "Emergenze Diabetiche",
+      "summary": "Se una persona con diabete è confusa, sudata o non si sente bene, ipotizza un basso livello di zucchero nel sangue (ipo) e somministra cibo o bevande zuccherate se è in grado di deglutire. Chiama il 000 se non migliora, perde conoscenza o sembra gravemente disidratata."
+    },
+    {
+      "slug": "head-injury",
+      "title": "Trauma cranico e commozione cerebrale",
+      "summary": "Sospettare sempre una lesione spinale in caso di trauma cranico. Adagiare la persona, controllare l'emorragia senza applicare pressione diretta su un'area depressa e chiamare il 000 in caso di perdita di coscienza, vomito o confusione."
+    },
+    {
+      "slug": "spinal-injury",
+      "title": "Sospetta Lesione Spinale",
+      "summary": "Sospettare una lesione spinale in qualsiasi caduta da altezza, incidente stradale, incidente subacqueo o paziente traumatizzato non reattivo. Non muovere la persona a meno che non sia in pericolo; tenere la testa e il collo fermi e chiamare il 000."
+    },
+    {
+      "slug": "fractures",
+      "title": "Fratture (Ossa Rotte)",
+      "summary": "Mantieni immobile l'arto infortunato, controlla qualsiasi emorragia, immobilizza con una stecca imbottita o una fascia, controlla la circolazione ogni 15 minuti e cerca assistenza medica. Chiama lo 000 per fratture esposte, ossa grandi o segni di shock."
+    },
+    {
+      "slug": "sprains-strains",
+      "title": "Distorsioni e stiramenti — RICE",
+      "summary": "Usa il metodo RICE per distorsioni e stiramenti: riposo (Rest), ghiaccio (Ice - 20 minuti ogni 2 ore), bendaggio compressivo (Compression) ed elevazione (Elevation) al di sopra del livello del cuore. Cerca aiuto medico se il dolore, il gonfiore o la perdita di funzionalità persistono."
+    },
+    {
+      "slug": "snake-bite",
+      "title": "Morso di serpente - Immobilizzazione a pressione",
+      "summary": "Per qualsiasi sospetto morso di serpente in Australia, chiama il 000 e applica una fasciatura a pressione immobilizzante dal sito del morso lungo l'intero arto, quindi immobilizza con una stecca e mantieni il paziente completamente immobile."
+    },
+    {
+      "slug": "spider-bite",
+      "title": "Morsi di ragno",
+      "summary": "I morsi di ragno dal ventre a imbuto e di ragno dei topi vengono trattati con immobilizzazione a pressione come un morso di serpente. I morsi di ragno dal dorso rosso vengono trattati con un impacco di ghiaccio — non fasciare. Consultare un medico per qualsiasi sintomo preoccupante."
+    },
+    {
+      "slug": "jellyfish-stings",
+      "title": "Punture di meduse e altri animali marini",
+      "summary": "Per le meduse tropicali (a nord di Bundaberg), inondare la puntura con aceto per 30 secondi, quindi chiamare lo 000. Per le caravelle portoghesi e altre punture temperate, rimuovere i tentacoli e immergere in acqua calda."
+    },
+    {
+      "slug": "heat-illness",
+      "title": "Esaurimento da calore e colpo di calore",
+      "summary": "L'esaurimento da calore si tratta spostandosi in un luogo fresco, togliendosi i vestiti e sorseggiando acqua fresca. Il colpo di calore è un'emergenza potenzialmente letale: chiama il 000 e raffredda rapidamente la persona con ogni mezzo disponibile."
+    },
+    {
+      "slug": "hypothermia",
+      "title": "Ipotermia",
+      "summary": "L'ipotermia è un abbassamento della temperatura corporea centrale al di sotto di 35°C. Spostare la persona in un riparo, rimuovere gli indumenti bagnati, riscaldare gradualmente con coperte e calore corporeo, e chiamare lo 000 se grave."
+    },
+    {
+      "slug": "poisoning",
+      "title": "Avvelenamento",
+      "summary": "Per qualsiasi sospetto avvelenamento, chiamare il Centro informazioni sui veleni al 13 11 26. Se la persona è incosciente o gravemente malata, chiamare il 000. Non indurre il vomito se non espressamente indicato."
+    },
+    {
+      "slug": "drowning",
+      "title": "Annegamento",
+      "summary": "Rimuovi la persona dall'acqua solo se è sicuro farlo. Inizia immediatamente la CPR se non risponde e non respira normalmente — chiama il 000 per ogni vittima di annegamento, anche se sembra riprendersi."
+    },
+    {
+      "slug": "nosebleed",
+      "title": "Emostasi nasale",
+      "summary": "Siediti in posizione eretta, piegati in avanti e pizzica saldamente la parte morbida del naso per almeno 10 minuti. Cerca assistenza medica se l'emorragia persiste dopo 20 minuti o se è conseguente a un trauma cranico."
+    },
+    {
+      "slug": "fainting",
+      "title": "Svenimento (Sincope)",
+      "summary": "Lo svenimento è una breve perdita di coscienza dovuta a una riduzione del flusso sanguigno al cervello. Stendere la persona, sollevare le gambe al di sopra del livello del cuore e cercare una causa sottostante se il recupero è lento."
+    },
+    {
+      "slug": "dehydration",
+      "title": "Disidratazione",
+      "summary": "Spostare la persona in un luogo fresco e farle sorseggiare lentamente acqua o una soluzione reidratante orale. La disidratazione grave — confusione, assenza di produzione di urina, polso rapido — richiede un'ambulanza."
+    },
+    {
+      "slug": "sunburn",
+      "title": "Scottature solari",
+      "summary": "Spostati dal sole, rinfresca la zona con acqua fredda per 20 minuti, applica un gel doposole, bevi molta acqua e non far mai scoppiare le vesciche. Cerca assistenza medica per scottature gravi o vesciche sui bambini."
+    },
+    {
+      "slug": "dental-injury",
+      "title": "Dente Caduto",
+      "summary": "Afferrare un dente adulto caduto per la corona, sciacquarlo delicatamente con latte o soluzione fisiologica se sporco, e reinserirlo nell'alveolo se possibile — altrimenti conservarlo nel latte o nella saliva e recarsi da un dentista entro 30 minuti."
+    },
+    {
+      "slug": "eye-injuries",
+      "title": "Lesioni agli occhi",
+      "summary": "Se c'è qualcosa nell'occhio, sciacquare con acqua pulita o soluzione fisiologica. Non rimuovere mai un oggetto incastrato – coprire entrambi gli occhi e chiamare lo 000. Gli schizzi chimici richiedono 20 minuti di acqua corrente e un'ambulanza."
+    },
+    {
+      "slug": "electric-shock",
+      "title": "Shock Elettrico",
+      "summary": "Non toccare mai la persona finché la corrente non è staccata. Una volta al sicuro, segui DRSABCD, chiama il 000, tratta ustioni e shock. Anche una persona che sembra stare bene dopo una scossa elettrica dovrebbe essere valutata in ospedale."
+    }
+  ]
+}
