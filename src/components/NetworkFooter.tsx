@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Heart, HandHeart, ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
+import { localizedPath } from "@/lib/i18n";
 
 type NetworkLink = {
   href: string;
