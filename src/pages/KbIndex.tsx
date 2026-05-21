@@ -188,8 +188,16 @@ const KbIndex = () => {
             {ui.intro}
           </p>
           <p className="text-sm text-muted-foreground max-w-2xl mb-4">
-            {ui.disclaimer}
+            {ui.disclaimer.replace(/\b000\b/g, emergencyNumber).split(emergencyNumber).map((part, i, arr) => (
+              <span key={i}>
+                {part}
+                {i < arr.length - 1 && (
+                  <a href={`tel:${emergencyNumber}`} className="underline font-semibold text-primary hover:text-foreground transition-colors">{emergencyNumber}</a>
+                )}
+              </span>
+            ))}
           </p>
+
 
           {prefetching && language !== "en" && (
             <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
