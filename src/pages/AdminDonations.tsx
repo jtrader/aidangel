@@ -14,6 +14,15 @@ import {
 import { Badge } from "@/components/ui/badge";
 import type { Session } from "@supabase/supabase-js";
 import { NGOS, COUNTRIES } from "@/lib/donations";
+import { SHOPS } from "@/lib/shops";
+
+type EventFilter = "all" | "give_click" | "shop_click";
+
+function vendorLabel(eventName: string, id: string | null): string {
+  if (!id) return "—";
+  if (eventName === "shop_click") return SHOPS[id as keyof typeof SHOPS]?.short ?? id;
+  return NGOS[id as keyof typeof NGOS]?.short ?? id;
+}
 
 type Row = {
   id: string;
