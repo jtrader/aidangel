@@ -132,7 +132,7 @@ const KbIndex = () => {
       <SeoHead
         lang={language}
         basePath="/kb"
-        title={`${ui.pageTitle} | First Aid Angel`}
+        title={`${ui.pageTitle} · First Aid Angel`}
         description={ui.intro}
         jsonLd={{
           "@context": "https://schema.org",

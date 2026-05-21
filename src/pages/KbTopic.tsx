@@ -136,7 +136,7 @@ const KbTopic = () => {
       <SeoHead
         lang={language}
         basePath={`/kb/${topic.slug}`}
-        title={`${translated.title} – First Aid Guide | First Aid Angel`}
+        title={`${translated.title} · First Aid Angel`}
         description={translated.summary}
         jsonLd={[
           {
@@ -180,8 +180,9 @@ const KbTopic = () => {
               to={homePath}
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary/80"
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
               <span className="hidden sm:inline">{ui.askAssistant}</span>
+              <span className="sr-only sm:hidden">{ui.askAssistant}</span>
             </Link>
           </div>
         </div>
