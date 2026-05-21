@@ -14,6 +14,15 @@ import {
 import { Badge } from "@/components/ui/badge";
 import type { Session } from "@supabase/supabase-js";
 import { NGOS, COUNTRIES } from "@/lib/donations";
+import { SHOPS } from "@/lib/shops";
+
+type EventFilter = "all" | "give_click" | "shop_click";
+
+function vendorLabel(eventName: string, id: string | null): string {
+  if (!id) return "—";
+  if (eventName === "shop_click") return SHOPS[id as keyof typeof SHOPS]?.short ?? id;
+  return NGOS[id as keyof typeof NGOS]?.short ?? id;
+}
 
 type Row = {
   id: string;
@@ -118,6 +127,8 @@ export default function AdminDonations() {
   const [ngoFilter, setNgoFilter] = useState<string>("all");
   const [countryFilter, setCountryFilter] = useState<string>("all");
 
+  const [eventFilter, setEventFilter] = useState<EventFilter>("all");
+
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((_evt, s) => setSession(s));
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
@@ -137,30 +148,35 @@ export default function AdminDonations() {
     let q = supabase.from("give_clicks").select("*").order("created_at", { ascending: false }).limit(1000);
     const since = sinceFor(range);
     if (since) q = q.gte("created_at", since);
+    if (eventFilter !== "all") q = q.eq("event_name", eventFilter);
     if (ngoFilter !== "all") q = q.eq("ngo_id", ngoFilter);
     if (countryFilter !== "all") q = q.eq("country_code", countryFilter);
     q.then(({ data, error }) => {
       if (!error && data) setRows(data as Row[]);
       setLoading(false);
     });
-  }, [isAdmin, range, ngoFilter, countryFilter]);
+  }, [isAdmin, range, eventFilter, ngoFilter, countryFilter]);
 
   const stats = useMemo(() => {
     const total = rows.length;
     const uniqueSessions = new Set(rows.map((r) => r.id)).size;
-    const byNgo: Record<string, number> = {};
+    const giveCount = rows.filter((r) => r.event_name === "give_click").length;
+    const shopCount = rows.filter((r) => r.event_name === "shop_click").length;
+    const byVendor: Record<string, number> = {};
     const byCountry: Record<string, number> = {};
     const byPage: Record<string, number> = {};
     const byReferrer: Record<string, number> = {};
     for (const r of rows) {
-      if (r.ngo_id) byNgo[r.ngo_id] = (byNgo[r.ngo_id] ?? 0) + 1;
+      const label = vendorLabel(r.event_name, r.ngo_id);
+      const key = `${r.event_name === "shop_click" ? "🛒" : "❤️"} ${label}`;
+      byVendor[key] = (byVendor[key] ?? 0) + 1;
       if (r.country_code) byCountry[r.country_code] = (byCountry[r.country_code] ?? 0) + 1;
       if (r.page_path) byPage[r.page_path] = (byPage[r.page_path] ?? 0) + 1;
       const ref = r.referrer ? new URL(r.referrer, "https://x").hostname || "direct" : "direct";
       byReferrer[ref] = (byReferrer[ref] ?? 0) + 1;
     }
     const sortDesc = (o: Record<string, number>) => Object.entries(o).sort((a, b) => b[1] - a[1]);
-    return { total, uniqueSessions, byNgo: sortDesc(byNgo), byCountry: sortDesc(byCountry), byPage: sortDesc(byPage).slice(0, 8), byReferrer: sortDesc(byReferrer).slice(0, 8) };
+    return { total, uniqueSessions, giveCount, shopCount, byVendor: sortDesc(byVendor), byCountry: sortDesc(byCountry), byPage: sortDesc(byPage).slice(0, 8), byReferrer: sortDesc(byReferrer).slice(0, 8) };
   }, [rows]);
 
   if (!session) {
@@ -189,14 +205,14 @@ export default function AdminDonations() {
 
   return (
     <main className="min-h-screen bg-background p-4 sm:p-6">
-      <Helmet><title>Give Analytics · Referral Dashboard</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet><title>Referral Analytics · Give & Shop</title><meta name="robots" content="noindex" /></Helmet>
 
       <div className="max-w-6xl mx-auto space-y-4">
         <header className="flex items-start justify-between gap-3 flex-wrap">
           <div>
-            <h1 className="text-2xl font-bold">Give Analytics</h1>
+            <h1 className="text-2xl font-bold">Referral Analytics</h1>
             <p className="text-sm text-muted-foreground">
-              Track who clicks Give, which NGO they pick, and where they came from.
+              Track Give (donations) and Shop (first aid supplies) referrals — who, what, and where.
             </p>
           </div>
           <Button variant="outline" size="sm" onClick={() => supabase.auth.signOut()}>Sign out</Button>
@@ -217,14 +233,26 @@ export default function AdminDonations() {
               </Select>
             </div>
             <div>
-              <Label className="text-xs">NGO</Label>
+              <Label className="text-xs">Event</Label>
+              <Select value={eventFilter} onValueChange={(v) => setEventFilter(v as EventFilter)}>
+                <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All referrals</SelectItem>
+                  <SelectItem value="give_click">❤️ Give (donations)</SelectItem>
+                  <SelectItem value="shop_click">🛒 Shop (first aid)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label className="text-xs">Vendor</Label>
               <Select value={ngoFilter} onValueChange={setNgoFilter}>
                 <SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All NGOs</SelectItem>
-                  {Object.values(NGOS).map((n) => (
-                    <SelectItem key={n.id} value={n.id}>{n.short}</SelectItem>
-                  ))}
+                  <SelectItem value="all">All vendors</SelectItem>
+                  <SelectItem value="redcross">Red Cross</SelectItem>
+                  <SelectItem value="msf">Doctors Without Borders</SelectItem>
+                  <SelectItem value="stjohn">St John Ambulance</SelectItem>
+                  <SelectItem value="national">National shop</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -244,14 +272,14 @@ export default function AdminDonations() {
         </Card>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <StatCard label="Total clicks" value={stats.total} />
-          <StatCard label="Unique sessions" value={new Set(rows.map(r => r.id)).size} />
-          <StatCard label="National sites" value={rows.filter(r => r.is_national).length} />
-          <StatCard label="International" value={rows.filter(r => r.is_national === false).length} />
+          <StatCard label="Total referrals" value={stats.total} />
+          <StatCard label="❤️ Give clicks" value={stats.giveCount} />
+          <StatCard label="🛒 Shop clicks" value={stats.shopCount} />
+          <StatCard label="Unique sessions" value={stats.uniqueSessions} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-3">
-          <Breakdown title="By NGO" rows={stats.byNgo.map(([k, v]) => [NGOS[k as keyof typeof NGOS]?.short ?? k, v])} />
+          <Breakdown title="By vendor" rows={stats.byVendor} />
           <Breakdown title="By country" rows={stats.byCountry.map(([k, v]) => [`${countryFlag(k)} ${k}`, v])} />
           <Breakdown title="Top pages" rows={stats.byPage} />
           <Breakdown title="Top referrers" rows={stats.byReferrer} />
@@ -267,7 +295,8 @@ export default function AdminDonations() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>When</TableHead>
-                    <TableHead>NGO</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Vendor</TableHead>
                     <TableHead>Country</TableHead>
                     <TableHead>Scope</TableHead>
                     <TableHead>Page</TableHead>
@@ -279,7 +308,10 @@ export default function AdminDonations() {
                   {rows.slice(0, 100).map((r) => (
                     <TableRow key={r.id}>
                       <TableCell className="whitespace-nowrap text-xs">{new Date(r.created_at).toLocaleString()}</TableCell>
-                      <TableCell>{NGOS[r.ngo_id as keyof typeof NGOS]?.short ?? r.ngo_id}</TableCell>
+                      <TableCell className="text-xs">
+                        {r.event_name === "shop_click" ? "🛒 Shop" : "❤️ Give"}
+                      </TableCell>
+                      <TableCell>{vendorLabel(r.event_name, r.ngo_id)}</TableCell>
                       <TableCell>{countryFlag(r.country_code)} {r.country_code}</TableCell>
                       <TableCell>
                         {r.is_national ? <Badge variant="default">National</Badge> : <Badge variant="secondary">Intl</Badge>}
@@ -290,7 +322,7 @@ export default function AdminDonations() {
                     </TableRow>
                   ))}
                   {rows.length === 0 && (
-                    <TableRow><TableCell colSpan={7} className="text-center text-muted-foreground py-6">No clicks yet for this filter.</TableCell></TableRow>
+                    <TableRow><TableCell colSpan={8} className="text-center text-muted-foreground py-6">No referrals yet for this filter.</TableCell></TableRow>
                   )}
                 </TableBody>
               </Table>
