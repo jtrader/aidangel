@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
 import { localizedPath } from "@/lib/i18n";
 import DonateMenu from "@/components/DonateMenu";
+import ShopMenu from "@/components/ShopMenu";
 
 type NetworkLink = {
   href: string;
