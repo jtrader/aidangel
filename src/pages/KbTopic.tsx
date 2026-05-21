@@ -7,6 +7,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
+import DonateMenu from "@/components/DonateMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateTopic } from "@/lib/kbTranslate";
 import { translateStrings } from "@/lib/uiTranslate";
@@ -192,6 +193,7 @@ const KbTopic = () => {
             {ui.allTopics}
           </Link>
           <div className="flex items-center gap-3">
+            <DonateMenu variant="header" />
             <LanguageSelector />
             <Link
               to={homePath}
