@@ -7,6 +7,10 @@ export type Lang = LanguageCode;
 export const LANGS: Lang[] = [
   "en", "zh", "yue", "ar", "vi", "pa", "el", "it",
   "kriol", "yolngu", "pitjantjatjara", "arrernte", "tsi",
+  "es", "pt", "de", "fr", "nl", "sv", "no", "da", "fi", "is",
+  "pl", "cs", "sk", "hu", "ro", "bg", "hr", "sl", "sr", "uk",
+  "et", "lv", "lt", "tr", "ja", "ko", "th", "id", "ms",
+  "ur", "bn", "si", "ne", "tl", "he",
 ];
 
 export const NON_EN_LANGS: Lang[] = LANGS.filter((l) => l !== "en");
@@ -21,14 +25,20 @@ export const HREFLANG: Record<Lang, string> = {
   pa: "pa",
   el: "el",
   it: "it",
-  kriol: "rop",            // ISO 639-3 for Australian Kriol
-  tsi: "tcs",              // ISO 639-3 for Torres Strait Creole / Yumplatok
-  yolngu: "x-yolngu",      // BCP-47 private-use
+  kriol: "rop",
+  tsi: "tcs",
+  yolngu: "x-yolngu",
   pitjantjatjara: "x-pitjantjatjara",
   arrernte: "x-arrernte",
+  es: "es", pt: "pt", de: "de", fr: "fr", nl: "nl", sv: "sv", no: "no",
+  da: "da", fi: "fi", is: "is", pl: "pl", cs: "cs", sk: "sk", hu: "hu",
+  ro: "ro", bg: "bg", hr: "hr", sl: "sl", sr: "sr", uk: "uk",
+  et: "et", lv: "lv", lt: "lt", tr: "tr", ja: "ja", ko: "ko", th: "th",
+  id: "id", ms: "ms", ur: "ur", bn: "bn", si: "si", ne: "ne", tl: "tl", he: "he",
 };
 
-export const RTL_LANGS: Set<Lang> = new Set(["ar"]);
+
+export const RTL_LANGS: Set<Lang> = new Set(["ar", "he", "ur"]);
 
 export const dirFor = (lang: Lang): "ltr" | "rtl" => (RTL_LANGS.has(lang) ? "rtl" : "ltr");
 
