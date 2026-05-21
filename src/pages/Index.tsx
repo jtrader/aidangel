@@ -8,6 +8,7 @@ import QuickActions from "@/components/QuickActions";
 import DRSABCDPanel from "@/components/DRSABCDPanel";
 import LanguageSelector from "@/components/LanguageSelector";
 import NetworkFooter from "@/components/NetworkFooter";
+import DonateMenu from "@/components/DonateMenu";
 import { SeoHead } from "@/components/SeoHead";
 import { streamChat } from "@/lib/chat-stream";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -146,6 +147,7 @@ const Index = () => {
             </a>
           </div>
           <div className="flex justify-center sm:justify-end items-center gap-2">
+            <DonateMenu variant="header" />
             <LanguageSelector />
           </div>
         </div>
