@@ -177,9 +177,12 @@ const KbIndex = () => {
             <span className="text-foreground">{ui.knowledgeBase}</span>
           </nav>
 
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            {ui.pageTitle}
-          </h1>
+          <div className="flex items-center gap-2 mb-3">
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
+              {ui.pageTitle}
+            </h1>
+            <LanguageSelector />
+          </div>
           <p className="text-base text-muted-foreground max-w-2xl mb-2">
             {ui.intro}
           </p>
