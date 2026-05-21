@@ -267,7 +267,7 @@ const KbTopic = () => {
                 },
               }}
             >
-              {translated.body}
+              {linkedBody}
             </ReactMarkdown>
           </div>
 
