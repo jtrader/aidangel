@@ -1,0 +1,190 @@
+{
+  "language": "vi",
+  "categories": {
+    "Primary Survey": "Khảo sát ban đầu",
+    "Resuscitation": "Hồi sức",
+    "Airway": "Đường thở",
+    "Wounds & Bleeding": "Vết thương & Chảy máu",
+    "Burns": "Bỏng",
+    "Emergencies": "Các trường hợp cấp cứu",
+    "Breathing": "Hô hấp",
+    "Allergy": "Dị ứng",
+    "Cardiac": "Tim mạch",
+    "Neurological": "Thần kinh",
+    "Medical": "Y tế",
+    "Trauma": "Chấn thương",
+    "Bones & Joints": "Xương & Khớp",
+    "Bites & Stings": "Vết cắn & Vết đốt",
+    "Environmental": "Môi trường",
+    "Toxicology": "Độc chất học",
+    "Minor": "Nhẹ",
+    "Dental": "Nha khoa"
+  },
+  "topics": [
+    {
+      "slug": "drsabcd",
+      "title": "Kế hoạch hành động DRSABCD",
+      "summary": "Kế hoạch hành động DRSABCD là khảo sát sơ cấp bảy bước của Hội đồng Hồi sức Úc cho bất kỳ trường hợp khẩn cấp nào: Nguy hiểm, Phản ứng, Kêu gọi trợ giúp, Đường thở, Hít thở, CPR, Khử rung tim."
+    },
+    {
+      "slug": "cpr",
+      "title": "CPR - Hồi sức tim phổi",
+      "summary": "CPR là kỹ thuật hồi sức được thực hiện cho bất kỳ ai bất tỉnh và không thở bình thường. Thực hiện 30 lần ép ngực với 2 nhịp thở, tốc độ 100–120 lần ép mỗi phút, điều chỉnh độ sâu và kỹ thuật cho người lớn, trẻ em và trẻ sơ sinh."
+    },
+    {
+      "slug": "aed",
+      "title": "AED - Máy Khử Rung Tim Ngoài Tự Động",
+      "summary": "AED cung cấp một cú sốc điện để khởi động lại trái tim bị ngừng tim. Các máy AED hiện đại được thiết kế dành cho những người không được đào tạo – chỉ cần bật máy lên, gắn các miếng dán như hướng dẫn và làm theo hướng dẫn bằng giọng nói."
+    },
+    {
+      "slug": "recovery-position",
+      "title": "Tư thế hồi phục",
+      "summary": "Tư thế hồi phục giúp bảo vệ đường thở của người bất tỉnh nhưng vẫn thở bình thường bằng cách giữ họ nằm nghiêng để lưỡi không thể chặn cổ họng và dịch lỏng có thể chảy ra ngoài."
+    },
+    {
+      "slug": "choking",
+      "title": "Hóc nghẹn — Người lớn, Trẻ em và Trẻ sơ sinh",
+      "summary": "Đối với người không thể ho, nói hoặc thở, hãy vỗ 5 cái mạnh vào lưng giữa hai bả vai, sau đó ấn 5 cái vào ngực, và xen kẽ cho đến khi đường thở thông thoáng trở lại hoặc họ bất tỉnh."
+    },
+    {
+      "slug": "bleeding",
+      "title": "Chảy máu ngoài nghiêm trọng",
+      "summary": "Ngừng chảy máu nghiêm trọng bằng cách ấn chặt, trực tiếp, liên tục vào vết thương, đặt nạn nhân nằm xuống và xử lý sốc trong khi chờ xe cứu thương."
+    },
+    {
+      "slug": "burns",
+      "title": "Bỏng lửa và bỏng nước sôi",
+      "summary": "Làm mát vết bỏng dưới vòi nước chảy mát ít nhất 20 phút, loại bỏ quần áo và đồ trang sức khỏi khu vực bị bỏng trừ khi chúng bị dính chặt, và che phủ lỏng lẻo bằng màng bọc thực phẩm hoặc băng gạc vô trùng không dính."
+    },
+    {
+      "slug": "shock",
+      "title": "Sốc (Giảm thể tích máu / Tuần hoàn)",
+      "summary": "Sốc là tình trạng giảm lưu lượng máu đe dọa tính mạng. Các dấu hiệu bao gồm da tái, lạnh, ẩm ướt, mạch nhanh yếu, buồn nôn và lú lẫn. Đặt người bệnh nằm xuống, xử lý nguyên nhân, giữ ấm cho họ và gọi 000."
+    },
+    {
+      "slug": "asthma",
+      "title": "Cơn Hen cấp tính — Kế hoạch 4 x 4 x 4",
+      "summary": "Đặt người bệnh ngồi thẳng, hít 4 nhát thuốc giãn phế quản màu xanh dương qua ống đệm (mỗi lần 1 nhát, hít 4 hơi), đợi 4 phút, lặp lại nếu không cải thiện. Gọi 000 nếu các triệu chứng không thuyên giảm."
+    },
+    {
+      "slug": "anaphylaxis",
+      "title": "Phản vệ",
+      "summary": "Phản vệ là một phản ứng dị ứng đe dọa tính mạng. Đặt nạn nhân nằm ngửa, tiêm adrenaline (EpiPen) ngay lập tức, gọi 000 và tiêm liều thứ hai sau 5 phút nếu không có cải thiện."
+    },
+    {
+      "slug": "allergic-reactions",
+      "title": "Phản ứng dị ứng từ nhẹ đến trung bình",
+      "summary": "Đối với các phản ứng dị ứng nhẹ - nổi mề đay, sưng môi hoặc mặt, ngứa ran - loại bỏ tác nhân gây dị ứng nếu biết, cho thuốc kháng histamine nếu được kê đơn, và theo dõi chặt chẽ mọi dấu hiệu sốc phản vệ."
+    },
+    {
+      "slug": "heart-attack",
+      "title": "Nhồi máu cơ tim",
+      "summary": "Các dấu hiệu của cơn đau tim bao gồm đau hoặc tức ngực, thường lan đến hàm, cánh tay hoặc lưng. Gọi 000 ngay lập tức, đỡ người bệnh ngồi xuống, nới lỏng quần áo và cho dùng 300 mg aspirin nếu họ không bị dị ứng."
+    },
+    {
+      "slug": "stroke",
+      "title": "Đột quỵ — Phương pháp kiểm tra FAST",
+      "summary": "Sử dụng phương pháp kiểm tra FAST cho đột quỵ — Mặt méo, Tay yếu, Nói lắp, Thời gian gọi 000. Mỗi phút đều quý giá; đặt người bệnh nằm xuống với đầu hơi nâng cao và không cho ăn uống bất cứ thứ gì qua miệng."
+    },
+    {
+      "slug": "seizures",
+      "title": "Co giật và Động kinh",
+      "summary": "Trong cơn co giật, hãy bảo vệ người bệnh khỏi bị thương, ghi lại thời gian xảy ra cơn co giật và tuyệt đối không được kiềm chế họ hoặc đặt bất cứ thứ gì vào miệng họ. Sau đó, đặt họ vào tư thế hồi phục và trấn an họ."
+    },
+    {
+      "slug": "diabetes",
+      "title": "Các trường hợp khẩn cấp liên quan đến bệnh tiểu đường",
+      "summary": "Nếu một người mắc bệnh tiểu đường bị lẫn lộn, đổ mồ hôi hoặc không khỏe, hãy cho rằng đó là lượng đường trong máu thấp (hạ đường huyết) và cho họ ăn hoặc uống đồ ngọt nếu họ có thể nuốt. Gọi 000 nếu họ không cải thiện, mất ý thức hoặc có vẻ bị mất nước nghiêm trọng."
+    },
+    {
+      "slug": "head-injury",
+      "title": "Chấn thương đầu và Chấn động não",
+      "summary": "Luôn nghi ngờ có chấn thương cột sống khi có chấn thương đầu. Đặt người bệnh nằm xuống, kiểm soát chảy máu mà không gây áp lực trực tiếp lên vùng lõm, và gọi 000 nếu có bất kỳ trường hợp mất ý thức, nôn mửa hoặc lú lẫn nào."
+    },
+    {
+      "slug": "spinal-injury",
+      "title": "Chấn thương cột sống nghi ngờ",
+      "summary": "Nghi ngờ chấn thương cột sống trong bất kỳ trường hợp ngã từ độ cao, tai nạn giao thông, sự cố lặn biển, hoặc bệnh nhân chấn thương bất tỉnh. Không di chuyển người bị nạn trừ khi họ đang gặp nguy hiểm; giữ đầu và cổ ổn định và gọi 000."
+    },
+    {
+      "slug": "fractures",
+      "title": "Gãy xương",
+      "summary": "Giữ yên chi bị thương, kiểm soát chảy máu, cố định bằng nẹp hoặc băng đeo có đệm, kiểm tra tuần hoàn mỗi 15 phút và tìm kiếm trợ giúp y tế. Gọi 000 nếu gãy xương hở, gãy xương lớn hoặc có dấu hiệu sốc."
+    },
+    {
+      "slug": "sprains-strains",
+      "title": "Bong gân và Căng cơ — RICE",
+      "summary": "Sử dụng phương pháp RICE cho trường hợp bong gân và căng cơ — Nghỉ ngơi (Rest), Chườm đá (Ice – 20 phút mỗi 2 giờ), Băng ép (Compression), và Nâng cao bộ phận bị thương lên trên mức tim (Elevation). Cần tìm hỗ trợ y tế nếu cơn đau, sưng hoặc mất chức năng vẫn tiếp diễn."
+    },
+    {
+      "slug": "snake-bite",
+      "title": "Rắn cắn — Băng ép cố định",
+      "summary": "Đối với bất kỳ trường hợp nghi ngờ rắn cắn nào ở Úc, hãy gọi 000 và băng ép cố định từ vết cắn lên toàn bộ chi, sau đó nẹp và giữ bệnh nhân hoàn toàn bất động."
+    },
+    {
+      "slug": "spider-bite",
+      "title": "Nhện Cắn",
+      "summary": "Vết cắn của nhện mạng phễu (funnel-web) và nhện chuột (mouse spider) được xử lý bằng cách băng ép cố định như vết rắn cắn. Vết cắn của nhện lưng đỏ (Redback) được xử lý bằng túi chườm đá – không băng bó. Tìm kiếm trợ giúp y tế nếu có bất kỳ triệu chứng đáng lo ngại nào."
+    },
+    {
+      "slug": "jellyfish-stings",
+      "title": "Sứa và các vết đốt dưới biển",
+      "summary": "Đối với sứa nhiệt đới (phía Bắc Bundaberg), đổ giấm lên vết đốt trong 30 giây, sau đó gọi 000. Đối với sứa xanh và các vết đốt ôn đới khác, loại bỏ xúc tu và ngâm vào nước nóng."
+    },
+    {
+      "slug": "heat-illness",
+      "title": "Say Nắng và Sốc Nhiệt",
+      "summary": "Say nắng được điều trị bằng cách di chuyển đến nơi mát mẻ, cởi bỏ quần áo và nhấp từng ngụm nước mát. Sốc nhiệt là một trường hợp khẩn cấp đe dọa tính mạng — hãy gọi 000 và làm mát người bệnh nhanh chóng bằng mọi phương tiện có sẵn."
+    },
+    {
+      "slug": "hypothermia",
+      "title": "Hạ thân nhiệt",
+      "summary": "Hạ thân nhiệt là tình trạng nhiệt độ cơ thể giảm xuống dưới 35°C. Di chuyển người bệnh đến nơi trú ẩn, cởi bỏ quần áo ướt, làm ấm dần bằng chăn và nhiệt độ cơ thể, và gọi 000 nếu nghiêm trọng."
+    },
+    {
+      "slug": "poisoning",
+      "title": "Ngộ độc",
+      "summary": "Đối với bất kỳ trường hợp nghi ngờ ngộ độc nào, hãy gọi Trung tâm Thông tin Chất độc theo số 13 11 26. Nếu người đó bất tỉnh hoặc tình trạng rất nguy hiểm, hãy gọi 000. Không gây nôn trừ khi được hướng dẫn."
+    },
+    {
+      "slug": "drowning",
+      "title": "Đuối nước",
+      "summary": "Đưa nạn nhân ra khỏi nước chỉ khi an toàn để làm như vậy. Bắt đầu CPR ngay lập tức nếu họ bất tỉnh và không thở bình thường — gọi 000 cho mọi trường hợp đuối nước, ngay cả khi họ có vẻ hồi phục."
+    },
+    {
+      "slug": "nosebleed",
+      "title": "Chảy máu mũi",
+      "summary": "Ngồi thẳng dậy, cúi người ra phía trước và dùng tay bóp chặt phần mềm của mũi trong ít nhất 10 phút. Tìm kiếm trợ giúp y tế nếu chảy máu kéo dài sau 20 phút hoặc sau chấn thương đầu."
+    },
+    {
+      "slug": "fainting",
+      "title": "Ngất xỉu (Ngất)",
+      "summary": "Ngất xỉu là tình trạng mất ý thức tạm thời do giảm lưu lượng máu lên não. Đặt người bệnh nằm ngửa, nâng cao chân hơn tim và tìm nguyên nhân cơ bản nếu hồi phục chậm."
+    },
+    {
+      "slug": "dehydration",
+      "title": "Mất nước",
+      "summary": "Di chuyển người bệnh đến nơi mát mẻ và để họ uống từng ngụm nước hoặc dung dịch bù nước đường uống từ từ. Mất nước nghiêm trọng—lú lẫn, không đi tiểu, mạch nhanh—cần gọi xe cấp cứu."
+    },
+    {
+      "slug": "sunburn",
+      "title": "Bỏng nắng",
+      "summary": "Ra khỏi nắng, làm mát vùng da bị bỏng bằng nước mát trong 20 phút, thoa gel làm dịu da sau khi đi nắng, uống nhiều nước và tuyệt đối không làm vỡ các vết rộp. Tìm kiếm sự trợ giúp y tế nếu bị bỏng nặng hoặc vết rộp trên trẻ em."
+    },
+    {
+      "slug": "dental-injury",
+      "title": "Răng bị lung lay hoặc rớt ra",
+      "summary": "Giữ một chiếc răng trưởng thành bị gãy lìa ở phần thân răng, rửa nhẹ nhàng bằng sữa hoặc nước muối nếu bị bẩn, và lắp lại vào ổ răng nếu có thể — nếu không, hãy bảo quản trong sữa hoặc nước bọt và đến nha sĩ trong vòng 30 phút."
+    },
+    {
+      "slug": "eye-injuries",
+      "title": "Chấn thương mắt",
+      "summary": "Nếu có vật gì đó trong mắt, hãy rửa sạch bằng nước sạch hoặc nước muối sinh lý. Không bao giờ lấy một vật thể bị mắc kẹt ra — hãy che cả hai mắt và gọi 000. Vết bắn hóa chất cần rửa dưới vòi nước chảy trong 20 phút và gọi xe cấp cứu."
+    },
+    {
+      "slug": "electric-shock",
+      "title": "Điện giật",
+      "summary": "Không bao giờ chạm vào người bị nạn cho đến khi nguồn điện được ngắt. Sau khi an toàn, hãy làm theo DRSABCD, gọi 000, xử lý vết bỏng và sốc. Ngay cả người có vẻ bình thường sau khi bị điện giật cũng nên được đưa đến bệnh viện để kiểm tra."
+    }
+  ]
+}

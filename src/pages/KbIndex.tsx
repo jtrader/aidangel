@@ -27,9 +27,10 @@ const STATIC_INDEX_STRINGS = [
 ];
 
 const KbIndex = () => {
-  const grouped = useMemo(() => topicsByCategory(), []);
-  const orderedCategories = useMemo(() => Object.keys(grouped).sort(), [grouped]);
   const { language } = useLanguage();
+  const grouped = useMemo(() => topicsByCategory(language), [language]);
+  const orderedCategories = useMemo(() => Object.keys(grouped).sort(), [grouped]);
+  const enTopics = useMemo(() => topicsFor("en"), []);
   const [metaMap, setMetaMap] = useState<Record<string, TopicMetaTranslation>>({});
   const [prefetching, setPrefetching] = useState(false);
   const [ui, setUi] = useState({
@@ -42,7 +43,6 @@ const KbIndex = () => {
     translating: "Translating topics…",
     sourceLabel: "Source:",
     sourceValue: "The St John of God First Aid Manual 5th Edition (AFA5).",
-    categories: orderedCategories,
   });
 
   useEffect(() => {
@@ -57,42 +57,36 @@ const KbIndex = () => {
         translating: STATIC_INDEX_STRINGS[6],
         sourceLabel: STATIC_INDEX_STRINGS[7],
         sourceValue: STATIC_INDEX_STRINGS[8],
-        categories: orderedCategories,
       });
       return;
     }
     let cancelled = false;
     translateStrings(language, STATIC_INDEX_STRINGS).then((s) => {
       if (cancelled) return;
-      translateStrings(language, orderedCategories).then((cats) => {
-        if (cancelled) return;
-        const catMap: Record<string, string> = {};
-        orderedCategories.forEach((c, i) => { catMap[c] = cats[i] ?? c; });
-        setUi({
-          backToChat: s[2],
-          knowledgeBase: s[1],
-          appName: s[2],
-          pageTitle: s[3],
-          intro: s[4],
-          disclaimer: s[5],
-          translating: s[6],
-          sourceLabel: s[7],
-          sourceValue: s[8],
-          categories: orderedCategories.map((c) => catMap[c] ?? c),
-        });
+      setUi({
+        backToChat: s[2],
+        knowledgeBase: s[1],
+        appName: s[2],
+        pageTitle: s[3],
+        intro: s[4],
+        disclaimer: s[5],
+        translating: s[6],
+        sourceLabel: s[7],
+        sourceValue: s[8],
       });
     });
     return () => { cancelled = true; };
-  }, [language, orderedCategories]);
+  }, [language]);
 
+  // Runtime translation prefetch — fallback for any topic missing from the static
+  // per-language _meta.json (e.g. a topic added after the last bulk translation run).
   useEffect(() => {
     if (language === "en") {
       setMetaMap({});
       return;
     }
-    // Seed from cache immediately.
     const seeded: Record<string, TopicMetaTranslation> = {};
-    for (const t of topics) {
+    for (const t of enTopics) {
       const m = getCachedMeta(t.slug, language);
       if (m) seeded[t.slug] = m;
     }
@@ -102,12 +96,12 @@ const KbIndex = () => {
     setPrefetching(true);
     prefetchTopicListMeta(
       language,
-      topics.map((t) => ({ slug: t.slug, title: t.title, summary: t.summary }))
+      enTopics.map((t) => ({ slug: t.slug, title: t.title, summary: t.summary }))
     )
       .then(() => {
         if (cancelled) return;
         const next: Record<string, TopicMetaTranslation> = {};
-        for (const t of topics) {
+        for (const t of enTopics) {
           const m = getCachedMeta(t.slug, language);
           if (m) next[t.slug] = m;
         }
@@ -119,43 +113,45 @@ const KbIndex = () => {
     return () => {
       cancelled = true;
     };
-  }, [language]);
+  }, [language, enTopics]);
 
+  // Prefer static translation (already on topic); fall back to runtime cache.
   const display = (slug: string, fallbackTitle: string, fallbackSummary: string) => {
     const m = metaMap[slug];
     return {
-      title: m?.title ?? fallbackTitle,
-      summary: m?.summary ?? fallbackSummary,
+      title: fallbackTitle || m?.title || "",
+      summary: fallbackSummary || m?.summary || "",
     };
   };
 
-  useSeo({
-    title: "First Aid Knowledge Base – quick-reference guides | First Aid Angel",
-    description:
-      "Free, plain-English first aid guides for Australia — CPR, choking, burns, bleeding, anaphylaxis and more. Adapted from The St John of God First Aid Manual 5th Edition.",
-    canonical: `${SITE_URL}/kb`,
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: "First Aid Knowledge Base",
-      description:
-        "Plain-English first aid guides for Australia, adapted from The St John of God First Aid Manual 5th Edition.",
-      url: `${SITE_URL}/kb`,
-      hasPart: topics.map((t) => ({
-        "@type": "MedicalWebPage",
-        name: t.title,
-        url: `${SITE_URL}/kb/${t.slug}`,
-        about: t.section,
-      })),
-    },
-  });
+  const kbPath = localizedPath(language, "/kb");
+  const homePath = localizedPath(language, "/");
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SeoHead
+        lang={language}
+        basePath="/kb"
+        title={`${ui.pageTitle} | First Aid Angel`}
+        description={ui.intro}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: ui.pageTitle,
+          description: ui.intro,
+          url: `${SITE_ORIGIN}${kbPath}`,
+          hasPart: enTopics.map((t) => ({
+            "@type": "MedicalWebPage",
+            name: t.title,
+            url: `${SITE_ORIGIN}${localizedPath(language, `/kb/${t.slug}`)}`,
+            about: t.section,
+          })),
+        }}
+      />
       <header className="border-b border-border bg-card">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link
-            to="/"
+            to={homePath}
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -174,7 +170,7 @@ const KbIndex = () => {
       <main className="flex-1 px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <nav aria-label="Breadcrumb" className="text-xs text-muted-foreground mb-3">
-            <Link to="/" className="hover:text-foreground">{ui.appName}</Link>
+            <Link to={homePath} className="hover:text-foreground">{ui.appName}</Link>
             <span className="mx-1">/</span>
             <span className="text-foreground">{ui.knowledgeBase}</span>
           </nav>
@@ -197,10 +193,10 @@ const KbIndex = () => {
           )}
 
           <div className="space-y-8">
-            {orderedCategories.map((cat, catIdx) => (
+            {orderedCategories.map((cat) => (
               <section key={cat}>
                 <h2 lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-3">
-                  {ui.categories[catIdx]}
+                  {cat}
                 </h2>
                 <ul className="grid sm:grid-cols-2 gap-3">
                   {grouped[cat].map((t) => {
@@ -208,7 +204,7 @@ const KbIndex = () => {
                     return (
                       <li key={t.slug}>
                         <Link
-                          to={`/kb/${t.slug}`}
+                          to={localizedPath(language, `/kb/${t.slug}`)}
                           className="block p-4 rounded-2xl border border-border bg-card hover:border-primary hover:shadow-sm transition-all"
                         >
                           <h3 lang={language} className="font-semibold text-foreground mb-1">{d.title}</h3>
@@ -235,5 +231,6 @@ const KbIndex = () => {
     </div>
   );
 };
+
 
 export default KbIndex;
