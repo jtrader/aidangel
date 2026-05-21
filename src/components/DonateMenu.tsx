@@ -29,7 +29,7 @@ interface DonateMenuProps {
 }
 
 const STATIC = [
-  "Donate",
+  "Give",
   "Support first aid worldwide",
   "Change country",
   "Showing donation links for",
