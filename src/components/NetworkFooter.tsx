@@ -81,16 +81,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
     <footer className="border-t border-border bg-card px-4 py-6">
       <div className="max-w-lg mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground" lang={language}>
         <div className="flex flex-wrap items-center justify-center gap-2 pb-4">
-          <a
-            href="https://www.stjohnvic.com.au/support-us/donations-2016-12/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-            aria-label="Donate to St John Ambulance"
-          >
-            <HandHeart className="h-4 w-4" />
-            {tr.donate}
-          </a>
+          <DonateMenu variant="footer" />
           <a
             href="https://shop.stjohn.org.au/"
             target="_blank"
