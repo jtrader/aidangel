@@ -53,26 +53,115 @@ export function extractHowToSteps(body: string): HowToStep[] {
   return out;
 }
 
-/** Treat any H2 ending with "?" as a FAQ; answer = following paragraph text. */
+/** Truncate at a sentence boundary close to `max` so answers don't get cut mid-word. */
+function clampSentence(s: string, max: number): string {
+  if (s.length <= max) return s;
+  const slice = s.slice(0, max);
+  const lastStop = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("! "), slice.lastIndexOf("? "));
+  if (lastStop > max * 0.6) return slice.slice(0, lastStop + 1).trim();
+  const lastSpace = slice.lastIndexOf(" ");
+  return (lastSpace > 0 ? slice.slice(0, lastSpace) : slice).trim() + "…";
+}
+
+/** Treat any H2 ending with "?" (allowing trailing punctuation/emoji) as a FAQ. */
+function isQuestionHeading(h: string): boolean {
+  // Strip trailing whitespace, emoji, and non-question punctuation, then test for "?".
+  const tail = h.replace(/[\s\p{Extended_Pictographic}.!,;:\-–—]+$/u, "");
+  return /\?$/.test(tail);
+}
+
+/**
+ * Build a FAQ answer from every block under the question H2:
+ * paragraphs, bullet/numbered lists, blockquotes, and H3 sub-sections
+ * (whose subheading becomes a lead-in sentence). Code fences and images
+ * are skipped.
+ */
 export function extractFaqs(body: string): FaqItem[] {
   const out: FaqItem[] = [];
   for (const sec of splitSections(body)) {
-    if (!/\?\s*$/.test(sec.heading)) continue;
-    const paragraphs: string[] = [];
-    let buf: string[] = [];
-    for (const line of sec.lines) {
-      if (line.trim() === "") {
-        if (buf.length) { paragraphs.push(buf.join(" ")); buf = []; }
-      } else {
-        buf.push(line.trim());
+    if (!isQuestionHeading(sec.heading)) continue;
+    const question = sec.heading.replace(/\s+/g, " ").trim();
+
+    const blocks: string[] = [];
+    let para: string[] = [];
+    let listItems: string[] = [];
+    let listKind: "ul" | "ol" | null = null;
+    let inFence = false;
+
+    const flushPara = () => {
+      if (para.length) {
+        blocks.push(stripInlineMd(para.join(" ")));
+        para = [];
       }
+    };
+    const flushList = () => {
+      if (listItems.length) {
+        // Render as "Item 1; Item 2; Item 3." — readable in a schema answer.
+        blocks.push(listItems.map(stripInlineMd).join("; ").replace(/\.?$/, "."));
+        listItems = [];
+        listKind = null;
+      }
+    };
+
+    for (const raw of sec.lines) {
+      const line = raw.replace(/\t/g, "  ");
+      const trimmed = line.trim();
+
+      // Toggle fenced code blocks and skip their contents.
+      if (/^```/.test(trimmed)) {
+        flushPara(); flushList();
+        inFence = !inFence;
+        continue;
+      }
+      if (inFence) continue;
+
+      // Skip standalone images, horizontal rules, HTML comments.
+      if (!trimmed || /^!\[/.test(trimmed) || /^([-*_])\1{2,}$/.test(trimmed) || /^<!--/.test(trimmed)) {
+        flushPara(); flushList();
+        continue;
+      }
+
+      // H3+ subheading inside the FAQ section — include as lead-in.
+      const sub = /^#{3,6}\s+(.+)$/.exec(trimmed);
+      if (sub) {
+        flushPara(); flushList();
+        const t = stripInlineMd(sub[1]).replace(/[.:]\s*$/, "");
+        if (t) blocks.push(`${t}:`);
+        continue;
+      }
+
+      // Bullet / numbered list item.
+      const ul = /^[-*+]\s+(.+)$/.exec(trimmed);
+      const ol = /^\d+\.\s+(.+)$/.exec(trimmed);
+      if (ul || ol) {
+        flushPara();
+        const kind: "ul" | "ol" = ul ? "ul" : "ol";
+        if (listKind && listKind !== kind) flushList();
+        listKind = kind;
+        listItems.push((ul ?? ol)![1]);
+        continue;
+      }
+
+      // Blockquote — treat as regular paragraph text.
+      const bq = /^>\s?(.*)$/.exec(trimmed);
+      if (bq) {
+        flushList();
+        para.push(bq[1]);
+        continue;
+      }
+
+      // Default: paragraph continuation.
+      flushList();
+      para.push(trimmed);
     }
-    if (buf.length) paragraphs.push(buf.join(" "));
-    const answer = stripInlineMd(paragraphs.join(" ")).slice(0, 800);
-    if (answer) out.push({ question: sec.heading, answer });
+    flushPara(); flushList();
+
+    const answer = clampSentence(blocks.join(" ").replace(/\s+/g, " ").trim(), 1500);
+    if (answer) out.push({ question, answer });
   }
   return out;
 }
+
 
 export function buildHowToJsonLd(opts: {
   title: string;
