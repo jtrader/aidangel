@@ -74,6 +74,8 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
     };
   }, [language]);
 
+  const kbHref = localizedPath(language, "/kb");
+
   return (
     <footer className="border-t border-border bg-card px-4 py-6">
       <div className="max-w-lg mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground" lang={language}>
