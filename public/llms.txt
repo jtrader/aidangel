@@ -1,0 +1,50 @@
+# First Aid Angel
+
+> AI first aid assistant for Australia, based on Australian First Aid 5th Edition. Plain-language guidance for emergencies — CPR, choking, bleeding, burns, anaphylaxis and more. In an emergency always call 000.
+
+First Aid Angel is a free chatbot and knowledge base that helps members of the public respond to common medical emergencies in Australia. Guidance follows the Australian Resuscitation Council (ARC) and St John Ambulance Australian First Aid 5th Edition. The site is available in 13 languages, including Mandarin, Cantonese, Arabic, Vietnamese, Punjabi, Greek, Italian, Kriol, Yolŋu, Pitjantjatjara, Arrernte, and Torres Strait Creole.
+
+## Pages
+
+- [Home / AI assistant](/): Ask the AI chatbot a first aid question.
+- [Knowledge base](/kb): All first aid topics, organised by category.
+
+## Knowledge base topics
+
+- [DRSABCD action plan](/kb/drsabcd): The 7-step primary survey.
+- [CPR](/kb/cpr): Adult, child and infant cardiopulmonary resuscitation.
+- [AED (defibrillator)](/kb/aed): How to use an automated external defibrillator.
+- [Recovery position](/kb/recovery-position): Safe position for an unconscious breathing casualty.
+- [Choking](/kb/choking): Back blows and chest thrusts for adults, children and infants.
+- [Bleeding](/kb/bleeding): Controlling severe external bleeding.
+- [Burns](/kb/burns): Cool running water for 20 minutes.
+- [Anaphylaxis](/kb/anaphylaxis): Recognising and treating severe allergic reactions with adrenaline.
+- [Allergic reactions](/kb/allergic-reactions): Mild to moderate allergic reactions.
+- [Asthma](/kb/asthma): The 4x4x4 asthma first aid plan.
+- [Stroke](/kb/stroke): FAST signs of stroke.
+- [Heart attack](/kb/heart-attack): Chest pain and other warning signs.
+- [Shock](/kb/shock): Recognising and managing shock.
+- [Seizures](/kb/seizures): Looking after someone having a seizure.
+- [Fainting](/kb/fainting): Brief loss of consciousness.
+- [Diabetes](/kb/diabetes): Hypoglycaemia and hyperglycaemia first aid.
+- [Snake bite](/kb/snake-bite): Pressure immobilisation technique.
+- [Spider bite](/kb/spider-bite): Funnel-web, redback and other spider bites.
+- [Jellyfish stings](/kb/jellyfish-stings): Tropical and non-tropical stings.
+- [Poisoning](/kb/poisoning): Swallowed, inhaled or absorbed poisons.
+- [Drowning](/kb/drowning): Rescue and resuscitation after immersion.
+- [Electric shock](/kb/electric-shock): Safety first, then assess the casualty.
+- [Heat illness](/kb/heat-illness): Heat exhaustion and heat stroke.
+- [Hypothermia](/kb/hypothermia): Recognising and rewarming.
+- [Sunburn](/kb/sunburn): Cooling and aftercare.
+- [Dehydration](/kb/dehydration): Fluid replacement and warning signs.
+- [Fractures](/kb/fractures): Suspected broken bones.
+- [Sprains and strains](/kb/sprains-strains): R.I.C.E. management.
+- [Head injury](/kb/head-injury): Concussion and serious head injury.
+- [Spinal injury](/kb/spinal-injury): Supporting the head and neck.
+- [Eye injuries](/kb/eye-injuries): Foreign bodies, chemicals and trauma.
+- [Dental injury](/kb/dental-injury): Knocked-out and broken teeth.
+- [Nosebleed](/kb/nosebleed): Stopping a nosebleed.
+
+## Optional
+
+- [Sitemap](/sitemap.xml): Full list of localised URLs across 13 languages.

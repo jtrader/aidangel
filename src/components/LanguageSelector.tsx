@@ -21,6 +21,8 @@ const LanguageSelector = () => {
       <select
         value={language}
         onChange={(e) => handleChange(e.target.value as LanguageCode)}
+        aria-label="Select language"
+        title="Select language"
         className="appearance-none bg-transparent border border-border rounded-lg px-2 py-1 pr-6 text-xs font-medium text-foreground cursor-pointer focus:outline-none focus:ring-2 focus:ring-ring"
       >
         {languages.map((lang) => (

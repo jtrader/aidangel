@@ -91,14 +91,31 @@ const Index = () => {
       <SeoHead
         lang={language}
         basePath="/"
-        title="First Aid Angel – Your First Aid Assistant"
-        description="AI-powered first aid guidance for Australia, based on The St John of God First Aid Manual 5th Edition. Plain-language steps for CPR, choking, burns, bleeding, anaphylaxis and more."
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "First Aid Angel",
-          url: "https://firstaidangel.org",
-        }}
+        title="First Aid Angel — AI First Aid Assistant"
+        description="AI first aid assistant for Australia. Plain-language steps for CPR, choking, burns, bleeding and anaphylaxis — Australian First Aid 5th Ed."
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "First Aid Angel",
+            url: "https://firstaidangel.org",
+            logo: "https://firstaidangel.org/apple-touch-icon.png",
+            description:
+              "AI first aid assistant for Australia, based on Australian First Aid 5th Edition.",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "First Aid Angel",
+            url: "https://firstaidangel.org",
+            inLanguage: "en-AU",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://firstaidangel.org/kb?q={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          },
+        ]}
       />
       <EmergencyBanner />
 
@@ -120,6 +137,7 @@ const Index = () => {
               <div className="flex-1">
                 <h1 className="font-display font-bold text-lg text-foreground leading-tight">
                   First Aid Angel
+                  <span className="sr-only"> — AI First Aid Assistant for Australia</span>
                 </h1>
                 <p className="text-xs text-muted-foreground">
                   {t("appSubtitle")}
