@@ -75,9 +75,9 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
         className={triggerClasses}
         aria-label={`${tr.shopLong} — ${country.name}`}
       >
-        <ShoppingBag className="h-4 w-4" />
-        <span className="sm:hidden">{tr.shopShort}</span>
-        <span className="hidden sm:inline">{tr.shopLong}</span>
+        <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+        <span className="sm:hidden" aria-hidden="true">{tr.shopShort}</span>
+        <span className="hidden sm:inline" aria-hidden="true">{tr.shopLong}</span>
         <span aria-hidden="true" className="text-base leading-none">{country.flag}</span>
       </DropdownMenuTrigger>
 

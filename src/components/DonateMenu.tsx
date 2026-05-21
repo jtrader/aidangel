@@ -71,11 +71,11 @@ export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps
     <DropdownMenu>
       <DropdownMenuTrigger
         className={triggerClasses}
-        aria-label={`${tr.donate} — ${country.name}`}
+        aria-label={`${tr.give} — ${country.name}`}
       >
-        <HandHeart className="h-4 w-4" />
-        <span className="sm:hidden">{tr.give}</span>
-        <span className="hidden sm:inline">{tr.donate}</span>
+        <HandHeart className="h-4 w-4" aria-hidden="true" />
+        <span className="sm:hidden" aria-hidden="true">{tr.give}</span>
+        <span className="hidden sm:inline" aria-hidden="true">{tr.donate}</span>
         <span aria-hidden="true" className="text-base leading-none">{country.flag}</span>
       </DropdownMenuTrigger>
 
