@@ -99,7 +99,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
           </a>
         </div>
         <div className="pb-2">
-          <a href="/kb" className="text-xs font-semibold text-primary hover:underline">
+          <a href={kbHref} className="text-xs font-semibold text-primary hover:underline">
             {tr.browseKb}
           </a>
         </div>
