@@ -13,7 +13,7 @@ export default function LearnIndex() {
       <SeoHead
         title="Learn First Aid Near You — Courses by Country & City"
         description="Find accredited first aid training providers worldwide. St John Ambulance, Red Cross and online courses in your language."
-        path="/learn"
+        basePath="/learn"
       />
       <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
         <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
