@@ -162,6 +162,7 @@ export default function ClaimListingDialog({
         if (!o) {
           setDone(false);
           setAlreadyPending(null);
+          setFiles([]);
           setForm({ claimant_name: "", claimant_email: "", claimant_role: "", claimant_phone: "", message: "", evidence_url: "" });
         }
       }}
