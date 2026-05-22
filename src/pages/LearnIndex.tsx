@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, GraduationCap, MapPin, Search } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { SeoHead } from "@/components/SeoHead";
 import { useCountry } from "@/hooks/useCountry";
 import { COUNTRIES } from "@/lib/donations";
@@ -7,10 +8,11 @@ import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 
 export default function LearnIndex() {
+  const { language } = useLanguage();
   const { country } = useCountry();
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <SeoHead
+      <SeoHead lang={language}
         title="Learn First Aid Near You — Courses by Country & City"
         description="Find accredited first aid training providers worldwide. St John Ambulance, Red Cross and online courses in your language."
         basePath="/learn"
