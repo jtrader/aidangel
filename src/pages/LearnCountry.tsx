@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, Search } from "lucide-react";
+import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, Search, Navigation } from "lucide-react";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { COUNTRIES, getCountry } from "@/lib/donations";
-import { Educator, getCountryEducators, getCitiesForCountry, citySlug } from "@/lib/educators";
+import {
+  Educator,
+  EducatorLocation,
+  getCountryEducators,
+  getCitiesForCountry,
+  getNearestVenues,
+  citySlug,
+} from "@/lib/educators";
+import { useGeoLocation } from "@/hooks/useGeoLocation";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
+
+type NearbyVenue = EducatorLocation & { educator: Educator; distance_km: number };
 
 const TYPE_LABELS: Record<string, string> = {
   st_john: "St John Ambulance",
