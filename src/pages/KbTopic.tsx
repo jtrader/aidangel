@@ -27,6 +27,7 @@ const STATIC_TOPIC_STRINGS = [
   "Source",
   "Adapted from The St John of God First Aid Manual 5th Edition — section",
   "In an emergency call 000. These guides are for learning and refresher use — not a substitute for professional medical care.",
+  "Questions & answers",
 ];
 
 const KbTopic = () => {
