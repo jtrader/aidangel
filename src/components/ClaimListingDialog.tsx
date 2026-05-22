@@ -53,7 +53,9 @@ export default function ClaimListingDialog({
       return;
     }
     setLoading(true);
+    const claimId = crypto.randomUUID();
     const { error } = await supabase.from("educator_claims").insert({
+      id: claimId,
       educator_id: educatorId,
       claimant_name: parsed.data.claimant_name,
       claimant_email: parsed.data.claimant_email,
@@ -67,6 +69,15 @@ export default function ClaimListingDialog({
       toast({ title: "Could not submit claim", description: error.message, variant: "destructive" });
       return;
     }
+    // Fire-and-forget confirmation email
+    supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "claim-received",
+        recipientEmail: parsed.data.claimant_email,
+        idempotencyKey: `claim-received-${claimId}`,
+        templateData: { name: parsed.data.claimant_name, educatorName },
+      },
+    }).catch(() => { /* non-blocking */ });
     setDone(true);
   };
 
