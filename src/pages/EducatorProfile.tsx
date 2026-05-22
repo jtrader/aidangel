@@ -74,12 +74,15 @@ export default function EducatorProfile() {
       </header>
 
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-8">
-        <div className="mb-6">
-          <div className="text-xs uppercase tracking-wide text-primary font-semibold mb-1">
-            First aid training provider
+        <div className="mb-6 flex items-start gap-4">
+          <Favicon url={ed.website ?? ed.booking_url} logoUrl={ed.logo_url} alt={`${ed.name} logo`} size={56} className="rounded-lg border border-border bg-card p-1" />
+          <div className="min-w-0">
+            <div className="text-xs uppercase tracking-wide text-primary font-semibold mb-1">
+              First aid training provider
+            </div>
+            <h1 className="font-heading text-3xl font-bold mb-2">{ed.name}</h1>
+            {ed.blurb && <p className="text-muted-foreground">{ed.blurb}</p>}
           </div>
-          <h1 className="font-heading text-3xl font-bold mb-2">{ed.name}</h1>
-          {ed.blurb && <p className="text-muted-foreground">{ed.blurb}</p>}
         </div>
 
         <div className="flex flex-wrap gap-2 mb-8">
