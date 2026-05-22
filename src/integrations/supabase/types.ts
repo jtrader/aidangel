@@ -14,6 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
+      educator_claims: {
+        Row: {
+          claimant_email: string
+          claimant_name: string
+          claimant_phone: string | null
+          claimant_role: string | null
+          claimed_user_id: string | null
+          created_at: string
+          educator_id: string
+          evidence_url: string | null
+          id: string
+          message: string | null
+          review_notes: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: Database["public"]["Enums"]["claim_status"]
+          updated_at: string
+        }
+        Insert: {
+          claimant_email: string
+          claimant_name: string
+          claimant_phone?: string | null
+          claimant_role?: string | null
+          claimed_user_id?: string | null
+          created_at?: string
+          educator_id: string
+          evidence_url?: string | null
+          id?: string
+          message?: string | null
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["claim_status"]
+          updated_at?: string
+        }
+        Update: {
+          claimant_email?: string
+          claimant_name?: string
+          claimant_phone?: string | null
+          claimant_role?: string | null
+          claimed_user_id?: string | null
+          created_at?: string
+          educator_id?: string
+          evidence_url?: string | null
+          id?: string
+          message?: string | null
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: Database["public"]["Enums"]["claim_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       educator_languages: {
         Row: {
           educator_id: string
@@ -138,9 +192,11 @@ export type Database = {
         Row: {
           blurb: string | null
           booking_url: string | null
+          claimed_at: string | null
           created_at: string
           hq_country_code: string | null
           id: string
+          is_claimed: boolean
           is_online: boolean
           is_verified: boolean
           logo_url: string | null
@@ -154,9 +210,11 @@ export type Database = {
         Insert: {
           blurb?: string | null
           booking_url?: string | null
+          claimed_at?: string | null
           created_at?: string
           hq_country_code?: string | null
           id?: string
+          is_claimed?: boolean
           is_online?: boolean
           is_verified?: boolean
           logo_url?: string | null
@@ -170,9 +228,11 @@ export type Database = {
         Update: {
           blurb?: string | null
           booking_url?: string | null
+          claimed_at?: string | null
           created_at?: string
           hq_country_code?: string | null
           id?: string
+          is_claimed?: boolean
           is_online?: boolean
           is_verified?: boolean
           logo_url?: string | null
@@ -371,6 +431,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      claim_status: "pending" | "approved" | "rejected"
       educator_type:
         | "st_john"
         | "red_cross"
@@ -507,6 +568,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      claim_status: ["pending", "approved", "rejected"],
       educator_type: [
         "st_john",
         "red_cross",
