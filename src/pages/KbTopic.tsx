@@ -8,6 +8,7 @@ import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
+import TopicIllustration from "@/components/TopicIllustration";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
