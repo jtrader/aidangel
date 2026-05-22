@@ -99,6 +99,7 @@ const KbTopic = () => {
         source: s[6],
         adaptedFrom: s[7],
         emergencyNote: s[8],
+        qaHeading: s[9],
         category: topic.category, // already comes from per-lang meta when available
       });
     });
