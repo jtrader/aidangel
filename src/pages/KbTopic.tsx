@@ -10,6 +10,7 @@ import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
 import TopicIllustration from "@/components/TopicIllustration";
 import PlayAudioButton from "@/components/PlayAudioButton";
+import NearbyEducators from "@/components/NearbyEducators";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
@@ -428,6 +429,9 @@ const KbTopic = () => {
               </ul>
             </section>
           )}
+
+          <NearbyEducators language={language} />
+
 
           <aside className="mt-12 p-4 rounded-2xl border border-border bg-card text-sm">
             <p lang={language} className="text-foreground font-semibold mb-1 inline-flex items-center gap-1.5">
