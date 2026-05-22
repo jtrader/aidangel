@@ -206,3 +206,18 @@ export function buildFaqJsonLd(opts: {
     })),
   };
 }
+
+/** Speakable schema — tells Google Assistant / voice search which parts of
+ *  the page are suitable for text-to-speech (titles, summaries, step text). */
+export function buildSpeakableJsonLd(url: string): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    url,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", ".prose p", ".prose li"],
+    },
+  };
+}
+
