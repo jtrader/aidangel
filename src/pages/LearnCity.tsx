@@ -64,11 +64,16 @@ export default function LearnCity() {
           <div className="grid gap-3">
             {rows.map((row) => (
               <article key={row.id} className="bg-card border border-border rounded-xl p-5">
-                <div className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
-                  {row.educator.name}
+                <div className="flex items-start gap-3 mb-1">
+                  <Favicon url={row.educator.website ?? row.educator.booking_url} logoUrl={row.educator.logo_url} alt="" size={28} className="mt-0.5 rounded-md border border-border bg-background p-0.5" />
+                  <div className="min-w-0">
+                    <div className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
+                      {row.educator.name}
+                    </div>
+                    <h2 className="font-heading text-base font-semibold mb-1">{row.address ?? cityName}</h2>
+                    {row.region && <div className="text-xs text-muted-foreground mb-3">{row.region}</div>}
+                  </div>
                 </div>
-                <h2 className="font-heading text-base font-semibold mb-1">{row.address ?? cityName}</h2>
-                {row.region && <div className="text-xs text-muted-foreground mb-3">{row.region}</div>}
                 <div className="flex flex-wrap gap-2">
                   <Link
                     to={`/learn/provider/${row.educator.slug}`}
