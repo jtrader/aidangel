@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, BadgeCheck, Clock, CheckCircle2, XCircle } from "lucide-react";
 import ClaimListingDialog from "@/components/ClaimListingDialog";
+import EditListingDialog from "@/components/EditListingDialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SeoHead } from "@/components/SeoHead";
 import { EducatorFull, getEducatorBySlug, citySlug } from "@/lib/educators";
@@ -183,6 +184,27 @@ export default function EducatorProfile() {
             <ClaimStatusCard claim={myClaims[0]} />
           </section>
         )}
+
+        {(() => {
+          const approved = myClaims.find((c) => c.status === "approved");
+          if (!approved || !ed) return null;
+          return (
+            <div className="mb-6 -mt-2 flex items-center gap-2">
+              <EditListingDialog
+                educatorId={ed.id}
+                claimId={approved.id}
+                initial={{
+                  blurb: ed.blurb,
+                  website: ed.website,
+                  booking_url: ed.booking_url,
+                  logo_url: ed.logo_url,
+                }}
+                onSaved={(next) => setEd({ ...ed, ...next })}
+              />
+              <span className="text-xs text-muted-foreground">You manage this listing.</span>
+            </div>
+          );
+        })()}
 
         <div className="flex flex-wrap gap-2 mb-8">
           {ed.booking_url && (
