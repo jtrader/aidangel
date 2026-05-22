@@ -22,6 +22,7 @@ import {
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
 import { trackGiveClick } from "@/lib/giveAnalytics";
+import { Favicon } from "@/components/Favicon";
 
 interface DonateMenuProps {
   variant?: "header" | "footer";
@@ -111,13 +112,16 @@ export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps
                 data-analytics-event="give_click"
                 data-analytics-ngo={id}
                 data-analytics-country={country.code}
-                className="flex flex-col items-start gap-0.5 cursor-pointer"
+                className="flex items-start gap-2.5 cursor-pointer"
               >
-                <span className="text-sm font-medium text-foreground">{ngo.short}</span>
-                <span className="text-[11px] text-muted-foreground inline-flex items-center gap-1">
-                  {isNational ? `${country.name} site` : (
-                    <><Globe className="h-3 w-3" /> International site</>
-                  )}
+                <Favicon url={url} alt="" size={18} className="mt-0.5" />
+                <span className="flex flex-col items-start gap-0.5 min-w-0">
+                  <span className="text-sm font-medium text-foreground">{ngo.short}</span>
+                  <span className="text-[11px] text-muted-foreground inline-flex items-center gap-1">
+                    {isNational ? `${country.name} site` : (
+                      <><Globe className="h-3 w-3" /> International site</>
+                    )}
+                  </span>
                 </span>
               </a>
             </DropdownMenuItem>

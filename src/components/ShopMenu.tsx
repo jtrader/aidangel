@@ -17,6 +17,7 @@ import { SHOPS, shopsForCountry, type ShopId } from "@/lib/shops";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
 import { trackShopClick } from "@/lib/giveAnalytics";
+import { Favicon } from "@/components/Favicon";
 
 interface ShopMenuProps {
   variant?: "header" | "footer";
@@ -111,15 +112,18 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
                 data-analytics-event="shop_click"
                 data-analytics-shop={id}
                 data-analytics-country={country.code}
-                className="flex flex-col items-start gap-0.5 cursor-pointer"
+                className="flex items-start gap-2.5 cursor-pointer"
               >
-                <span className="text-sm font-medium text-foreground">{meta.short}</span>
-                <span className="text-[11px] text-muted-foreground inline-flex items-center gap-1">
-                  {isNational ? (
-                    <><Truck className="h-3 w-3" /> {tr.shipsNat} — {country.name}</>
-                  ) : (
-                    <><Globe className="h-3 w-3" /> {tr.intl}</>
-                  )}
+                <Favicon url={url} alt="" size={18} className="mt-0.5" />
+                <span className="flex flex-col items-start gap-0.5 min-w-0">
+                  <span className="text-sm font-medium text-foreground">{meta.short}</span>
+                  <span className="text-[11px] text-muted-foreground inline-flex items-center gap-1">
+                    {isNational ? (
+                      <><Truck className="h-3 w-3" /> {tr.shipsNat} — {country.name}</>
+                    ) : (
+                      <><Globe className="h-3 w-3" /> {tr.intl}</>
+                    )}
+                  </span>
                 </span>
               </a>
             </DropdownMenuItem>
