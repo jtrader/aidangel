@@ -9,6 +9,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 
 export default function EducatorProfile() {
+  const { language } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const [ed, setEd] = useState<EducatorFull | null>(null);
   const [loading, setLoading] = useState(true);

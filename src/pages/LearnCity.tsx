@@ -14,6 +14,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 
 export default function LearnCity() {
+  const { language } = useLanguage();
   const { country: countryParam, city: citySlugParam } = useParams<{ country: string; city: string }>();
   const code = (countryParam ?? "au").toUpperCase();
   const country = getCountry(code) ?? COUNTRIES[0];
