@@ -340,7 +340,43 @@ const KbTopic = () => {
             </div>
           )}
 
-          <div lang={language} className="prose prose-sm sm:prose-base max-w-none prose-headings:text-foreground prose-h2:text-xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-3 prose-p:text-card-foreground prose-strong:text-foreground prose-li:text-card-foreground prose-ol:text-card-foreground prose-ul:text-card-foreground prose-a:text-primary prose-a:font-medium prose-a:underline">
+          <div
+            lang={language}
+            className="
+              prose prose-sm sm:prose-base max-w-none
+              prose-headings:text-foreground
+              prose-h2:relative prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:font-bold
+                prose-h2:mt-12 prose-h2:mb-5 prose-h2:pl-4
+                prose-h2:before:content-[''] prose-h2:before:absolute prose-h2:before:left-0
+                prose-h2:before:top-1.5 prose-h2:before:bottom-1.5 prose-h2:before:w-1.5
+                prose-h2:before:rounded-full prose-h2:before:bg-primary
+              prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3
+              prose-p:text-card-foreground prose-p:leading-relaxed prose-p:my-4
+              prose-strong:text-foreground prose-strong:font-semibold
+              prose-a:text-primary prose-a:font-medium prose-a:underline prose-a:decoration-primary/40 hover:prose-a:decoration-primary
+              prose-ul:my-5 prose-ol:my-5 prose-li:my-2 prose-li:text-card-foreground prose-li:leading-relaxed
+              prose-ul:list-none prose-ul:pl-0
+              [&_ul>li]:relative [&_ul>li]:pl-7
+              [&_ul>li]:before:content-[''] [&_ul>li]:before:absolute [&_ul>li]:before:left-1 [&_ul>li]:before:top-[0.7rem]
+              [&_ul>li]:before:w-2 [&_ul>li]:before:h-2 [&_ul>li]:before:rounded-full [&_ul>li]:before:bg-primary/70
+              [&_ol]:[counter-reset:step] [&_ol]:list-none [&_ol]:pl-0
+              [&_ol>li]:relative [&_ol>li]:pl-12 [&_ol>li]:[counter-increment:step] [&_ol>li]:min-h-[2.25rem]
+              [&_ol>li]:before:content-[counter(step)] [&_ol>li]:before:absolute [&_ol>li]:before:left-0 [&_ol>li]:before:top-0
+              [&_ol>li]:before:flex [&_ol>li]:before:items-center [&_ol>li]:before:justify-center
+              [&_ol>li]:before:w-8 [&_ol>li]:before:h-8 [&_ol>li]:before:rounded-full
+              [&_ol>li]:before:bg-primary/15 [&_ol>li]:before:text-primary [&_ol>li]:before:font-bold [&_ol>li]:before:text-sm
+              [&_ol>li]:before:border [&_ol>li]:before:border-primary/30
+              prose-hr:my-10 prose-hr:border-0 prose-hr:h-px
+                prose-hr:bg-gradient-to-r prose-hr:from-transparent prose-hr:via-border prose-hr:to-transparent
+              prose-blockquote:not-italic prose-blockquote:rounded-xl
+                prose-blockquote:border-l-4 prose-blockquote:border-primary
+                prose-blockquote:bg-primary/5 prose-blockquote:px-5 prose-blockquote:py-3
+                prose-blockquote:my-6 prose-blockquote:text-foreground
+                [&_blockquote_p]:before:content-none [&_blockquote_p]:after:content-none
+              prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-foreground
+                prose-code:before:content-none prose-code:after:content-none
+            "
+          >
             <ReactMarkdown
               components={{
                 a: ({ href, children, ...props }) => {
@@ -363,6 +399,14 @@ const KbTopic = () => {
                     </a>
                   );
                 },
+                blockquote: ({ children, ...props }) => (
+                  <blockquote {...props}>
+                    <div className="flex items-start gap-3">
+                      <span aria-hidden className="text-primary text-xl leading-none mt-0.5 shrink-0">✦</span>
+                      <div className="flex-1 [&>p]:my-1">{children}</div>
+                    </div>
+                  </blockquote>
+                ),
               }}
             >
               {linkedBody}
