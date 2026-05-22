@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { CheckCircle2, ShieldCheck, Send, AlertCircle } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Send, AlertCircle, Upload, X, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,6 +37,7 @@ export default function ClaimListingDialog({
   const [loading, setLoading] = useState(false);
   const [alreadyPending, setAlreadyPending] = useState<{ claimId: string; createdAt: string } | null>(null);
   const [checking, setChecking] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
   const [form, setForm] = useState({
     claimant_name: "",
     claimant_email: "",
@@ -45,6 +46,28 @@ export default function ClaimListingDialog({
     message: "",
     evidence_url: "",
   });
+
+  const MAX_FILES = 3;
+  const MAX_SIZE = 8 * 1024 * 1024; // 8 MB per file
+  const ACCEPTED = ["application/pdf", "image/jpeg", "image/png", "image/webp"];
+
+  const onPickFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const picked = Array.from(e.target.files ?? []);
+    const valid: File[] = [];
+    for (const f of picked) {
+      if (!ACCEPTED.includes(f.type)) {
+        toast({ title: "Unsupported file", description: `${f.name} must be PDF, JPG, PNG, or WebP.`, variant: "destructive" });
+        continue;
+      }
+      if (f.size > MAX_SIZE) {
+        toast({ title: "File too large", description: `${f.name} must be under 8 MB.`, variant: "destructive" });
+        continue;
+      }
+      valid.push(f);
+    }
+    setFiles((prev) => [...prev, ...valid].slice(0, MAX_FILES));
+    e.target.value = "";
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -81,6 +104,24 @@ export default function ClaimListingDialog({
     }
     setLoading(true);
     const claimId = crypto.randomUUID();
+
+    // Upload evidence files first so we can store their paths on the claim row
+    const uploadedPaths: string[] = [];
+    for (const f of files) {
+      const ext = f.name.split(".").pop()?.toLowerCase() || "bin";
+      const safe = f.name.replace(/[^a-z0-9._-]/gi, "_").slice(0, 60);
+      const path = `${claimId}/${Date.now()}-${safe}`;
+      const { error: upErr } = await supabase.storage
+        .from("claim-evidence")
+        .upload(path, f, { contentType: f.type, upsert: false });
+      if (upErr) {
+        setLoading(false);
+        toast({ title: "Upload failed", description: `${f.name}: ${upErr.message}`, variant: "destructive" });
+        return;
+      }
+      uploadedPaths.push(path);
+    }
+
     const { error } = await supabase.from("educator_claims").insert({
       id: claimId,
       educator_id: educatorId,
@@ -90,6 +131,7 @@ export default function ClaimListingDialog({
       claimant_phone: parsed.data.claimant_phone || null,
       message: parsed.data.message || null,
       evidence_url: parsed.data.evidence_url || null,
+      evidence_file_paths: uploadedPaths,
     });
     setLoading(false);
     if (error) {
@@ -120,6 +162,7 @@ export default function ClaimListingDialog({
         if (!o) {
           setDone(false);
           setAlreadyPending(null);
+          setFiles([]);
           setForm({ claimant_name: "", claimant_email: "", claimant_role: "", claimant_phone: "", message: "", evidence_url: "" });
         }
       }}
@@ -187,6 +230,47 @@ export default function ClaimListingDialog({
               <div>
                 <Label htmlFor="cevidence">Link supporting your claim</Label>
                 <Input id="cevidence" type="url" placeholder="https://your-site.com/team" value={form.evidence_url} onChange={(e) => setForm({ ...form, evidence_url: e.target.value })} />
+              </div>
+              <div>
+                <Label>Upload evidence (optional)</Label>
+                <p className="text-xs text-muted-foreground mb-2">
+                  PDF, JPG, PNG or WebP — up to {MAX_FILES} files, 8 MB each. Examples: business registration, ID badge, invoice.
+                </p>
+                <label
+                  htmlFor="cfiles"
+                  className="flex items-center justify-center gap-2 border border-dashed border-border rounded-md px-3 py-4 text-sm text-muted-foreground hover:bg-accent cursor-pointer"
+                >
+                  <Upload className="h-4 w-4" />
+                  {files.length >= MAX_FILES ? "Maximum files reached" : "Choose files"}
+                </label>
+                <input
+                  id="cfiles"
+                  type="file"
+                  multiple
+                  accept=".pdf,application/pdf,image/jpeg,image/png,image/webp"
+                  className="hidden"
+                  onChange={onPickFiles}
+                  disabled={files.length >= MAX_FILES}
+                />
+                {files.length > 0 && (
+                  <ul className="mt-2 space-y-1">
+                    {files.map((f, i) => (
+                      <li key={i} className="flex items-center gap-2 text-xs bg-muted/40 rounded px-2 py-1">
+                        <FileText className="h-3.5 w-3.5 text-muted-foreground" />
+                        <span className="truncate flex-1">{f.name}</span>
+                        <span className="text-muted-foreground">{(f.size / 1024).toFixed(0)} KB</span>
+                        <button
+                          type="button"
+                          onClick={() => setFiles((prev) => prev.filter((_, idx) => idx !== i))}
+                          className="text-muted-foreground hover:text-destructive"
+                          aria-label={`Remove ${f.name}`}
+                        >
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
               <div>
                 <Label htmlFor="cmsg">Anything else?</Label>

@@ -23,6 +23,7 @@ export type Database = {
           claimed_user_id: string | null
           created_at: string
           educator_id: string
+          evidence_file_paths: string[]
           evidence_url: string | null
           id: string
           message: string | null
@@ -40,6 +41,7 @@ export type Database = {
           claimed_user_id?: string | null
           created_at?: string
           educator_id: string
+          evidence_file_paths?: string[]
           evidence_url?: string | null
           id?: string
           message?: string | null
@@ -57,6 +59,7 @@ export type Database = {
           claimed_user_id?: string | null
           created_at?: string
           educator_id?: string
+          evidence_file_paths?: string[]
           evidence_url?: string | null
           id?: string
           message?: string | null

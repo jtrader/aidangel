@@ -17,6 +17,7 @@ type Claim = {
   claimant_phone: string | null;
   message: string | null;
   evidence_url: string | null;
+  evidence_file_paths: string[] | null;
   status: "pending" | "approved" | "rejected";
   review_notes: string | null;
   created_at: string;
@@ -141,6 +142,30 @@ export default function AdminClaims() {
                   {c.claimant_phone && <div>📞 {c.claimant_phone}</div>}
                   {c.educator?.website && <div>🌐 listing site: <a href={c.educator.website} target="_blank" rel="noreferrer" className="underline">{c.educator.website}</a></div>}
                   {c.evidence_url && <div>🔗 evidence: <a href={c.evidence_url} target="_blank" rel="noreferrer" className="underline">{c.evidence_url}</a></div>}
+                  {c.evidence_file_paths && c.evidence_file_paths.length > 0 && (
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      📎 files:
+                      {c.evidence_file_paths.map((p) => (
+                        <button
+                          key={p}
+                          type="button"
+                          onClick={async () => {
+                            const { data, error } = await supabase.storage
+                              .from("claim-evidence")
+                              .createSignedUrl(p, 300);
+                            if (error || !data) {
+                              toast({ title: "Could not open file", description: error?.message, variant: "destructive" });
+                              return;
+                            }
+                            window.open(data.signedUrl, "_blank", "noopener,noreferrer");
+                          }}
+                          className="underline hover:text-foreground"
+                        >
+                          {p.split("/").pop()}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                   {c.message && <div className="pt-1 italic">"{c.message}"</div>}
                 </div>
               </div>
