@@ -23,6 +23,51 @@ interface MyClaim {
   reviewed_at: string | null;
 }
 
+function ClaimStatusCard({ claim }: { claim: MyClaim }) {
+  const config: Record<
+    ClaimStatus,
+    { label: string; icon: React.ReactNode; color: string; bg: string }
+  > = {
+    pending: {
+      label: "Pending review",
+      icon: <Clock className="h-4 w-4" />,
+      color: "text-amber-600",
+      bg: "bg-amber-50",
+    },
+    approved: {
+      label: "Approved",
+      icon: <CheckCircle2 className="h-4 w-4" />,
+      color: "text-emerald-600",
+      bg: "bg-emerald-50",
+    },
+    rejected: {
+      label: "Declined",
+      icon: <XCircle className="h-4 w-4" />,
+      color: "text-rose-600",
+      bg: "bg-rose-50",
+    },
+  };
+  const style = config[claim.status];
+  return (
+    <div className={`rounded-lg border border-border p-3 ${style.bg}`}>
+      <div className="flex items-center gap-2 mb-1">
+        <span className={`inline-flex items-center gap-1.5 text-sm font-medium ${style.color}`}>
+          {style.icon} {style.label}
+        </span>
+        <span className="text-xs text-muted-foreground ml-auto">
+          Submitted {new Date(claim.created_at).toLocaleDateString()}
+        </span>
+      </div>
+      {claim.status === "pending" && (
+        <p className="text-xs text-muted-foreground">We'll review your claim and email you within a few business days.</p>
+      )}
+      {claim.review_notes && (
+        <p className="text-xs text-muted-foreground mt-1">Note: {claim.review_notes}</p>
+      )}
+    </div>
+  );
+}
+
 export default function EducatorProfile() {
   const { language } = useLanguage();
   const { country } = useCountry();
