@@ -9,6 +9,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
 import TopicIllustration from "@/components/TopicIllustration";
+import PlayAudioButton from "@/components/PlayAudioButton";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
@@ -29,6 +30,8 @@ const STATIC_TOPIC_STRINGS = [
   "Adapted from The St John of God First Aid Manual 5th Edition — section",
   "In an emergency call 000. These guides are for learning and refresher use — not a substitute for professional medical care.",
   "Questions & answers",
+  "Listen",
+  "Stop",
 ];
 
 const KbTopic = () => {
@@ -67,6 +70,8 @@ const KbTopic = () => {
     adaptedFrom: "Adapted from The St John of God First Aid Manual 5th Edition — section",
     emergencyNote: "In an emergency call 000. These guides are for learning and refresher use — not a substitute for professional medical care.",
     qaHeading: "Questions & answers",
+    listen: "Listen",
+    stop: "Stop",
     category: topic.category,
   });
 
@@ -83,6 +88,8 @@ const KbTopic = () => {
         adaptedFrom: STATIC_TOPIC_STRINGS[7],
         emergencyNote: STATIC_TOPIC_STRINGS[8],
         qaHeading: STATIC_TOPIC_STRINGS[9],
+        listen: STATIC_TOPIC_STRINGS[10],
+        stop: STATIC_TOPIC_STRINGS[11],
         category: topic.category,
       });
       return;
@@ -101,6 +108,8 @@ const KbTopic = () => {
         adaptedFrom: s[7],
         emergencyNote: s[8],
         qaHeading: s[9],
+        listen: s[10],
+        stop: s[11],
         category: topic.category, // already comes from per-lang meta when available
       });
     });
@@ -275,15 +284,23 @@ const KbTopic = () => {
           <p lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
             {ui.category}
           </p>
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground" lang={language}>
               {translated.title}
             </h1>
             <LanguageSelector />
           </div>
-          <p className="text-lg text-muted-foreground mb-6 leading-relaxed" lang={language}>
+          <p className="text-lg text-muted-foreground mb-4 leading-relaxed" lang={language}>
             {translated.summary}
           </p>
+          <div className="mb-6">
+            <PlayAudioButton
+              text={`${translated.title}. ${translated.summary} ${translated.body}`}
+              language={language}
+              label={ui.listen}
+              stopLabel={ui.stop}
+            />
+          </div>
 
           <TopicIllustration slug={topicEn.slug} />
 
