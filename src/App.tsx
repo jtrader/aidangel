@@ -21,6 +21,8 @@ import LearnCountry from "./pages/LearnCountry";
 import LearnCity from "./pages/LearnCity";
 import LearnSubmit from "./pages/LearnSubmit";
 import EducatorProfile from "./pages/EducatorProfile";
+import OfflineBanner from "./components/OfflineBanner";
+import InstallPrompt from "./components/InstallPrompt";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +48,8 @@ const App = forwardRef(function App(_props, _ref) {
           <LanguageProvider>
             <Toaster />
             <Sonner />
+            <OfflineBanner />
+            <InstallPrompt />
             <BrowserRouter>
               <Routes>
                 {/* English (default, no prefix) */}

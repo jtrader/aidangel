@@ -1,13 +1,39 @@
 {
   "name": "First Aid Angel",
-  "short_name": "First Aid Angel",
-  "description": "AI-powered first aid guidance based on the Australian First Aid 5th Edition manual.",
+  "short_name": "First Aid",
+  "description": "AI-powered first aid guidance — works offline. Based on the Australian First Aid 5th Edition manual.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#e51d1d",
+  "orientation": "portrait",
+  "background_color": "#fffaf0",
+  "theme_color": "#d97706",
+  "categories": ["health", "medical", "education", "lifestyle"],
+  "lang": "en-AU",
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "CPR steps",
+      "short_name": "CPR",
+      "url": "/kb/cpr",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Choking",
+      "short_name": "Choking",
+      "url": "/kb/choking",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Bleeding",
+      "short_name": "Bleeding",
+      "url": "/kb/bleeding",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }
