@@ -42,6 +42,32 @@ async function geocodeNominatim(query: string): Promise<GeoInfo | null> {
   }
 }
 
+function NearbySkeleton() {
+  return (
+    <div className="grid gap-3">
+      {[1, 2].map((i) => (
+        <div key={i} className="bg-card border border-border rounded-xl p-5 animate-pulse">
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-start gap-2.5 min-w-1 flex-1">
+              <div className="h-7 w-7 rounded-md bg-muted shrink-0" />
+              <div className="min-w-0 flex-1 space-y-2">
+                <div className="h-3 w-24 rounded bg-muted" />
+                <div className="h-4 w-3/4 rounded bg-muted" />
+                <div className="h-3 w-1/2 rounded bg-muted" />
+              </div>
+            </div>
+            <div className="h-5 w-16 rounded-full bg-muted shrink-0" />
+          </div>
+          <div className="flex gap-2 mt-3">
+            <div className="h-7 w-16 rounded-full bg-muted" />
+            <div className="h-7 w-24 rounded-full bg-muted" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 
 type NearbyVenue = EducatorLocation & { educator: Educator; distance_km: number | null };
 
