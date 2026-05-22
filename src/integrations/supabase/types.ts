@@ -14,6 +14,177 @@ export type Database = {
   }
   public: {
     Tables: {
+      educator_languages: {
+        Row: {
+          educator_id: string
+          id: string
+          language_code: string
+        }
+        Insert: {
+          educator_id: string
+          id?: string
+          language_code: string
+        }
+        Update: {
+          educator_id?: string
+          id?: string
+          language_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "educator_languages_educator_id_fkey"
+            columns: ["educator_id"]
+            isOneToOne: false
+            referencedRelation: "educators"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      educator_locations: {
+        Row: {
+          address: string | null
+          booking_url: string | null
+          city: string | null
+          country_code: string
+          created_at: string
+          educator_id: string
+          id: string
+          lat: number | null
+          lng: number | null
+          phone: string | null
+          postcode: string | null
+          region: string | null
+        }
+        Insert: {
+          address?: string | null
+          booking_url?: string | null
+          city?: string | null
+          country_code: string
+          created_at?: string
+          educator_id: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          phone?: string | null
+          postcode?: string | null
+          region?: string | null
+        }
+        Update: {
+          address?: string | null
+          booking_url?: string | null
+          city?: string | null
+          country_code?: string
+          created_at?: string
+          educator_id?: string
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          phone?: string | null
+          postcode?: string | null
+          region?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "educator_locations_educator_id_fkey"
+            columns: ["educator_id"]
+            isOneToOne: false
+            referencedRelation: "educators"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      educator_service_areas: {
+        Row: {
+          city: string | null
+          country_code: string
+          created_at: string
+          educator_id: string
+          id: string
+          notes: string | null
+          radius_km: number | null
+          region: string | null
+        }
+        Insert: {
+          city?: string | null
+          country_code: string
+          created_at?: string
+          educator_id: string
+          id?: string
+          notes?: string | null
+          radius_km?: number | null
+          region?: string | null
+        }
+        Update: {
+          city?: string | null
+          country_code?: string
+          created_at?: string
+          educator_id?: string
+          id?: string
+          notes?: string | null
+          radius_km?: number | null
+          region?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "educator_service_areas_educator_id_fkey"
+            columns: ["educator_id"]
+            isOneToOne: false
+            referencedRelation: "educators"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      educators: {
+        Row: {
+          blurb: string | null
+          booking_url: string | null
+          created_at: string
+          hq_country_code: string | null
+          id: string
+          is_online: boolean
+          is_verified: boolean
+          logo_url: string | null
+          name: string
+          priority: number
+          slug: string
+          type: Database["public"]["Enums"]["educator_type"]
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          blurb?: string | null
+          booking_url?: string | null
+          created_at?: string
+          hq_country_code?: string | null
+          id?: string
+          is_online?: boolean
+          is_verified?: boolean
+          logo_url?: string | null
+          name: string
+          priority?: number
+          slug: string
+          type?: Database["public"]["Enums"]["educator_type"]
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          blurb?: string | null
+          booking_url?: string | null
+          created_at?: string
+          hq_country_code?: string | null
+          id?: string
+          is_online?: boolean
+          is_verified?: boolean
+          logo_url?: string | null
+          name?: string
+          priority?: number
+          slug?: string
+          type?: Database["public"]["Enums"]["educator_type"]
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       give_clicks: {
         Row: {
           country_code: string | null
@@ -101,6 +272,13 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      educator_type:
+        | "st_john"
+        | "red_cross"
+        | "other_ngo"
+        | "commercial"
+        | "online"
+        | "community"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -229,6 +407,14 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      educator_type: [
+        "st_john",
+        "red_cross",
+        "other_ngo",
+        "commercial",
+        "online",
+        "community",
+      ],
     },
   },
 } as const
