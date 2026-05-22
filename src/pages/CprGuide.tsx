@@ -104,13 +104,22 @@ function StepBadge({ icon: Icon, active, done }: { icon: typeof ShieldAlert; act
   );
 }
 
-function detectInitialLang(): CprLangCode {
-  if (typeof window === "undefined") return "en";
+function detectInitialLang(): { lang: CprLangCode; auto: boolean } {
+  if (typeof window === "undefined") return { lang: "en", auto: false };
   const stored = window.localStorage.getItem("faa.cprLang") as CprLangCode | null;
-  if (stored && CPR_LANGUAGES.some((l) => l.code === stored)) return stored;
-  const nav = (navigator.language || "en").toLowerCase().split("-")[0];
-  const match = CPR_LANGUAGES.find((l) => l.code === nav);
-  return match ? match.code : "en";
+  if (stored && CPR_LANGUAGES.some((l) => l.code === stored)) return { lang: stored, auto: false };
+
+  // Check full BCP47 codes first, then fall back to base language codes
+  const prefs = navigator.languages?.length ? navigator.languages : [navigator.language || "en"];
+  for (const raw of prefs) {
+    const full = raw.toLowerCase();
+    const base = full.split("-")[0];
+    const fullMatch = CPR_LANGUAGES.find((l) => l.bcp47.toLowerCase() === full || l.code === full);
+    if (fullMatch) return { lang: fullMatch.code, auto: true };
+    const baseMatch = CPR_LANGUAGES.find((l) => l.code === base);
+    if (baseMatch) return { lang: baseMatch.code, auto: true };
+  }
+  return { lang: "en", auto: true };
 }
 
 export default function CprGuide() {
