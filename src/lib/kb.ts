@@ -253,3 +253,48 @@ export function autoLinkBody(
   }
   return lines.join("\n");
 }
+
+/**
+ * Wrap phone numbers in markdown `tel:` links so they become tappable on mobile.
+ * Skips code fences, headings, table separators, and text already inside a link.
+ */
+const PHONE_RE = /(?<![\w/])(\+?\d[\d\s().-]{2,}\d)(?![\w])/g;
+
+export function autoLinkPhones(body: string): string {
+  let inFence = false;
+  const lines = body.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    if (/^\s*(#|\|)/.test(line)) continue;
+
+    // Walk the line, skipping segments inside existing markdown links [text](url).
+    const out: string[] = [];
+    let idx = 0;
+    const linkRe = /\[[^\]]*\]\([^)]*\)/g;
+    let m: RegExpExecArray | null;
+    while ((m = linkRe.exec(line)) !== null) {
+      out.push(replacePhonesInSegment(line.slice(idx, m.index)));
+      out.push(m[0]);
+      idx = m.index + m[0].length;
+    }
+    out.push(replacePhonesInSegment(line.slice(idx)));
+    lines[i] = out.join("");
+  }
+  return lines.join("\n");
+}
+
+function replacePhonesInSegment(seg: string): string {
+  return seg.replace(PHONE_RE, (match) => {
+    const digits = match.replace(/[^\d+]/g, "");
+    const d = digits.replace(/^\+/, "");
+    if (d.length < 3 || d.length > 15) return match;
+    // Skip 4-digit numbers that look like years (1900-2099) — too noisy.
+    if (d.length === 4 && /^(19|20)\d{2}$/.test(d)) return match;
+    return `[${match}](tel:${digits})`;
+  });
+}
