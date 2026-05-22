@@ -171,13 +171,21 @@ export function distanceKm(lat1: number, lng1: number, lat2: number, lng2: numbe
 
 /**
  * Nearest physical venues to a lat/lng, optionally scoped to a country.
- * Returns up to `limit` items, each annotated with `distance_km`.
+ * Returns up to `limit` items, each annotated with `distance_km` (null when
+ * the match came from an educator's declared service area rather than a
+ * geocoded venue).
+ *
+ * Fallback: if fewer than `limit` geocoded venues exist for the country, we
+ * top up with educators whose `service_areas` cover the user's country —
+ * preferring matches on `region`/`city` when supplied. This lets countries
+ * that only have country-wide providers (no per-venue coordinates) still
+ * surface a "Nearest training venues" section.
  */
 export async function getNearestVenues(
   lat: number,
   lng: number,
-  opts: { countryCode?: string; limit?: number } = {},
-): Promise<Array<EducatorLocation & { educator: Educator; distance_km: number }>> {
+  opts: { countryCode?: string; region?: string | null; city?: string | null; limit?: number } = {},
+): Promise<Array<EducatorLocation & { educator: Educator; distance_km: number | null }>> {
   const limit = opts.limit ?? 3;
   let query = supabase
     .from("educator_locations")
@@ -187,8 +195,59 @@ export async function getNearestVenues(
   if (opts.countryCode) query = query.eq("country_code", opts.countryCode.toUpperCase());
   const { data } = await query;
   const rows = (data ?? []) as Array<EducatorLocation & { educator: Educator }>;
-  return rows
+  const geocoded: Array<EducatorLocation & { educator: Educator; distance_km: number | null }> = rows
     .map((r) => ({ ...r, distance_km: distanceKm(lat, lng, r.lat as number, r.lng as number) }))
-    .sort((a, b) => a.distance_km - b.distance_km)
+    .sort((a, b) => (a.distance_km as number) - (b.distance_km as number))
     .slice(0, limit);
+
+  if (geocoded.length >= limit || !opts.countryCode) return geocoded;
+
+  // Top up via service areas (no coordinates required).
+  const upper = opts.countryCode.toUpperCase();
+  const { data: areaRows } = await supabase
+    .from("educator_service_areas")
+    .select("*, educator:educators(*)")
+    .eq("country_code", upper);
+
+  const usedEducatorIds = new Set(geocoded.map((r) => r.educator_id));
+  const normalize = (s?: string | null) => (s ?? "").trim().toLowerCase();
+  const userRegion = normalize(opts.region);
+  const userCity = normalize(opts.city);
+
+  const scored = ((areaRows ?? []) as Array<EducatorServiceArea & { educator: Educator }>)
+    .filter((a) => !usedEducatorIds.has(a.educator_id) && !a.educator.is_online)
+    .map((a) => {
+      const cityMatch = userCity && normalize(a.city) === userCity ? 3 : 0;
+      const regionMatch = userRegion && normalize(a.region) === userRegion ? 2 : 0;
+      const countryOnly = !a.city && !a.region ? 1 : 0;
+      const typeBoost = a.educator.type === "st_john" ? 0.3 : a.educator.type === "red_cross" ? 0.2 : 0;
+      return { area: a, score: cityMatch + regionMatch + countryOnly + typeBoost + a.educator.priority * 0.01 };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  const seen = new Set(usedEducatorIds);
+  const fallback: Array<EducatorLocation & { educator: Educator; distance_km: number | null }> = [];
+  for (const { area } of scored) {
+    if (seen.has(area.educator_id)) continue;
+    seen.add(area.educator_id);
+    fallback.push({
+      id: `sa-${area.id}`,
+      educator_id: area.educator_id,
+      country_code: area.country_code,
+      region: area.region,
+      city: area.city,
+      address: null,
+      postcode: null,
+      lat: null,
+      lng: null,
+      booking_url: area.educator.booking_url,
+      phone: null,
+      educator: area.educator,
+      distance_km: null,
+    });
+    if (geocoded.length + fallback.length >= limit) break;
+  }
+
+  return [...geocoded, ...fallback];
 }
+
