@@ -236,6 +236,105 @@ export type Database = {
         }
         Relationships: []
       }
+      pending_educators: {
+        Row: {
+          address: string | null
+          blurb: string | null
+          booking_url: string | null
+          city: string | null
+          country_code: string | null
+          created_at: string
+          hq_country_code: string | null
+          id: string
+          is_online: boolean
+          languages: string[]
+          lat: number | null
+          lng: number | null
+          logo_url: string | null
+          name: string
+          phone: string | null
+          postcode: string | null
+          region: string | null
+          review_notes: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          service_area_notes: string | null
+          slug: string | null
+          source: string
+          source_url: string | null
+          status: Database["public"]["Enums"]["pending_status"]
+          submitter_email: string | null
+          submitter_name: string | null
+          type: Database["public"]["Enums"]["educator_type"]
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          address?: string | null
+          blurb?: string | null
+          booking_url?: string | null
+          city?: string | null
+          country_code?: string | null
+          created_at?: string
+          hq_country_code?: string | null
+          id?: string
+          is_online?: boolean
+          languages?: string[]
+          lat?: number | null
+          lng?: number | null
+          logo_url?: string | null
+          name: string
+          phone?: string | null
+          postcode?: string | null
+          region?: string | null
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          service_area_notes?: string | null
+          slug?: string | null
+          source?: string
+          source_url?: string | null
+          status?: Database["public"]["Enums"]["pending_status"]
+          submitter_email?: string | null
+          submitter_name?: string | null
+          type?: Database["public"]["Enums"]["educator_type"]
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          address?: string | null
+          blurb?: string | null
+          booking_url?: string | null
+          city?: string | null
+          country_code?: string | null
+          created_at?: string
+          hq_country_code?: string | null
+          id?: string
+          is_online?: boolean
+          languages?: string[]
+          lat?: number | null
+          lng?: number | null
+          logo_url?: string | null
+          name?: string
+          phone?: string | null
+          postcode?: string | null
+          region?: string | null
+          review_notes?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          service_area_notes?: string | null
+          slug?: string | null
+          source?: string
+          source_url?: string | null
+          status?: Database["public"]["Enums"]["pending_status"]
+          submitter_email?: string | null
+          submitter_name?: string | null
+          type?: Database["public"]["Enums"]["educator_type"]
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -279,6 +378,7 @@ export type Database = {
         | "commercial"
         | "online"
         | "community"
+      pending_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -415,6 +515,7 @@ export const Constants = {
         "online",
         "community",
       ],
+      pending_status: ["pending", "approved", "rejected"],
     },
   },
 } as const
