@@ -69,6 +69,10 @@ export default function ClaimListingDialog({
       toast({ title: "Could not submit claim", description: error.message, variant: "destructive" });
       return;
     }
+    // Persist claim so user can check status later
+    const existing = JSON.parse(localStorage.getItem("faa_claims") ?? "[]") as Array<{ educatorId: string; claimId: string; claimantEmail: string }>;
+    existing.push({ educatorId, claimId, claimantEmail: parsed.data.claimant_email });
+    localStorage.setItem("faa_claims", JSON.stringify(existing));
     // Fire-and-forget confirmation email
     supabase.functions.invoke("send-transactional-email", {
       body: {
