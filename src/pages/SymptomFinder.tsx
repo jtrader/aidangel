@@ -7,6 +7,7 @@ import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { localizedPath, SITE_ORIGIN, HREFLANG } from "@/lib/i18n";
 import { getTopic } from "@/lib/kb";
+import { SYMPTOM_LANDERS } from "@/data/symptomLanders";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 
@@ -70,6 +71,19 @@ const SymptomFinder = () => {
 
   const urgentList = filtered.filter((s) => s.urgent);
   const otherList = filtered.filter((s) => !s.urgent);
+
+  // Map KB slug → best matching long-tail lander (if any)
+  const landerByKb = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const l of SYMPTOM_LANDERS) {
+      if (!m.has(l.kbSlug)) m.set(l.kbSlug, l.slug);
+    }
+    return m;
+  }, []);
+  const linkFor = (kbSlug: string) => {
+    const lander = landerByKb.get(kbSlug);
+    return lander ? `/symptoms/${lander}` : localizedPath(language, `/kb/${kbSlug}`);
+  };
 
   const homePath = localizedPath(language, "/");
   const pageUrl = `${SITE_ORIGIN}/symptoms`;
@@ -158,7 +172,7 @@ const SymptomFinder = () => {
                   return (
                     <li key={s.slug}>
                       <Link
-                        to={localizedPath(language, `/kb/${s.slug}`)}
+                        to={linkFor(s.slug)}
                         className="block p-3 rounded-xl border-2 border-destructive/30 bg-destructive/5 hover:border-destructive transition-all"
                       >
                         <p className="font-semibold text-foreground text-sm">{s.label}</p>
@@ -182,7 +196,7 @@ const SymptomFinder = () => {
                   return (
                     <li key={s.slug}>
                       <Link
-                        to={localizedPath(language, `/kb/${s.slug}`)}
+                        to={linkFor(s.slug)}
                         className="block p-3 rounded-xl border border-border bg-card hover:border-primary transition-all"
                       >
                         <p className="font-semibold text-foreground text-sm">{s.label}</p>
