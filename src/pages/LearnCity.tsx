@@ -12,6 +12,7 @@ import {
 } from "@/lib/educators";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
+import { trackLearnClick } from "@/lib/giveAnalytics";
 
 export default function LearnCity() {
   const { language } = useLanguage();
@@ -79,6 +80,19 @@ export default function LearnCity() {
                       href={row.booking_url ?? row.educator.booking_url ?? "#"}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() =>
+                        trackLearnClick({
+                          ngoId: row.educator.slug,
+                          countryCode: country.code,
+                          countryName: country.name,
+                          destinationUrl: row.booking_url ?? row.educator.booking_url ?? "",
+                          isNational: (row.educator.hq_country_code ?? "").toUpperCase() === country.code,
+                          language,
+                          variant: "booking",
+                        })
+                      }
+                      data-analytics-event="learn_click"
+                      data-analytics-educator={row.educator.slug}
                       className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
                     >
                       Book a course <ExternalLink className="h-3 w-3" />
