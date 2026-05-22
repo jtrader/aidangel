@@ -170,11 +170,13 @@ const KbTopic = () => {
     return () => { cancelled = true; };
   }, [language, slug]);
 
-  const linkedBody = autoLinkBody(
-    translated.body,
-    topicEn.slug,
-    language,
-    (s) => localizedPath(language, `/kb/${s}`),
+  const linkedBody = autoLinkPhones(
+    autoLinkBody(
+      translated.body,
+      topicEn.slug,
+      language,
+      (s) => localizedPath(language, `/kb/${s}`),
+    ),
   );
 
   const kbPath = localizedPath(language, "/kb");
