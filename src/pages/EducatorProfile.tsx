@@ -87,6 +87,9 @@ export default function EducatorProfile() {
               href={ed.booking_url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackOutbound(ed.booking_url!, "booking")}
+              data-analytics-event="learn_click"
+              data-analytics-educator={ed.slug}
               className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90"
             >
               Book a course <ExternalLink className="h-3 w-3" />
@@ -97,6 +100,9 @@ export default function EducatorProfile() {
               href={ed.website}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackOutbound(ed.website!, "website")}
+              data-analytics-event="learn_click"
+              data-analytics-educator={ed.slug}
               className="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-border text-sm hover:bg-accent"
             >
               Website <ExternalLink className="h-3 w-3" />
