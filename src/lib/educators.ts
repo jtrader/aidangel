@@ -180,29 +180,40 @@ export function distanceKm(lat1: number, lng1: number, lat2: number, lng2: numbe
  * preferring matches on `region`/`city` when supplied. This lets countries
  * that only have country-wide providers (no per-venue coordinates) still
  * surface a "Nearest training venues" section.
+ *
+ * When lat/lng are omitted, distance-based sorting is skipped and we rely
+ * entirely on service-area scoring (region/city/country matches).
  */
 export async function getNearestVenues(
-  lat: number,
-  lng: number,
+  lat?: number | null,
+  lng?: number | null,
   opts: { countryCode?: string; region?: string | null; city?: string | null; limit?: number } = {},
 ): Promise<Array<EducatorLocation & { educator: Educator; distance_km: number | null }>> {
   const limit = opts.limit ?? 3;
-  let query = supabase
-    .from("educator_locations")
-    .select("*, educator:educators(*)")
-    .not("lat", "is", null)
-    .not("lng", "is", null);
-  if (opts.countryCode) query = query.eq("country_code", opts.countryCode.toUpperCase());
-  const { data } = await query;
-  const rows = (data ?? []) as Array<EducatorLocation & { educator: Educator }>;
-  const geocoded: Array<EducatorLocation & { educator: Educator; distance_km: number | null }> = rows
-    .map((r) => ({ ...r, distance_km: distanceKm(lat, lng, r.lat as number, r.lng as number) }))
-    .sort((a, b) => (a.distance_km as number) - (b.distance_km as number))
-    .slice(0, limit);
+  const hasCoords = typeof lat === "number" && typeof lng === "number";
 
-  if (geocoded.length >= limit || !opts.countryCode) return geocoded;
+  let geocoded: Array<EducatorLocation & { educator: Educator; distance_km: number | null }> = [];
+
+  if (hasCoords) {
+    let query = supabase
+      .from("educator_locations")
+      .select("*, educator:educators(*)")
+      .not("lat", "is", null)
+      .not("lng", "is", null);
+    if (opts.countryCode) query = query.eq("country_code", opts.countryCode.toUpperCase());
+    const { data } = await query;
+    const rows = (data ?? []) as Array<EducatorLocation & { educator: Educator }>;
+    geocoded = rows
+      .map((r) => ({ ...r, distance_km: distanceKm(lat, lng, r.lat as number, r.lng as number) }))
+      .sort((a, b) => (a.distance_km as number) - (b.distance_km as number))
+      .slice(0, limit);
+
+    if (geocoded.length >= limit || !opts.countryCode) return geocoded;
+  }
 
   // Top up via service areas (no coordinates required).
+  if (!opts.countryCode) return geocoded;
+
   const upper = opts.countryCode.toUpperCase();
   const { data: areaRows } = await supabase
     .from("educator_service_areas")
@@ -219,8 +230,8 @@ export async function getNearestVenues(
     .map((a) => {
       const cityMatch = userCity && normalize(a.city) === userCity ? 3 : 0;
       const regionMatch = userRegion && normalize(a.region) === userRegion ? 2 : 0;
-      const countryOnly = !a.city && !a.region ? 1 : 0;
-      const typeBoost = a.educator.type === "st_john" ? 0.3 : a.educator.type === "red_cross" ? 0.2 : 0;
+      const countryOnly = !a.city && !a.region ? 1 : 1; // always 1 so country-wide providers appear
+      const typeBoost = a.educator.type === "st_john" ? 1 : a.educator.type === "red_cross" ? 0.8 : 1;
       return { area: a, score: cityMatch + regionMatch + countryOnly + typeBoost + a.educator.priority * 0.01 };
     })
     .sort((a, b) => b.score - a.score);

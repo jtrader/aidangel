@@ -74,6 +74,7 @@ async function fetchIpGeo(): Promise<GeoInfo | null> {
 export function useGeoLocation() {
   const [geo, setGeo] = useState<GeoInfo | null>(() => readCached());
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const cached = readCached();
@@ -82,20 +83,27 @@ export function useGeoLocation() {
       return;
     }
     setLoading(true);
+    setError(false);
     fetchIpGeo().then((g) => {
       if (g) {
         save(g);
         setGeo(g);
+        setError(false);
+      } else {
+        setError(true);
       }
       setLoading(false);
     });
   }, []);
 
   useEffect(() => {
-    const handler = () => setGeo(readCached());
+    const handler = () => {
+      setGeo(readCached());
+      setError(false);
+    };
     window.addEventListener("faa-geo-updated", handler);
     return () => window.removeEventListener("faa-geo-updated", handler);
   }, []);
 
-  return { geo, loading, setManualGeo };
+  return { geo, loading, error, setManualGeo };
 }
