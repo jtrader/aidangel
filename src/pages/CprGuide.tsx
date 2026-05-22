@@ -22,7 +22,8 @@ import { SeoHead } from "@/components/SeoHead";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { useMetronome } from "@/hooks/useMetronome";
-import { speak, stopSpeaking, isSpeechSupported } from "@/lib/speech";
+import { speakCpr, stopCprVoice, prefetchCprVoice } from "@/lib/cprVoice";
+import { CPR_LANGUAGES, type CprLangCode } from "@/data/cprTranslations";
 
 type StepKey = "D" | "R" | "S" | "A" | "B" | "C" | "AED";
 
@@ -31,7 +32,6 @@ interface Step {
   label: string;
   title: string;
   icon: typeof ShieldAlert;
-  spoken: string;
   detail: string;
 }
 
@@ -41,7 +41,6 @@ const STEPS: Step[] = [
     label: "Danger",
     title: "Check for Danger",
     icon: ShieldAlert,
-    spoken: "Check for danger. Make sure the scene is safe for you, bystanders, and the casualty before approaching.",
     detail: "Look for traffic, fire, electricity, water or violence. Don't become a second casualty.",
   },
   {
@@ -49,7 +48,6 @@ const STEPS: Step[] = [
     label: "Response",
     title: "Check Response",
     icon: MessageCircle,
-    spoken: "Check for response. Squeeze the shoulders firmly and ask loudly: Can you hear me? Open your eyes!",
     detail: "Use the COWS check — Can you hear me? Open your eyes! What's your name? Squeeze my hand.",
   },
   {
@@ -57,7 +55,6 @@ const STEPS: Step[] = [
     label: "Send",
     title: "Send for Help — Call now",
     icon: Phone,
-    spoken: "Send for help. Call emergency services immediately. Put your phone on speaker.",
     detail: "Call 000 (or local emergency number). Ask a bystander to find an AED.",
   },
   {
@@ -65,7 +62,6 @@ const STEPS: Step[] = [
     label: "Airway",
     title: "Open the Airway",
     icon: Wind,
-    spoken: "Open the airway. Tilt the head back gently and lift the chin. Clear any visible obstruction.",
     detail: "If you suspect a spinal injury, lift the jaw without tilting the head.",
   },
   {
@@ -73,7 +69,6 @@ const STEPS: Step[] = [
     label: "Breathing",
     title: "Check Breathing",
     icon: Activity,
-    spoken: "Check for normal breathing. Look, listen and feel for up to ten seconds. Gasping is not normal breathing.",
     detail: "If breathing normally — recovery position. If not — start CPR immediately.",
   },
   {
@@ -81,7 +76,6 @@ const STEPS: Step[] = [
     label: "CPR",
     title: "Start CPR — 30:2",
     icon: HeartPulse,
-    spoken: "Start CPR now. Push hard and fast in the centre of the chest. I will keep the rhythm. Thirty compressions, then two breaths.",
     detail: "Centre of chest, two hands, 5 cm deep, 100–120 per minute. Allow full chest recoil between compressions.",
   },
   {
@@ -89,7 +83,6 @@ const STEPS: Step[] = [
     label: "Defib",
     title: "Attach the AED",
     icon: Zap,
-    spoken: "Attach the defibrillator as soon as it arrives. Turn it on and follow the voice prompts. Don't stop CPR until it tells you to stand clear.",
     detail: "Bare the chest, dry if wet, apply pads — upper right and lower left. Stand clear when it analyses or shocks.",
   },
 ];
@@ -111,19 +104,34 @@ function StepBadge({ icon: Icon, active, done }: { icon: typeof ShieldAlert; act
   );
 }
 
+function detectInitialLang(): CprLangCode {
+  if (typeof window === "undefined") return "en";
+  const stored = window.localStorage.getItem("faa.cprLang") as CprLangCode | null;
+  if (stored && CPR_LANGUAGES.some((l) => l.code === stored)) return stored;
+  const nav = (navigator.language || "en").toLowerCase().split("-")[0];
+  const match = CPR_LANGUAGES.find((l) => l.code === nav);
+  return match ? match.code : "en";
+}
+
 export default function CprGuide() {
   const { code: countryCode } = useCountry();
   const emergency = emergencyNumberForCountry(countryCode);
   const [stepIdx, setStepIdx] = useState(0);
   const [voiceOn, setVoiceOn] = useState(true);
-  const [muted, setMuted] = useState(false);
+  const [lang, setLang] = useState<CprLangCode>(detectInitialLang);
   const wakeLockRef = useRef<WakeLockSentinel | null>(null);
   const voiceOnRef = useRef(voiceOn);
+  const langRef = useRef(lang);
   useEffect(() => { voiceOnRef.current = voiceOn; }, [voiceOn]);
+  useEffect(() => {
+    langRef.current = lang;
+    try { window.localStorage.setItem("faa.cprLang", lang); } catch { /* ignore */ }
+    prefetchCprVoice(lang);
+  }, [lang]);
 
   const handleBreath = useCallback(() => {
     if (!voiceOnRef.current) return;
-    speak("Two breaths. Then continue compressions.", { rate: 1.05, interrupt: true });
+    void speakCpr(langRef.current, "breath", { interrupt: true });
   }, []);
 
   const metronome = useMetronome({ bpm: 110, cycleLength: 30, onBreath: handleBreath });
@@ -141,7 +149,7 @@ export default function CprGuide() {
     };
   }, [metronome.isRunning]);
 
-  useEffect(() => () => { stopSpeaking(); }, []);
+  useEffect(() => () => { stopCprVoice(); }, []);
 
   const step = STEPS[stepIdx];
   const isCpr = step.key === "C";
@@ -151,7 +159,7 @@ export default function CprGuide() {
     setStepIdx(next);
     const s = STEPS[next];
     if (voiceOnRef.current) {
-      speak(s.spoken, { rate: 1.03, interrupt: true });
+      void speakCpr(langRef.current, s.key, { interrupt: true });
     }
     if (s.key !== "C") {
       metronome.stop();
@@ -160,16 +168,18 @@ export default function CprGuide() {
 
   const startCpr = useCallback(async () => {
     if (voiceOnRef.current) {
-      await speak("Push hard and fast. Follow the beat.", { rate: 1.05, interrupt: true });
+      await speakCpr(langRef.current, "startCpr", { interrupt: true });
     }
     metronome.start();
   }, [metronome]);
 
   const resetAll = useCallback(() => {
     metronome.stop();
-    stopSpeaking();
+    stopCprVoice();
     setStepIdx(0);
   }, [metronome]);
+
+
 
   const mm = String(Math.floor(metronome.elapsedSec / 60)).padStart(2, "0");
   const ss = String(metronome.elapsedSec % 60).padStart(2, "0");
@@ -237,13 +247,25 @@ export default function CprGuide() {
               </div>
               <h2 className="font-heading text-xl sm:text-2xl font-bold mt-0.5">{step.title}</h2>
             </div>
-            <button
-              onClick={() => setVoiceOn((v) => { if (v) stopSpeaking(); return !v; })}
-              aria-label={voiceOn ? "Mute voice" : "Unmute voice"}
-              className="h-10 w-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent shrink-0"
-            >
-              {voiceOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-            </button>
+            <div className="flex items-center gap-2 shrink-0">
+              <select
+                value={lang}
+                onChange={(e) => setLang(e.target.value as CprLangCode)}
+                aria-label="Voice-over language"
+                className="h-10 rounded-full border border-border bg-background text-sm px-3 text-foreground hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {CPR_LANGUAGES.map((l) => (
+                  <option key={l.code} value={l.code}>{l.label}</option>
+                ))}
+              </select>
+              <button
+                onClick={() => setVoiceOn((v) => { if (v) stopCprVoice(); return !v; })}
+                aria-label={voiceOn ? "Mute voice" : "Unmute voice"}
+                className="h-10 w-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent shrink-0"
+              >
+                {voiceOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
           <p className="text-sm sm:text-base text-card-foreground leading-relaxed mb-4">
             {step.detail}
@@ -366,11 +388,9 @@ export default function CprGuide() {
           </div>
         </section>
 
-        {!isSpeechSupported() && (
-          <p className="text-xs text-muted-foreground mt-3 text-center">
-            Voice guidance isn't supported in this browser — visual cues still work.
-          </p>
-        )}
+        <p className="text-xs text-muted-foreground mt-3 text-center">
+          Voice-over by ElevenLabs · available in 10 major world languages.
+        </p>
 
         <aside className="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed">
           <strong>Emergency reminder:</strong> This guide is for learning and assistance — it doesn't replace

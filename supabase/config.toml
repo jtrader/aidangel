@@ -25,3 +25,6 @@ verify_jwt = false
 
 [functions.update-educator-listing]
 verify_jwt = false
+
+[functions.cpr-tts]
+verify_jwt = false
