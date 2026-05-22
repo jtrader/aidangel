@@ -335,6 +335,63 @@ export type Database = {
         }
         Relationships: []
       }
+      explainer_videos: {
+        Row: {
+          country_code: string
+          country_name: string
+          created_at: string
+          description: string | null
+          duration_seconds: number | null
+          emergency_number: string
+          flag: string
+          id: string
+          language_code: string
+          language_name: string
+          slug: string
+          sort_order: number | null
+          title: string
+          topic: string
+          updated_at: string
+          video_url: string
+        }
+        Insert: {
+          country_code: string
+          country_name: string
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          emergency_number: string
+          flag: string
+          id?: string
+          language_code: string
+          language_name: string
+          slug: string
+          sort_order?: number | null
+          title: string
+          topic: string
+          updated_at?: string
+          video_url: string
+        }
+        Update: {
+          country_code?: string
+          country_name?: string
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          emergency_number?: string
+          flag?: string
+          id?: string
+          language_code?: string
+          language_name?: string
+          slug?: string
+          sort_order?: number | null
+          title?: string
+          topic?: string
+          updated_at?: string
+          video_url?: string
+        }
+        Relationships: []
+      }
       give_clicks: {
         Row: {
           country_code: string | null
