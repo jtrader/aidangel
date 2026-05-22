@@ -15,6 +15,7 @@ import { emergencyNumberForCountry } from "@/lib/donations";
 import { translateTopic } from "@/lib/kbTranslate";
 import { translateStrings } from "@/lib/uiTranslate";
 import { buildHowToJsonLd, buildFaqJsonLd } from "@/lib/kbSchema";
+import { qaFor } from "@/data/kbQa";
 
 const STATIC_TOPIC_STRINGS = [
   "All topics",
@@ -26,6 +27,7 @@ const STATIC_TOPIC_STRINGS = [
   "Source",
   "Adapted from The St John of God First Aid Manual 5th Edition — section",
   "In an emergency call 000. These guides are for learning and refresher use — not a substitute for professional medical care.",
+  "Questions & answers",
 ];
 
 const KbTopic = () => {
@@ -63,6 +65,7 @@ const KbTopic = () => {
     source: "Source",
     adaptedFrom: "Adapted from The St John of God First Aid Manual 5th Edition — section",
     emergencyNote: "In an emergency call 000. These guides are for learning and refresher use — not a substitute for professional medical care.",
+    qaHeading: "Questions & answers",
     category: topic.category,
   });
 
@@ -78,6 +81,7 @@ const KbTopic = () => {
         source: "Source",
         adaptedFrom: STATIC_TOPIC_STRINGS[7],
         emergencyNote: STATIC_TOPIC_STRINGS[8],
+        qaHeading: STATIC_TOPIC_STRINGS[9],
         category: topic.category,
       });
       return;
@@ -95,6 +99,7 @@ const KbTopic = () => {
         source: s[6],
         adaptedFrom: s[7],
         emergencyNote: s[8],
+        qaHeading: s[9],
         category: topic.category, // already comes from per-lang meta when available
       });
     });
@@ -131,6 +136,24 @@ const KbTopic = () => {
   const related = relatedSlugs(topicEn.slug, 6)
     .map((s) => localTopics.find((t) => t.slug === s) ?? enTopics.find((t) => t.slug === s))
     .filter((t): t is NonNullable<typeof t> => !!t);
+
+  // Curated Q&A (English source) — translated on demand for non-English languages.
+  const baseQa = qaFor(topicEn.slug);
+  const [qa, setQa] = useState(baseQa);
+  useEffect(() => {
+    if (language === "en" || baseQa.length === 0) {
+      setQa(baseQa);
+      return;
+    }
+    let cancelled = false;
+    const flat = baseQa.flatMap((item) => [item.q, item.a]);
+    translateStrings(language, flat).then((s) => {
+      if (cancelled) return;
+      const out = baseQa.map((_, i) => ({ q: s[i * 2], a: s[i * 2 + 1] }));
+      setQa(out);
+    });
+    return () => { cancelled = true; };
+  }, [language, slug]);
 
   const linkedBody = autoLinkBody(
     translated.body,
@@ -191,7 +214,28 @@ const KbTopic = () => {
           });
           if (howTo) schemas.push(howTo);
           const faq = buildFaqJsonLd({ body: translated.body, inLanguage });
-          if (faq) schemas.push(faq);
+          // Merge curated Q&A into the FAQPage schema (or build one if body didn't have any).
+          if (qa.length > 0) {
+            const curated = qa.map((item) => ({
+              "@type": "Question",
+              name: item.q,
+              acceptedAnswer: { "@type": "Answer", text: item.a },
+            }));
+            if (faq) {
+              const existing = (faq.mainEntity as Array<Record<string, unknown>>) || [];
+              faq.mainEntity = [...existing, ...curated];
+              schemas.push(faq);
+            } else {
+              schemas.push({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                inLanguage,
+                mainEntity: curated,
+              });
+            }
+          } else if (faq) {
+            schemas.push(faq);
+          }
           return schemas;
         })()}
       />
@@ -275,6 +319,46 @@ const KbTopic = () => {
               {linkedBody}
             </ReactMarkdown>
           </div>
+
+          {qa.length > 0 && (
+            <section className="mt-12 pt-8 border-t border-border">
+              <h2 lang={language} className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
+                {ui.qaHeading}
+              </h2>
+              <div className="space-y-3">
+                {qa.map((item, idx) => (
+                  <details
+                    key={idx}
+                    className="group rounded-xl border border-border bg-card p-4 open:border-primary/40 transition-colors"
+                  >
+                    <summary
+                      lang={language}
+                      className="cursor-pointer list-none font-semibold text-foreground text-sm sm:text-base flex items-start justify-between gap-3"
+                    >
+                      <span>{item.q}</span>
+                      <span
+                        aria-hidden="true"
+                        className="mt-1 inline-block text-primary transition-transform group-open:rotate-45 leading-none text-lg"
+                      >
+                        +
+                      </span>
+                    </summary>
+                    <p lang={language} className="mt-3 text-sm text-card-foreground leading-relaxed">
+                      {item.a.split(/(\b000\b)/g).map((part, i) =>
+                        part === "000" ? (
+                          <a key={i} href={`tel:${emergencyNumber}`} className="text-primary font-semibold underline">
+                            {emergencyNumber}
+                          </a>
+                        ) : (
+                          <span key={i}>{part}</span>
+                        )
+                      )}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
 
           {related.length > 0 && (
             <section className="mt-12 pt-8 border-t border-border">
