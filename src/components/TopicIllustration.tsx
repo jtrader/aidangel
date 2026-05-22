@@ -1007,9 +1007,48 @@ export function hasIllustration(slug: string): boolean {
   return slug in REGISTRY;
 }
 
+/** Descriptive alt text for each illustration — used by screen readers,
+ *  image SEO, and AI crawlers that index visual content semantics. */
+const ALT_TEXT: Record<string, string> = {
+  cpr: "Diagram showing hand placement on the centre of the chest for CPR compressions at 100–120 per minute, 5 cm deep.",
+  choking: "Casualty leaning forward receiving back blows between the shoulder blades for choking first aid.",
+  "recovery-position": "Unconscious breathing casualty rolled onto their side in the recovery position with airway clear.",
+  bleeding: "Direct pressure applied with a pad to a severely bleeding wound, limb elevated above heart level.",
+  "snake-bite": "Pressure immobilisation bandage wrapped firmly along an entire limb after a snake bite.",
+  anaphylaxis: "Adrenaline auto-injector pressed into the outer mid-thigh for anaphylaxis emergency treatment.",
+  stroke: "FAST stroke check: Face drooping, Arms weak, Speech slurred, Time to call 000.",
+  burns: "Burn injury held under cool running water for 20 minutes — the standard burns first aid treatment.",
+  drsabcd: "DRSABCD primary survey: Danger, Response, Send for help, Airway, Breathing, CPR, Defibrillation.",
+  aed: "Automated external defibrillator (AED) pad placement on bare chest — upper right and lower left.",
+  asthma: "Asthma 4x4x4 plan: 4 puffs of reliever through a spacer, wait 4 minutes, repeat if no improvement.",
+  poisoning: "Calling Poisons Information Centre 13 11 26 for suspected poisoning — do not induce vomiting.",
+  "electric-shock": "Switch off power at the source before approaching a casualty of electric shock.",
+  "heart-attack": "Heart attack warning signs: chest pain or pressure radiating to arm, jaw, or back.",
+  seizures: "Person having a seizure on the ground with the area cleared of hazards and head cushioned.",
+  fainting: "Casualty lying flat with legs raised to restore blood flow after fainting.",
+  shock: "Casualty lying flat with legs elevated and kept warm to manage shock.",
+  diabetes: "Conscious diabetic casualty given a sugary drink for low blood sugar (hypoglycaemia).",
+  "spider-bite": "Pressure immobilisation bandage applied to a funnel-web spider bite on a limb.",
+  "jellyfish-stings": "Vinegar poured over a tropical jellyfish sting to neutralise stinging cells.",
+  drowning: "Drowning rescue: get the casualty out of the water and start CPR if not breathing.",
+  "heat-illness": "Cooling a heat-stroke casualty with wet cloths and shade while awaiting paramedics.",
+  hypothermia: "Hypothermic casualty wrapped in blankets and sheltered from wind and rain to rewarm gradually.",
+  sunburn: "Sunburned skin cooled with cool water and aloe — keep hydrated and out of further sun.",
+  dehydration: "Sipping water and oral rehydration solution to treat dehydration.",
+  fractures: "Suspected fracture immobilised with a splint and sling — do not attempt to straighten the limb.",
+  "sprains-strains": "R.I.C.E. treatment for sprains and strains: Rest, Ice, Compression, Elevation.",
+  "head-injury": "Head injury casualty kept still and observed for signs of concussion or deterioration.",
+  "spinal-injury": "Supporting a suspected spinal injury casualty's head and neck in line with the spine.",
+  "eye-injuries": "Eye flushed with clean running water for chemical or foreign-body eye injury.",
+  "dental-injury": "Knocked-out tooth held by the crown and placed in milk for the dentist.",
+  nosebleed: "Pinching the soft part of the nose and leaning forward to stop a nosebleed.",
+  "allergic-reactions": "Mild allergic reaction with hives — monitor closely for signs of anaphylaxis.",
+};
+
 const TopicIllustration = memo(function TopicIllustration({ slug, className }: Props) {
   const Diagram = REGISTRY[slug];
   if (!Diagram) return null;
+  const alt = ALT_TEXT[slug] ?? `First aid illustration for ${slug.replace(/-/g, " ")}.`;
   return (
     <figure
       className={
@@ -1019,15 +1058,18 @@ const TopicIllustration = memo(function TopicIllustration({ slug, className }: P
     >
       <svg
         role="img"
-        aria-hidden="true"
+        aria-label={alt}
         viewBox={FRAME}
         className="w-full h-auto max-h-64 text-primary"
         preserveAspectRatio="xMidYMid meet"
       >
+        <title>{alt}</title>
         <Diagram />
       </svg>
+      <figcaption className="sr-only">{alt}</figcaption>
     </figure>
   );
 });
 
 export default TopicIllustration;
+
