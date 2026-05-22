@@ -156,3 +156,39 @@ export function citySlug(city: string): string {
 export function cityFromSlug(slug: string): string {
   return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+/** Great-circle distance in km between two lat/lng points. */
+export function distanceKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+/**
+ * Nearest physical venues to a lat/lng, optionally scoped to a country.
+ * Returns up to `limit` items, each annotated with `distance_km`.
+ */
+export async function getNearestVenues(
+  lat: number,
+  lng: number,
+  opts: { countryCode?: string; limit?: number } = {},
+): Promise<Array<EducatorLocation & { educator: Educator; distance_km: number }>> {
+  const limit = opts.limit ?? 3;
+  let query = supabase
+    .from("educator_locations")
+    .select("*, educator:educators(*)")
+    .not("lat", "is", null)
+    .not("lng", "is", null);
+  if (opts.countryCode) query = query.eq("country_code", opts.countryCode.toUpperCase());
+  const { data } = await query;
+  const rows = (data ?? []) as Array<EducatorLocation & { educator: Educator }>;
+  return rows
+    .map((r) => ({ ...r, distance_km: distanceKm(lat, lng, r.lat as number, r.lng as number) }))
+    .sort((a, b) => a.distance_km - b.distance_km)
+    .slice(0, limit);
+}

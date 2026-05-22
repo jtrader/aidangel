@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, Search } from "lucide-react";
+import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, Search, Navigation } from "lucide-react";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { COUNTRIES, getCountry } from "@/lib/donations";
-import { Educator, getCountryEducators, getCitiesForCountry, citySlug } from "@/lib/educators";
+import {
+  Educator,
+  EducatorLocation,
+  getCountryEducators,
+  getCitiesForCountry,
+  getNearestVenues,
+  citySlug,
+} from "@/lib/educators";
+import { useGeoLocation } from "@/hooks/useGeoLocation";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
+
+type NearbyVenue = EducatorLocation & { educator: Educator; distance_km: number };
 
 const TYPE_LABELS: Record<string, string> = {
   st_john: "St John Ambulance",
@@ -71,9 +81,13 @@ export default function LearnCountry() {
   const code = (countryParam ?? "au").toUpperCase();
   const country = getCountry(code) ?? COUNTRIES[0];
   const { language } = useLanguage();
+  const { geo } = useGeoLocation();
   const [inPerson, setInPerson] = useState<Educator[]>([]);
   const [online, setOnline] = useState<Educator | null>(null);
   const [cities, setCities] = useState<string[]>([]);
+  const [nearby, setNearby] = useState<NearbyVenue[]>([]);
+
+  const showNearby = !!(geo?.lat && geo?.lng && geo.country?.toUpperCase() === country.code);
 
   useEffect(() => {
     let cancelled = false;
@@ -83,8 +97,15 @@ export default function LearnCountry() {
       setOnline(online);
     });
     getCitiesForCountry(country.code).then((c) => !cancelled && setCities(c));
+    if (showNearby && geo?.lat && geo?.lng) {
+      getNearestVenues(geo.lat, geo.lng, { countryCode: country.code, limit: 3 }).then(
+        (v) => !cancelled && setNearby(v),
+      );
+    } else {
+      setNearby([]);
+    }
     return () => { cancelled = true; };
-  }, [country.code, language]);
+  }, [country.code, language, geo?.lat, geo?.lng, showNearby]);
 
   const title = `First Aid Courses in ${country.name} — St John, Red Cross & Online`;
   const desc = `Find accredited first aid training in ${country.name}. In-person courses from St John Ambulance and Red Cross, plus online options.`;
@@ -105,7 +126,62 @@ export default function LearnCountry() {
           <h1 className="font-heading text-3xl font-bold">
             {country.flag} First Aid Courses — {country.name}
           </h1>
+          {geo?.city && showNearby && (
+            <p className="text-sm text-muted-foreground mt-1 inline-flex items-center gap-1">
+              <Navigation className="h-3.5 w-3.5" /> Showing courses near {geo.city}
+              {geo.region ? `, ${geo.region}` : ""}.
+            </p>
+          )}
         </div>
+
+        {showNearby && nearby.length > 0 && (
+          <section aria-labelledby="nearby" className="mb-8">
+            <h2 id="nearby" className="font-heading text-xl font-semibold mb-3 inline-flex items-center gap-2">
+              <Navigation className="h-5 w-5 text-primary" /> Nearest training venues
+            </h2>
+            <div className="grid gap-3">
+              {nearby.map((v) => (
+                <article key={v.id} className="bg-card border border-border rounded-xl p-5">
+                  <div className="flex items-start justify-between gap-3 mb-1">
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wide text-primary font-semibold">
+                        {v.educator.name}
+                      </div>
+                      <h3 className="font-heading text-base font-semibold">
+                        {v.address ?? v.city}
+                      </h3>
+                      <div className="text-xs text-muted-foreground">
+                        {[v.city, v.region].filter(Boolean).join(", ")}
+                      </div>
+                    </div>
+                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium whitespace-nowrap">
+                      {Math.round(v.distance_km)} km away
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <Link
+                      to={`/learn/provider/${v.educator.slug}`}
+                      className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full border border-border hover:bg-accent"
+                    >
+                      Profile
+                    </Link>
+                    {(v.booking_url ?? v.educator.booking_url) && (
+                      <a
+                        href={v.booking_url ?? v.educator.booking_url ?? "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+                      >
+                        Book a course <ExternalLink className="h-3 w-3" />
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
 
         <section aria-labelledby="in-person" className="mb-8">
           <h2 id="in-person" className="font-heading text-xl font-semibold mb-3 inline-flex items-center gap-2">
