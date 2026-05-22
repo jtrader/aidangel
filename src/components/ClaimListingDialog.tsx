@@ -104,6 +104,24 @@ export default function ClaimListingDialog({
     }
     setLoading(true);
     const claimId = crypto.randomUUID();
+
+    // Upload evidence files first so we can store their paths on the claim row
+    const uploadedPaths: string[] = [];
+    for (const f of files) {
+      const ext = f.name.split(".").pop()?.toLowerCase() || "bin";
+      const safe = f.name.replace(/[^a-z0-9._-]/gi, "_").slice(0, 60);
+      const path = `${claimId}/${Date.now()}-${safe}`;
+      const { error: upErr } = await supabase.storage
+        .from("claim-evidence")
+        .upload(path, f, { contentType: f.type, upsert: false });
+      if (upErr) {
+        setLoading(false);
+        toast({ title: "Upload failed", description: `${f.name}: ${upErr.message}`, variant: "destructive" });
+        return;
+      }
+      uploadedPaths.push(path);
+    }
+
     const { error } = await supabase.from("educator_claims").insert({
       id: claimId,
       educator_id: educatorId,
@@ -113,6 +131,7 @@ export default function ClaimListingDialog({
       claimant_phone: parsed.data.claimant_phone || null,
       message: parsed.data.message || null,
       evidence_url: parsed.data.evidence_url || null,
+      evidence_file_paths: uploadedPaths,
     });
     setLoading(false);
     if (error) {
