@@ -16,7 +16,11 @@ import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { translateTopic } from "@/lib/kbTranslate";
 import { translateStrings } from "@/lib/uiTranslate";
-import { buildHowToJsonLd, buildFaqJsonLd } from "@/lib/kbSchema";
+import { buildHowToJsonLd, buildFaqJsonLd, buildSpeakableJsonLd } from "@/lib/kbSchema";
+
+// Editorial review date — bump when KB content is reviewed against the source.
+const LAST_REVIEWED_ISO = "2026-05-22";
+const LAST_REVIEWED_HUMAN = "22 May 2026";
 import { qaFor } from "@/data/kbQa";
 
 const STATIC_TOPIC_STRINGS = [
