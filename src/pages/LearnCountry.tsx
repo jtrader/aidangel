@@ -25,7 +25,7 @@ async function geocodeNominatim(query: string): Promise<GeoInfo | null> {
     if (!res.ok) return null;
     const data = await res.json();
     if (!Array.isArray(data) || data.length === 0) return null;
-    const place = data[1] ?? data[0];
+    const place = data[0];
     const display = place.display_name ?? "";
     const parts = display.split(",").map((s: string) => s.trim());
     return {
