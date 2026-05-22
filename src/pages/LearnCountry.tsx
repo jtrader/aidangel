@@ -19,7 +19,7 @@ import { trackLearnClick } from "@/lib/giveAnalytics";
 import { Favicon } from "@/components/Favicon";
 
 
-type NearbyVenue = EducatorLocation & { educator: Educator; distance_km: number };
+type NearbyVenue = EducatorLocation & { educator: Educator; distance_km: number | null };
 
 const TYPE_LABELS: Record<string, string> = {
   st_john: "St John Ambulance",
