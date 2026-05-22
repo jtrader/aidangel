@@ -125,6 +125,41 @@ export function findTopicBySection(name: string): TopicMeta | undefined {
 }
 
 /**
+ * Score topics against a free-form chat text (user question + assistant reply)
+ * and return the best match if its score clears a confidence threshold.
+ * Uses English metadata for matching — works across all languages because the
+ * AI's responses tend to include English medical terms.
+ */
+export function findBestTopic(text: string, minScore = 4): TopicMeta | undefined {
+  const t = text.toLowerCase();
+  if (t.length < 8) return undefined;
+  let best: { topic: TopicMeta; score: number } | undefined;
+  for (const topic of enTopics) {
+    let score = 0;
+    const title = topic.title.toLowerCase();
+    const section = topic.section.toLowerCase();
+    // Whole-word title/section matches are strong signals
+    const titleRe = new RegExp(`\\b${escapeRe(title)}\\b`, "i");
+    const sectionRe = new RegExp(`\\b${escapeRe(section)}\\b`, "i");
+    if (titleRe.test(t)) score += 5;
+    else if (t.includes(title)) score += 3;
+    if (section !== title) {
+      if (sectionRe.test(t)) score += 4;
+      else if (t.includes(section)) score += 2;
+    }
+    for (const kw of topic.keywords) {
+      const k = kw.toLowerCase();
+      if (k.length < 3) continue;
+      const re = new RegExp(`\\b${escapeRe(k)}\\b`, "i");
+      if (re.test(t)) score += 2;
+    }
+    if (!best || score > best.score) best = { topic, score };
+  }
+  if (!best || best.score < minScore) return undefined;
+  return best.topic;
+}
+
+/**
  * Return related topic slugs for a given slug, expanded with topics that share
  * the same category or overlapping keywords. Capped at `max` (default 6).
  */
