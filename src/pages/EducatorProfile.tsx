@@ -29,6 +29,7 @@ export default function EducatorProfile() {
   const { slug } = useParams<{ slug: string }>();
   const [ed, setEd] = useState<EducatorFull | null>(null);
   const [loading, setLoading] = useState(true);
+  const [myClaims, setMyClaims] = useState<MyClaim[]>([]);
 
   const trackOutbound = (url: string, variant: "booking" | "website") => {
     if (!ed) return;
