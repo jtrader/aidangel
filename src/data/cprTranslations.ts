@@ -6,7 +6,7 @@ export type CprLangCode =
 
 export interface CprLangInfo {
   code: CprLangCode;
-  label: string;        // shown in selector (native)
+  label: string;
   englishName: string;
   bcp47: string;
 }
@@ -36,7 +36,7 @@ export const CPR_PHRASES: Record<CprLangCode, Record<CprPhraseKey, string>> = {
     A: "Open the airway. Tilt the head back gently and lift the chin. Clear any visible obstruction.",
     B: "Check for normal breathing. Look, listen and feel for up to ten seconds. Gasping is not normal breathing.",
     C: "Start CPR now. Push hard and fast in the centre of the chest. I will keep the rhythm. Thirty compressions, then two breaths.",
-    AED: "Attach the defibrillator as soon as it arrives. Turn it on and follow the voice prompts. Don't stop CPR until it tells you to stand clear.",
+    AED: "Attach the defibrillator as soon as it arrives. Turn it on and follow the voice prompts. Do not stop CPR until it tells you to stand clear.",
     breath: "Two breaths. Then continue compressions.",
     startCpr: "Push hard and fast. Follow the beat.",
   },
@@ -89,6 +89,4 @@ export const CPR_PHRASES: Record<CprLangCode, Record<CprPhraseKey, string>> = {
     R: "تحقق من الاستجابة. اضغط على الكتفين بقوة واسأل بصوت عالٍ: هل تسمعني؟ افتح عينيك!",
     S: "اطلب المساعدة. اتصل بخدمات الطوارئ فورًا. ضع هاتفك على مكبر الصوت.",
     A: "افتح مجرى الهواء. أمل الرأس برفق إلى الخلف وارفع الذقن. أزل أي عائق مرئي.",
-    B: "تحقق من التنفس الطبيعي. انظر واستمع واشعر لمدة تصل إلى عشر ثوانٍ. اللهاث ليس تنفسًا طبيعيًا.",
-    C: "ابدأ الإنعاش القلبي الرئوي الآن. اضغط بقوة وبسرعة في وسط الصدر. سأحافظ على الإيقاع. ثلاثون ضغطة ثم نفسان.",
-    AED: "قم بتركيب جهاز إزالة الرجفان فور وصوله. شغله واتبع التعليمات الصوتية. لا توقف الإنعاش حتى يط
+    B: "تحقق من التنفس الطبيعي. انظر واستمع واشعر لمدة تصل إلى عشر ثوانٍ. ا
