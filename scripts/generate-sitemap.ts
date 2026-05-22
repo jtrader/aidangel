@@ -30,10 +30,27 @@ const HREFLANG: Record<Lang, string> = {
 
 const meta = JSON.parse(readFileSync(resolve("kb/_meta.json"), "utf8")) as Array<{ slug: string }>;
 
+// Long-tail symptom landers — keep slugs in sync with src/data/symptomLanders.ts
+const LANDER_SLUGS = [
+  "chest-pain",
+  "severe-bleeding",
+  "choking-adult",
+  "choking-child",
+  "choking-baby",
+  "anaphylaxis-epipen",
+  "stroke-signs",
+  "snake-bite-australia",
+  "burn-first-aid",
+  "asthma-attack",
+  "seizure-first-aid",
+  "drowning-rescue",
+];
+
 const basePaths: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/kb", changefreq: "weekly", priority: "0.9" },
   { path: "/symptoms", changefreq: "weekly", priority: "0.9" },
+  ...LANDER_SLUGS.map((s) => ({ path: `/symptoms/${s}`, changefreq: "monthly", priority: "0.8" })),
   ...meta.map((t) => ({ path: `/kb/${t.slug}`, changefreq: "monthly", priority: "0.7" })),
 ];
 

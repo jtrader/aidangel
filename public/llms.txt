@@ -10,6 +10,21 @@ First Aid Angel is a free chatbot and knowledge base that helps members of the p
 - [First aid by symptom](/symptoms): Symptom-first directory — tap what's happening to jump to the right guide.
 - [Knowledge base](/kb): All first aid topics, organised by category.
 
+## Symptom landing pages (long-tail)
+
+- [Chest pain first aid](/symptoms/chest-pain): Suspected heart attack — call 000, aspirin, rest.
+- [Severe bleeding](/symptoms/severe-bleeding): Direct pressure, tourniquet if limb bleeding won't stop.
+- [Choking adult](/symptoms/choking-adult): 5 back blows + 5 chest thrusts (Australian protocol).
+- [Choking child](/symptoms/choking-child): Children 1–8 years, back blows and chest thrusts.
+- [Choking baby](/symptoms/choking-baby): Infants under 1 — never use abdominal thrusts.
+- [Anaphylaxis EpiPen](/symptoms/anaphylaxis-epipen): Lay flat, adrenaline into outer thigh, call 000.
+- [Stroke signs (FAST)](/symptoms/stroke-signs): Face, Arms, Speech, Time — call 000.
+- [Snake bite Australia](/symptoms/snake-bite-australia): Pressure-immobilisation bandage, splint, don't wash.
+- [Burn first aid](/symptoms/burn-first-aid): 20 minutes cool running water, no ice or butter.
+- [Asthma attack](/symptoms/asthma-attack): 4 puffs, wait 4 minutes, repeat (4×4×4 plan).
+- [Seizure first aid](/symptoms/seizure-first-aid): Time it, protect the head, recovery position after.
+- [Drowning rescue](/symptoms/drowning-rescue): 5 rescue breaths first, then CPR 30:2.
+
 ## Knowledge base topics
 
 - [DRSABCD action plan](/kb/drsabcd): The 7-step primary survey.
