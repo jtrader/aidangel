@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft, BookOpen, Loader2, MessageCircle } from "lucide-react";
-import { getTopic, getBody, topicsFor, relatedSlugs, autoLinkBody } from "@/lib/kb";
+import { getTopic, getBody, topicsFor, relatedSlugs, autoLinkBody, autoLinkPhones } from "@/lib/kb";
 import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
