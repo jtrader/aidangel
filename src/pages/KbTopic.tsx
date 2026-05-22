@@ -137,6 +137,24 @@ const KbTopic = () => {
     .map((s) => localTopics.find((t) => t.slug === s) ?? enTopics.find((t) => t.slug === s))
     .filter((t): t is NonNullable<typeof t> => !!t);
 
+  // Curated Q&A (English source) — translated on demand for non-English languages.
+  const baseQa = qaFor(topicEn.slug);
+  const [qa, setQa] = useState(baseQa);
+  useEffect(() => {
+    if (language === "en" || baseQa.length === 0) {
+      setQa(baseQa);
+      return;
+    }
+    let cancelled = false;
+    const flat = baseQa.flatMap((item) => [item.q, item.a]);
+    translateStrings(language, flat).then((s) => {
+      if (cancelled) return;
+      const out = baseQa.map((_, i) => ({ q: s[i * 2], a: s[i * 2 + 1] }));
+      setQa(out);
+    });
+    return () => { cancelled = true; };
+  }, [language, slug]);
+
   const linkedBody = autoLinkBody(
     translated.body,
     topicEn.slug,
