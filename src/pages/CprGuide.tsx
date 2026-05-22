@@ -41,7 +41,6 @@ const STEPS: Step[] = [
     label: "Danger",
     title: "Check for Danger",
     icon: ShieldAlert,
-    spoken: "Check for danger. Make sure the scene is safe for you, bystanders, and the casualty before approaching.",
     detail: "Look for traffic, fire, electricity, water or violence. Don't become a second casualty.",
   },
   {
@@ -49,7 +48,6 @@ const STEPS: Step[] = [
     label: "Response",
     title: "Check Response",
     icon: MessageCircle,
-    spoken: "Check for response. Squeeze the shoulders firmly and ask loudly: Can you hear me? Open your eyes!",
     detail: "Use the COWS check — Can you hear me? Open your eyes! What's your name? Squeeze my hand.",
   },
   {
@@ -57,7 +55,6 @@ const STEPS: Step[] = [
     label: "Send",
     title: "Send for Help — Call now",
     icon: Phone,
-    spoken: "Send for help. Call emergency services immediately. Put your phone on speaker.",
     detail: "Call 000 (or local emergency number). Ask a bystander to find an AED.",
   },
   {
@@ -65,7 +62,6 @@ const STEPS: Step[] = [
     label: "Airway",
     title: "Open the Airway",
     icon: Wind,
-    spoken: "Open the airway. Tilt the head back gently and lift the chin. Clear any visible obstruction.",
     detail: "If you suspect a spinal injury, lift the jaw without tilting the head.",
   },
   {
@@ -73,7 +69,6 @@ const STEPS: Step[] = [
     label: "Breathing",
     title: "Check Breathing",
     icon: Activity,
-    spoken: "Check for normal breathing. Look, listen and feel for up to ten seconds. Gasping is not normal breathing.",
     detail: "If breathing normally — recovery position. If not — start CPR immediately.",
   },
   {
@@ -81,7 +76,6 @@ const STEPS: Step[] = [
     label: "CPR",
     title: "Start CPR — 30:2",
     icon: HeartPulse,
-    spoken: "Start CPR now. Push hard and fast in the centre of the chest. I will keep the rhythm. Thirty compressions, then two breaths.",
     detail: "Centre of chest, two hands, 5 cm deep, 100–120 per minute. Allow full chest recoil between compressions.",
   },
   {
@@ -89,7 +83,6 @@ const STEPS: Step[] = [
     label: "Defib",
     title: "Attach the AED",
     icon: Zap,
-    spoken: "Attach the defibrillator as soon as it arrives. Turn it on and follow the voice prompts. Don't stop CPR until it tells you to stand clear.",
     detail: "Bare the chest, dry if wet, apply pads — upper right and lower left. Stand clear when it analyses or shocks.",
   },
 ];
