@@ -22,7 +22,8 @@ import { SeoHead } from "@/components/SeoHead";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { useMetronome } from "@/hooks/useMetronome";
-import { speak, stopSpeaking, isSpeechSupported } from "@/lib/speech";
+import { speakCpr, stopCprVoice, prefetchCprVoice } from "@/lib/cprVoice";
+import { CPR_LANGUAGES, type CprLangCode } from "@/data/cprTranslations";
 
 type StepKey = "D" | "R" | "S" | "A" | "B" | "C" | "AED";
 
