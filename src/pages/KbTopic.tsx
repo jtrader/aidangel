@@ -8,6 +8,7 @@ import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
+import TopicIllustration from "@/components/TopicIllustration";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
@@ -280,9 +281,11 @@ const KbTopic = () => {
             </h1>
             <LanguageSelector />
           </div>
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed" lang={language}>
+          <p className="text-lg text-muted-foreground mb-6 leading-relaxed" lang={language}>
             {translated.summary}
           </p>
+
+          <TopicIllustration slug={topicEn.slug} />
 
           {translating && (
             <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
