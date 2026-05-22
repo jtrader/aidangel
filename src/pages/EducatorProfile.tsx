@@ -94,8 +94,9 @@ export default function EducatorProfile() {
               onClick={() => trackOutbound(ed.booking_url!, "booking")}
               data-analytics-event="learn_click"
               data-analytics-educator={ed.slug}
-              className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90"
             >
+              <Favicon url={ed.booking_url} size={16} />
               Book a course <ExternalLink className="h-3 w-3" />
             </a>
           )}
@@ -107,8 +108,9 @@ export default function EducatorProfile() {
               onClick={() => trackOutbound(ed.website!, "website")}
               data-analytics-event="learn_click"
               data-analytics-educator={ed.slug}
-              className="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-border text-sm hover:bg-accent"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-sm hover:bg-accent"
             >
+              <Favicon url={ed.website} size={16} />
               Website <ExternalLink className="h-3 w-3" />
             </a>
           )}
