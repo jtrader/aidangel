@@ -81,9 +81,13 @@ export default function LearnCountry() {
   const code = (countryParam ?? "au").toUpperCase();
   const country = getCountry(code) ?? COUNTRIES[0];
   const { language } = useLanguage();
+  const { geo } = useGeoLocation();
   const [inPerson, setInPerson] = useState<Educator[]>([]);
   const [online, setOnline] = useState<Educator | null>(null);
   const [cities, setCities] = useState<string[]>([]);
+  const [nearby, setNearby] = useState<NearbyVenue[]>([]);
+
+  const showNearby = !!(geo?.lat && geo?.lng && geo.country?.toUpperCase() === country.code);
 
   useEffect(() => {
     let cancelled = false;
@@ -93,8 +97,15 @@ export default function LearnCountry() {
       setOnline(online);
     });
     getCitiesForCountry(country.code).then((c) => !cancelled && setCities(c));
+    if (showNearby && geo?.lat && geo?.lng) {
+      getNearestVenues(geo.lat, geo.lng, { countryCode: country.code, limit: 3 }).then(
+        (v) => !cancelled && setNearby(v),
+      );
+    } else {
+      setNearby([]);
+    }
     return () => { cancelled = true; };
-  }, [country.code, language]);
+  }, [country.code, language, geo?.lat, geo?.lng, showNearby]);
 
   const title = `First Aid Courses in ${country.name} — St John, Red Cross & Online`;
   const desc = `Find accredited first aid training in ${country.name}. In-person courses from St John Ambulance and Red Cross, plus online options.`;
