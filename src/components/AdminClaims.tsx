@@ -45,9 +45,10 @@ export default function AdminClaims() {
 
   const approve = async (c: Claim) => {
     const now = new Date().toISOString();
+    const reviewNotes = notes[c.id] ?? null;
     const { error: cErr } = await supabase
       .from("educator_claims")
-      .update({ status: "approved", review_notes: notes[c.id] ?? null, reviewed_at: now })
+      .update({ status: "approved", review_notes: reviewNotes, reviewed_at: now })
       .eq("id", c.id);
     if (cErr) { toast({ title: "Approve failed", description: cErr.message, variant: "destructive" }); return; }
     const { error: eErr } = await supabase
@@ -55,16 +56,42 @@ export default function AdminClaims() {
       .update({ is_claimed: true, claimed_at: now })
       .eq("id", c.educator_id);
     if (eErr) { toast({ title: "Educator update failed", description: eErr.message, variant: "destructive" }); return; }
+    supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "claim-approved",
+        recipientEmail: c.claimant_email,
+        idempotencyKey: `claim-approved-${c.id}`,
+        templateData: {
+          name: c.claimant_name,
+          educatorName: c.educator?.name,
+          profileUrl: c.educator ? `${window.location.origin}/learn/provider/${c.educator.slug}` : undefined,
+          notes: reviewNotes ?? undefined,
+        },
+      },
+    }).catch(() => {});
     toast({ title: "Claim approved" });
     load();
   };
 
   const reject = async (c: Claim) => {
+    const reviewNotes = notes[c.id] ?? null;
     const { error } = await supabase
       .from("educator_claims")
-      .update({ status: "rejected", review_notes: notes[c.id] ?? null, reviewed_at: new Date().toISOString() })
+      .update({ status: "rejected", review_notes: reviewNotes, reviewed_at: new Date().toISOString() })
       .eq("id", c.id);
     if (error) { toast({ title: "Reject failed", description: error.message, variant: "destructive" }); return; }
+    supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "claim-rejected",
+        recipientEmail: c.claimant_email,
+        idempotencyKey: `claim-rejected-${c.id}`,
+        templateData: {
+          name: c.claimant_name,
+          educatorName: c.educator?.name,
+          notes: reviewNotes ?? undefined,
+        },
+      },
+    }).catch(() => {});
     toast({ title: "Claim rejected" });
     load();
   };
