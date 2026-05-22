@@ -55,6 +55,19 @@ export default function EducatorProfile() {
     return () => { cancelled = true; };
   }, [slug]);
 
+  // Fetch claim statuses for this educator from localStorage
+  useEffect(() => {
+    if (!ed) return;
+    const stored = JSON.parse(localStorage.getItem("faa_claims") ?? "[]") as Array<{ educatorId: string; claimId: string; claimantEmail: string }>;
+    const mine = stored.filter((c) => c.educatorId === ed.id);
+    if (mine.length === 0) return;
+    const ids = mine.map((c) => c.claimId);
+    supabase.rpc("get_claim_statuses", { claim_ids: ids }).then(({ data, error }) => {
+      if (error || !data) return;
+      setMyClaims(data as MyClaim[]);
+    });
+  }, [ed]);
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
