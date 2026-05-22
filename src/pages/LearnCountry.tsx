@@ -301,67 +301,77 @@ export default function LearnCountry() {
           )}
         </div>
 
-        {showNearby && nearby.length > 0 && (
+        {showNearbySection && (
           <section aria-labelledby="nearby" className="mb-8">
             <h2 id="nearby" className="font-heading text-xl font-semibold mb-3 inline-flex items-center gap-2">
               <Navigation className="h-5 w-5 text-primary" /> Nearest training venues
             </h2>
-            <div className="grid gap-3">
-              {nearby.map((v) => (
-                <article key={v.id} className="bg-card border border-border rounded-xl p-5">
-                  <div className="flex items-start justify-between gap-3 mb-1">
-                    <div className="flex items-start gap-2.5 min-w-0">
-                      <Favicon url={v.educator.website ?? v.educator.booking_url} logoUrl={v.educator.logo_url} alt="" size={28} className="mt-0.5 rounded-md border border-border bg-background p-0.5" />
-                      <div className="min-w-0">
-                        <div className="text-[11px] uppercase tracking-wide text-primary font-semibold">
-                          {v.educator.name}
-                        </div>
-                        <h3 className="font-heading text-base font-semibold">
-                          {v.address ?? v.city ?? `${country.name}-wide`}
-                        </h3>
-                        <div className="text-xs text-muted-foreground">
-                          {[v.city, v.region].filter(Boolean).join(", ") || `Serves ${country.name}`}
+            {geoLoading || nearbyLoading ? (
+              <NearbySkeleton />
+            ) : nearby.length > 0 ? (
+              <div className="grid gap-3">
+                {nearby.map((v) => (
+                  <article key={v.id} className="bg-card border border-border rounded-xl p-5">
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <div className="flex items-start gap-2.5 min-w-0">
+                        <Favicon url={v.educator.website ?? v.educator.booking_url} logoUrl={v.educator.logo_url} alt="" size={28} className="mt-0.5 rounded-md border border-border bg-background p-0.5" />
+                        <div className="min-w-0">
+                          <div className="text-[11px] uppercase tracking-wide text-primary font-semibold">
+                            {v.educator.name}
+                          </div>
+                          <h3 className="font-heading text-base font-semibold">
+                            {v.address ?? v.city ?? `${country.name}-wide`}
+                          </h3>
+                          <div className="text-xs text-muted-foreground">
+                            {[v.city, v.region].filter(Boolean).join(", ") || `Serves ${country.name}`}
+                          </div>
                         </div>
                       </div>
+                      <span className="text-[11px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium whitespace-nowrap">
+                        {v.distance_km == null ? "Serves your area" : `${Math.round(v.distance_km)} km away`}
+                      </span>
                     </div>
-                    <span className="text-[11px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium whitespace-nowrap">
-                      {v.distance_km == null ? "Serves your area" : `${Math.round(v.distance_km)} km away`}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    <Link
-                      to={`/learn/provider/${v.educator.slug}`}
-                      className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full border border-border hover:bg-accent"
-                    >
-                      Profile
-                    </Link>
-                    {(v.booking_url ?? v.educator.booking_url) && (
-                      <a
-                        href={v.booking_url ?? v.educator.booking_url ?? "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() =>
-                          trackLearnClick({
-                            ngoId: v.educator.slug,
-                            countryCode: country.code,
-                            countryName: country.name,
-                            destinationUrl: v.booking_url ?? v.educator.booking_url ?? "",
-                            isNational: (v.educator.hq_country_code ?? "").toUpperCase() === country.code,
-                            language,
-                            variant: "booking",
-                          })
-                        }
-                        data-analytics-event="learn_click"
-                        data-analytics-educator={v.educator.slug}
-                        className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <Link
+                        to={`/learn/provider/${v.educator.slug}`}
+                        className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full border border-border hover:bg-accent"
                       >
-                        Book a course <ExternalLink className="h-3 w-3" />
-                      </a>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
+                        Profile
+                      </Link>
+                      {(v.booking_url ?? v.educator.booking_url) && (
+                        <a
+                          href={v.booking_url ?? v.educator.booking_url ?? "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() =>
+                            trackLearnClick({
+                              ngoId: v.educator.slug,
+                              countryCode: country.code,
+                              countryName: country.name,
+                              destinationUrl: v.booking_url ?? v.educator.booking_url ?? "",
+                              isNational: (v.educator.hq_country_code ?? "").toUpperCase() === country.code,
+                              language,
+                              variant: "booking",
+                            })
+                          }
+                          data-analytics-event="learn_click"
+                          data-analytics-educator={v.educator.slug}
+                          className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+                        >
+                          Book a course <ExternalLink className="h-3 w-3" />
+                        </a>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-card border border-border rounded-xl p-5 text-sm text-muted-foreground">
+                {geoError || !activeGeo
+                  ? "We couldn’t detect your location automatically. Enter your city or suburb above to see nearby training venues."
+                  : `No nearby training venues found for ${activeGeo.city ?? country.name}. Try browsing in-person providers below.`}
+              </div>
+            )}
           </section>
         )}
 
