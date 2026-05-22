@@ -263,17 +263,25 @@ export default function CprGuide() {
               </div>
               <h2 className="font-heading text-xl sm:text-2xl font-bold mt-0.5">{step.title}</h2>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <select
-                value={lang}
-                onChange={(e) => setLang(e.target.value as CprLangCode)}
-                aria-label="Voice-over language"
-                className="h-10 rounded-full border border-border bg-background text-sm px-3 text-foreground hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                {CPR_LANGUAGES.map((l) => (
-                  <option key={l.code} value={l.code}>{l.label}</option>
-                ))}
-              </select>
+            <div className="flex items-center gap-2 shrink-1">
+              <div className="relative">
+                <select
+                  value={lang}
+                  onChange={(e) => handleLangChange(e.target.value as CprLangCode)}
+                  aria-label="Voice-over language"
+                  className="h-10 rounded-full border border-border bg-background text-sm px-3 text-foreground hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary pr-8"
+                >
+                  {CPR_LANGUAGES.map((l) => (
+                    <option key={l.code} value={l.code}>{l.label}</option>
+                  ))}
+                </select>
+                {autoDetected && (
+                  <span className="absolute right-1 top-1/2 -translate-y-1/2 flex h-5 w-5 items-center justify-center">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-30" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+                  </span>
+                )}
+              </div>
               <button
                 onClick={() => setVoiceOn((v) => { if (v) stopCprVoice(); return !v; })}
                 aria-label={voiceOn ? "Mute voice" : "Unmute voice"}
