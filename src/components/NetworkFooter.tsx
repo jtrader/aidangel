@@ -85,6 +85,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
         <div className="flex flex-wrap items-center justify-center gap-2 pb-4">
           <DonateMenu variant="footer" />
           <ShopMenu variant="footer" />
+          <LearnMenu variant="footer" />
         </div>
         <div className="pb-2">
           <a href={kbHref} className="text-xs font-semibold text-primary hover:underline">
