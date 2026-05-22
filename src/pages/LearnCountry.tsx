@@ -421,35 +421,47 @@ export default function LearnCountry() {
           </section>
         )}
 
-        <section aria-labelledby="aed" className="mb-4 p-5 bg-accent/40 rounded-xl">
+        <section aria-labelledby="aed" className="mb-8 p-5 bg-gradient-to-r from-primary/10 to-accent/30 border border-primary/20 rounded-xl">
           <h2 id="aed" className="font-heading text-base font-semibold mb-1 inline-flex items-center gap-2">
-            <Heart className="h-4 w-4 text-primary" /> While you're here
+            <Heart className="h-5 w-5 text-primary" /> Find an AED near me
           </h2>
-          <p className="text-sm text-muted-foreground mb-3">
+          <p className="text-sm text-muted-foreground mb-4">
             Know where the nearest defibrillator is. Survival rates from cardiac arrest double when an AED is used in the first few minutes.
           </p>
           <div className="flex flex-wrap gap-2">
             <a
-              href="https://www.google.com/maps/search/AED+defibrillator+near+me"
+              href={(() => {
+                const loc = activeGeo?.city
+                  ? `${activeGeo.city}${activeGeo.region ? `, ${activeGeo.region}` : ""}`
+                  : activeGeo?.region ?? "";
+                const q = loc ? `AED+defibrillator+${encodeURIComponent(loc)}` : "AED+defibrillator+near+me";
+                return `https://www.google.com/maps/search/${q}`;
+              })()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+              className="inline-flex items-center gap-1.5 text-sm px-4 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              Find an AED near me
+              <Navigation className="h-3.5 w-3.5" /> Find an AED near me
             </a>
             <Link
               to="/symptoms"
-              className="inline-flex items-center gap-1 text-sm px-3 py-1.5 rounded-full border border-border hover:bg-accent"
+              className="inline-flex items-center gap-1 text-sm px-3 py-2 rounded-full border border-border hover:bg-accent"
             >
               <Search className="h-3 w-3" /> Find by symptom
             </Link>
             <Link
               to="/kb"
-              className="inline-flex items-center gap-1 text-sm px-3 py-1.5 rounded-full border border-border hover:bg-accent"
+              className="inline-flex items-center gap-1 text-sm px-3 py-2 rounded-full border border-border hover:bg-accent"
             >
               Knowledge base
             </Link>
           </div>
+          {activeGeo?.city && (
+            <p className="text-xs text-muted-foreground mt-3 inline-flex items-center gap-1">
+              <MapPin className="h-3 w-3" /> Searching around {activeGeo.city}
+              {activeGeo.region ? `, ${activeGeo.region}` : ""}
+            </p>
+          )}
         </section>
       </main>
 
