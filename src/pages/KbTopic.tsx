@@ -9,6 +9,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
 import TopicIllustration from "@/components/TopicIllustration";
+import PlayAudioButton from "@/components/PlayAudioButton";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
