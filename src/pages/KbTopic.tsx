@@ -284,15 +284,23 @@ const KbTopic = () => {
           <p lang={language} className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
             {ui.category}
           </p>
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground" lang={language}>
               {translated.title}
             </h1>
             <LanguageSelector />
           </div>
-          <p className="text-lg text-muted-foreground mb-6 leading-relaxed" lang={language}>
+          <p className="text-lg text-muted-foreground mb-4 leading-relaxed" lang={language}>
             {translated.summary}
           </p>
+          <div className="mb-6">
+            <PlayAudioButton
+              text={`${translated.title}. ${translated.summary} ${translated.body}`}
+              language={language}
+              label={ui.listen}
+              stopLabel={ui.stop}
+            />
+          </div>
 
           <TopicIllustration slug={topicEn.slug} />
 
