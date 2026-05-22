@@ -247,13 +247,25 @@ export default function CprGuide() {
               </div>
               <h2 className="font-heading text-xl sm:text-2xl font-bold mt-0.5">{step.title}</h2>
             </div>
-            <button
-              onClick={() => setVoiceOn((v) => { if (v) stopSpeaking(); return !v; })}
-              aria-label={voiceOn ? "Mute voice" : "Unmute voice"}
-              className="h-10 w-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent shrink-0"
-            >
-              {voiceOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-            </button>
+            <div className="flex items-center gap-2 shrink-0">
+              <select
+                value={lang}
+                onChange={(e) => setLang(e.target.value as CprLangCode)}
+                aria-label="Voice-over language"
+                className="h-10 rounded-full border border-border bg-background text-sm px-3 text-foreground hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                {CPR_LANGUAGES.map((l) => (
+                  <option key={l.code} value={l.code}>{l.label}</option>
+                ))}
+              </select>
+              <button
+                onClick={() => setVoiceOn((v) => { if (v) stopCprVoice(); return !v; })}
+                aria-label={voiceOn ? "Mute voice" : "Unmute voice"}
+                className="h-10 w-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent shrink-0"
+              >
+                {voiceOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
           <p className="text-sm sm:text-base text-card-foreground leading-relaxed mb-4">
             {step.detail}
