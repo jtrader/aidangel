@@ -16,7 +16,7 @@ import { useGeoLocation } from "@/hooks/useGeoLocation";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 import { trackLearnClick } from "@/lib/giveAnalytics";
-import { useLanguage as _unused } from "@/contexts/LanguageContext";
+
 
 type NearbyVenue = EducatorLocation & { educator: Educator; distance_km: number };
 
@@ -29,7 +29,18 @@ const TYPE_LABELS: Record<string, string> = {
   community: "Community provider",
 };
 
-function EducatorCard({ ed }: { ed: Educator }) {
+function EducatorCard({ ed, countryCode, countryName, language }: { ed: Educator; countryCode: string; countryName: string; language: string }) {
+  const isNational = (ed.hq_country_code ?? "").toUpperCase() === countryCode.toUpperCase();
+  const track = (url: string, variant: "booking" | "website") =>
+    trackLearnClick({
+      ngoId: ed.slug,
+      countryCode,
+      countryName,
+      destinationUrl: url,
+      isNational,
+      language,
+      variant,
+    });
   return (
     <article className="bg-card border border-border rounded-xl p-5">
       <div className="flex items-start justify-between gap-3 mb-2">
