@@ -243,6 +243,7 @@ export default function AdminDonations() {
                   <SelectItem value="all">All referrals</SelectItem>
                   <SelectItem value="give_click">❤️ Give (donations)</SelectItem>
                   <SelectItem value="shop_click">🛒 Shop (first aid)</SelectItem>
+                  <SelectItem value="learn_click">🎓 Learn (courses)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -274,10 +275,11 @@ export default function AdminDonations() {
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           <StatCard label="Total referrals" value={stats.total} />
           <StatCard label="❤️ Give clicks" value={stats.giveCount} />
           <StatCard label="🛒 Shop clicks" value={stats.shopCount} />
+          <StatCard label="🎓 Learn clicks" value={stats.learnCount} />
           <StatCard label="Unique sessions" value={stats.uniqueSessions} />
         </div>
 
@@ -312,7 +314,7 @@ export default function AdminDonations() {
                     <TableRow key={r.id}>
                       <TableCell className="whitespace-nowrap text-xs">{new Date(r.created_at).toLocaleString()}</TableCell>
                       <TableCell className="text-xs">
-                        {r.event_name === "shop_click" ? "🛒 Shop" : "❤️ Give"}
+                        {r.event_name === "shop_click" ? "🛒 Shop" : r.event_name === "learn_click" ? "🎓 Learn" : "❤️ Give"}
                       </TableCell>
                       <TableCell>{vendorLabel(r.event_name, r.ngo_id)}</TableCell>
                       <TableCell>{countryFlag(r.country_code)} {r.country_code}</TableCell>
