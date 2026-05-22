@@ -81,6 +81,7 @@ const KbTopic = () => {
         source: "Source",
         adaptedFrom: STATIC_TOPIC_STRINGS[7],
         emergencyNote: STATIC_TOPIC_STRINGS[8],
+        qaHeading: STATIC_TOPIC_STRINGS[9],
         category: topic.category,
       });
       return;
