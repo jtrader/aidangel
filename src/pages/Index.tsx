@@ -202,6 +202,14 @@ const Index = () => {
                   {t("welcomeDescription")}
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+                  <Link
+                    to="/cpr"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-destructive text-destructive-foreground text-sm font-bold hover:bg-destructive/90 transition-colors shadow-sm"
+                    aria-label="Open live CPR guide with metronome"
+                  >
+                    <HeartPulse className="h-4 w-4" />
+                    Live CPR Guide
+                  </Link>
                   <a
                     href="https://www.goodsamapp.org/locatorMap"
                     target="_blank"
