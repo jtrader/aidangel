@@ -33,6 +33,7 @@ const meta = JSON.parse(readFileSync(resolve("kb/_meta.json"), "utf8")) as Array
 const basePaths: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/kb", changefreq: "weekly", priority: "0.9" },
+  { path: "/symptoms", changefreq: "weekly", priority: "0.9" },
   ...meta.map((t) => ({ path: `/kb/${t.slug}`, changefreq: "monthly", priority: "0.7" })),
 ];
 

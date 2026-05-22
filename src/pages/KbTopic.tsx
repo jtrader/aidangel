@@ -16,7 +16,11 @@ import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { translateTopic } from "@/lib/kbTranslate";
 import { translateStrings } from "@/lib/uiTranslate";
-import { buildHowToJsonLd, buildFaqJsonLd } from "@/lib/kbSchema";
+import { buildHowToJsonLd, buildFaqJsonLd, buildSpeakableJsonLd } from "@/lib/kbSchema";
+
+// Editorial review date — bump when KB content is reviewed against the source.
+const LAST_REVIEWED_ISO = "2026-05-22";
+const LAST_REVIEWED_HUMAN = "22 May 2026";
 import { qaFor } from "@/data/kbQa";
 
 const STATIC_TOPIC_STRINGS = [
@@ -191,20 +195,44 @@ const KbTopic = () => {
           const schemas: Array<Record<string, unknown>> = [
             {
               "@context": "https://schema.org",
-              "@type": "MedicalWebPage",
+              "@type": ["MedicalWebPage", "Article"],
               name: translated.title,
+              headline: translated.title,
               description: translated.summary,
               url: topicUrl,
               inLanguage,
               about: { "@type": "MedicalCondition", name: topicEn.section },
+              audience: { "@type": "MedicalAudience", audienceType: "Patient" },
+              medicalAudience: "Patient",
               keywords: topicEn.keywords.join(", "),
               isPartOf: { "@type": "WebSite", name: "First Aid Angel", url: SITE_ORIGIN },
-              citation: {
-                "@type": "Book",
-                name: "The St John of God First Aid Manual 5th Edition",
-                author: "St John of God",
+              dateModified: LAST_REVIEWED_ISO,
+              lastReviewed: LAST_REVIEWED_ISO,
+              reviewedBy: {
+                "@type": "Organization",
+                name: "First Aid Angel editorial team",
+                url: SITE_ORIGIN,
               },
+              publisher: {
+                "@type": "Organization",
+                name: "First Aid Angel",
+                url: SITE_ORIGIN,
+                logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/apple-touch-icon.png` },
+              },
+              citation: [
+                {
+                  "@type": "Book",
+                  name: "Australian First Aid 5th Edition",
+                  publisher: "St John Ambulance Australia",
+                },
+                {
+                  "@type": "WebPage",
+                  name: "Australian Resuscitation Council Guidelines",
+                  url: "https://www.resus.org.au/guidelines/",
+                },
+              ],
             },
+            buildSpeakableJsonLd(topicUrl),
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
@@ -408,6 +436,20 @@ const KbTopic = () => {
             </p>
             <p lang={language} className="text-muted-foreground mb-2">
               {ui.adaptedFrom} <em>{topic.section}</em>.
+            </p>
+            <p className="text-xs text-muted-foreground mb-2">
+              <span className="font-semibold text-foreground">Last reviewed:</span>{" "}
+              <time dateTime={LAST_REVIEWED_ISO}>{LAST_REVIEWED_HUMAN}</time>{" "}
+              · Aligned with{" "}
+              <a
+                href="https://www.resus.org.au/guidelines/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline"
+              >
+                Australian Resuscitation Council guidelines
+              </a>
+              .
             </p>
             <p lang={language} className="text-xs text-muted-foreground mt-3">
               {ui.emergencyNote.replace(/\b000\b/g, emergencyNumber).split(emergencyNumber).map((part, i, arr) => (
