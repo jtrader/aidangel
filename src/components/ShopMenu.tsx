@@ -17,6 +17,7 @@ import { SHOPS, shopsForCountry, type ShopId } from "@/lib/shops";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
 import { trackShopClick } from "@/lib/giveAnalytics";
+import { Favicon } from "@/components/Favicon";
 
 interface ShopMenuProps {
   variant?: "header" | "footer";
