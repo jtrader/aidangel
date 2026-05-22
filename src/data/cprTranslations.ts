@@ -1,8 +1,5 @@
 // Pre-translated CPR voice-over phrases for the top 10 major spoken languages.
-// Used with ElevenLabs eleven_multilingual_v2 voice on the Live CPR Guide.
-
-export type CprLangCode =
-  | "en" | "zh" | "hi" | "es" | "fr" | "ar" | "bn" | "pt" | "ru" | "ja";
+export type CprLangCode = "en"|"zh"|"hi"|"es"|"fr"|"ar"|"bn"|"pt"|"ru"|"ja";
 
 export interface CprLangInfo {
   code: CprLangCode;
@@ -24,9 +21,7 @@ export const CPR_LANGUAGES: CprLangInfo[] = [
   { code: "ja", label: "日本語",     englishName: "Japanese",         bcp47: "ja-JP" },
 ];
 
-export type CprPhraseKey =
-  | "D" | "R" | "S" | "A" | "B" | "C" | "AED"
-  | "breath" | "startCpr";
+export type CprPhraseKey = "D"|"R"|"S"|"A"|"B"|"C"|"AED"|"breath"|"startCpr";
 
 export const CPR_PHRASES: Record<CprLangCode, Record<CprPhraseKey, string>> = {
   en: {
@@ -89,4 +84,6 @@ export const CPR_PHRASES: Record<CprLangCode, Record<CprPhraseKey, string>> = {
     R: "تحقق من الاستجابة. اضغط على الكتفين بقوة واسأل بصوت عالٍ: هل تسمعني؟ افتح عينيك!",
     S: "اطلب المساعدة. اتصل بخدمات الطوارئ فورًا. ضع هاتفك على مكبر الصوت.",
     A: "افتح مجرى الهواء. أمل الرأس برفق إلى الخلف وارفع الذقن. أزل أي عائق مرئي.",
-    B: "تحقق من التنفس الطبيعي. انظر واستمع واشعر لمدة تصل إلى عشر ثوانٍ. ا
+    B: "تحقق من التنفس الطبيعي. انظر واستمع واشعر لمدة تصل إلى عشر ثوانٍ. اللهاث ليس تنفسًا طبيعيًا.",
+    C: "ابدأ الإنعاش القلبي الرئوي الآن. اضغط بقوة وبسرعة في وسط الصدر. سأحافظ على الإيقاع. ثلاثون ضغطة ثم نفسان.",
+    AED: "قم بتركيب جهاز إزالة الرجفان فور وصوله. شغله واتبع التعليم
