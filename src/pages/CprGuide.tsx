@@ -178,20 +178,8 @@ export default function CprGuide() {
     stopCprVoice();
     setStepIdx(0);
   }, [metronome]);
-  }, [metronome]);
 
-  const startCpr = useCallback(async () => {
-    if (voiceOnRef.current) {
-      await speak("Push hard and fast. Follow the beat.", { rate: 1.05, interrupt: true });
-    }
-    metronome.start();
-  }, [metronome]);
 
-  const resetAll = useCallback(() => {
-    metronome.stop();
-    stopSpeaking();
-    setStepIdx(0);
-  }, [metronome]);
 
   const mm = String(Math.floor(metronome.elapsedSec / 60)).padStart(2, "0");
   const ss = String(metronome.elapsedSec % 60).padStart(2, "0");
