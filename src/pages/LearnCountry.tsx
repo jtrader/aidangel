@@ -133,8 +133,33 @@ export default function LearnCountry() {
   const [online, setOnline] = useState<Educator | null>(null);
   const [cities, setCities] = useState<string[]>([]);
   const [nearby, setNearby] = useState<NearbyVenue[]>([]);
+  const [searchQ, setSearchQ] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [searchError, setSearchError] = useState<string | null>(null);
 
-  const showNearby = !!(geo?.lat && geo?.lng && geo.country?.toUpperCase() === country.code);
+  const activeGeo = geo;
+  const showNearby = !!(activeGeo?.lat && activeGeo?.lng);
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQ.trim()) return;
+    setSearching(true);
+    setSearchError(null);
+    const result = await geocodeNominatim(`${searchQ.trim()}, ${country.name}`);
+    setSearching(false);
+    if (result && result.lat != null && result.lng != null) {
+      setManualGeo(result);
+    } else {
+      setSearchError("Location not found. Try a nearby city or suburb.");
+    }
+  };
+
+  const handleClear = () => {
+    try { window.localStorage.removeItem("faa.geo"); } catch { /* ignore */ }
+    window.dispatchEvent(new CustomEvent("faa-geo-updated"));
+    setSearchQ("");
+    setSearchError(null);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -144,15 +169,18 @@ export default function LearnCountry() {
       setOnline(online);
     });
     getCitiesForCountry(country.code).then((c) => !cancelled && setCities(c));
-    if (showNearby && geo?.lat && geo?.lng) {
-      getNearestVenues(geo.lat, geo.lng, { countryCode: country.code, region: geo.region, city: geo.city, limit: 3 }).then(
-        (v) => !cancelled && setNearby(v),
-      );
+    if (showNearby && activeGeo?.lat && activeGeo?.lng) {
+      getNearestVenues(activeGeo.lat, activeGeo.lng, {
+        countryCode: country.code,
+        region: activeGeo.region,
+        city: activeGeo.city,
+        limit: 3,
+      }).then((v) => !cancelled && setNearby(v));
     } else {
       setNearby([]);
     }
     return () => { cancelled = true; };
-  }, [country.code, language, geo?.lat, geo?.lng, showNearby]);
+  }, [country.code, language, activeGeo?.lat, activeGeo?.lng, activeGeo?.region, activeGeo?.city, showNearby]);
 
   const title = `First Aid Courses in ${country.name} — St John, Red Cross & Online`;
   const desc = `Find accredited first aid training in ${country.name}. In-person courses from St John Ambulance and Red Cross, plus online options.`;
