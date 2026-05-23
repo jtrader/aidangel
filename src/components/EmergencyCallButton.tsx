@@ -1,4 +1,5 @@
 import { Phone } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 
@@ -9,6 +10,8 @@ interface EmergencyCallButtonProps {
 const EmergencyCallButton = ({ variant = "floating" }: EmergencyCallButtonProps) => {
   const { code } = useCountry();
   const number = emergencyNumberForCountry(code);
+  const { pathname } = useLocation();
+  const isAedFinder = pathname === "/aed-finder";
 
   if (variant === "inline") {
     return (
@@ -25,7 +28,11 @@ const EmergencyCallButton = ({ variant = "floating" }: EmergencyCallButtonProps)
   return (
     <a
       href={`tel:${number}`}
-      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-destructive px-4 py-3 text-destructive-foreground font-bold text-sm shadow-lg hover:bg-destructive/90 transition-all hover:scale-105 animate-pulse-slow"
+      className={`fixed z-50 inline-flex items-center gap-2 rounded-full bg-destructive px-4 py-3 text-destructive-foreground font-bold text-sm shadow-lg hover:bg-destructive/90 transition-all hover:scale-105 animate-pulse-slow ${
+        isAedFinder
+          ? "bottom-6 left-1/2 -translate-x-1/2"
+          : "bottom-6 right-6"
+      }`}
       aria-label={`Call emergency number ${number}`}
       title={`Call emergency number ${number}`}
     >
