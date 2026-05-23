@@ -87,28 +87,13 @@ export async function getCountryEducators(countryCode: string, languageCode: str
   }
   const inPerson = sortEducators(inPersonAll).slice(0, 3);
 
-  // Online in language
-  const { data: langRows } = await supabase
-    .from("educator_languages")
-    .select("educator_id, educators!inner(*)")
-    .eq("language_code", languageCode)
-    .eq("educators.is_online", true);
-
-  let online: Educator | null = null;
-  const onlineList = sortEducators(
-    ((langRows ?? []) as Array<{ educators: Educator }>).map((r) => r.educators),
-  );
-  online = onlineList[0] ?? null;
-
-  // Fallback to English if no online match
-  if (!online && languageCode !== "en") {
-    const { data: enRows } = await supabase
-      .from("educator_languages")
-      .select("educator_id, educators!inner(*)")
-      .eq("language_code", "en")
-      .eq("educators.is_online", true);
-    online = sortEducators(((enRows ?? []) as Array<{ educators: Educator }>).map((r) => r.educators))[0] ?? null;
-  }
+  // Online: First Aid Angel is the only worldwide online course we surface.
+  const { data: faa } = await supabase
+    .from("educators")
+    .select("*")
+    .eq("slug", "first-aid-angel")
+    .maybeSingle();
+  const online: Educator | null = (faa as Educator | null) ?? null;
 
   return { inPerson, online };
 }
