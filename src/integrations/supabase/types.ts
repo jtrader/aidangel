@@ -642,6 +642,7 @@ export type Database = {
           id: string
           slug: string
           sort_order: number
+          sources: Json
           title: string
           updated_at: string
           video_url: string | null
@@ -654,6 +655,7 @@ export type Database = {
           id?: string
           slug: string
           sort_order?: number
+          sources?: Json
           title: string
           updated_at?: string
           video_url?: string | null
@@ -666,6 +668,7 @@ export type Database = {
           id?: string
           slug?: string
           sort_order?: number
+          sources?: Json
           title?: string
           updated_at?: string
           video_url?: string | null
