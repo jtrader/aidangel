@@ -129,3 +129,12 @@
   20% { transform: scale(1.08); }
   40% { transform: scale(0.96); }
 }
+
+@keyframes pulse-slow {
+  0%, 100% { box-shadow: 1px 0 0 0 hsl(var(--destructive) / 0.4); }
+  50% { box-shadow: 0 0 0 8px hsl(var(--destructive) / 1); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
