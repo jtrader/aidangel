@@ -58,6 +58,7 @@ export default function CourseLesson() {
   if (!lesson) return <div className="min-h-screen flex items-center justify-center">Lesson not found.</div>;
 
   return (
+    <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead lang="en" basePath="/courses" title={`${lesson.title} — ${course?.title} | First Aid Angel`} description={`Lesson: ${lesson.title}`} />
       <CoursesHeader />
