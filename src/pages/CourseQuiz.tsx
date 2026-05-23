@@ -88,28 +88,93 @@ export default function CourseQuiz() {
             </Button>
           </div>
         ) : (
-          <Card className="p-8 rounded-2xl text-center">
-            {result.passed ? (
-              <>
-                <CheckCircle2 className="h-16 w-16 text-primary mx-auto mb-4" />
-                <h2 className="font-display text-3xl font-bold mb-2">Passed — {result.score}%</h2>
-                <p className="text-muted-foreground mb-6">Congratulations! Your certificate is ready.</p>
-                <Button size="lg" onClick={() => navigate(`/courses/${slug}/certificate`)}>
-                  <Award className="h-4 w-4 mr-2" /> Get certificate
-                </Button>
-              </>
-            ) : (
-              <>
-                <XCircle className="h-16 w-16 text-destructive mx-auto mb-4" />
-                <h2 className="font-display text-3xl font-bold mb-2">Not quite — {result.score}%</h2>
-                <p className="text-muted-foreground mb-6">You need {course.pass_mark}% to pass. Review the lessons and try again.</p>
-                <div className="flex gap-3 justify-center flex-wrap">
-                  <Button variant="outline" onClick={() => navigate(`/courses/${slug}`)}>Review lessons</Button>
-                  <Button onClick={() => { setResult(null); setAnswers({}); }}>Retry quiz</Button>
-                </div>
-              </>
-            )}
-          </Card>
+          <div className="space-y-6">
+            <Card className="p-8 rounded-2xl text-center">
+              {result.passed ? (
+                <>
+                  <CheckCircle2 className="h-16 w-16 text-primary mx-auto mb-4" />
+                  <h2 className="font-display text-3xl font-bold mb-2">Passed — {result.score}%</h2>
+                  <p className="text-muted-foreground mb-6">
+                    You got {questions.filter(q => answers[q.id] === q.correct_index).length} of {questions.length} correct. Your certificate is ready.
+                  </p>
+                  <div className="flex gap-3 justify-center flex-wrap">
+                    <Button size="lg" onClick={() => navigate(`/courses/${slug}/certificate`)}>
+                      <Award className="h-4 w-4 mr-2" /> Get certificate
+                    </Button>
+                    <Button variant="outline" size="lg" onClick={() => { setResult(null); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+                      Retake quiz
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <XCircle className="h-16 w-16 text-destructive mx-auto mb-4" />
+                  <h2 className="font-display text-3xl font-bold mb-2">Not quite — {result.score}%</h2>
+                  <p className="text-muted-foreground mb-6">
+                    You got {questions.filter(q => answers[q.id] === q.correct_index).length} of {questions.length} correct. You need {course.pass_mark}% to pass.
+                  </p>
+                  <div className="flex gap-3 justify-center flex-wrap">
+                    <Button variant="outline" onClick={() => navigate(`/courses/${slug}`)}>Review lessons</Button>
+                    <Button onClick={() => { setResult(null); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Retake quiz</Button>
+                  </div>
+                </>
+              )}
+            </Card>
+
+            <div>
+              <h3 className="font-display text-xl font-bold mb-3">Review your answers</h3>
+              <div className="space-y-4">
+                {questions.map((q, i) => {
+                  const userIdx = answers[q.id];
+                  const isCorrect = userIdx === q.correct_index;
+                  return (
+                    <Card key={q.id} className="p-5 rounded-2xl">
+                      <div className="flex items-start gap-3 mb-3">
+                        {isCorrect ? (
+                          <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                        ) : (
+                          <XCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
+                        )}
+                        <div className="font-medium">{i + 1}. {q.question}</div>
+                      </div>
+                      <div className="space-y-2 ml-8">
+                        {q.choices.map((c, ci) => {
+                          const isUser = ci === userIdx;
+                          const isAnswer = ci === q.correct_index;
+                          return (
+                            <div
+                              key={ci}
+                              className={`text-sm rounded-md px-3 py-2 border ${
+                                isAnswer
+                                  ? "bg-primary/10 border-primary/30 text-foreground"
+                                  : isUser
+                                  ? "bg-destructive/10 border-destructive/30 text-foreground"
+                                  : "border-border text-muted-foreground"
+                              }`}
+                            >
+                              <span className="font-medium">{c}</span>
+                              {isAnswer && <span className="ml-2 text-xs font-semibold text-primary">Correct answer</span>}
+                              {isUser && !isAnswer && <span className="ml-2 text-xs font-semibold text-destructive">Your answer</span>}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      {q.explanation && (
+                        <div className="mt-3 ml-8 p-3 rounded-md bg-muted/60 text-sm">
+                          <span className="font-semibold">Explanation: </span>{q.explanation}
+                        </div>
+                      )}
+                    </Card>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="flex gap-3 justify-center flex-wrap pt-2">
+              <Button variant="outline" onClick={() => navigate(`/courses/${slug}`)}>Back to course</Button>
+              <Button onClick={() => { setResult(null); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Retake quiz</Button>
+            </div>
+          </div>
         )}
       </main>
     </div>
