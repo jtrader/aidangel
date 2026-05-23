@@ -4,7 +4,8 @@
 // If the edge function signals { fallback: true } (e.g. ElevenLabs is rate
 // limited), falls back to the browser SpeechSynthesis API for that language.
 
-import { supabase } from "@/integrations/supabase/client";
+// Uses direct fetch to the edge function URL (not supabase.functions.invoke)
+// because invoke mangles binary audio/mpeg responses.
 import { CPR_PHRASES, CPR_LANGUAGES, type CprLangCode, type CprPhraseKey } from "@/data/cprTranslations";
 
 const audioCache = new Map<string, string>(); // key -> blob URL
