@@ -11,6 +11,7 @@ import {
 import { useLanguage, LanguageCode, languages } from "@/contexts/LanguageContext";
 
 const STORAGE_KEY = "faa.country";
+const EVENT_NAME = "faa:country-change";
 
 function readInitial(): CountryCode {
   if (typeof window === "undefined") return DEFAULT_COUNTRY;
@@ -32,12 +33,27 @@ export function useCountry() {
   useEffect(() => {
     const initial = readInitial();
     setCode(initial);
-    // On first load, if the language is in auto mode and the country's primary
-    // language differs from current, sync to country-preferred language.
     if (isAuto) {
       const preferred = asSupportedLang(languageForCountry(initial));
       if (preferred) setLanguage(preferred);
     }
+    // Listen for country changes from other hook instances so every
+    // component (CountrySelector, LanguageSelector, etc.) stays in sync.
+    const onChange = (e: Event) => {
+      const next = (e as CustomEvent<CountryCode>).detail;
+      if (next && COUNTRIES.some((c) => c.code === next)) setCode(next);
+    };
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY && e.newValue && COUNTRIES.some((c) => c.code === e.newValue)) {
+        setCode(e.newValue as CountryCode);
+      }
+    };
+    window.addEventListener(EVENT_NAME, onChange as EventListener);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener(EVENT_NAME, onChange as EventListener);
+      window.removeEventListener("storage", onStorage);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,9 +65,11 @@ export function useCountry() {
       } catch {
         /* ignore */
       }
-      // Manual country change switches the UI to that country's top
-      // most-spoken supported language (ranked list, same source the
-      // picker uses for its "Popular in {country}" section).
+      try {
+        window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: next }));
+      } catch {
+        /* ignore */
+      }
       const ranked = languagesForCountry(next);
       const topSupported = ranked.map(asSupportedLang).find((l): l is LanguageCode => !!l);
       const preferred = topSupported ?? asSupportedLang(languageForCountry(next));
