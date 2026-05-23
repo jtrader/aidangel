@@ -11,6 +11,16 @@ import hospitalityImg from "@/assets/workplace/hospitality.jpg";
 import retailImg from "@/assets/workplace/retail.jpg";
 import transportImg from "@/assets/workplace/transport.jpg";
 import officeImg from "@/assets/workplace/office.jpg";
+import emergencyServicesImg from "@/assets/workplace/emergency-services.jpg";
+import aviationImg from "@/assets/workplace/aviation.jpg";
+import aquaticLeisureImg from "@/assets/workplace/aquatic-leisure.jpg";
+import entertainmentImg from "@/assets/workplace/entertainment.jpg";
+import laboratoryImg from "@/assets/workplace/laboratory-research.jpg";
+import utilitiesImg from "@/assets/workplace/utilities-telco.jpg";
+import maritimeImg from "@/assets/workplace/maritime-offshore.jpg";
+import wasteImg from "@/assets/workplace/waste-recycling.jpg";
+import securityImg from "@/assets/workplace/security-corrections.jpg";
+import beautyWellnessImg from "@/assets/workplace/beauty-wellness.jpg";
 
 export type RiskLevel = string;
 export type Tier = 1 | 2 | 3;
