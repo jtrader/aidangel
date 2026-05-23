@@ -1,10 +1,61 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
+
+async function retrieveKbContext(query: string, apiKey: string): Promise<string> {
+  try {
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!SUPABASE_URL || !SERVICE_KEY) return "";
+
+    const embedRes = await fetch("https://ai.gateway.lovable.dev/v1/embeddings", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "google/gemini-embedding-001",
+        input: query.slice(0, 4000),
+        dimensions: 1536,
+      }),
+    });
+    if (!embedRes.ok) {
+      console.warn("KB embed failed", embedRes.status);
+      return "";
+    }
+    const embedJson = await embedRes.json();
+    const vector = embedJson?.data?.[0]?.embedding;
+    if (!Array.isArray(vector)) return "";
+
+    const supabase = createClient(SUPABASE_URL, SERVICE_KEY);
+    const { data, error } = await supabase.rpc("match_kb_chunks", {
+      query_embedding: vector as unknown as string,
+      match_lang: "en",
+      match_count: 5,
+    });
+    if (error) {
+      console.warn("match_kb_chunks error", error.message);
+      return "";
+    }
+    const rows = (data ?? []) as Array<{
+      slug: string; title: string | null; section: string | null;
+      content: string; similarity: number;
+    }>;
+    const good = rows.filter((r) => r.similarity > 0.45);
+    if (good.length === 0) return "";
+    return good
+      .map((r, i) =>
+        `### Source ${i + 1} — AFA5 — ${r.section ?? r.title ?? r.slug} (slug: ${r.slug}, score: ${r.similarity.toFixed(2)})\n${r.content}`,
+      )
+      .join("\n\n");
+  } catch (e) {
+    console.warn("retrieveKbContext error", (e as Error).message);
+    return "";
+  }
+}
 
 const FIRST_AID_SYSTEM_PROMPT = `You are "First Aid Angel" — a warm, calm, life-like first aid companion for Australia, grounded in The St John of God First Aid Manual 5th Edition.
 
