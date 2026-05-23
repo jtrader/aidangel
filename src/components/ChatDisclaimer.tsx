@@ -42,13 +42,14 @@ const ChatDisclaimer = () => {
         </div>
         <div className="min-w-1 flex-1">
           <p className="text-[11px] leading-relaxed text-muted-foreground">
-            {aiNotice && (
-              <span className="block mb-1">
+            {aiNotice ? (
+              <span className="block">
                 <Stethoscope className="h-3 w-3 inline-block -mt-0.5 mr-0.5 text-muted-foreground" aria-hidden="true" />
                 {aiNotice}
               </span>
+            ) : (
+              renderDisclaimer(baseDisclaimer)
             )}
-            {renderDisclaimer(baseDisclaimer)}
           </p>
         </div>
       </div>
