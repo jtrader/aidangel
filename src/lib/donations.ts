@@ -553,6 +553,119 @@ export function languageForCountry(code: string | null | undefined): string {
 }
 
 /**
+ * Country → ordered list of most-spoken supported UI languages.
+ * First entry is the dominant language; subsequent entries cover major
+ * minority / community languages spoken in that country (only ones we
+ * actually have catalogs for). Used to pin popular languages to the top
+ * of the language picker and to bias auto-detection.
+ */
+export const COUNTRY_LANGUAGES_RANKED: Record<string, string[]> = {
+  // Oceania
+  AU: ["en", "zh", "ar", "vi", "yue", "pa", "el", "it"],
+  NZ: ["en", "zh", "yue", "ko"],
+  FJ: ["en"],
+  // UK & Ireland
+  GB: ["en", "pa", "ur", "pl", "bn", "ar", "zh"],
+  IE: ["en", "pl", "fr", "ro", "lt"],
+  // North America
+  US: ["en", "es", "zh", "tl", "vi", "ar", "fr", "ko"],
+  CA: ["en", "fr", "zh", "es", "pa", "ar", "it"],
+  MX: ["es", "en"],
+  // Latin America
+  BR: ["pt", "en", "es", "de", "it", "ja"],
+  AR: ["es", "en", "it"],
+  CL: ["es", "en"],
+  CO: ["es", "en"],
+  PE: ["es", "en"],
+  // Western Europe
+  DE: ["de", "tr", "ar", "pl", "en"],
+  FR: ["fr", "ar", "pt", "es", "it", "en"],
+  IT: ["it", "ro", "ar", "en"],
+  ES: ["es", "ar", "ro", "en"],
+  PT: ["pt", "en", "uk"],
+  NL: ["nl", "tr", "ar", "en"],
+  BE: ["fr", "nl", "de", "en", "ar"],
+  LU: ["fr", "de", "pt", "en"],
+  CH: ["de", "fr", "it", "en", "pt"],
+  AT: ["de", "tr", "sr", "en"],
+  // Nordics
+  SE: ["sv", "fi", "ar", "en"],
+  NO: ["no", "pl", "ar", "en"],
+  DK: ["da", "ar", "tr", "en"],
+  FI: ["fi", "sv", "et", "en"],
+  IS: ["is", "pl", "en"],
+  // Central / Eastern Europe
+  PL: ["pl", "uk", "de", "en"],
+  CZ: ["cs", "sk", "uk", "vi", "en"],
+  SK: ["sk", "cs", "hu", "uk", "en"],
+  HU: ["hu", "de", "en"],
+  RO: ["ro", "hu", "uk", "en"],
+  BG: ["bg", "tr", "en"],
+  HR: ["hr", "sr", "sl", "it", "en"],
+  SI: ["sl", "hr", "sr", "it", "en"],
+  RS: ["sr", "hr", "hu", "en"],
+  UA: ["uk", "ro", "en"],
+  EE: ["et", "uk", "en"],
+  LV: ["lv", "uk", "en"],
+  LT: ["lt", "pl", "uk", "en"],
+  // Mediterranean
+  GR: ["el", "ar", "en"],
+  CY: ["el", "tr", "en"],
+  MT: ["en", "it", "ar"],
+  TR: ["tr", "ar", "en"],
+  // Middle East & North Africa
+  IL: ["he", "ar", "en"],
+  AE: ["ar", "en", "ur", "bn", "tl"],
+  SA: ["ar", "en", "ur", "tl"],
+  EG: ["ar", "en", "fr"],
+  MA: ["ar", "fr", "es", "en"],
+  // Sub-Saharan Africa
+  ZA: ["en", "ar"],
+  KE: ["en", "ar"],
+  NG: ["en", "ar", "fr"],
+  GH: ["en"],
+  TZ: ["en", "ar"],
+  UG: ["en"],
+  ET: ["en", "ar"],
+  ZW: ["en"],
+  ZM: ["en"],
+  MW: ["en"],
+  NA: ["en", "de"],
+  BW: ["en"],
+  MU: ["en", "fr"],
+  // South Asia
+  IN: ["pa", "bn", "ur", "ne", "en"],
+  PK: ["ur", "pa", "ar", "en"],
+  BD: ["bn", "ur", "en"],
+  LK: ["si", "ar", "en"],
+  NP: ["ne", "en"],
+  // East & Southeast Asia
+  JP: ["ja", "zh", "ko", "vi", "en"],
+  KR: ["ko", "zh", "vi", "en"],
+  TW: ["zh", "yue", "ja", "en"],
+  HK: ["yue", "zh", "en"],
+  SG: ["en", "zh", "ms", "yue"],
+  MY: ["ms", "zh", "en", "yue"],
+  TH: ["th", "zh", "en"],
+  PH: ["tl", "en", "zh"],
+  ID: ["id", "ms", "zh", "ar", "en"],
+  VN: ["vi", "zh", "en"],
+  // Caribbean
+  JM: ["en"],
+  TT: ["en", "es"],
+  BB: ["en"],
+  BS: ["en"],
+};
+
+/** Ordered list of most-spoken supported languages for a country. */
+export function languagesForCountry(code: string | null | undefined): string[] {
+  if (!code) return ["en"];
+  const ranked = COUNTRY_LANGUAGES_RANKED[code];
+  if (ranked && ranked.length) return ranked;
+  return [COUNTRY_PRIMARY_LANGUAGE[code] ?? "en"];
+}
+
+/**
  * National emergency / ambulance number per country. Where the country has
  * separate police vs ambulance numbers, we prefer the medical / ambulance
  * line that a first-aider would need.
