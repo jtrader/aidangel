@@ -29,6 +29,16 @@ import AedFinder from "./pages/AedFinder";
 import AedIndex from "./pages/AedIndex";
 import AedCountry from "./pages/AedCountry";
 import AedCity from "./pages/AedCity";
+import Auth from "./pages/Auth";
+import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
+import CourseLesson from "./pages/CourseLesson";
+import CourseQuiz from "./pages/CourseQuiz";
+import CourseCertificate from "./pages/CourseCertificate";
+import CertificateVerify from "./pages/CertificateVerify";
+import MyLearning from "./pages/MyLearning";
+import AdminCourses from "./pages/AdminCourses";
+import RequireAuth from "./components/RequireAuth";
 import OfflineBanner from "./components/OfflineBanner";
 import InstallPrompt from "./components/InstallPrompt";
 
