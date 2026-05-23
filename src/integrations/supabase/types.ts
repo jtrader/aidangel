@@ -972,6 +972,15 @@ export type Database = {
           read_ct: number
         }[]
       }
+      verify_certificate: {
+        Args: { _cert_number: string }
+        Returns: {
+          certificate_number: string
+          course_title: string
+          issued_at: string
+          learner_initial: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "user"
