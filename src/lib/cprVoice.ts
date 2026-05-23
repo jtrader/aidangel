@@ -4,7 +4,8 @@
 // If the edge function signals { fallback: true } (e.g. ElevenLabs is rate
 // limited), falls back to the browser SpeechSynthesis API for that language.
 
-import { supabase } from "@/integrations/supabase/client";
+// Uses direct fetch to the edge function URL (not supabase.functions.invoke)
+// because invoke mangles binary audio/mpeg responses.
 import { CPR_PHRASES, CPR_LANGUAGES, type CprLangCode, type CprPhraseKey } from "@/data/cprTranslations";
 
 const audioCache = new Map<string, string>(); // key -> blob URL
@@ -33,29 +34,43 @@ async function fetchAudio(lang: CprLangCode, key: CprPhraseKey): Promise<string 
   const text = CPR_PHRASES[lang]?.[key] ?? CPR_PHRASES.en[key];
 
   const promise = (async () => {
-    const { data, error } = await supabase.functions.invoke("cpr-tts", { body: { text } });
-    if (error) {
-      console.warn("cpr-tts invoke error, falling back", error);
+    try {
+      const base = import.meta.env.VITE_SUPABASE_URL;
+      const anon = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+      const resp = await fetch(`${base}/functions/v1/cpr-tts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: anon,
+          Authorization: `Bearer ${anon}`,
+        },
+        body: JSON.stringify({ text }),
+      });
+      if (!resp.ok) {
+        console.warn("cpr-tts http error, falling back", resp.status);
+        fallbackLangs.add(lang);
+        return null;
+      }
+      const ct = resp.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        fallbackLangs.add(lang);
+        return null;
+      }
+      const blob = await resp.blob();
+      if (!blob.size || !(blob.type || "audio/mpeg").startsWith("audio")) {
+        fallbackLangs.add(lang);
+        return null;
+      }
+      const url = URL.createObjectURL(blob);
+      audioCache.set(ck, url);
+      return url;
+    } catch (e) {
+      console.warn("cpr-tts fetch failed, falling back", e);
       fallbackLangs.add(lang);
-      inflight.delete(ck);
       return null;
-    }
-    // JSON fallback signal
-    if (data && typeof data === "object" && !(data instanceof Blob) && (data as { fallback?: boolean }).fallback) {
-      fallbackLangs.add(lang);
+    } finally {
       inflight.delete(ck);
-      return null;
     }
-    const blob = data instanceof Blob ? data : new Blob([data as ArrayBuffer], { type: "audio/mpeg" });
-    if (!blob.type.startsWith("audio")) {
-      fallbackLangs.add(lang);
-      inflight.delete(ck);
-      return null;
-    }
-    const url = URL.createObjectURL(blob);
-    audioCache.set(ck, url);
-    inflight.delete(ck);
-    return url;
   })();
 
   inflight.set(ck, promise);
