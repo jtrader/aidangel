@@ -25,7 +25,7 @@ interface ShopMenuProps {
 
 const STATIC = [
   "Shop",
-  "First Aid Shop",
+  "Shop",
   "First aid kits & supplies",
   "Change country",
   "Showing shops for",
@@ -40,7 +40,7 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
 
   const [tr, setTr] = useState({
     shopShort: "Shop",
-    shopLong: "First Aid Shop",
+    shopLong: "Shop",
     heading: "First aid kits & supplies",
     change: "Change country",
     showing: "Showing shops for",
