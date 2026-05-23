@@ -280,6 +280,60 @@ export default function EducatorProfile() {
           )}
         </div>
 
+        {profileLoading && (
+          <div className="mb-8 flex items-center gap-2 text-sm text-muted-foreground p-4 rounded-lg border border-dashed border-border bg-card">
+            <Loader2 className="h-4 w-4 animate-spin text-primary" />
+            Generating a detailed profile from {ed.name}'s website…
+          </div>
+        )}
+        {profileError && !profile && (
+          <div className="mb-8 text-xs text-muted-foreground p-3 rounded-lg border border-border bg-card">
+            Could not auto-generate an enriched profile yet.
+          </div>
+        )}
+
+        {profile && (
+          <section className="mb-8 grid sm:grid-cols-2 gap-3">
+            {[
+              { key: "who", label: "Who they are", icon: Users, text: profile.who_text },
+              { key: "what", label: "What they offer", icon: BookOpen, text: profile.what_text },
+              { key: "how", label: "How they deliver", icon: Wrench, text: profile.how_text },
+              { key: "why", label: "Why choose them", icon: Sparkles, text: profile.why_text },
+            ]
+              .filter((b) => b.text)
+              .map((b) => (
+                <div key={b.key} className="bg-card border border-border rounded-xl p-4">
+                  <h3 className="font-heading text-sm font-semibold mb-2 inline-flex items-center gap-2 text-primary">
+                    <b.icon className="h-4 w-4" /> {b.label}
+                  </h3>
+                  <p className="text-sm text-foreground/90 leading-relaxed">{b.text}</p>
+                </div>
+              ))}
+          </section>
+        )}
+
+        {profile && profile.qas.length > 0 && (
+          <section className="mb-8">
+            <h2 className="font-heading text-lg font-semibold mb-3 inline-flex items-center gap-2">
+              <HelpCircle className="h-4 w-4 text-primary" /> Frequently asked
+            </h2>
+            <Accordion type="single" collapsible className="bg-card border border-border rounded-xl px-4">
+              {profile.qas.map((qa, i) => (
+                <AccordionItem key={i} value={`qa-${i}`} className="border-b last:border-b-0">
+                  <AccordionTrigger className="text-sm text-left font-medium">{qa.question}</AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    {qa.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <p className="mt-2 text-[10px] text-muted-foreground">
+              Auto-summarised from {ed.name}'s website. Always confirm details with the provider before booking.
+            </p>
+          </section>
+        )}
+
+
         {ed.service_areas.length > 0 && (
           <section className="mb-8">
             <h2 className="font-heading text-lg font-semibold mb-3 inline-flex items-center gap-2">
