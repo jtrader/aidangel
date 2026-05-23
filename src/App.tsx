@@ -75,6 +75,7 @@ const App = forwardRef(function App(_props, _ref) {
 
                 <Route path="/admin/donations" element={<AdminDonations />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />
+                <Route path="/admin/kb" element={<AdminKb />} />
 
                 {/* Localized */}
                 <Route
