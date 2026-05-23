@@ -4,8 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getAedCountryBySlug, getAedCityBySlug } from "@/lib/aedLocations";
-import { Aed, fetchCountryAeds, filterByBounds, bboxAround, distanceKm, accessLabel } from "@/lib/openAedMap";
-import { loadGoogleMaps } from "@/lib/googleMapsLoader";
+import {
+  Aed,
+  fetchCountryAeds,
+  filterByBounds,
+  bboxAround,
+  distanceKm,
+  accessLabel,
+} from "@/lib/openAedMap";
+import { loadMapboxToken, mapboxgl } from "@/lib/mapboxLoader";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
@@ -17,6 +24,7 @@ export default function AedCity() {
   const city = country ? getAedCityBySlug(country, citySlug ?? "") : undefined;
 
   const mapEl = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<mapboxgl.Map | null>(null);
   const [aeds, setAeds] = useState<Aed[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,49 +47,40 @@ export default function AedCity() {
         if (cancelled) return;
         setAeds(inCity);
 
-        await loadGoogleMaps();
+        await loadMapboxToken();
         if (cancelled || !mapEl.current) return;
-        const google = window.google;
-        const map = new google.maps.Map(mapEl.current, {
-          center: { lat: city.lat, lng: city.lng },
+        const map = new mapboxgl.Map({
+          container: mapEl.current,
+          style: "mapbox://styles/mapbox/streets-v12",
+          center: [city.lng, city.lat],
           zoom: 13,
-          mapTypeControl: false,
-          streetViewControl: false,
-          fullscreenControl: false,
-          styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] }],
         });
-        const info = new google.maps.InfoWindow();
-        inCity.slice(0, 300).forEach((a) => {
-          const meta = accessLabel(a.access);
-          const marker = new google.maps.Marker({
-            position: { lat: a.lat, lng: a.lng },
-            map,
-            title: a.name || "AED",
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-              scale: 8,
-              fillColor: meta.color,
-              fillOpacity: 1,
-              strokeColor: "#ffffff",
-              strokeWeight: 2,
-            },
-          });
-          marker.addListener("click", () => {
-            const directions = `https://www.google.com/maps/dir/?api=1&destination=${a.lat},${a.lng}`;
-            info.setContent(
-              `<div style="font-family:system-ui,sans-serif;max-width:240px">
+        mapRef.current = map;
+        map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+
+        map.on("load", () => {
+          if (cancelled) return;
+          inCity.slice(0, 300).forEach((a) => {
+            const meta = accessLabel(a.access);
+            const el = document.createElement("div");
+            el.style.cssText = `width:14px;height:14px;border-radius:9999px;background:${meta.color};border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);cursor:pointer`;
+            const directions = `https://www.openstreetmap.org/directions?from=&to=${a.lat}%2C${a.lng}`;
+            const html = `
+              <div style="font-family:system-ui,sans-serif;max-width:240px">
                 <div style="font-weight:600;font-size:14px;margin-bottom:4px">${a.name || "Defibrillator (AED)"}</div>
                 <div style="font-size:12px;color:${meta.color};font-weight:600;margin-bottom:6px">${meta.label}</div>
                 ${a.location ? `<div style="font-size:12px;color:#374151;margin-bottom:2px">📍 ${a.location}</div>` : ""}
                 ${a.operator ? `<div style="font-size:12px;color:#6b7280;margin-bottom:2px">Operator: ${a.operator}</div>` : ""}
                 ${a.opening_hours ? `<div style="font-size:12px;color:#6b7280;margin-bottom:2px">🕐 ${a.opening_hours}</div>` : ""}
                 <a href="${directions}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;background:#dc2626;color:#fff;padding:6px 10px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none">Get directions</a>
-              </div>`
-            );
-            info.open({ anchor: marker, map });
+              </div>`;
+            new mapboxgl.Marker({ element: el })
+              .setLngLat([a.lng, a.lat])
+              .setPopup(new mapboxgl.Popup({ offset: 14 }).setHTML(html))
+              .addTo(map);
           });
+          setLoading(false);
         });
-        setLoading(false);
       } catch (e) {
         if (cancelled) return;
         setError("Couldn't load AED locations. Please try again.");
@@ -89,7 +88,11 @@ export default function AedCity() {
       }
     })();
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      mapRef.current?.remove();
+      mapRef.current = null;
+    };
   }, [country?.code, city?.slug]);
 
   if (!country || !city) {
@@ -221,7 +224,7 @@ export default function AedCity() {
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-xs text-muted-foreground">{d.toFixed(1)} km from centre</span>
                       <a
-                        href={`https://www.google.com/maps/dir/?api=1&destination=${a.lat},${a.lng}`}
+                        href={`https://www.openstreetmap.org/directions?from=&to=${a.lat}%2C${a.lng}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
