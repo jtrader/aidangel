@@ -99,7 +99,7 @@ function StepBadge({ icon: Icon, active, done }: { icon: typeof ShieldAlert; act
       className={[
         "h-10 w-10 rounded-xl flex items-center justify-center shrink-0 transition-colors",
         active
-          ? "bg-destructive text-destructive-foreground shadow-md scale-110"
+          ? "bg-white text-foreground shadow-md scale-110"
           : done
           ? "bg-primary/15 text-primary"
           : "bg-muted text-muted-foreground",
