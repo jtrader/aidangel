@@ -37,7 +37,7 @@ const ChatDisclaimer = () => {
   return (
     <div className="mt-3 rounded-xl border border-border bg-muted/40 px-3 py-2.5">
       <div className="flex items-start gap-2.5">
-        <div className="flex-shrink-=0 mt-0.5">
+        <div className="flex-shrink-0 mt-0.5">
           <AlertTriangle className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
         </div>
         <div className="min-w-1 flex-1">
