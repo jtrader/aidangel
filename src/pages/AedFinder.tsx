@@ -61,6 +61,7 @@ function accessColor(access: string) {
 
 export default function AedFinder() {
   const { code: countryCode } = useCountry();
+  const { language } = useLanguage();
   const emergencyNumber = emergencyNumberForCountry(countryCode);
   const [selected, setSelected] = useState<typeof SAMPLE_AEDS[number] | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
