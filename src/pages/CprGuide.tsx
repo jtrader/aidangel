@@ -406,6 +406,94 @@ export default function CprGuide() {
               <p className="text-xs text-muted-foreground text-center px-2">
                 Two hands, centre of chest, push 5 cm deep. Let the chest recoil fully between compressions.
               </p>
+
+              {/* Detailed CPR reference from the Knowledge Base */}
+              <div className="mt-2 rounded-xl border border-border bg-muted/30 p-4 sm:p-5 space-y-4 text-sm leading-relaxed text-card-foreground">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-heading font-bold text-base">CPR — full technique</h3>
+                  <Link
+                    to="/kb/cpr"
+                    className="text-xs font-semibold text-primary hover:underline shrink-0"
+                  >
+                    Open full KB article →
+                  </Link>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">When to start CPR</h4>
+                  <p>
+                    Start CPR immediately if the person is <strong>unresponsive and not
+                    breathing normally</strong>. Don't wait — every minute without CPR reduces
+                    survival by about 10%. Agonal gasping is not normal breathing.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Adult &amp; child (over 1 year)</h4>
+                  <ol className="list-decimal pl-5 space-y-1">
+                    <li>Lay the person flat on a firm surface and kneel beside their chest.</li>
+                    <li>
+                      Heel of one hand on the <strong>lower half of the sternum</strong> (centre
+                      of chest). Other hand on top, fingers interlocked.
+                    </li>
+                    <li>Keep arms straight, shoulders directly above your hands.</li>
+                    <li>
+                      Push down <strong>one third of chest depth</strong> (about 5 cm in an adult).
+                    </li>
+                    <li>
+                      Compress at <strong>100–120 per minute</strong> — about 2 per second.
+                    </li>
+                    <li>
+                      Give <strong>30 compressions</strong>, then <strong>2 rescue breaths</strong>.
+                    </li>
+                    <li>
+                      Continue 30:2 until they recover, an ambulance arrives, an AED instructs
+                      you to stop, or you can't continue.
+                    </li>
+                  </ol>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Infant (under 1 year)</h4>
+                  <ol className="list-decimal pl-5 space-y-1">
+                    <li>Place the infant on a firm surface.</li>
+                    <li>Use <strong>two fingers</strong> on the lower half of the sternum.</li>
+                    <li>Compress one third of chest depth at 100–120 per minute.</li>
+                    <li>
+                      For breaths, cover <strong>both mouth and nose</strong> with your mouth and
+                      give gentle puffs — just enough to see the chest rise.
+                    </li>
+                    <li>Continue 30:2.</li>
+                  </ol>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Compression-only CPR</h4>
+                  <p>
+                    If you can't or won't give rescue breaths, do{" "}
+                    <strong>continuous chest compressions</strong> at 100–120 per minute.
+                    Compression-only CPR is much better than no CPR.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">When to stop</h4>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>The person starts breathing normally.</li>
+                    <li>A paramedic or doctor takes over.</li>
+                    <li>An AED tells you to stand clear (resume immediately if prompted).</li>
+                    <li>You are physically exhausted and no one can take over.</li>
+                  </ul>
+                </div>
+
+                <p className="text-xs text-muted-foreground pt-1 border-t border-border">
+                  Source: First Aid Angel Knowledge Base · Australian First Aid 5th Edition.
+                  CPR is step <strong>C</strong> of{" "}
+                  <Link to="/kb/drsabcd" className="text-primary hover:underline">DRSABCD</Link>.
+                  Apply an <Link to="/kb/aed" className="text-primary hover:underline">AED</Link>{" "}
+                  as soon as it arrives — do not stop CPR to wait for it.
+                </p>
+              </div>
             </div>
           )}
 
