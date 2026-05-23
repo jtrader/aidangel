@@ -103,7 +103,7 @@ async function fetchAeds(bounds: { south: number; west: number; north: number; e
 export default function AedFinder() {
   const { country } = useCountry();
   const { language } = useLanguage();
-  const emergency = emergencyNumberForCountry(country ?? undefined);
+  const emergency = emergencyNumberForCountry(country as unknown as string);
 
   const mapEl = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
