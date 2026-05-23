@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, Search, Navigation, X, Loader2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, Search, Navigation, Loader2 } from "lucide-react";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { COUNTRIES, getCountry } from "@/lib/donations";
@@ -17,6 +17,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 import { trackLearnClick } from "@/lib/giveAnalytics";
 import { Favicon } from "@/components/Favicon";
+import { CityAutocomplete, SelectedPlace } from "@/components/CityAutocomplete";
 
 async function geocodeNominatim(query: string): Promise<GeoInfo | null> {
   try {
@@ -183,6 +184,19 @@ export default function LearnCountry() {
     }
   };
 
+  const handlePlaceSelect = (p: SelectedPlace) => {
+    setSearchError(null);
+    setManualGeo({
+      city: p.city,
+      region: p.region,
+      country: (p.country ?? country.code).toUpperCase(),
+      lat: p.lat,
+      lng: p.lng,
+      source: "manual",
+      fetchedAt: Date.now(),
+    });
+  };
+
   const handleClear = () => {
     try { window.localStorage.removeItem("faa.geo"); } catch { /* ignore */ }
     window.dispatchEvent(new CustomEvent("faa-geo-updated"));
@@ -249,25 +263,14 @@ export default function LearnCountry() {
             {country.flag} First Aid Courses — {country.name}
           </h1>
           <form onSubmit={handleSearch} className="mt-3 flex items-center gap-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
-                type="text"
-                value={searchQ}
-                onChange={(e) => setSearchQ(e.target.value)}
-                placeholder={`Enter city or suburb in ${country.name}`}
-                className="w-full rounded-lg border border-border bg-background pl-9 pr-8 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-              />
-              {searchQ && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQ("")}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
-              )}
-            </div>
+            <CityAutocomplete
+              value={searchQ}
+              onChange={setSearchQ}
+              onSelect={handlePlaceSelect}
+              countryCode={country.code}
+              placeholder={`Enter city or suburb in ${country.name}`}
+              disabled={searching}
+            />
             <button
               type="submit"
               disabled={searching || !searchQ.trim()}
