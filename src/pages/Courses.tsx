@@ -1,0 +1,82 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Clock, BookOpen, Award, Loader2 } from "lucide-react";
+import CoursesHeader from "@/components/CoursesHeader";
+import NetworkFooter from "@/components/NetworkFooter";
+import { SeoHead } from "@/components/SeoHead";
+
+type Course = {
+  id: string; slug: string; title: string; summary: string | null;
+  cover_url: string | null; level: string; duration_minutes: number;
+};
+
+export default function Courses() {
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.from("courses").select("id,slug,title,summary,cover_url,level,duration_minutes")
+      .eq("is_published", true).order("sort_order", { ascending: true })
+      .then(({ data }) => { setCourses(data ?? []); setLoading(false); });
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col">
+      <SeoHead
+        title="Free Online First Aid Courses with Certificate | First Aid Angel"
+        description="Self-paced first aid courses with quizzes and free PDF certificate. CPR, choking, bleeding, burns and more — based on Australian First Aid 5th Edition."
+      />
+      <CoursesHeader />
+      <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
+        <header className="mb-10 text-center">
+          <h1 className="font-display text-4xl font-bold mb-3">Free Online First Aid Courses</h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Self-paced video and reading lessons. Pass the quiz, download your branded PDF certificate.
+            Online theory only — not a substitute for accredited in-person training.
+          </p>
+        </header>
+
+        {loading ? (
+          <div className="flex justify-center py-16"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>
+        ) : courses.length === 0 ? (
+          <Card className="p-8 text-center text-muted-foreground rounded-2xl">
+            Courses are coming soon. Check back shortly.
+          </Card>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {courses.map((c) => (
+              <Link key={c.id} to={`/courses/${c.slug}`} className="block group">
+                <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
+                  <div className="aspect-video bg-muted relative">
+                    {c.cover_url ? (
+                      <img src={c.cover_url} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+                        <BookOpen className="h-12 w-12 text-primary/40" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <div className="flex gap-2 mb-2">
+                      <Badge variant="secondary" className="capitalize">{c.level}</Badge>
+                      <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{c.duration_minutes} min</Badge>
+                    </div>
+                    <h2 className="font-display font-bold text-lg mb-1 group-hover:text-primary">{c.title}</h2>
+                    {c.summary && <p className="text-sm text-muted-foreground line-clamp-2">{c.summary}</p>}
+                    <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                      <Award className="h-4 w-4" /> Certificate on completion
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        )}
+      </main>
+      <NetworkFooter />
+    </div>
+  );
+}
