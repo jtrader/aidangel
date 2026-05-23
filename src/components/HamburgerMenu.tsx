@@ -53,20 +53,9 @@ export default function HamburgerMenu() {
       <SheetContent side="right" className="w-72 sm:w-80 p-0">
         <div className="flex flex-col h-full">
           <SheetHeader className="px-6 py-5 border-b border-border">
-            <div className="flex items-center justify-between">
-              <SheetTitle className="text-left font-display font-bold text-xl">
-                Menu
-              </SheetTitle>
-              <SheetClose asChild>
-                <button
-                  type="button"
-                  className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-muted text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Close menu"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </SheetClose>
-            </div>
+            <SheetTitle className="text-left font-display font-bold text-xl">
+              Menu
+            </SheetTitle>
           </SheetHeader>
 
           <nav className="flex-1 px-4 py-4 overflow-y-auto">
