@@ -801,6 +801,302 @@ export type Database = {
           },
         ]
       }
+      org_audit_log: {
+        Row: {
+          action: string
+          actor_id: string | null
+          created_at: string
+          id: string
+          metadata: Json
+          org_id: string
+          target_id: string | null
+          target_type: string | null
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json
+          org_id: string
+          target_id?: string | null
+          target_type?: string | null
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          created_at?: string
+          id?: string
+          metadata?: Json
+          org_id?: string
+          target_id?: string | null
+          target_type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_audit_log_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organisations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_course_assignments: {
+        Row: {
+          assigned_by: string | null
+          completed_at: string | null
+          course_id: string
+          created_at: string
+          due_at: string | null
+          id: string
+          member_id: string
+          org_id: string
+          status: Database["public"]["Enums"]["org_assignment_status"]
+          updated_at: string
+        }
+        Insert: {
+          assigned_by?: string | null
+          completed_at?: string | null
+          course_id: string
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          member_id: string
+          org_id: string
+          status?: Database["public"]["Enums"]["org_assignment_status"]
+          updated_at?: string
+        }
+        Update: {
+          assigned_by?: string | null
+          completed_at?: string | null
+          course_id?: string
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          member_id?: string
+          org_id?: string
+          status?: Database["public"]["Enums"]["org_assignment_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_course_assignments_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "org_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "org_course_assignments_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organisations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_import_jobs: {
+        Row: {
+          created_at: string
+          error_report: Json
+          error_rows: number
+          file_path: string
+          id: string
+          org_id: string
+          status: Database["public"]["Enums"]["org_import_status"]
+          success_rows: number
+          total_rows: number
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          error_report?: Json
+          error_rows?: number
+          file_path: string
+          id?: string
+          org_id: string
+          status?: Database["public"]["Enums"]["org_import_status"]
+          success_rows?: number
+          total_rows?: number
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          error_report?: Json
+          error_rows?: number
+          file_path?: string
+          id?: string
+          org_id?: string
+          status?: Database["public"]["Enums"]["org_import_status"]
+          success_rows?: number
+          total_rows?: number
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_import_jobs_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organisations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_invitations: {
+        Row: {
+          accepted_at: string | null
+          created_at: string
+          created_by: string | null
+          email: string
+          expires_at: string
+          id: string
+          org_id: string
+          role: Database["public"]["Enums"]["org_role"]
+          token: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          email: string
+          expires_at?: string
+          id?: string
+          org_id: string
+          role?: Database["public"]["Enums"]["org_role"]
+          token: string
+        }
+        Update: {
+          accepted_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string
+          expires_at?: string
+          id?: string
+          org_id?: string
+          role?: Database["public"]["Enums"]["org_role"]
+          token?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_invitations_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organisations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_members: {
+        Row: {
+          created_at: string
+          department: string | null
+          email: string
+          employee_ref: string | null
+          full_name: string | null
+          id: string
+          invited_at: string
+          joined_at: string | null
+          org_id: string
+          role: Database["public"]["Enums"]["org_role"]
+          status: Database["public"]["Enums"]["org_member_status"]
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          department?: string | null
+          email: string
+          employee_ref?: string | null
+          full_name?: string | null
+          id?: string
+          invited_at?: string
+          joined_at?: string | null
+          org_id: string
+          role?: Database["public"]["Enums"]["org_role"]
+          status?: Database["public"]["Enums"]["org_member_status"]
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          department?: string | null
+          email?: string
+          employee_ref?: string | null
+          full_name?: string | null
+          id?: string
+          invited_at?: string
+          joined_at?: string | null
+          org_id?: string
+          role?: Database["public"]["Enums"]["org_role"]
+          status?: Database["public"]["Enums"]["org_member_status"]
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_members_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organisations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organisations: {
+        Row: {
+          billing_email: string | null
+          country_code: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          industry: string | null
+          join_code: string | null
+          logo_url: string | null
+          name: string
+          primary_color: string | null
+          seat_limit: number
+          slug: string
+          status: Database["public"]["Enums"]["org_status"]
+          updated_at: string
+        }
+        Insert: {
+          billing_email?: string | null
+          country_code?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          industry?: string | null
+          join_code?: string | null
+          logo_url?: string | null
+          name: string
+          primary_color?: string | null
+          seat_limit?: number
+          slug: string
+          status?: Database["public"]["Enums"]["org_status"]
+          updated_at?: string
+        }
+        Update: {
+          billing_email?: string | null
+          country_code?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          industry?: string | null
+          join_code?: string | null
+          logo_url?: string | null
+          name?: string
+          primary_color?: string | null
+          seat_limit?: number
+          slug?: string
+          status?: Database["public"]["Enums"]["org_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       pending_educators: {
         Row: {
           address: string | null
@@ -1091,6 +1387,14 @@ export type Database = {
           status: string
         }[]
       }
+      has_org_role: {
+        Args: {
+          _min: Database["public"]["Enums"]["org_role"]
+          _org: string
+          _user: string
+        }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -1098,6 +1402,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_org_member: { Args: { _org: string; _user: string }; Returns: boolean }
       match_kb_chunks: {
         Args: {
           match_count?: number
@@ -1131,6 +1436,7 @@ export type Database = {
           read_ct: number
         }[]
       }
+      user_org_ids: { Args: { _user: string }; Returns: string[] }
       verify_certificate: {
         Args: { _cert_number: string }
         Returns: {
@@ -1151,6 +1457,15 @@ export type Database = {
         | "commercial"
         | "online"
         | "community"
+      org_assignment_status:
+        | "assigned"
+        | "in_progress"
+        | "completed"
+        | "overdue"
+      org_import_status: "queued" | "processing" | "completed" | "failed"
+      org_member_status: "invited" | "active" | "removed"
+      org_role: "owner" | "admin" | "manager" | "learner"
+      org_status: "active" | "suspended" | "trial"
       pending_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
@@ -1289,6 +1604,16 @@ export const Constants = {
         "online",
         "community",
       ],
+      org_assignment_status: [
+        "assigned",
+        "in_progress",
+        "completed",
+        "overdue",
+      ],
+      org_import_status: ["queued", "processing", "completed", "failed"],
+      org_member_status: ["invited", "active", "removed"],
+      org_role: ["owner", "admin", "manager", "learner"],
+      org_status: ["active", "suspended", "trial"],
       pending_status: ["pending", "approved", "rejected"],
     },
   },

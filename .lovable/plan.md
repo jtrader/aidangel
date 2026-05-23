@@ -1,65 +1,99 @@
+# Employer Admin System — Implementation Plan
 
-# Multilingual refresh — 47 languages
+A multi-tenant **Organisation** layer on top of the existing LMS so employers (workplaces, RTOs, councils, franchises) can buy seats, import their workforce in bulk, assign first-aid courses, and prove compliance.
 
-Doing all of this in a single turn would either time out or produce sloppy output. I'm splitting it into 3 phases. **I'll do Phase 1 now**, then ship Phase 2 and Phase 3 in follow-up turns once you confirm Phase 1 looks good.
+## 1. Concepts
 
-The translation pipeline uses Lovable AI Gateway (`google/gemini-3-flash-preview`) with a strict safety prompt:
-- Preserve "000", "Triple Zero", phone numbers, dosages, brand names verbatim
-- Never invent medical instructions; translate only
-- Keep markdown structure intact for lesson bodies
-- Mark every machine output with `_machine: true` so a community reviewer can audit later
+- **Organisation** — a tenant (e.g. "Bunnings Warehouse Pty Ltd").
+- **Org member** — a user linked to an organisation with a role (`owner`, `admin`, `manager`, `learner`).
+- **Seat / licence** — a paid slot that lets one learner take assigned courses.
+- **Assignment** — links an employee to a course with optional due date.
+- **Import job** — a CSV/XLSX upload that creates pending learners in bulk.
+- **Compliance record** — derived from `quiz_attempts` + `certificates`, scoped per org.
 
----
+## 2. Database schema (new tables)
 
-## Phase 1 — UI strings refresh (this turn)
+```text
+organisations            — id, name, slug, country_code, industry, billing_email, seat_limit, status, branding (logo_url, primary_color), created_by
+org_members              — id, org_id, user_id (nullable until they sign up), email, full_name, role, employee_ref, department, status (invited|active|removed), invited_at
+org_invitations          — id, org_id, email, token, role, expires_at, accepted_at
+org_course_assignments   — id, org_id, member_id, course_id, due_at, assigned_by, status (assigned|in_progress|completed|overdue)
+org_import_jobs          — id, org_id, uploaded_by, file_path, total_rows, success_rows, error_rows, error_report jsonb, status, created_at
+org_audit_log            — id, org_id, actor_id, action, target_type, target_id, metadata jsonb, created_at
+```
 
-Refresh + expand the existing 19-key `LanguageContext` translation map. The current map only covers the welcome screen + a handful of quick-action labels.
+Extend `app_role` enum with `org_owner`, `org_admin`, `org_manager` (or use a separate `org_role` enum scoped to org_members). Roles outside an org stay in `user_roles`.
 
-**Scope:**
-1. Replace the inline `translations` map with a per-language JSON file under `src/locales/{lang}.json` so the file isn't one 856-line monolith
-2. Add new keys for common UI we currently render in English only: nav labels, footer, course list page chrome ("All courses", "Continue", "Start course"), quiz UI ("Submit quiz", "Retake quiz", "Passed"), source labels, emergency banner variants
-3. Auto-translate every key for all 46 non-English languages using the AI gateway
-4. Skip Yolŋu Matha / Pitjantjatjara / Arrernte / Kriol / Yumplatok with an English fallback + TODO comment (MT quality for these is unreliable — needs a community speaker)
-5. Build still passes; no visual changes besides newly-translated strings appearing in their target languages
+## 3. Security (RLS)
 
-**Output:** ~50 keys × 41 reliably-translated languages ≈ 2,050 strings.
+- Add SECURITY DEFINER helper: `is_org_member(_uid, _org_id, _min_role)` to avoid recursive policies.
+- All `org_*` tables: members read their org's rows; only `owner`/`admin` mutate. Global `admin` (existing) can do everything for support.
+- Tighten `course_enrollments` / `certificates` so an org admin can view rows for `user_id`s belonging to their org via the helper.
 
-## Phase 2 — Extract hardcoded JSX strings (next turn)
+## 4. Bulk import pipeline
 
-Scan `src/` with an AST pass to find every hardcoded English string in JSX (text nodes, `alt`, `title`, `placeholder`, `aria-label`) and replace with `t("…")`.
+1. Admin uploads CSV/XLSX → stored in new private storage bucket `org-imports/<org_id>/<job_id>.csv`.
+2. Edge function `org-import-process` (background): parses with `papaparse`/`xlsx`, validates emails/columns, dedupes against existing `org_members`, creates `org_members` rows in `invited` status, and queues invitation emails via the existing Resend transactional pipeline.
+3. Job progress and per-row errors saved to `org_import_jobs.error_report` (downloadable as CSV).
+4. Required CSV columns: `email`, `full_name`, optional `employee_ref`, `department`, `assign_course_slugs` (comma separated).
 
-**Scope:**
-- Pages: `Index`, `Courses`, `CourseDetail`, `CourseLesson`, `CourseQuiz`, `LearnIndex`, `AedFinder`, `MyLearning`, plus headers/footers
-- Skip admin pages (`/admin/*`) — internal tooling, not user-facing
-- Skip raw markdown bodies (covered in Phase 3)
-- Re-run the AI translator on the new keys for all 41 languages
+## 5. Invitation & onboarding
 
-**Expected:** ~300–500 new keys → ~12k–20k translation calls. This will take a few minutes of compute and should be done in its own turn.
+- Email contains a magic link to `/join/<token>` → user signs up (or signs in) and `org_invitations.accepted_at` is set, `org_members.user_id` linked, role applied.
+- Auto-enrol the new user in any courses pre-assigned during import.
 
-## Phase 3 — Course / lesson / quiz content (final turn)
+## 6. Course assignment & compliance
 
-Course descriptions, lesson markdown bodies, quiz questions/choices/explanations, and source labels live in the database and dwarf the UI strings.
+- Admin UI: pick members (filters: department/status) → pick courses → set due date → bulk assign.
+- A trigger on `quiz_attempts` (when `passed=true`) updates the matching `org_course_assignments.status = 'completed'`.
+- Nightly edge function `org-overdue-sweep` flips `assigned` → `overdue` past due date and sends digest emails.
 
-**Scope:**
-1. New tables: `course_translations`, `lesson_translations`, `quiz_question_translations` (FK to source row + `lang` + translated fields + `is_machine` flag)
-2. Read endpoints fall back to English when no translation exists
-3. Frontend uses current `language` to fetch the right translation row for the active lesson/course/quiz
-4. Run a one-off Python script (via `code--exec`) that streams every course row, translates each field via the AI gateway with the safety prompt, and inserts rows for the ~41 reliable languages
-5. Admin UI gets a "Re-translate this lesson" button so editors can refresh after content changes
+## 7. Reporting
 
-**Expected:** ~12 courses × 4 lessons × markdown body + 5 quiz Qs × 4 choices × explanations × 41 languages — roughly 25k–40k translation calls. This will take 15–25 minutes of compute and should be its own turn so you can interrupt if needed.
+- Dashboard: seats used / remaining, % compliant, overdue list, course completion funnel, downloadable CSV/PDF.
+- Per-employee certificate viewer (links to existing `/certificates/verify/:n`).
+- Optional Postgres view `org_compliance_v` for fast reads.
 
----
+## 8. Frontend routes (new)
 
-## Out of scope
-- Translating educator directory entries (`educators.blurb`, etc.) — not requested, can be added later
-- AI chatbot replies (already handled per-language by the chat edge function)
-- RTL layout sweep beyond Tailwind logical properties (the existing build already sets `dir="rtl"` for ar/he/ur via `LanguageContext`)
-- Currency / date formatting (separate concern from string translation)
+```text
+/employer                       — marketing + "Request a seat plan" CTA
+/employer/dashboard             — KPIs, recent activity
+/employer/people                — employee table, search, filters
+/employer/people/import         — CSV upload + job history
+/employer/assignments           — assign courses, due dates
+/employer/reports               — compliance, exports
+/employer/settings              — org profile, branding, seats, billing
+/join/:token                    — invitation acceptance
+```
 
----
+Reuse shadcn `DataTable`, `Dialog`, `DropdownMenu`. New components: `OrgSwitcher`, `SeatMeter`, `ImportWizard`, `AssignmentBuilder`, `ComplianceTable`.
 
-## Technical notes
-- All translation calls go through a single `/tmp/translate.py` script that the `ai-gateway` skill provides; one batched call per language using a JSON tool-call schema so we keep keys identical across languages
-- The script writes results to `src/locales/{lang}.json` and re-imports them at build time — no runtime fetches
-- Indigenous Australian languages stay flagged as needing human translation
+## 9. Billing (phase 2)
+
+Stripe (or Paddle) subscription per org, metered by `seat_limit`. Webhook updates `organisations.seat_limit` & `status`. Importing past the limit blocks with a clear upgrade CTA.
+
+## 10. Edge functions to add
+
+- `org-import-process` — parse + ingest CSV/XLSX
+- `org-invite-send` — issue invitation token + send email
+- `org-overdue-sweep` — cron, marks overdue and emails managers
+- `org-report-export` — generates CSV/PDF compliance reports
+
+## 11. Delivery phases
+
+1. **Foundations** — schema, RLS helpers, `OrgSwitcher`, manual single-employee add.
+2. **Bulk import** — storage bucket, edge function, ImportWizard UI, invitation emails.
+3. **Assignments + compliance** — assign flow, trigger, dashboard KPIs.
+4. **Reporting + exports** — CSV/PDF, overdue sweep, audit log UI.
+5. **Billing & branding** — Stripe seats, org logo/colors on learner certificates.
+
+## 12. Open questions for you
+
+1. Is one user allowed to belong to **multiple orgs** (e.g. a contractor)? (Schema above assumes yes.)
+2. Should invited employees be allowed to **self-register without an email invite** using an org join code?
+3. Billing: **Stripe** (preferred for global) or **Paddle** (handles AU GST automatically)?
+4. Do we need **SSO/SAML** for enterprise customers on day one, or defer to phase 5?
+5. Should certificates issued under an org show the **org's logo/branding**?
+
+Reply with answers (or "use sensible defaults") and I'll start with phase 1.
