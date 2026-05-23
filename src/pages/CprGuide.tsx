@@ -204,7 +204,7 @@ export default function CprGuide() {
 
   const pulseDurMs = Math.round((60 / metronome.bpm) * 1000);
 
-  const inBreathPhase = isCpr && metronome.isRunning && metronome.cyclePos === 29;
+  const inBreathPhase = isCpr && metronome.inBreathPhase;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
