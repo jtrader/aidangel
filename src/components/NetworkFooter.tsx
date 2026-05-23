@@ -113,8 +113,18 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
           <ShopMenu variant="footer" />
           <LearnMenu variant="footer" />
         </div>
-        <div className="flex items-center justify-center pb-2">
+        <div className="flex items-center justify-center gap-2 pb-2">
           <CountrySelector />
+          {installVisible && (
+            <button
+              onClick={handleInstall}
+              className="inline-flex items-center gap-1.5 rounded-md bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted/80 transition-colors"
+              type="button"
+            >
+              <Download className="h-3.5 w-3.5" />
+              Install app
+            </button>
+          )}
         </div>
         <div className="pb-2">
           <a href={kbHref} className="text-xs font-semibold text-primary hover:underline">
