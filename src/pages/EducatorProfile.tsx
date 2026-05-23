@@ -409,6 +409,13 @@ export default function EducatorProfile() {
             Find an AED near me
           </Link>
         </section>
+
+        {!ed.is_claimed && (
+          <div className="mt-6 text-center">
+            <ClaimListingDialog educatorId={ed.id} educatorName={ed.name} />
+            <span className="ml-2 text-xs text-muted-foreground">Are you {ed.name}?</span>
+          </div>
+        )}
       </main>
 
       <NetworkFooter currentApp="First Aid Angel" />
