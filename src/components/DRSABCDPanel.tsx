@@ -182,10 +182,10 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
               {steps.map((step, i) => {
                 const Icon = step.icon;
                 return (
-                  <button
+                  <Link
                     key={i}
-                    onClick={() => onSelect(step.prompt)}
-                    aria-label={`${step.letter} – ${tr.labels[i]}`}
+                    to={`/cpr?step=${step.stepKey}`}
+                    aria-label={`${step.letter} – ${tr.labels[i]} — open Live CPR Guide`}
                     className="group flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-xl hover:bg-accent transition-colors"
                   >
                     <span className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-destructive to-destructive/80 text-destructive-foreground flex items-center justify-center font-display font-bold text-base sm:text-lg shadow-sm group-hover:scale-105 group-active:scale-95 transition-transform">
@@ -198,7 +198,7 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
                     >
                       {tr.shortLabels[i]}
                     </span>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -208,9 +208,9 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
               {steps.map((step, i) => {
                 const Icon = step.icon;
                 return (
-                  <button
+                  <Link
                     key={i}
-                    onClick={() => onSelect(step.prompt)}
+                    to={`/cpr?step=${step.stepKey}`}
                     className="w-full flex items-center gap-3 px-2.5 py-2 rounded-lg hover:bg-accent text-left transition-colors"
                   >
                     <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-destructive/10 text-destructive flex items-center justify-center font-display font-bold text-sm">
@@ -231,20 +231,20 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
                       </span>
                     </span>
                     <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                  </button>
+                  </Link>
                 );
               })}
             </div>
 
             {/* CTA */}
-            <button
-              onClick={() => onSelect(CTA_PROMPT)}
+            <Link
+              to="/cpr"
               className="w-full mt-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors"
               lang={language}
             >
               <HeartPulse className="h-4 w-4" />
               {tr.cta}
-            </button>
+            </Link>
           </div>
         )}
       </div>
