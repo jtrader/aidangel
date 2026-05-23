@@ -77,7 +77,6 @@ export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps
         <HandHeart className="h-4 w-4" aria-hidden="true" />
         <span className="sm:hidden" aria-hidden="true">{tr.give}</span>
         <span className="hidden sm:inline" aria-hidden="true">{tr.donate}</span>
-        <span aria-hidden="true" className="text-base leading-none">{country.flag}</span>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="w-72 bg-popover">

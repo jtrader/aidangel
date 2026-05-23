@@ -37,7 +37,6 @@ export default function LearnMenu({ variant = "header" }: LearnMenuProps) {
       <span className="hidden sm:inline truncate max-w-[140px]">
         Learn First Aid
       </span>
-      <span aria-hidden="true" className="text-base leading-none">{effectiveCountry.flag}</span>
     </Link>
   );
 }
