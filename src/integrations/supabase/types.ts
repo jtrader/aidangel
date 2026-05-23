@@ -78,6 +78,44 @@ export type Database = {
           },
         ]
       }
+      course_translations: {
+        Row: {
+          course_id: string
+          description: string | null
+          is_machine: boolean
+          lang: string
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          course_id: string
+          description?: string | null
+          is_machine?: boolean
+          lang: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          course_id?: string
+          description?: string | null
+          is_machine?: boolean
+          lang?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "course_translations_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       courses: {
         Row: {
           cover_url: string | null
@@ -633,6 +671,41 @@ export type Database = {
           },
         ]
       }
+      lesson_translations: {
+        Row: {
+          body: string | null
+          is_machine: boolean
+          lang: string
+          lesson_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body?: string | null
+          is_machine?: boolean
+          lang: string
+          lesson_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string | null
+          is_machine?: boolean
+          lang?: string
+          lesson_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_translations_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lessons: {
         Row: {
           body: string | null
@@ -819,6 +892,44 @@ export type Database = {
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_question_translations: {
+        Row: {
+          choices: Json
+          explanation: string | null
+          is_machine: boolean
+          lang: string
+          question: string
+          question_id: string
+          updated_at: string
+        }
+        Insert: {
+          choices: Json
+          explanation?: string | null
+          is_machine?: boolean
+          lang: string
+          question: string
+          question_id: string
+          updated_at?: string
+        }
+        Update: {
+          choices?: Json
+          explanation?: string | null
+          is_machine?: boolean
+          lang?: string
+          question?: string
+          question_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_question_translations_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "quiz_questions"
             referencedColumns: ["id"]
           },
         ]
