@@ -3,6 +3,7 @@ import { ShieldPlus, LogOut, User as UserIcon, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 export default function CoursesHeader() {
   const { user, isAdmin, signOut } = useAuth();
