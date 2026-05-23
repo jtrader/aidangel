@@ -1,0 +1,1 @@
+UPDATE public.educators SET logo_url = '/faa-course-icon.png' WHERE slug = 'first-aid-angel';
