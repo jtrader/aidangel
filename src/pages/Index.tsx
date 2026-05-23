@@ -210,16 +210,14 @@ const Index = () => {
                     <HeartPulse className="h-4 w-4" />
                     Live CPR Guide
                   </Link>
-                  <a
-                    href="https://www.goodsamapp.org/locatorMap"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/aed-finder"
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
                     aria-label="Find nearest AED"
                   >
                     <MapPin className="h-4 w-4" />
                     AED Finder
-                  </a>
+                  </Link>
                   <Link
                     to="/symptoms"
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium hover:bg-secondary/80 transition-colors border border-border"
