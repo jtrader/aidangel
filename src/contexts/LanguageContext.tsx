@@ -125,10 +125,11 @@ const readStored = (): LanguageCode | null => {
 const initialLanguage = (): LanguageCode => readStored() ?? detectFromBrowser();
 
 const translate = (lang: LanguageCode, key: TranslationKey): string => {
+  const k = key as string;
   return (
-    catalogs[lang]?.[key as string] ??
-    (en as Record<string, string>)[key as string] ??
-    (key as string)
+    (catalogs[lang] as Record<string, unknown> | undefined)?.[k] as string ??
+    (en as unknown as Record<string, string>)[k] ??
+    k
   );
 };
 
