@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, CheckCircle2, Loader2 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
+import CourseLayout from "@/components/CourseLayout";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 
@@ -57,6 +58,7 @@ export default function CourseLesson() {
   if (!lesson) return <div className="min-h-screen flex items-center justify-center">Lesson not found.</div>;
 
   return (
+    <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead lang="en" basePath="/courses" title={`${lesson.title} — ${course?.title} | First Aid Angel`} description={`Lesson: ${lesson.title}`} />
       <CoursesHeader />
@@ -101,5 +103,6 @@ export default function CourseLesson() {
         </div>
       </main>
     </div>
+    </CourseLayout>
   );
 }

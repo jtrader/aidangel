@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle2, XCircle, Loader2, Award } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
+import CourseLayout from "@/components/CourseLayout";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 
@@ -55,6 +56,7 @@ export default function CourseQuiz() {
   );
 
   return (
+    <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead lang="en" basePath="/courses" title={`${course.title} Quiz | First Aid Angel`} description="Test your knowledge and earn your certificate." />
       <CoursesHeader />
@@ -111,5 +113,6 @@ export default function CourseQuiz() {
         )}
       </main>
     </div>
+    </CourseLayout>
   );
 }

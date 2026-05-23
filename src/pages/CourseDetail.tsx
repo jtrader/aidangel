@@ -9,6 +9,7 @@ import { Clock, BookOpen, Award, Play, CheckCircle2, Loader2 } from "lucide-reac
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
+import CourseLayout from "@/components/CourseLayout";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 
@@ -61,6 +62,7 @@ export default function CourseDetail() {
   const pct = lessons.length ? (completedCount / lessons.length) * 100 : 0;
 
   return (
+    <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead
         lang="en"
@@ -165,5 +167,6 @@ export default function CourseDetail() {
       </main>
       <NetworkFooter />
     </div>
+    </CourseLayout>
   );
 }
