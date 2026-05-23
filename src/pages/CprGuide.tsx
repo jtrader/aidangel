@@ -170,7 +170,7 @@ export default function CprGuide() {
     void speakCpr(langRef.current, "breath", { interrupt: true });
   }, []);
 
-  const metronome = useMetronome({ bpm: 110, cycleLength: 30, onBreath: handleBreath });
+  const metronome = useMetronome({ bpm: 110, cycleLength: 30, breathPauseSec: 5, onBreath: handleBreath });
 
   useEffect(() => {
     if (metronome.isRunning && "wakeLock" in navigator) {
