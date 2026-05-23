@@ -245,6 +245,11 @@ export default function CprGuide() {
             <LanguageSelector />
           </div>
         </div>
+        <div className="max-w-3xl mx-auto px-4 pb-3 flex items-center justify-center gap-2">
+          <DonateMenu variant="header" />
+          <ShopMenu variant="header" />
+          <LearnMenu variant="header" />
+        </div>
       </header>
 
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-5">
