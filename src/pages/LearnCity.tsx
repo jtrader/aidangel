@@ -60,64 +60,17 @@ export default function LearnCity() {
         </p>
 
         {rows.length === 0 ? (
-          <div className="space-y-4">
-            <div className="bg-card border border-border rounded-xl p-5">
-              <p className="text-sm text-muted-foreground">
-                We don't have a verified in-person venue listed in {cityName} yet. Try{" "}
-                <Link to={`/learn/${country.code.toLowerCase()}`} className="text-primary underline">
-                  country-wide providers for {country.name}
-                </Link>{" "}
-                — most offer mobile/onsite training. Or start online today with the course below.
-              </p>
-            </div>
-            {faa && (
-              <article className="bg-card border border-border rounded-xl p-5">
-                <div className="flex items-start gap-3 mb-2">
-                  <Favicon url={faa.website ?? faa.booking_url} logoUrl={faa.logo_url} alt="" size={28} className="mt-0.5 rounded-md border border-border bg-background p-0.5" />
-                  <div className="min-w-0">
-                    <div className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
-                      Online course · Worldwide
-                    </div>
-                    <h2 className="font-heading text-base font-semibold mb-1">{faa.name}</h2>
-                    {faa.blurb && <p className="text-xs text-muted-foreground mb-2">{faa.blurb}</p>}
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Link
-                    to={`/learn/provider/${faa.slug}`}
-                    className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full border border-border hover:bg-accent"
-                  >
-                    Provider profile
-                  </Link>
-                  {faa.booking_url && (
-                    <a
-                      href={faa.booking_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() =>
-                        trackLearnClick({
-                          ngoId: faa.slug,
-                          countryCode: country.code,
-                          countryName: country.name,
-                          destinationUrl: faa.booking_url ?? "",
-                          isNational: false,
-                          language,
-                          variant: "booking",
-                        })
-                      }
-                      data-analytics-event="learn_click"
-                      data-analytics-educator={faa.slug}
-                      className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-                    >
-                      Start course <ExternalLink className="h-3 w-3" />
-                    </a>
-                  )}
-                </div>
-              </article>
-            )}
+          <div className="bg-card border border-border rounded-xl p-5 mb-6">
+            <p className="text-sm text-muted-foreground">
+              We don't have a verified in-person venue listed in {cityName} yet. Try{" "}
+              <Link to={`/learn/${country.code.toLowerCase()}`} className="text-primary underline">
+                country-wide providers for {country.name}
+              </Link>{" "}
+              — most offer mobile/onsite training. Or start online today with the free course below.
+            </p>
           </div>
         ) : (
-          <div className="grid gap-3">
+          <div className="grid gap-3 mb-6">
             {rows.map((row) => (
 
               <article key={row.id} className="bg-card border border-border rounded-xl p-5">
@@ -165,6 +118,57 @@ export default function LearnCity() {
               </article>
             ))}
           </div>
+        )}
+
+        {faa && (
+          <section aria-labelledby="online-course" className="mb-6">
+            <h2 id="online-course" className="font-heading text-xl font-semibold mb-3 inline-flex items-center gap-2">
+              <Globe className="h-5 w-5 text-primary" /> Free online course
+            </h2>
+            <article className="bg-card border border-border rounded-xl p-5">
+              <div className="flex items-start gap-3 mb-2">
+                <Favicon url={faa.website ?? faa.booking_url} logoUrl={faa.logo_url} alt="" size={28} className="mt-0.5 rounded-md border border-border bg-background p-0.5" />
+                <div className="min-w-0">
+                  <div className="text-[11px] uppercase tracking-wide text-primary font-semibold mb-1">
+                    Online course · Worldwide · Free
+                  </div>
+                  <h3 className="font-heading text-base font-semibold mb-1">{faa.name}</h3>
+                  {faa.blurb && <p className="text-xs text-muted-foreground mb-2">{faa.blurb}</p>}
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  to={`/learn/provider/${faa.slug}`}
+                  className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full border border-border hover:bg-accent"
+                >
+                  Provider profile
+                </Link>
+                {faa.booking_url && (
+                  <a
+                    href={faa.booking_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      trackLearnClick({
+                        ngoId: faa.slug,
+                        countryCode: country.code,
+                        countryName: country.name,
+                        destinationUrl: faa.booking_url ?? "",
+                        isNational: false,
+                        language,
+                        variant: "booking",
+                      })
+                    }
+                    data-analytics-event="learn_click"
+                    data-analytics-educator={faa.slug}
+                    className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    Start course <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+            </article>
+          </section>
         )}
 
         <section className="mt-8 p-5 bg-accent/40 rounded-xl">
