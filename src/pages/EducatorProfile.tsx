@@ -77,6 +77,15 @@ export default function EducatorProfile() {
   const [ed, setEd] = useState<EducatorFull | null>(null);
   const [loading, setLoading] = useState(true);
   const [myClaims, setMyClaims] = useState<MyClaim[]>([]);
+  const [profile, setProfile] = useState<{
+    who_text: string | null;
+    how_text: string | null;
+    what_text: string | null;
+    why_text: string | null;
+    qas: Array<{ question: string; answer: string }>;
+  } | null>(null);
+  const [profileLoading, setProfileLoading] = useState(false);
+  const [profileError, setProfileError] = useState<string | null>(null);
 
   const trackOutbound = (url: string, variant: "booking" | "website") => {
     if (!ed) return;
