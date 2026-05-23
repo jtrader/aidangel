@@ -19,6 +19,7 @@ export default function CoursesHeader() {
           <Link to="/courses" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
             <BookOpen className="h-4 w-4" /> Courses
           </Link>
+          <HamburgerMenu />
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
