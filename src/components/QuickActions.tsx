@@ -69,16 +69,28 @@ const QuickActions = ({ onSelect }: QuickActionsProps) => {
 
   return (
     <div className="flex flex-wrap gap-2 justify-center max-w-2xl mx-auto">
-      {quickActions.map((action) => (
-        <button
-          key={action.labelKey}
-          onClick={() => onSelect(promptMap[action.prompt] || action.prompt)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card text-card-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-150 cursor-pointer"
-        >
-          {action.icon}
-          {t(action.labelKey)}
-        </button>
-      ))}
+      {quickActions.map((action) =>
+        action.labelKey === "cpr" ? (
+          <Link
+            key={action.labelKey}
+            to="/cpr"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-destructive/40 bg-destructive text-destructive-foreground text-sm font-semibold hover:bg-destructive/90 transition-colors duration-150 cursor-pointer shadow-sm"
+            aria-label="Open Live CPR Guide"
+          >
+            {action.icon}
+            {t(action.labelKey)}
+          </Link>
+        ) : (
+          <button
+            key={action.labelKey}
+            onClick={() => onSelect(promptMap[action.prompt] || action.prompt)}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card text-card-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-150 cursor-pointer"
+          >
+            {action.icon}
+            {t(action.labelKey)}
+          </button>
+        )
+      )}
     </div>
   );
 };
