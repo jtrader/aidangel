@@ -234,6 +234,8 @@ export default function CprGuide() {
           <p className="text-sm text-muted-foreground">Voice-guided DRSABCD with a 100–120 bpm metronome</p>
         </div>
 
+        <CprExplainerVideo countryCode={countryCode} />
+
         <ol className="grid grid-cols-7 gap-1.5 mb-5">
           {STEPS.map((s, i) => (
             <li key={s.key}>
