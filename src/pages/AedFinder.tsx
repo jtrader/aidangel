@@ -459,7 +459,7 @@ export default function AedFinder() {
           </Button>
 
           <div className="absolute top-4 right-4 z-10 bg-white/95 rounded-lg shadow px-3 py-2 text-[11px] text-muted-foreground max-w-[220px]">
-            Zoom in (level 9+) to load nearby AEDs. Data © OpenStreetMap contributors via{" "}
+            Pan or zoom the map to load AEDs in view. Data © OpenStreetMap contributors via{" "}
             <a href="https://openaedmap.org/" target="_blank" rel="noopener" className="text-primary underline">
               OpenAEDMap
             </a>.
