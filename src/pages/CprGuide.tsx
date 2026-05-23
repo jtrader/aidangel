@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { SeoHead } from "@/components/SeoHead";
 import { CprExplainerVideo } from "@/components/CprExplainerVideo";
+import LanguageSelector from "@/components/LanguageSelector";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { useMetronome } from "@/hooks/useMetronome";
