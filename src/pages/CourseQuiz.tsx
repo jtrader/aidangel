@@ -55,7 +55,7 @@ export default function CourseQuiz() {
     <div className="min-h-screen flex flex-col"><CoursesHeader /><div className="flex-1 flex items-center justify-center">No quiz available yet.</div></div>
   );
 
-  return (
+    <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead lang="en" basePath="/courses" title={`${course.title} Quiz | First Aid Angel`} description="Test your knowledge and earn your certificate." />
       <CoursesHeader />
