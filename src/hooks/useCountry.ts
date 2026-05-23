@@ -6,6 +6,7 @@ import {
   getCountry,
   guessCountryFromLocale,
   languageForCountry,
+  languagesForCountry,
 } from "@/lib/donations";
 import { useLanguage, LanguageCode, languages } from "@/contexts/LanguageContext";
 
@@ -48,9 +49,12 @@ export function useCountry() {
       } catch {
         /* ignore */
       }
-      // Manual country change always coordinates the UI language to the
-      // country's preferred translation (when we support it).
-      const preferred = asSupportedLang(languageForCountry(next));
+      // Manual country change switches the UI to that country's top
+      // most-spoken supported language (ranked list, same source the
+      // picker uses for its "Popular in {country}" section).
+      const ranked = languagesForCountry(next);
+      const topSupported = ranked.map(asSupportedLang).find((l): l is LanguageCode => !!l);
+      const preferred = topSupported ?? asSupportedLang(languageForCountry(next));
       if (preferred) setLanguage(preferred);
     },
     [setLanguage],
