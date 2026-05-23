@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Heart, Globe } from "lucide-react";
+import { ExternalLink, Heart, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SeoHead } from "@/components/SeoHead";
 import { COUNTRIES, getCountry } from "@/lib/donations";
