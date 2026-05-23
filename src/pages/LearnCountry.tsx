@@ -192,8 +192,6 @@ export default function LearnCountry() {
       country: (p.country ?? country.code).toUpperCase(),
       lat: p.lat,
       lng: p.lng,
-      source: "manual",
-      fetchedAt: Date.now(),
     });
   };
 
