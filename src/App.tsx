@@ -29,6 +29,16 @@ import AedFinder from "./pages/AedFinder";
 import AedIndex from "./pages/AedIndex";
 import AedCountry from "./pages/AedCountry";
 import AedCity from "./pages/AedCity";
+import Auth from "./pages/Auth";
+import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
+import CourseLesson from "./pages/CourseLesson";
+import CourseQuiz from "./pages/CourseQuiz";
+import CourseCertificate from "./pages/CourseCertificate";
+import CertificateVerify from "./pages/CertificateVerify";
+import MyLearning from "./pages/MyLearning";
+import AdminCourses from "./pages/AdminCourses";
+import RequireAuth from "./components/RequireAuth";
 import OfflineBanner from "./components/OfflineBanner";
 import InstallPrompt from "./components/InstallPrompt";
 
@@ -82,6 +92,17 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/admin/donations" element={<AdminDonations />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />
                 <Route path="/admin/kb" element={<AdminKb />} />
+                <Route path="/admin/courses" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
+
+                {/* Learning / LMS */}
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/courses" element={<Courses />} />
+                <Route path="/courses/:slug" element={<CourseDetail />} />
+                <Route path="/courses/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
+                <Route path="/courses/:slug/quiz" element={<RequireAuth><CourseQuiz /></RequireAuth>} />
+                <Route path="/courses/:slug/certificate" element={<RequireAuth><CourseCertificate /></RequireAuth>} />
+                <Route path="/my-learning" element={<RequireAuth><MyLearning /></RequireAuth>} />
+                <Route path="/verify/:number" element={<CertificateVerify />} />
 
                 {/* Localized */}
                 <Route

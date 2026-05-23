@@ -127,6 +127,22 @@ for (const b of aedPaths) {
   );
 }
 
+// LMS / Courses (catalog only — course detail URLs are dynamic & emitted at runtime)
+const lmsPaths = [
+  { path: "/courses", changefreq: "weekly", priority: "0.9" },
+];
+for (const b of lmsPaths) {
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}${b.path}</loc>`,
+      `    <changefreq>${b.changefreq}</changefreq>`,
+      `    <priority>${b.priority}</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
+}
+
 const xml = [
   `<?xml version="1.0" encoding="UTF-8"?>`,
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,

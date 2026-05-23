@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Loader2, RotateCcw, MapPin, Phone, HeartPulse, Stethoscope, FlaskConical, Search } from "lucide-react";
+import { Loader2, RotateCcw, MapPin, Phone, HeartPulse, Stethoscope, FlaskConical, Search, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
@@ -217,6 +217,14 @@ const Index = () => {
                   >
                     <MapPin className="h-4 w-4" />
                     AED Finder
+                  </Link>
+                  <Link
+                    to="/courses"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                    aria-label="Free online first aid courses"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    Free Courses
                   </Link>
                   <Link
                     to="/symptoms"
