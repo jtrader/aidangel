@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ExternalLink, GraduationCap, Navigation } from "lucide-react";
+import { ExternalLink, GraduationCap, Navigation, Sparkles } from "lucide-react";
+
 import { Educator, EducatorLocation, getNearestVenues, getCountryEducators } from "@/lib/educators";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
 import { useCountry } from "@/hooks/useCountry";
@@ -87,6 +88,34 @@ export default function NearbyEducators({
           </span>
         ) : null}
       </p>
+
+      <Link
+        to="/courses"
+        className="group block mb-3 p-4 rounded-xl border border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover:border-primary transition-all"
+      >
+        <div className="flex items-start gap-3">
+          <div className="shrink-0 h-10 w-10 rounded-lg bg-primary/15 text-primary flex items-center justify-center">
+            <Sparkles className="h-5 w-5" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-[10px] uppercase tracking-wide font-bold text-primary">Free · Online · Anytime</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-primary text-primary-foreground font-semibold">New</span>
+            </div>
+            <h3 className="font-semibold text-foreground text-sm sm:text-base mt-0.5">
+              Aid Angel Free Online Course
+            </h3>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              Learn first aid fundamentals at your own pace. Includes quizzes and a completion certificate.
+            </p>
+            <span className="inline-flex items-center gap-1 mt-2 text-xs font-medium text-primary group-hover:underline">
+              Start free course →
+            </span>
+          </div>
+        </div>
+      </Link>
+
+
 
       {loading ? (
         <div className="grid sm:grid-cols-2 gap-3">
