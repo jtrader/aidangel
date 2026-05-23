@@ -543,6 +543,7 @@ export default function CprGuide() {
           professional help. Always call <a href={`tel:${emergency}`} className="underline font-semibold">{emergency}</a> first.
         </aside>
       </main>
+      <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );
 }
