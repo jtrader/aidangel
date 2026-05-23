@@ -196,6 +196,35 @@ export default function AedFinder() {
   const [count, setCount] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
+  // Reverse-geocode a lat/lng to an ISO-2 country code (cached on the Geocoder instance).
+  const geocoderRef = useRef<any>(null);
+  const reverseCountryCache = useRef<Map<string, string | null>>(new Map());
+  const reverseCountry = useCallback(async (lat: number, lng: number): Promise<string | null> => {
+    const key = `${lat.toFixed(1)},${lng.toFixed(1)}`;
+    if (reverseCountryCache.current.has(key)) return reverseCountryCache.current.get(key)!;
+    const google = window.google;
+    if (!google?.maps?.Geocoder) return null;
+    if (!geocoderRef.current) geocoderRef.current = new google.maps.Geocoder();
+    return new Promise((resolve) => {
+      geocoderRef.current.geocode({ location: { lat, lng } }, (results: any[], status: string) => {
+        if (status !== "OK" || !results?.length) {
+          reverseCountryCache.current.set(key, null);
+          return resolve(null);
+        }
+        let iso: string | null = null;
+        for (const r of results) {
+          const c = r.address_components?.find((c: any) => c.types?.includes("country"));
+          if (c?.short_name) {
+            iso = c.short_name;
+            break;
+          }
+        }
+        reverseCountryCache.current.set(key, iso);
+        resolve(iso);
+      });
+    });
+  }, []);
+
   const loadInBounds = useCallback(async () => {
     const map = mapRef.current;
     if (!map) return;
@@ -205,15 +234,6 @@ export default function AedFinder() {
     const sw = b.getSouthWest();
     const bounds = { south: sw.lat(), west: sw.lng(), north: ne.lat(), east: ne.lng() };
 
-    // Bail if zoomed too far out (Overpass would return too much)
-    if (map.getZoom() < 9) {
-      setCount(0);
-      // Clear markers
-      markersRef.current.forEach((m) => m.setMap(null));
-      markersRef.current.clear();
-      return;
-    }
-
     fetchAbort.current?.abort();
     const ctrl = new AbortController();
     fetchAbort.current = ctrl;
@@ -221,7 +241,24 @@ export default function AedFinder() {
     setError(null);
 
     try {
-      const aeds = await fetchAeds(bounds, ctrl.signal);
+      // Figure out which country file(s) we need. Start with the user's detected
+      // country, then add the country under the current map center.
+      const isoCodes = new Set<string>();
+      if (country && typeof country === "string") isoCodes.add(country.toUpperCase());
+      const center = map.getCenter();
+      if (center) {
+        const iso = await reverseCountry(center.lat(), center.lng());
+        if (iso) isoCodes.add(iso);
+      }
+      if (isoCodes.size === 0) isoCodes.add("AU");
+
+      const lists = await Promise.all(
+        Array.from(isoCodes).map((c) => fetchCountryAeds(c).catch(() => [] as Aed[])),
+      );
+      if (ctrl.signal.aborted) return;
+      const all = lists.flat();
+      const aeds = filterByBounds(all, bounds);
+
       const google = window.google;
       const seen = new Set<string>();
 
@@ -255,7 +292,7 @@ export default function AedFinder() {
             aed.indoor === "yes" ? `<div style="font-size: 12px; color: #6b7280; margin-bottom: 2px;">Indoor</div>` : aed.indoor === "no" ? `<div style="font-size: 12px; color: #6b7280; margin-bottom: 2px;">Outdoor</div>` : "",
             aed.phone ? `<div style="font-size: 12px; margin-bottom: 2px;"><a href="tel:${aed.phone}" style="color: #dc2626;">📞 ${aed.phone}</a></div>` : "",
             `<a href="${directions}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;background:#dc2626;color:#fff;padding:6px 10px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;">Get directions</a>`,
-            `<div style="margin-top:6px;font-size:10px;color:#9ca3af;">Source: OpenStreetMap</div>`,
+            `<div style="margin-top:6px;font-size:10px;color:#9ca3af;">Source: OpenAEDMap / OpenStreetMap</div>`,
             `</div>`,
           ].join("");
           info.setContent(lines);
@@ -264,7 +301,7 @@ export default function AedFinder() {
         markersRef.current.set(aed.id, marker);
       });
 
-      // Remove markers no longer in result set (keep cache simple: only remove if outside current view)
+      // Remove markers that have scrolled out of the current view.
       markersRef.current.forEach((m, id) => {
         if (!seen.has(id)) {
           const pos = m.getPosition();
@@ -283,7 +320,7 @@ export default function AedFinder() {
     } finally {
       setFetchingAeds(false);
     }
-  }, []);
+  }, [country, reverseCountry]);
 
   useEffect(() => {
     let cancelled = false;
