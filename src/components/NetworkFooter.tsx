@@ -13,6 +13,7 @@ import DonateMenu from "@/components/DonateMenu";
 import ShopMenu from "@/components/ShopMenu";
 import LearnMenu from "@/components/LearnMenu";
 import CountrySelector from "@/components/CountrySelector";
+import LanguageSelector from "@/components/LanguageSelector";
 
 type NetworkLink = {
   href: string;
@@ -115,6 +116,7 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
         </div>
         <div className="flex items-center justify-center gap-2 pb-2">
           <CountrySelector />
+          <LanguageSelector />
           {installVisible && (
             <button
               onClick={handleInstall}

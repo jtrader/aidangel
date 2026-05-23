@@ -9,7 +9,7 @@ import { localizedPath, SITE_ORIGIN, HREFLANG } from "@/lib/i18n";
 import { getTopic } from "@/lib/kb";
 import { SYMPTOM_LANDERS, getLanderBySlug } from "@/data/symptomLanders";
 import NetworkFooter from "@/components/NetworkFooter";
-import LanguageSelector from "@/components/LanguageSelector";
+
 
 const REVIEWED_BY = "First Aid Angel editorial team";
 const DATE_MODIFIED = "2026-05-22";
@@ -103,7 +103,6 @@ const SymptomLander = () => {
           >
             <ArrowLeft className="h-4 w-4" /> All symptoms
           </Link>
-          <LanguageSelector />
         </div>
       </header>
 

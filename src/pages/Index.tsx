@@ -8,7 +8,7 @@ import ChatInput from "@/components/ChatInput";
 import ChatDisclaimer from "@/components/ChatDisclaimer";
 import QuickActions from "@/components/QuickActions";
 import DRSABCDPanel from "@/components/DRSABCDPanel";
-import LanguageSelector from "@/components/LanguageSelector";
+
 import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import KbSuggestionCard from "@/components/KbSuggestionCard";
@@ -157,7 +157,6 @@ const Index = () => {
                     First Aid Angel
                     <span className="sr-only"> — AI First Aid Assistant for Australia</span>
                   </h1>
-                  <LanguageSelector />
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {t("appSubtitle")}

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import LanguageSelector from "@/components/LanguageSelector";
 import HamburgerMenu from "@/components/HamburgerMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
 import aidAngelLogo from "@/assets/aidangel-logo.png";
@@ -27,7 +26,6 @@ export default function SiteHeader({ backTo, backLabel }: SiteHeaderProps) {
                 <h1 className="font-display font-bold text-lg text-foreground leading-tight truncate">
                   First Aid Angel
                 </h1>
-                <LanguageSelector />
               </div>
               <p className="text-xs text-muted-foreground truncate">
                 {t("appSubtitle")}

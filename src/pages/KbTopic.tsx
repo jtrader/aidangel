@@ -7,7 +7,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
-import LanguageSelector from "@/components/LanguageSelector";
+
 import TopicIllustration from "@/components/TopicIllustration";
 import PlayAudioButton from "@/components/PlayAudioButton";
 import NearbyEducators from "@/components/NearbyEducators";
@@ -325,7 +325,6 @@ const KbTopic = () => {
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground" lang={language}>
               {translated.title}
             </h1>
-            <LanguageSelector />
           </div>
           <p className="text-lg text-muted-foreground mb-4 leading-relaxed" lang={language}>
             {translated.summary}

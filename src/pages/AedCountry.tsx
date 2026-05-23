@@ -7,7 +7,7 @@ import { getAedCountryBySlug, AED_COUNTRIES } from "@/lib/aedLocations";
 import { fetchCountryAeds } from "@/lib/openAedMap";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import NetworkFooter from "@/components/NetworkFooter";
-import LanguageSelector from "@/components/LanguageSelector";
+
 
 export default function AedCountry() {
   const { language } = useLanguage();
@@ -86,7 +86,6 @@ export default function AedCountry() {
         <Link to="/aed" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> All countries
         </Link>
-        <LanguageSelector />
       </header>
 
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-8">

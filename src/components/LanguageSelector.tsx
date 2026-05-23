@@ -51,14 +51,18 @@ const LanguageSelector = () => {
   const popularSet = new Set(popularCodes);
   const rest = languages.filter((l) => !popularSet.has(l.code));
 
+  const currentLang = languages.find((l) => l.code === language);
+  const label = isAuto ? "Auto" : (currentLang?.nativeName ?? language);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className="inline-flex items-center justify-center gap-1.5 w-9 h-9 rounded-full bg-muted text-foreground hover:bg-muted/80 transition-colors"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted text-foreground hover:bg-muted/80 transition-colors text-xs font-medium"
         aria-label="Select language"
         title="Select language"
       >
-        <Globe className="h-4 w-4" />
+        <Globe className="h-3.5 w-3.5" />
+        <span className="truncate max-w-[100px]">{label}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64 bg-popover max-h-96 overflow-y-auto">
         <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">

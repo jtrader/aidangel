@@ -913,6 +913,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
   </url>
   <url>
+    <loc>https://firstaidangel.org/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+  </url>
+  <url>
     <loc>https://firstaidangel.org/zh</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -1823,6 +1899,82 @@
     <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/zh/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/zh/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/zh/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/zh/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
   </url>
   <url>
     <loc>https://firstaidangel.org/yue</loc>
@@ -2737,6 +2889,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
   </url>
   <url>
+    <loc>https://firstaidangel.org/yue/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yue/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yue/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yue/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+  </url>
+  <url>
     <loc>https://firstaidangel.org/ar</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -3647,6 +3875,82 @@
     <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/ar/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/ar/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/ar/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/ar/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
   </url>
   <url>
     <loc>https://firstaidangel.org/vi</loc>
@@ -4561,6 +4865,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
   </url>
   <url>
+    <loc>https://firstaidangel.org/vi/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/vi/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/vi/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/vi/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+  </url>
+  <url>
     <loc>https://firstaidangel.org/pa</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -5471,6 +5851,82 @@
     <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pa/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pa/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pa/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pa/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
   </url>
   <url>
     <loc>https://firstaidangel.org/el</loc>
@@ -6385,6 +6841,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
   </url>
   <url>
+    <loc>https://firstaidangel.org/el/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/el/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/el/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/el/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+  </url>
+  <url>
     <loc>https://firstaidangel.org/it</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -7295,6 +7827,82 @@
     <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/it/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/it/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/it/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/it/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
   </url>
   <url>
     <loc>https://firstaidangel.org/kriol</loc>
@@ -8209,6 +8817,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
   </url>
   <url>
+    <loc>https://firstaidangel.org/kriol/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/kriol/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/kriol/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/kriol/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+  </url>
+  <url>
     <loc>https://firstaidangel.org/yolngu</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -9119,6 +9803,82 @@
     <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yolngu/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yolngu/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yolngu/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yolngu/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
   </url>
   <url>
     <loc>https://firstaidangel.org/pitjantjatjara</loc>
@@ -10033,6 +10793,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
   </url>
   <url>
+    <loc>https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pitjantjatjara/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+  </url>
+  <url>
     <loc>https://firstaidangel.org/arrernte</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10943,6 +11779,82 @@
     <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/electric-shock" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/arrernte/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/arrernte/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/arrernte/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/arrernte/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
   </url>
   <url>
     <loc>https://firstaidangel.org/tsi</loc>
@@ -11857,6 +12769,82 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/electric-shock" />
   </url>
   <url>
+    <loc>https://firstaidangel.org/tsi/kb/workplace-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/workplace-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/workplace-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/tsi/kb/remote-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/remote-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/remote-first-aid" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/tsi/kb/elderly-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/elderly-care" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/elderly-care" />
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/tsi/kb/mental-health-first-aid</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://firstaidangel.org/zh/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="yue-HK" href="https://firstaidangel.org/yue/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://firstaidangel.org/ar/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://firstaidangel.org/vi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="pa" href="https://firstaidangel.org/pa/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="el" href="https://firstaidangel.org/el/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://firstaidangel.org/it/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="rop" href="https://firstaidangel.org/kriol/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-yolngu" href="https://firstaidangel.org/yolngu/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-pitjantjatjara" href="https://firstaidangel.org/pitjantjatjara/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-arrernte" href="https://firstaidangel.org/arrernte/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="tcs" href="https://firstaidangel.org/tsi/kb/mental-health-first-aid" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
+  </url>
+  <url>
     <loc>https://firstaidangel.org/aed</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -12415,5 +13403,110 @@
     <loc>https://firstaidangel.org/courses</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/construction</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/mining</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/manufacturing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/agriculture</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/healthcare-aged-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/education-childcare</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/retail</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/hospitality</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/transport-logistics</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/office</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/emergency-services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/aviation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/aquatic-leisure</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/entertainment</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/laboratory-research</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/utilities-telco</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/maritime-offshore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/waste-recycling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/security-corrections</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/workplace/beauty-wellness</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

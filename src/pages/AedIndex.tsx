@@ -4,7 +4,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { AED_COUNTRIES } from "@/lib/aedLocations";
 import NetworkFooter from "@/components/NetworkFooter";
-import LanguageSelector from "@/components/LanguageSelector";
+
 
 export default function AedIndex() {
   const { language } = useLanguage();
@@ -35,7 +35,6 @@ export default function AedIndex() {
         <Link to="/" className="font-heading font-bold text-primary inline-flex items-center gap-2">
           <Cross className="w-5 h-5" /> First Aid Angel
         </Link>
-        <LanguageSelector />
       </header>
 
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-8">

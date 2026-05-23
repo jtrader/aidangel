@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { SeoHead } from "@/components/SeoHead";
 import { CprExplainerVideo } from "@/components/CprExplainerVideo";
-import LanguageSelector from "@/components/LanguageSelector";
+
 import EmergencyCallButton from "@/components/EmergencyCallButton";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
@@ -244,7 +244,6 @@ export default function CprGuide() {
             >
               <Phone className="h-4 w-4" /> Call {emergency}
             </a>
-            <LanguageSelector />
             <HamburgerMenu />
           </div>
         </div>

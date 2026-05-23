@@ -15,7 +15,7 @@ import {
 import { loadMapboxToken, mapboxgl } from "@/lib/mapboxLoader";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import NetworkFooter from "@/components/NetworkFooter";
-import LanguageSelector from "@/components/LanguageSelector";
+
 
 export default function AedCity() {
   const { language } = useLanguage();
@@ -164,7 +164,6 @@ export default function AedCity() {
         <Link to={`/aed/${country.slug}`} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> {country.flag} {country.name}
         </Link>
-        <LanguageSelector />
       </header>
 
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-6">

@@ -6,7 +6,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { canonicalUrl, SITE_ORIGIN, localizedPath } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
-import LanguageSelector from "@/components/LanguageSelector";
+
 import EmergencyCallButton from "@/components/EmergencyCallButton";
 import HamburgerMenu from "@/components/HamburgerMenu";
 
@@ -188,7 +188,6 @@ const KbIndex = () => {
             <h1 className="text-3xl sm:text-4xl font-bold text-foreground">
               {ui.pageTitle}
             </h1>
-            <LanguageSelector />
           </div>
           <p className="text-base text-muted-foreground max-w-2xl mb-2">
             {ui.intro}

@@ -9,7 +9,7 @@ import { localizedPath, SITE_ORIGIN, HREFLANG } from "@/lib/i18n";
 import { getTopic } from "@/lib/kb";
 import { SYMPTOM_LANDERS } from "@/data/symptomLanders";
 import NetworkFooter from "@/components/NetworkFooter";
-import LanguageSelector from "@/components/LanguageSelector";
+
 import EmergencyCallButton from "@/components/EmergencyCallButton";
 import HamburgerMenu from "@/components/HamburgerMenu";
 
@@ -127,7 +127,6 @@ const SymptomFinder = () => {
             <ArrowLeft className="h-4 w-4" /> Home
           </Link>
           <div className="flex items-center gap-2">
-            <LanguageSelector />
             <HamburgerMenu />
           </div>
         </div>
