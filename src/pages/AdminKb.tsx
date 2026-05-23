@@ -30,29 +30,50 @@ function chunkMarkdown(body: string, target = 1200, overlap = 150): string[] {
 }
 
 function AuthPanel() {
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null); setLoading(true);
+    setError(null); setInfo(null); setLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      if (mode === "signin") {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      } else {
+        const { data, error } = await supabase.auth.signUp({
+          email, password,
+          options: { emailRedirectTo: `${window.location.origin}/admin/kb` },
+        });
+        if (error) throw error;
+        if (!data.session) setInfo("Check your inbox to confirm your email, then sign in.");
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Auth failed");
     } finally { setLoading(false); }
   };
   return (
     <Card className="max-w-md mx-auto mt-12">
-      <CardHeader><CardTitle>Admin sign in</CardTitle></CardHeader>
+      <CardHeader><CardTitle>Admin {mode === "signin" ? "sign in" : "sign up"}</CardTitle></CardHeader>
       <CardContent>
         <form onSubmit={submit} className="space-y-3">
           <div><Label htmlFor="e">Email</Label><Input id="e" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /></div>
           <div><Label htmlFor="p">Password</Label><Input id="p" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} /></div>
           {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" disabled={loading} className="w-full">{loading ? "…" : "Sign in"}</Button>
+          {info && <p className="text-sm text-muted-foreground">{info}</p>}
+          <Button type="submit" disabled={loading} className="w-full">
+            {loading ? "…" : mode === "signin" ? "Sign in" : "Create account"}
+          </Button>
+          <button
+            type="button"
+            className="w-full text-xs text-muted-foreground hover:text-foreground"
+            onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setError(null); setInfo(null); }}
+          >
+            {mode === "signin" ? "No account? Sign up" : "Have an account? Sign in"}
+          </button>
         </form>
       </CardContent>
     </Card>
