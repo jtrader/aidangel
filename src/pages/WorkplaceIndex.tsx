@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Briefcase, ArrowRight, ShieldAlert, Users, ClipboardCheck } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import NetworkFooter from "@/components/NetworkFooter";
+import MentalHealthCallout from "@/components/MentalHealthCallout";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { VERTICALS, VERTICALS_BY_TIER } from "@/data/workplaceVerticals";
@@ -117,6 +118,12 @@ export default function WorkplaceIndex() {
             </div>
           </section>
         ))}
+        {/* Mental Health First Aid — cross-cutting across every vertical */}
+        <section className="border-b border-border bg-muted/20">
+          <div className="max-w-5xl mx-auto px-4 py-10">
+            <MentalHealthCallout />
+          </div>
+        </section>
       </main>
 
       <NetworkFooter />

@@ -35,6 +35,7 @@ import {
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import NetworkFooter from "@/components/NetworkFooter";
+import MentalHealthCallout from "@/components/MentalHealthCallout";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
@@ -278,6 +279,13 @@ export default function WorkplaceVertical() {
             </div>
           </section>
         )}
+
+        {/* Mental Health First Aid — always shown, every vertical */}
+        <section className="border-b border-border bg-muted/20">
+          <div className="max-w-4xl mx-auto px-4 py-10">
+            <MentalHealthCallout context={vertical.shortTitle.toLowerCase()} />
+          </div>
+        </section>
 
         {/* Related verticals */}
         {related.length > 0 && (
