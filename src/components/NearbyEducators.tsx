@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ExternalLink, GraduationCap, Navigation } from "lucide-react";
+import { ExternalLink, GraduationCap, Navigation, Sparkles } from "lucide-react";
+
 import { Educator, EducatorLocation, getNearestVenues, getCountryEducators } from "@/lib/educators";
 import { useGeoLocation } from "@/hooks/useGeoLocation";
 import { useCountry } from "@/hooks/useCountry";
