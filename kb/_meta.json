@@ -587,5 +587,101 @@
       "cpr",
       "shock"
     ]
+  },
+  {
+    "slug": "workplace-first-aid",
+    "title": "Workplace-Specific First Aid",
+    "category": "Specialised Settings",
+    "section": "Workplace-Specific First Aid",
+    "summary": "First aid priorities for high-risk Australian workplaces — construction sites, hospitality kitchens, and childcare settings — with common incidents, kit requirements and WHS obligations for each.",
+    "keywords": [
+      "workplace first aid",
+      "construction first aid",
+      "hospitality first aid",
+      "childcare first aid",
+      "WHS",
+      "occupational"
+    ],
+    "related": [
+      "burns",
+      "bleeding",
+      "anaphylaxis",
+      "asthma",
+      "choking"
+    ]
+  },
+  {
+    "slug": "remote-first-aid",
+    "title": "Regional and Remote First Aid",
+    "category": "Specialised Settings",
+    "section": "Regional and Remote First Aid",
+    "summary": "First aid in regional and remote Australia where ambulances are hours away — calling for help (000, 112, PLB, RFDS), prolonged casualty care, and the most common outback scenarios.",
+    "keywords": [
+      "remote first aid",
+      "outback",
+      "rural",
+      "RFDS",
+      "flying doctor",
+      "PLB",
+      "prolonged care"
+    ],
+    "related": [
+      "snake-bite",
+      "heat-illness",
+      "hypothermia",
+      "dehydration",
+      "fractures"
+    ]
+  },
+  {
+    "slug": "elderly-care",
+    "title": "Elderly Care First Aid",
+    "category": "Specialised Settings",
+    "section": "Elderly Care First Aid",
+    "summary": "First aid for older adults — falls, atypical heart attack and stroke, medication-related emergencies, choking, fragile skin and delirium. Lower thresholds for calling 000 in the elderly.",
+    "keywords": [
+      "elderly first aid",
+      "aged care",
+      "seniors",
+      "falls",
+      "anticoagulant",
+      "blood thinner",
+      "dementia",
+      "delirium"
+    ],
+    "related": [
+      "fractures",
+      "head-injury",
+      "stroke",
+      "heart-attack",
+      "fainting",
+      "choking",
+      "diabetes"
+    ]
+  },
+  {
+    "slug": "mental-health-first-aid",
+    "title": "Mental Health First Aid",
+    "category": "Mental Health",
+    "section": "Mental Health First Aid",
+    "summary": "The ALGEE action plan from the Australian-developed Mental Health First Aid framework (Kitchener and Jorm). Covers approaching someone in distress, suicidal thoughts, panic attacks, psychosis, overdose and self-harm, with Australian crisis lines.",
+    "keywords": [
+      "mental health first aid",
+      "MHFA",
+      "ALGEE",
+      "suicide",
+      "panic attack",
+      "anxiety",
+      "psychosis",
+      "self harm",
+      "Lifeline",
+      "Beyond Blue",
+      "Kitchener"
+    ],
+    "related": [
+      "recovery-position",
+      "bleeding",
+      "heart-attack"
+    ]
   }
 ]
