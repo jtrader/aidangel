@@ -54,14 +54,14 @@ export const firstAidSuggestions: Suggestion[] = [
   { text: "Can I use an AED on someone wet or on metal?", category: "CPR & Resus", keywords: ["water", "metal surface", "rain"] },
 
   // Bleeding
-  { text: "How do I stop severe bleeding?", category: "Bleeding & Wounds", keywords: ["haemorrhage", "pressure", "bleed out"] },
-  { text: "Someone has a deep cut — what do I do?", category: "Bleeding & Wounds", keywords: ["laceration", "wound", "knife"] },
+  { text: "How do I stop severe bleeding?", category: "Bleeding & Wounds", keywords: ["haemorrhage", "pressure", "bleed out", "bleeding", "bleed", "wound", "bloody"] },
+  { text: "Someone has a deep cut — what do I do?", category: "Bleeding & Wounds", keywords: ["laceration", "wound", "knife", "cut", "gash", "sliced", "cut hand", "cut finger", "cut leg"] },
   { text: "When should I use a tourniquet?", category: "Bleeding & Wounds", keywords: ["limb", "amputation", "cat tourniquet"] },
-  { text: "How do I treat a nosebleed?", category: "Eye, Ear, Nose", keywords: ["epistaxis", "pinch nose"] },
+  { text: "How do I treat a nosebleed?", category: "Eye, Ear, Nose", keywords: ["epistaxis", "pinch nose", "bloody nose", "nose bleed"] },
   { text: "How do I treat a bleeding amputation?", category: "Bleeding & Wounds", keywords: ["finger off", "limb amputated"] },
   { text: "How do I treat an embedded object in a wound?", category: "Bleeding & Wounds", keywords: ["impaled", "stuck object", "knife in wound"] },
-  { text: "How do I treat a puncture wound?", category: "Bleeding & Wounds", keywords: ["nail", "needle", "stab"] },
-  { text: "How do I dress a wound properly?", category: "Bleeding & Wounds", keywords: ["bandage", "dressing", "gauze"] },
+  { text: "How do I treat a puncture wound?", category: "Bleeding & Wounds", keywords: ["nail", "needle", "stab", "puncture"] },
+  { text: "How do I dress a wound properly?", category: "Bleeding & Wounds", keywords: ["bandage", "dressing", "gauze", "wound care"] },
   { text: "What is shock and how do I treat it?", category: "Emergency", keywords: ["hypovolaemic", "pale clammy", "shocky"] },
   { text: "How do I treat internal bleeding?", category: "Bleeding & Wounds", keywords: ["abdominal", "internal", "blunt"] },
 
@@ -75,13 +75,16 @@ export const firstAidSuggestions: Suggestion[] = [
   { text: "Should I pop a burn blister?", category: "Burns", keywords: ["blister", "pop", "burst"] },
 
   // Bones, joints, sprains
-  { text: "How do I treat a suspected broken bone?", category: "Bones & Joints", keywords: ["fracture", "broken arm", "broken leg"] },
+  { text: "How do I treat a suspected broken bone?", category: "Bones & Joints", keywords: ["fracture", "broken arm", "broken leg", "broke", "snapped", "crack bone", "busted"] },
   { text: "How do I splint a fracture?", category: "Bones & Joints", keywords: ["splint", "immobilise"] },
-  { text: "How do I treat a sprained ankle?", category: "Bones & Joints", keywords: ["rice", "sprain", "twisted ankle"] },
+  { text: "How do I treat a sprained ankle?", category: "Bones & Joints", keywords: ["rice", "sprain", "twisted ankle", "rolled ankle", "sore ankle", "hurt ankle"] },
+  { text: "How do I treat a sprained or sore knee?", category: "Bones & Joints", keywords: ["knee", "sore knee", "twisted knee", "knee pain", "knee injury", "popped knee", "meniscus"] },
+  { text: "How do I treat a sprained wrist?", category: "Bones & Joints", keywords: ["wrist", "sore wrist", "twisted wrist", "wrist pain"] },
+  { text: "How do I treat a pulled or strained muscle?", category: "Bones & Joints", keywords: ["pulled muscle", "muscle strain", "torn muscle", "sore muscle", "pulled hammy", "hamstring"] },
   { text: "What is the RICE method?", category: "Bones & Joints", keywords: ["rest ice compression elevation", "ricer"] },
-  { text: "How do I treat a dislocated shoulder?", category: "Bones & Joints", keywords: ["dislocation", "popped out"] },
+  { text: "How do I treat a dislocated shoulder?", category: "Bones & Joints", keywords: ["dislocation", "popped out", "sore shoulder"] },
   { text: "How do I make an arm sling?", category: "Bones & Joints", keywords: ["sling", "triangular bandage"] },
-  { text: "How do I treat a suspected spinal injury?", category: "Head & Spine", keywords: ["neck", "back", "spine", "log roll"] },
+  { text: "How do I treat a suspected spinal injury?", category: "Head & Spine", keywords: ["neck", "back", "spine", "log roll", "hurt back", "sore back", "back pain"] },
 
   // Breathing
   { text: "How do I help someone having an asthma attack?", category: "Breathing", keywords: ["puffer", "ventolin", "wheeze", "4x4x4"] },
@@ -161,9 +164,9 @@ export const firstAidSuggestions: Suggestion[] = [
   { text: "Do I do CPR differently for drowning?", category: "Drowning", keywords: ["drowning cpr", "5 breaths"] },
 
   // Head & spine
-  { text: "How do I treat a head injury?", category: "Head & Spine", keywords: ["concussion", "head knock", "bump"] },
-  { text: "What are concussion warning signs?", category: "Head & Spine", keywords: ["concussion symptoms"] },
-  { text: "Someone fell from height — what do I do?", category: "Head & Spine", keywords: ["fall", "ladder fall"] },
+  { text: "How do I treat a head injury?", category: "Head & Spine", keywords: ["concussion", "head knock", "bump", "head wound", "head injury", "banged head", "hit head", "knock head", "head bleed"] },
+  { text: "What are concussion warning signs?", category: "Head & Spine", keywords: ["concussion symptoms", "dizzy after hit"] },
+  { text: "Someone fell from height — what do I do?", category: "Head & Spine", keywords: ["fall", "ladder fall", "fell off"] },
 
   // Eye / ear / nose
   { text: "I have something in my eye — what do I do?", category: "Eye, Ear, Nose", keywords: ["foreign body eye", "grit"] },
@@ -194,6 +197,64 @@ export const firstAidSuggestions: Suggestion[] = [
 ];
 
 /**
+ * Lazy-input synonym map. When the user types one of these words we also try
+ * matching the expanded terms against suggestion text/keywords. Lets queries
+ * like "sore knee", "broke bone", "head wound" reach the right entry even when
+ * the curated text uses the medical phrasing ("sprained", "fracture", "injury").
+ */
+const SYNONYMS: Record<string, string[]> = {
+  // Generic injury verbs
+  broke: ["broken", "fracture"],
+  broken: ["fracture"],
+  busted: ["broken", "fracture"],
+  snapped: ["broken", "fracture"],
+  hurt: ["injury", "pain", "sore"],
+  sore: ["pain", "injury", "sprain", "strain"],
+  pain: ["sore", "injury"],
+  ache: ["pain", "sore"],
+  bang: ["hit", "knock", "bump"],
+  banged: ["hit", "knock", "bump"],
+  bump: ["knock", "hit", "concussion"],
+  knock: ["hit", "bump"],
+  twisted: ["sprain", "sprained"],
+  rolled: ["sprain", "sprained"],
+  pulled: ["strain", "strained"],
+  // Wound vocabulary
+  wound: ["cut", "laceration", "injury", "bleeding"],
+  cut: ["laceration", "wound", "bleeding"],
+  gash: ["laceration", "wound", "cut"],
+  bloody: ["bleeding", "blood"],
+  blood: ["bleeding"],
+  // Body parts → likely topic categories
+  knee: ["sprain", "joint", "leg"],
+  ankle: ["sprain", "joint"],
+  wrist: ["sprain", "joint"],
+  shoulder: ["dislocation", "joint", "sling"],
+  arm: ["fracture", "sprain"],
+  leg: ["fracture", "sprain"],
+  back: ["spine", "spinal"],
+  neck: ["spine", "spinal"],
+  head: ["concussion", "head injury"],
+  belly: ["abdominal", "stomach"],
+  tummy: ["abdominal", "stomach"],
+  chest: ["cardiac", "heart"],
+  // Casual phrasing
+  kid: ["child", "paediatric"],
+  baby: ["infant", "newborn"],
+  hammy: ["hamstring", "strain"],
+};
+
+function expandQuery(q: string): string[] {
+  const tokens = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const expansions = new Set<string>(tokens);
+  for (const t of tokens) {
+    const syns = SYNONYMS[t];
+    if (syns) for (const s of syns) expansions.add(s);
+  }
+  return Array.from(expansions);
+}
+
+/**
  * Score a suggestion against a query. Returns 0 if no match.
  * Higher score = better match. Prioritises prefix, then word-start, then substring, then keyword hit.
  */
@@ -215,10 +276,23 @@ export function scoreSuggestion(s: Suggestion, qRaw: string): number {
 
   // multi-token: every token must appear somewhere
   const tokens = q.split(/\s+/).filter(Boolean);
-  if (tokens.length > 1) {
-    const hay = `${text} ${cat} ${kws.join(" ")}`;
-    if (tokens.every((t) => hay.includes(t))) return 25;
+  const hay = `${text} ${cat} ${kws.join(" ")}`;
+  if (tokens.length > 1 && tokens.every((t) => hay.includes(t))) return 25;
+
+  // Synonym-expanded multi-token match: every original token OR one of its
+  // synonyms must appear somewhere in the haystack. Slightly lower score so
+  // exact matches still win.
+  const expanded = tokens.map((t) => [t, ...(SYNONYMS[t] ?? [])]);
+  if (expanded.every((group) => group.some((term) => hay.includes(term)))) {
+    return 20;
   }
+
+  // Single-token synonym fallback (e.g. "knee" -> hits "sprain"/"joint")
+  if (tokens.length === 1) {
+    const syns = SYNONYMS[tokens[0]] ?? [];
+    if (syns.some((s2) => hay.includes(s2))) return 15;
+  }
+
   return 0;
 }
 
@@ -233,3 +307,6 @@ export function searchSuggestions(query: string, limit = 6): Suggestion[] {
     .map((x) => x.s);
   return scored;
 }
+
+// Exposed for tests / debugging.
+export { expandQuery };
