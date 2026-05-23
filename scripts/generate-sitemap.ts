@@ -46,12 +46,44 @@ const LANDER_SLUGS = [
   "drowning-rescue",
 ];
 
+// AED local SEO hub — keep slugs in sync with src/lib/aedLocations.ts
+const AED_COUNTRIES: Array<{ slug: string; cities: string[] }> = [
+  { slug: "australia", cities: ["sydney","melbourne","brisbane","perth","adelaide","canberra","hobart","darwin","gold-coast","newcastle"] },
+  { slug: "new-zealand", cities: ["auckland","wellington","christchurch","hamilton","dunedin"] },
+  { slug: "united-kingdom", cities: ["london","manchester","birmingham","edinburgh","glasgow","liverpool","leeds","bristol","cardiff","belfast"] },
+  { slug: "ireland", cities: ["dublin","cork","galway","limerick"] },
+  { slug: "united-states", cities: ["new-york","los-angeles","chicago","houston","phoenix","philadelphia","san-francisco","seattle","boston","washington-dc"] },
+  { slug: "canada", cities: ["toronto","montreal","vancouver","calgary","ottawa","edmonton"] },
+  { slug: "germany", cities: ["berlin","hamburg","munich","cologne","frankfurt","stuttgart"] },
+  { slug: "france", cities: ["paris","marseille","lyon","toulouse","nice","bordeaux"] },
+  { slug: "netherlands", cities: ["amsterdam","rotterdam","the-hague","utrecht"] },
+  { slug: "belgium", cities: ["brussels","antwerp","ghent"] },
+  { slug: "italy", cities: ["rome","milan","naples","turin","florence"] },
+  { slug: "spain", cities: ["madrid","barcelona","valencia","seville"] },
+  { slug: "portugal", cities: ["lisbon","porto"] },
+  { slug: "poland", cities: ["warsaw","krakow","gdansk","wroclaw"] },
+  { slug: "sweden", cities: ["stockholm","gothenburg","malmo"] },
+  { slug: "norway", cities: ["oslo","bergen","trondheim"] },
+  { slug: "denmark", cities: ["copenhagen","aarhus"] },
+  { slug: "japan", cities: ["tokyo","osaka","kyoto","yokohama"] },
+];
+
+const aedPaths: Array<{ path: string; changefreq: string; priority: string }> = [
+  { path: "/aed", changefreq: "weekly", priority: "0.9" },
+  { path: "/aed-finder", changefreq: "weekly", priority: "0.8" },
+  ...AED_COUNTRIES.map((c) => ({ path: `/aed/${c.slug}`, changefreq: "weekly", priority: "0.8" })),
+  ...AED_COUNTRIES.flatMap((c) =>
+    c.cities.map((city) => ({ path: `/aed/${c.slug}/${city}`, changefreq: "weekly", priority: "0.7" })),
+  ),
+];
+
 const basePaths: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/kb", changefreq: "weekly", priority: "0.9" },
   { path: "/symptoms", changefreq: "weekly", priority: "0.9" },
   ...LANDER_SLUGS.map((s) => ({ path: `/symptoms/${s}`, changefreq: "monthly", priority: "0.8" })),
   ...meta.map((t) => ({ path: `/kb/${t.slug}`, changefreq: "monthly", priority: "0.7" })),
+  ...aedPaths,
 ];
 
 const localized = (lang: Lang, p: string) => {
