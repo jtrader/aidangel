@@ -14,6 +14,7 @@ import KbTopic from "./pages/KbTopic";
 import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
 import AdminEducators from "./pages/AdminEducators";
+import AdminKb from "./pages/AdminKb";
 import SymptomFinder from "./pages/SymptomFinder";
 import SymptomLander from "./pages/SymptomLander";
 import LearnIndex from "./pages/LearnIndex";
