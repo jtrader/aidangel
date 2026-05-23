@@ -259,7 +259,7 @@ export default function AedFinder() {
           <Button
             onClick={recenter}
             size="icon"
-            className="absolute bottom-4 right-4 z-10 rounded-full shadow-md"
+            className="absolute bottom-4 right-4 z-10 rounded-full shadow-md min-h-11 min-w-11"
             aria-label="Find my location"
           >
             <LocateFixed className="w-5 h-5" />

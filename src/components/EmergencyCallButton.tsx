@@ -28,7 +28,7 @@ const EmergencyCallButton = ({ variant = "floating" }: EmergencyCallButtonProps)
   return (
     <a
       href={`tel:${number}`}
-      className={`fixed z-50 inline-flex items-center gap-2 rounded-full bg-destructive px-4 py-3 text-destructive-foreground font-bold text-sm shadow-lg hover:bg-destructive/90 transition-all hover:scale-105 animate-pulse-slow ${
+      className={`fixed z-50 inline-flex items-center gap-2 rounded-full bg-destructive px-4 py-3 text-destructive-foreground font-bold text-sm shadow-lg hover:bg-destructive/90 transition-all hover:scale-105 animate-pulse-slow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
         isAedFinder
           ? "bottom-6 left-1/2 -translate-x-1/2"
           : "bottom-6 right-6"

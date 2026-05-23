@@ -180,16 +180,17 @@ export default function AgentChat() {
         <form onSubmit={onSubmit} className="flex gap-2">
           <input
             type="text"
+            aria-label="Ask the agent a first-aid question"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask the agent anything about first aid…"
             disabled={isLoading}
-            className="flex-1 min-h-11 px-4 py-3 rounded-xl border border-input bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring text-sm"
+            className="flex-1 min-h-11 px-4 py-3 rounded-xl border border-input bg-card text-card-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring text-sm"
           />
           <button
             type="submit"
             disabled={isLoading || !input.trim()}
-            className="min-h-11 px-5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-40"
+            className="min-h-11 px-5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             Send
           </button>

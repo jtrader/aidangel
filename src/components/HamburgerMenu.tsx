@@ -44,7 +44,7 @@ export default function HamburgerMenu() {
       <SheetTrigger asChild>
         <button
           type="button"
-          className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors self-center"
+          className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors self-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           aria-label="Open navigation menu"
         >
           <Menu className="h-5 w-5" />

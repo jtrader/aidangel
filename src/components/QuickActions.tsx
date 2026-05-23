@@ -74,7 +74,7 @@ const QuickActions = ({ onSelect }: QuickActionsProps) => {
           <Link
             key={action.labelKey}
             to="/cpr"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-destructive/40 bg-destructive text-destructive-foreground text-sm font-semibold hover:bg-destructive/90 transition-colors duration-150 cursor-pointer shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-destructive/40 bg-destructive text-destructive-foreground text-sm font-semibold hover:bg-destructive/90 transition-colors duration-150 cursor-pointer shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             aria-label="Open Live CPR Guide"
           >
             {action.icon}
@@ -84,7 +84,7 @@ const QuickActions = ({ onSelect }: QuickActionsProps) => {
           <button
             key={action.labelKey}
             onClick={() => onSelect(promptMap[action.prompt] || action.prompt)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card text-card-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-150 cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-card text-card-foreground text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             {action.icon}
             {t(action.labelKey)}
