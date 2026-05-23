@@ -32,12 +32,15 @@ const AngelActionIndex = () => {
             <ArrowLeft className="h-4 w-4" />
             First Aid Angel
           </Link>
-          <Link
-            to={localizedPath(language, "/kb")}
-            className="text-sm font-semibold text-primary hover:text-primary/80"
-          >
-            Knowledge base →
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              to={localizedPath(language, "/kb")}
+              className="text-sm font-semibold text-primary hover:text-primary/80"
+            >
+              Knowledge base →
+            </Link>
+            <HamburgerMenu />
+          </div>
         </div>
       </header>
       <SupportUsBar />
