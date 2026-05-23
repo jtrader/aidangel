@@ -214,13 +214,8 @@ export default function AedFinder() {
   }, []);
 
   useEffect(() => {
-    if (!BROWSER_KEY) {
-      setError("Google Maps is not configured.");
-      setLoading(false);
-      return;
-    }
-
     let cancelled = false;
+
 
     loadGoogleMaps()
       .then(() => {
