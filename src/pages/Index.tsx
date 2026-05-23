@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Loader2, RotateCcw, MapPin, Phone, HeartPulse, Stethoscope, FlaskConical, Search } from "lucide-react";
+import { Loader2, RotateCcw, MapPin, Phone, HeartPulse, Stethoscope, FlaskConical, Search, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import EmergencyBanner from "@/components/EmergencyBanner";
