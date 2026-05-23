@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import en from "@/locales/en.json";
+import { COUNTRY_LANGUAGES_RANKED } from "@/lib/donations";
 
 export type LanguageCode =
   | "en" | "kriol" | "yolngu" | "pitjantjatjara" | "arrernte" | "tsi"
@@ -94,22 +95,64 @@ const LanguageContext = createContext<LanguageContextValue | undefined>(undefine
 
 const STORAGE_KEY = "faa:lang";
 
-/** Detect language from browser locale only (ignores stored override). */
+/**
+ * Detect language with the following priority:
+ *   1. Browser locale REGION → most-spoken supported language for that country
+ *      (e.g. "es-MX" → es, "en-CH" → de, the dominant language of CH).
+ *   2. Browser/OS LANGUAGE tag → if supported AND different from the country
+ *      baseline, prefer the user's explicit OS language (e.g. a German speaker
+ *      visiting on a Swiss IP keeps German rather than the regional default).
+ *   3. Fallback to "en".
+ */
 const detectFromBrowser = (): LanguageCode => {
-  const browserLangs =
-    (typeof navigator !== "undefined" && (navigator.languages || [navigator.language])) || [];
-  for (const bl of browserLangs) {
-    if (!bl) continue;
-    const lower = bl.toLowerCase();
-    const exact = languages.find((l) => l.code === lower);
-    if (exact) return exact.code;
-    if (lower.startsWith("yue") || lower === "zh-hk" || lower === "zh-tw") return "yue";
-    if (lower.startsWith("zh")) return "zh";
-    const prefix = lower.split("-")[0];
-    const match = languages.find((l) => l.code === prefix);
-    if (match) return match.code;
+  if (typeof navigator === "undefined") return "en";
+  const isSupported = (code: string): code is LanguageCode =>
+    languages.some((l) => l.code === code);
+
+  const normalizeTag = (tag: string): { lang: string; region: string | null } => {
+    const lower = tag.toLowerCase();
+    if (lower.startsWith("yue") || lower === "zh-hk") return { lang: "yue", region: "HK" };
+    if (lower === "zh-tw") return { lang: "zh", region: "TW" };
+    const [primary, region] = lower.split("-");
+    let lang = primary;
+    if (primary === "zh") lang = "zh";
+    return { lang, region: region ? region.toUpperCase() : null };
+  };
+
+  const tags = (navigator.languages && navigator.languages.length
+    ? navigator.languages
+    : [navigator.language]) || [];
+
+  // Pass 1: country baseline from first tag with a region.
+  let countryBaseline: LanguageCode | null = null;
+  for (const tag of tags) {
+    if (!tag) continue;
+    const { region } = normalizeTag(tag);
+    if (!region) continue;
+    const ranked = COUNTRY_LANGUAGES_RANKED[region];
+    if (ranked && ranked.length) {
+      const top = ranked.find(isSupported);
+      if (top) {
+        countryBaseline = top;
+        break;
+      }
+    }
   }
-  return "en";
+
+  // Pass 2: OS language preference (any supported tag).
+  let osLang: LanguageCode | null = null;
+  for (const tag of tags) {
+    if (!tag) continue;
+    const { lang } = normalizeTag(tag);
+    if (isSupported(lang)) {
+      osLang = lang;
+      break;
+    }
+  }
+
+  // If OS lang exists and differs from the country baseline, prefer it.
+  if (osLang && countryBaseline && osLang !== countryBaseline) return osLang;
+  return countryBaseline ?? osLang ?? "en";
 };
 
 const readStored = (): LanguageCode | null => {
