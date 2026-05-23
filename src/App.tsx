@@ -45,6 +45,8 @@ import InstallPrompt from "./components/InstallPrompt";
 import Partners from "./pages/Partners";
 import ShopPartners from "./pages/ShopPartners";
 import About from "./pages/About";
+import WorkplaceIndex from "./pages/WorkplaceIndex";
+import WorkplaceVertical from "./pages/WorkplaceVertical";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +98,8 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/unsubscribe" element={<Unsubscribe />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/:lang/about" element={<About />} />
+                <Route path="/workplace" element={<WorkplaceIndex />} />
+                <Route path="/workplace/:slug" element={<WorkplaceVertical />} />
 
                 <Route path="/admin/donations" element={<AdminDonations />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />

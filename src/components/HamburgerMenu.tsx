@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, MessageCircle, BookOpen, Search, HeartPulse, MapPin, FileText, GraduationCap, HandHeart, ShoppingBag, School, Info } from "lucide-react";
+import { Menu, X, MessageCircle, BookOpen, Search, HeartPulse, MapPin, FileText, GraduationCap, HandHeart, ShoppingBag, School, Info, Briefcase } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -23,6 +23,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Symptom Finder", href: "/symptoms", icon: Search },
   { label: "CPR Guide", href: "/cpr", icon: HeartPulse },
   { label: "AED Finder", href: "/aed-finder", icon: MapPin },
+  { label: "Workplace First Aid", href: "/workplace", icon: Briefcase },
   { label: "Angel Action PDFs", href: "/angel-action", icon: FileText },
   { label: "E-learning Courses", href: "/courses", icon: GraduationCap },
   { label: "Education Partners", href: "/learn", icon: School },
