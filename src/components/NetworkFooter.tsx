@@ -44,6 +44,25 @@ export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFoote
     copyright: "© 2026 Love Key Web Application",
     descriptions: NETWORK_LINKS.map((l) => l.description),
   });
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [installVisible, setInstallVisible] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e as BeforeInstallPromptEvent);
+      setInstallVisible(true);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleInstall = useCallback(async () => {
+    if (!installPrompt) return;
+    await installPrompt.prompt();
+    setInstallPrompt(null);
+    setInstallVisible(false);
+  }, [installPrompt]);
 
   useEffect(() => {
     if (language === "en") {
