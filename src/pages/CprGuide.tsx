@@ -363,14 +363,25 @@ export default function CprGuide() {
                     }
                   >
                     <HeartPulse className="h-9 w-9 mb-1" />
-                    <div className="text-5xl font-bold tabular-nums leading-none">
-                      {inBreathPhase ? "🫁" : (metronome.cyclePos + (metronome.isRunning ? 1 : 0)) || "—"}
-                    </div>
-                    <div className="text-[11px] uppercase tracking-wider mt-1 opacity-90">
-                      {inBreathPhase
-                        ? `Give 2 breaths · resume in ${metronome.breathCountdown}s`
-                        : `of 30 · cycle ${metronome.cycle}`}
-                    </div>
+                    {inBreathPhase ? (
+                      <div className="px-4 text-center">
+                        <div className="text-xl sm:text-2xl font-bold leading-tight">
+                          Give 2 breaths
+                        </div>
+                        <div className="text-xs uppercase tracking-wider mt-2 opacity-90 tabular-nums">
+                          Resume in {metronome.breathCountdown}s
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="text-5xl font-bold tabular-nums leading-none">
+                          {(metronome.cyclePos + (metronome.isRunning ? 1 : 0)) || "—"}
+                        </div>
+                        <div className="text-[11px] uppercase tracking-wider mt-1 opacity-90">
+                          of 30 · cycle {metronome.cycle}
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="mt-3 flex items-center gap-4 text-sm text-muted-foreground">
