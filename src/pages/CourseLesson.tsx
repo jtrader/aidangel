@@ -87,6 +87,29 @@ export default function CourseLesson() {
           </Card>
         )}
 
+        {Array.isArray(lesson.sources) && lesson.sources.length > 0 && (
+          <Card className="p-6 rounded-2xl mb-6">
+            <h2 className="font-display text-lg font-semibold mb-3">Sources</h2>
+            <ul className="space-y-2 text-sm list-disc pl-5">
+              {(lesson.sources as Array<{ label: string; url: string }>).map((s, i) => (
+                <li key={i}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline break-words"
+                  >
+                    {s.label || s.url}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs text-muted-foreground mt-3">
+              Always defer to local emergency services and current guidelines.
+            </p>
+          </Card>
+        )}
+
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <Button variant="outline" onClick={() => prev && navigate(`/courses/${slug}/lesson/${prev.slug}`)} disabled={!prev}>
             <ChevronLeft className="h-4 w-4 mr-1" /> Previous
