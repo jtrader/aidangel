@@ -113,5 +113,6 @@ export default function CourseQuiz() {
         )}
       </main>
     </div>
+    </CourseLayout>
   );
 }
