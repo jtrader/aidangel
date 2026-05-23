@@ -83,7 +83,6 @@ const basePaths: Array<{ path: string; changefreq: string; priority: string }> =
   { path: "/symptoms", changefreq: "weekly", priority: "0.9" },
   ...LANDER_SLUGS.map((s) => ({ path: `/symptoms/${s}`, changefreq: "monthly", priority: "0.8" })),
   ...meta.map((t) => ({ path: `/kb/${t.slug}`, changefreq: "monthly", priority: "0.7" })),
-  ...aedPaths,
 ];
 
 const localized = (lang: Lang, p: string) => {
@@ -113,6 +112,19 @@ for (const lang of LANGS) {
     lines.push(`  </url>`);
     urls.push(lines.join("\n"));
   }
+}
+
+// AED hub: English-only URLs (routes are not localized).
+for (const b of aedPaths) {
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}${b.path}</loc>`,
+      `    <changefreq>${b.changefreq}</changefreq>`,
+      `    <priority>${b.priority}</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
 }
 
 const xml = [
