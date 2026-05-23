@@ -7,8 +7,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Plus, Trash2, Save, Loader2 } from "lucide-react";
+import { Plus, Trash2, Save, Loader2, Upload, FileText, ExternalLink } from "lucide-react";
 import CoursesHeader from "@/components/CoursesHeader";
+import LessonSourcesEditor from "@/components/admin/LessonSourcesEditor";
 import { toast } from "sonner";
 
 export default function AdminCourses() {
@@ -169,26 +170,10 @@ export default function AdminCourses() {
                       </div>
                       <div><Label>Video URL (YouTube/Vimeo embed)</Label><Input value={l.video_url ?? ""} onChange={e => setLessons(lessons.map(x => x.id === l.id ? { ...x, video_url: e.target.value } : x))} /></div>
                       <div><Label>Body (Markdown)</Label><Textarea rows={6} value={l.body ?? ""} onChange={e => setLessons(lessons.map(x => x.id === l.id ? { ...x, body: e.target.value } : x))} /></div>
-                      <div>
-                        <Label>Sources (one per line, format: <code>Label | https://url</code>)</Label>
-                        <Textarea
-                          rows={3}
-                          placeholder={"Australian Resuscitation Council Guideline 8 | https://resus.org.au/guidelines/"}
-                          value={((l.sources ?? []) as Array<{ label: string; url: string }>).map(s => `${s.label} | ${s.url}`).join("\n")}
-                          onChange={e => {
-                            const sources = e.target.value
-                              .split("\n")
-                              .map(line => line.trim())
-                              .filter(Boolean)
-                              .map(line => {
-                                const [label, ...rest] = line.split("|");
-                                return { label: (label ?? "").trim(), url: rest.join("|").trim() };
-                              })
-                              .filter(s => s.url);
-                            setLessons(lessons.map(x => x.id === l.id ? { ...x, sources } : x));
-                          }}
-                        />
-                      </div>
+                      <LessonSourcesEditor
+                        lesson={l}
+                        onChange={(sources) => setLessons(lessons.map(x => x.id === l.id ? { ...x, sources } : x))}
+                      />
                     </Card>
                   ))}
                 </div>

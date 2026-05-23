@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ChevronLeft, ChevronRight, CheckCircle2, Loader2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle2, Loader2, FileText, Globe } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
@@ -90,25 +90,35 @@ export default function CourseLesson() {
         {Array.isArray(lesson.sources) && lesson.sources.length > 0 && (
           <Card className="p-6 rounded-2xl mb-6">
             <h2 className="font-display text-lg font-semibold mb-3">Sources</h2>
-            <ul className="space-y-2 text-sm list-disc pl-5">
-              {(lesson.sources as Array<{ label: string; url: string }>).map((s, i) => (
-                <li key={i}>
-                  <a
-                    href={s.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline break-words"
-                  >
-                    {s.label || s.url}
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-2 text-sm">
+              {(lesson.sources as Array<{ label: string; url: string; type?: "web" | "pdf" }>).map((s, i) => {
+                const isPdf = s.type === "pdf" || /\.pdf($|\?)/i.test(s.url);
+                return (
+                  <li key={i} className="flex items-start gap-2">
+                    {isPdf ? (
+                      <FileText className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                    ) : (
+                      <Globe className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+                    )}
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline break-words"
+                    >
+                      {s.label || s.url}
+                      {isPdf && <span className="ml-1 text-xs text-muted-foreground">(PDF)</span>}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
             <p className="text-xs text-muted-foreground mt-3">
               Always defer to local emergency services and current guidelines.
             </p>
           </Card>
         )}
+
 
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <Button variant="outline" onClick={() => prev && navigate(`/courses/${slug}/lesson/${prev.slug}`)} disabled={!prev}>
