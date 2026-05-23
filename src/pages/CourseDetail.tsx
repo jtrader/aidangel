@@ -167,5 +167,6 @@ export default function CourseDetail() {
       </main>
       <NetworkFooter />
     </div>
+    </CourseLayout>
   );
 }
