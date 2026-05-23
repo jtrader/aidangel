@@ -42,6 +42,7 @@ import AdminCourses from "./pages/AdminCourses";
 import RequireAuth from "./components/RequireAuth";
 import OfflineBanner from "./components/OfflineBanner";
 import InstallPrompt from "./components/InstallPrompt";
+import Partners from "./pages/Partners";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +100,8 @@ const App = forwardRef(function App(_props, _ref) {
 
                 {/* Learning / LMS */}
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/partners" element={<Partners />} />
+                <Route path="/:lang/partners" element={<Partners />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/courses/:slug" element={<CourseDetail />} />
                 <Route path="/courses/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
