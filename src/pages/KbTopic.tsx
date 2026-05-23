@@ -521,6 +521,7 @@ const KbTopic = () => {
         </article>
       </main>
 
+      <EmergencyCallButton />
       <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );

@@ -21,6 +21,7 @@ import {
 import { SeoHead } from "@/components/SeoHead";
 import { CprExplainerVideo } from "@/components/CprExplainerVideo";
 import LanguageSelector from "@/components/LanguageSelector";
+import EmergencyCallButton from "@/components/EmergencyCallButton";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { useMetronome } from "@/hooks/useMetronome";
@@ -543,6 +544,7 @@ export default function CprGuide() {
           professional help. Always call <a href={`tel:${emergency}`} className="underline font-semibold">{emergency}</a> first.
         </aside>
       </main>
+      <EmergencyCallButton />
       <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );

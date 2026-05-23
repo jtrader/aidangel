@@ -6,6 +6,7 @@ import { localizedPath } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import { useLanguage } from "@/contexts/LanguageContext";
+import EmergencyCallButton from "@/components/EmergencyCallButton";
 
 const AngelActionIndex = () => {
   const { language } = useLanguage();
@@ -108,6 +109,7 @@ const AngelActionIndex = () => {
         </div>
       </main>
 
+      <EmergencyCallButton />
       <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );

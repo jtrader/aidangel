@@ -10,6 +10,7 @@ import { getTopic } from "@/lib/kb";
 import { SYMPTOM_LANDERS } from "@/data/symptomLanders";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
+import EmergencyCallButton from "@/components/EmergencyCallButton";
 
 type Symptom = {
   label: string;
@@ -221,6 +222,7 @@ const SymptomFinder = () => {
         </div>
       </main>
 
+      <EmergencyCallButton />
       <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );

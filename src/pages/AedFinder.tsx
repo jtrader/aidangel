@@ -6,6 +6,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { Button } from "@/components/ui/button";
 import { loadMapboxToken, mapboxgl, reverseGeocodeCountry } from "@/lib/mapboxLoader";
+import EmergencyCallButton from "@/components/EmergencyCallButton";
 import {
   Aed,
   fetchCountryAeds,
@@ -270,6 +271,7 @@ export default function AedFinder() {
           </div>
         </div>
       </main>
+      <EmergencyCallButton />
     </>
   );
 }

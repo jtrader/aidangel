@@ -8,6 +8,7 @@ import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
+import EmergencyCallButton from "@/components/EmergencyCallButton";
 
 type Course = {
   id: string; slug: string; title: string; summary: string | null;
@@ -79,6 +80,7 @@ export default function Courses() {
           </div>
         )}
       </main>
+      <EmergencyCallButton />
       <NetworkFooter />
     </div>
   );
