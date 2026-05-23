@@ -29,5 +29,3 @@ verify_jwt = false
 [functions.cpr-tts]
 verify_jwt = false
 
-[functions.gemini-agent]
-verify_jwt = false
