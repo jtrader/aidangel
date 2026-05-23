@@ -46,6 +46,14 @@ const LANDER_SLUGS = [
   "drowning-rescue",
 ];
 
+// Workplace verticals — keep slugs in sync with src/data/workplaceVerticals.ts
+const WORKPLACE_SLUGS = [
+  "construction","mining","manufacturing","agriculture","healthcare-aged-care",
+  "education-childcare","retail","hospitality","transport-logistics","office",
+  "emergency-services","aviation","aquatic-leisure","entertainment","laboratory-research",
+  "utilities-telco","maritime-offshore","waste-recycling","security-corrections","beauty-wellness",
+];
+
 // AED local SEO hub — keep slugs in sync with src/lib/aedLocations.ts
 const AED_COUNTRIES: Array<{ slug: string; cities: string[] }> = [
   { slug: "australia", cities: ["sydney","melbourne","brisbane","perth","adelaide","canberra","hobart","darwin","gold-coast","newcastle"] },

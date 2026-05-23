@@ -4,6 +4,8 @@ Workplaces in Australia must provide first aid appropriate to the hazards presen
 
 In any serious emergency, follow [DRSABCD](/kb/drsabcd) and call [000](tel:000).
 
+For deep, industry-specific guidance see the [Workplace First Aid hub](/workplace) — 20 Australian verticals including [construction](/workplace/construction), [mining](/workplace/mining), [manufacturing](/workplace/manufacturing), [agriculture](/workplace/agriculture), [healthcare & aged care](/workplace/healthcare-aged-care), [education & childcare](/workplace/education-childcare), [hospitality](/workplace/hospitality), [transport & logistics](/workplace/transport-logistics) and [office](/workplace/office).
+
 ## Construction sites
 
 Common incidents: crush injuries, falls from height, lacerations from power tools, eye injuries from grinding/welding, and electric shock.
