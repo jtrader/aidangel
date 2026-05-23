@@ -8,7 +8,15 @@ const EmergencyBanner = () => {
   const { code } = useCountry();
   const number = emergencyNumberForCountry(code);
   // Swap any "000" baked into translated strings for the country's number.
-  const label = t("emergencyBanner").replace(/\b000\b/g, number);
+  // For non-Australian visitors, strip the Australia-specific "Triple Zero" wording.
+  let label = t("emergencyBanner");
+  if (code !== "AU") {
+    // Remove "Triple Zero" with optional surrounding spaces/parens around 000.
+    label = label
+      .replace(/Triple Zero\s*\(?\s*000\s*\)?/gi, "000")
+      .replace(/„000"/g, "000");
+  }
+  label = label.replace(/\b000\b/g, number);
 
   return (
     <a
