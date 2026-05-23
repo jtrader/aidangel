@@ -204,7 +204,7 @@ const Index = () => {
                 <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
                   <Link
                     to="/cpr"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-destructive text-destructive-foreground text-sm font-bold hover:bg-destructive/90 transition-colors shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-bold hover:bg-secondary/80 transition-colors border border-border"
                     aria-label="Open live CPR guide with metronome"
                   >
                     <HeartPulse className="h-4 w-4" />
@@ -212,7 +212,7 @@ const Index = () => {
                   </Link>
                   <Link
                     to="/aed-finder"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium hover:bg-secondary/80 transition-colors border border-border"
                     aria-label="Find nearest AED"
                   >
                     <MapPin className="h-4 w-4" />
