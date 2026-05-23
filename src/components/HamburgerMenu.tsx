@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, MessageCircle, BookOpen, Search, HeartPulse, MapPin, FileText, GraduationCap, HandHeart, ShoppingBag, School } from "lucide-react";
+import { Menu, X, MessageCircle, BookOpen, Search, HeartPulse, MapPin, FileText, GraduationCap, HandHeart, ShoppingBag, School, Info } from "lucide-react";
 import {
   Sheet,
   SheetContent,
