@@ -35,7 +35,7 @@ export default function LearnMenu({ variant = "header" }: LearnMenuProps) {
       <GraduationCap className="h-4 w-4" aria-hidden="true" />
       <span className="sm:hidden">Learn</span>
       <span className="hidden sm:inline truncate max-w-[140px]">
-        Learn{geo?.city ? ` near ${geo.city}` : " First Aid"}
+        Learn First Aid
       </span>
       <span aria-hidden="true" className="text-base leading-none">{effectiveCountry.flag}</span>
     </Link>
