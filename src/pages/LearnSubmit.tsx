@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Send, CheckCircle2 } from "lucide-react";
+import { Send, CheckCircle2 } from "lucide-react";
+import SiteHeader from "@/components/SiteHeader";
 import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -92,11 +93,7 @@ export default function LearnSubmit() {
         <title>Submit a first aid course — First Aid Angel</title>
         <meta name="description" content="Tell us about a first aid training provider so we can add them to the global directory." />
       </Helmet>
-      <header className="border-b border-border px-4 py-3">
-        <Link to="/learn" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> Learn
-        </Link>
-      </header>
+      <SiteHeader backTo="/learn" backLabel="Learn" />
 
       <main className="flex-1 max-w-2xl w-full mx-auto px-4 py-6">
         <h1 className="font-heading text-2xl font-bold mb-1">Submit a first aid course</h1>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, MapPin, Globe, Heart, BadgeCheck, Clock, CheckCircle2, XCircle, Users, Wrench, BookOpen, Sparkles, HelpCircle, Loader2 } from "lucide-react";
+import { ExternalLink, MapPin, Globe, Heart, BadgeCheck, Clock, CheckCircle2, XCircle, Users, Wrench, BookOpen, Sparkles, HelpCircle, Loader2 } from "lucide-react";
+import SiteHeader from "@/components/SiteHeader";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import ClaimListingDialog from "@/components/ClaimListingDialog";
 import EditListingDialog from "@/components/EditListingDialog";
@@ -9,7 +10,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { EducatorFull, getEducatorBySlug, citySlug } from "@/lib/educators";
 import { getCountry } from "@/lib/donations";
 import NetworkFooter from "@/components/NetworkFooter";
-import LanguageSelector from "@/components/LanguageSelector";
+
 import { trackLearnClick } from "@/lib/giveAnalytics";
 import { useCountry } from "@/hooks/useCountry";
 import { Favicon } from "@/components/Favicon";
@@ -181,12 +182,7 @@ export default function EducatorProfile() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SeoHead lang={language} title={title} description={desc} basePath={`/learn/provider/${ed.slug}`} />
-      <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
-        <Link to="/learn" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> Learn
-        </Link>
-        <LanguageSelector />
-      </header>
+      <SiteHeader backTo="/learn" backLabel="Learn" />
 
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-8">
         <div className="mb-6 flex items-start gap-4">

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, GraduationCap, MapPin, Search } from "lucide-react";
+import { GraduationCap, MapPin, Search } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SeoHead } from "@/components/SeoHead";
 import { useCountry } from "@/hooks/useCountry";
 import { COUNTRIES } from "@/lib/donations";
 import NetworkFooter from "@/components/NetworkFooter";
-import LanguageSelector from "@/components/LanguageSelector";
+import SiteHeader from "@/components/SiteHeader";
 
 export default function LearnIndex() {
   const { language, t } = useLanguage();
@@ -17,12 +17,7 @@ export default function LearnIndex() {
         description="Find accredited first aid training providers worldwide. St John Ambulance, Red Cross and online courses in your language."
         basePath="/learn"
       />
-      <header className="border-b border-border px-4 py-3 flex items-center justify-between bg-background">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> {t("navHome")}
-        </Link>
-        <LanguageSelector />
-      </header>
+      <SiteHeader backTo="/" backLabel={t("navHome")} />
 
       <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-8">
         <div className="text-center mb-8">
