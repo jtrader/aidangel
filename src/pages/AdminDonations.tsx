@@ -206,19 +206,48 @@ export default function AdminDonations() {
     );
   }
 
+  const exportCsv = () => {
+    const headers = ["created_at","event_name","vendor_id","vendor_label","country_code","country_name","is_national","destination_url","page_path","referrer","language","variant"];
+    const esc = (v: unknown) => {
+      const s = v == null ? "" : String(v);
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+    const lines = [headers.join(",")];
+    for (const r of rows) {
+      lines.push([
+        r.created_at, r.event_name, r.ngo_id ?? "", vendorLabel(r.event_name, r.ngo_id),
+        r.country_code ?? "", r.country_name ?? "", r.is_national ?? "",
+        r.destination_url ?? "", r.page_path ?? "", r.referrer ?? "",
+        r.language ?? "", r.variant ?? "",
+      ].map(esc).join(","));
+    }
+    const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `referrals_${eventFilter}_${range}_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <main className="min-h-screen bg-background p-4 sm:p-6">
-      <Helmet><title>Referral Analytics · Give & Shop</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet><title>Referral Analytics · Give, Shop & Learn</title><meta name="robots" content="noindex" /></Helmet>
 
       <div className="max-w-6xl mx-auto space-y-4">
         <header className="flex items-start justify-between gap-3 flex-wrap">
           <div>
             <h1 className="text-2xl font-bold">Referral Analytics</h1>
             <p className="text-sm text-muted-foreground">
-              Track Give (donations) and Shop (first aid supplies) referrals — who, what, and where.
+              Track outbound referrals to Educators (Learn), Donations (Give) and Shop partners — ready for affiliate reporting.
             </p>
           </div>
-          <Button variant="outline" size="sm" onClick={() => supabase.auth.signOut()}>Sign out</Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={exportCsv} disabled={rows.length === 0}>
+              Export CSV
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => supabase.auth.signOut()}>Sign out</Button>
+          </div>
         </header>
 
         <Card>
