@@ -443,6 +443,45 @@ export type Database = {
         }
         Relationships: []
       }
+      kb_chunks: {
+        Row: {
+          chunk_index: number
+          content: string
+          created_at: string
+          embedding: string
+          id: string
+          lang: string
+          section: string | null
+          slug: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          chunk_index?: number
+          content: string
+          created_at?: string
+          embedding: string
+          id?: string
+          lang?: string
+          section?: string | null
+          slug: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          chunk_index?: number
+          content?: string
+          created_at?: string
+          embedding?: string
+          id?: string
+          lang?: string
+          section?: string | null
+          slug?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       pending_educators: {
         Row: {
           address: string | null
@@ -616,6 +655,22 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      match_kb_chunks: {
+        Args: {
+          match_count?: number
+          match_lang?: string
+          query_embedding: string
+        }
+        Returns: {
+          content: string
+          id: string
+          lang: string
+          section: string
+          similarity: number
+          slug: string
+          title: string
+        }[]
       }
       move_to_dlq: {
         Args: {

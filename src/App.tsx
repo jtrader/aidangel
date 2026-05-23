@@ -14,6 +14,7 @@ import KbTopic from "./pages/KbTopic";
 import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
 import AdminEducators from "./pages/AdminEducators";
+import AdminKb from "./pages/AdminKb";
 import SymptomFinder from "./pages/SymptomFinder";
 import SymptomLander from "./pages/SymptomLander";
 import LearnIndex from "./pages/LearnIndex";
@@ -74,6 +75,7 @@ const App = forwardRef(function App(_props, _ref) {
 
                 <Route path="/admin/donations" element={<AdminDonations />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />
+                <Route path="/admin/kb" element={<AdminKb />} />
 
                 {/* Localized */}
                 <Route
