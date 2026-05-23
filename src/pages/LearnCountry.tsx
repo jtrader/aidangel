@@ -429,20 +429,12 @@ export default function LearnCountry() {
             Know where the nearest defibrillator is. Survival rates from cardiac arrest double when an AED is used in the first few minutes.
           </p>
           <div className="flex flex-wrap gap-2">
-            <a
-              href={(() => {
-                const loc = activeGeo?.city
-                  ? `${activeGeo.city}${activeGeo.region ? `, ${activeGeo.region}` : ""}`
-                  : activeGeo?.region ?? "";
-                const q = loc ? `AED+defibrillator+${encodeURIComponent(loc)}` : "AED+defibrillator+near+me";
-                return `https://www.google.com/maps/search/${q}`;
-              })()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/aed-finder"
               className="inline-flex items-center gap-1.5 text-sm px-4 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
             >
               <Navigation className="h-3.5 w-3.5" /> Find an AED near me
-            </a>
+            </Link>
             <Link
               to="/symptoms"
               className="inline-flex items-center gap-1 text-sm px-3 py-2 rounded-full border border-border hover:bg-accent"

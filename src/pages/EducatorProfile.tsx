@@ -311,14 +311,12 @@ export default function EducatorProfile() {
           <p className="text-sm text-muted-foreground mb-3">
             Defibrillator access is as important as training. Map your nearest AED before you need it.
           </p>
-          <a
-            href="https://www.google.com/maps/search/AED+defibrillator+near+me"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/aed-finder"
             className="inline-flex items-center gap-1 text-sm px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
           >
             Find an AED near me
-          </a>
+          </Link>
         </section>
       </main>
 

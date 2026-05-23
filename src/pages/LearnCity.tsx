@@ -15,6 +15,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 import { trackLearnClick } from "@/lib/giveAnalytics";
 import { Favicon } from "@/components/Favicon";
+import { AedEmbedMap } from "@/components/AedEmbedMap";
 
 export default function LearnCity() {
   const { language } = useLanguage();
@@ -171,21 +172,22 @@ export default function LearnCity() {
           </section>
         )}
 
-        <section className="mt-8 p-5 bg-accent/40 rounded-xl">
-          <h2 className="font-heading text-base font-semibold mb-1 inline-flex items-center gap-2">
+        <section className="mt-8">
+          <h2 className="font-heading text-base font-semibold mb-2 inline-flex items-center gap-2">
             <Heart className="h-4 w-4 text-primary" /> Find an AED in {cityName}
           </h2>
           <p className="text-sm text-muted-foreground mb-3">
             Locate the nearest public defibrillator before you need it.
           </p>
-          <a
-            href={`https://www.google.com/maps/search/AED+defibrillator+${encodeURIComponent(cityName)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            Find an AED near me
-          </a>
+          <AedEmbedMap query={`${cityName}, ${country.name}`} height={360} />
+          <div className="mt-3">
+            <Link
+              to="/aed-finder"
+              className="inline-flex items-center gap-1 text-sm px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              Open AED Finder
+            </Link>
+          </div>
         </section>
       </main>
 
