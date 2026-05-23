@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Heart } from "lucide-react";
+import { useEffect, useState, useCallback } from "react";
+import { Heart, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
 import { localizedPath } from "@/lib/i18n";
