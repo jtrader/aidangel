@@ -11,6 +11,7 @@ import { SYMPTOM_LANDERS } from "@/data/symptomLanders";
 import NetworkFooter from "@/components/NetworkFooter";
 import LanguageSelector from "@/components/LanguageSelector";
 import EmergencyCallButton from "@/components/EmergencyCallButton";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 type Symptom = {
   label: string;
@@ -125,7 +126,10 @@ const SymptomFinder = () => {
           >
             <ArrowLeft className="h-4 w-4" /> Home
           </Link>
-          <LanguageSelector />
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <HamburgerMenu />
+          </div>
         </div>
       </header>
 

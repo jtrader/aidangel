@@ -8,6 +8,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import LanguageSelector from "@/components/LanguageSelector";
 import EmergencyCallButton from "@/components/EmergencyCallButton";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
@@ -164,10 +165,13 @@ const KbIndex = () => {
             <ArrowLeft className="h-4 w-4" />
             {ui.backToChat}
           </Link>
-          <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
-            <BookOpen className="h-4 w-4 text-primary" />
-            {ui.knowledgeBase}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
+              <BookOpen className="h-4 w-4 text-primary" />
+              {ui.knowledgeBase}
+            </span>
+            <HamburgerMenu />
+          </div>
         </div>
       </header>
       <SupportUsBar />

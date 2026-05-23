@@ -13,6 +13,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 import KbSuggestionCard from "@/components/KbSuggestionCard";
 import EmergencyCallButton from "@/components/EmergencyCallButton";
+import HamburgerMenu from "@/components/HamburgerMenu";
 import { findBestTopic } from "@/lib/kb";
 
 const URGENT_SLUGS = new Set([
@@ -163,6 +164,9 @@ const Index = () => {
                 </p>
               </div>
             </a>
+          </div>
+          <div className="flex items-center justify-end">
+            <HamburgerMenu />
           </div>
         </div>
       </header>

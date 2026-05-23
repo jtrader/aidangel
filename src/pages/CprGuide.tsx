@@ -29,6 +29,7 @@ import DonateMenu from "@/components/DonateMenu";
 import ShopMenu from "@/components/ShopMenu";
 import LearnMenu from "@/components/LearnMenu";
 import NetworkFooter from "@/components/NetworkFooter";
+import HamburgerMenu from "@/components/HamburgerMenu";
 import { speakCpr, stopCprVoice, prefetchCprVoice } from "@/lib/cprVoice";
 import { CPR_LANGUAGES, type CprLangCode } from "@/data/cprTranslations";
 
@@ -244,6 +245,7 @@ export default function CprGuide() {
               <Phone className="h-4 w-4" /> Call {emergency}
             </a>
             <LanguageSelector />
+            <HamburgerMenu />
           </div>
         </div>
         <div className="max-w-3xl mx-auto px-4 pb-3 flex items-center justify-center gap-2">

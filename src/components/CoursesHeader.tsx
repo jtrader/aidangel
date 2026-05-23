@@ -3,6 +3,7 @@ import { ShieldPlus, LogOut, User as UserIcon, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 export default function CoursesHeader() {
   const { user, isAdmin, signOut } = useAuth();
@@ -18,6 +19,7 @@ export default function CoursesHeader() {
           <Link to="/courses" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
             <BookOpen className="h-4 w-4" /> Courses
           </Link>
+          <HamburgerMenu />
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

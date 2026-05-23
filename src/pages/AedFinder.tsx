@@ -7,6 +7,7 @@ import { emergencyNumberForCountry } from "@/lib/donations";
 import { Button } from "@/components/ui/button";
 import { loadMapboxToken, mapboxgl, reverseGeocodeCountry } from "@/lib/mapboxLoader";
 import EmergencyCallButton from "@/components/EmergencyCallButton";
+import HamburgerMenu from "@/components/HamburgerMenu";
 import {
   Aed,
   fetchCountryAeds,
@@ -213,6 +214,7 @@ export default function AedFinder() {
             >
               Browse by city
             </a>
+            <HamburgerMenu />
             <a
               href="/"
               className="p-2 rounded-full hover:bg-muted"
