@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { SeoHead } from "@/components/SeoHead";
 import EmergencyBanner from "@/components/EmergencyBanner";
 import ChatMessage from "@/components/ChatMessage";
+import ChatDisclaimer from "@/components/ChatDisclaimer";
 import NetworkFooter from "@/components/NetworkFooter";
 
 type Msg = { role: "user" | "assistant"; content: string };
