@@ -257,6 +257,7 @@ const KbIndex = () => {
         </div>
       </main>
 
+      <EmergencyCallButton />
       <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );
