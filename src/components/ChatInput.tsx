@@ -195,7 +195,7 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
           aria-autocomplete="list"
           aria-expanded={open}
           aria-controls="first-aid-suggestions"
-          className="flex-1 min-h-11 px-4 py-3 rounded-xl border border-input bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring text-sm"
+          className="flex-1 min-h-11 px-4 py-3 rounded-xl border-2 border-foreground/25 bg-card text-card-foreground placeholder:text-foreground/55 focus:outline-none focus:ring-[3px] focus:ring-ring focus:border-primary/60 shadow-sm text-sm transition-all"
         />
         <button
           type="submit"
