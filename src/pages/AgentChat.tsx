@@ -120,7 +120,7 @@ export default function AgentChat() {
       <SeoHead
         title="Gemini Agent — First Aid Angel"
         description="Chat with a Gemini-powered first aid agent. Calm, practical, Australian-aligned guidance."
-        path="/agent"
+        basePath="/agent"
       />
       <EmergencyBanner />
 
@@ -164,7 +164,7 @@ export default function AgentChat() {
           ) : (
             <div className="space-y-4">
               {messages.map((m, i) => (
-                <ChatMessage key={i} role={m.role} content={m.content} />
+                <ChatMessage key={i} message={m} />
               ))}
               {isLoading && (
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
