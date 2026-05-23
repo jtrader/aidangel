@@ -151,6 +151,22 @@ for (const b of lmsPaths) {
   );
 }
 
+// Workplace verticals hub
+const workplacePaths = [
+  { path: "/workplace", changefreq: "monthly", priority: "0.9" },
+  ...WORKPLACE_SLUGS.map((s) => ({ path: `/workplace/${s}`, changefreq: "monthly", priority: "0.8" })),
+];
+for (const b of workplacePaths) {
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}${b.path}</loc>`,
+      `    <changefreq>${b.changefreq}</changefreq>`,
+      `    <priority>${b.priority}</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
+
 const xml = [
   `<?xml version="1.0" encoding="UTF-8"?>`,
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
