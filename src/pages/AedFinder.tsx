@@ -6,8 +6,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { Button } from "@/components/ui/button";
 
-const BROWSER_KEY = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY as string | undefined;
-const TRACKING_ID = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID as string | undefined;
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+
+async function fetchMapsKey(): Promise<{ key: string; trackingId: string }> {
+  const res = await fetch(`${SUPABASE_URL}/functions/v1/get-maps-key`);
+  if (!res.ok) throw new Error("Failed to fetch Maps key");
+  return res.json();
+}
 
 const OVERPASS_ENDPOINT = "https://overpass-api.de/api/interpreter";
 
@@ -32,10 +37,12 @@ declare global {
   }
 }
 
-function loadGoogleMaps(): Promise<void> {
-  if (typeof window === "undefined") return Promise.reject(new Error("No window"));
-  if (window.google?.maps) return Promise.resolve();
-  if (!BROWSER_KEY) return Promise.reject(new Error("Missing Google Maps key"));
+async function loadGoogleMaps(): Promise<void> {
+  if (typeof window === "undefined") throw new Error("No window");
+  if (window.google?.maps) return;
+
+  const { key, trackingId } = await fetchMapsKey();
+  if (!key) throw new Error("Missing Google Maps key");
 
   return new Promise((resolve, reject) => {
     const existing = document.getElementById("faa-gmaps-script") as HTMLScriptElement | null;
@@ -46,8 +53,8 @@ function loadGoogleMaps(): Promise<void> {
     }
     const s = document.createElement("script");
     s.id = "faa-gmaps-script";
-    const channel = TRACKING_ID ? `&channel=${TRACKING_ID}` : "";
-    s.src = `https://maps.googleapis.com/maps/api/js?key=${BROWSER_KEY}&loading=async&callback=__initFaaMap${channel}`;
+    const channel = trackingId ? `&channel=${trackingId}` : "";
+    s.src = `https://maps.googleapis.com/maps/api/js?key=${key}&loading=async&callback=__initFaaMap${channel}`;
     s.async = true;
     s.defer = true;
     s.onerror = () => reject(new Error("Failed to load Google Maps"));
