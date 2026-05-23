@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { SeoHead } from "@/components/SeoHead";
 import { CprExplainerVideo } from "@/components/CprExplainerVideo";
+import LanguageSelector from "@/components/LanguageSelector";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
 import { useMetronome } from "@/hooks/useMetronome";
@@ -230,12 +231,15 @@ export default function CprGuide() {
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
             <ArrowLeft className="h-4 w-4" /> Home
           </Link>
-          <a
-            href={`tel:${emergency}`}
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-destructive hover:underline"
-          >
-            <Phone className="h-4 w-4" /> Call {emergency}
-          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={`tel:${emergency}`}
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-destructive hover:underline"
+            >
+              <Phone className="h-4 w-4" /> Call {emergency}
+            </a>
+            <LanguageSelector />
+          </div>
         </div>
       </header>
 
