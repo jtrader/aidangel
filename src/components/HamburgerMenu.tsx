@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, MessageCircle, BookOpen, Search, HeartPulse, MapPin, FileText, GraduationCap, HandHeart } from "lucide-react";
+import { Menu, X, MessageCircle, BookOpen, Search, HeartPulse, MapPin, FileText, GraduationCap, HandHeart, ShoppingBag } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -26,6 +26,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Angel Action PDFs", href: "/angel-action", icon: FileText },
   { label: "E-learning Courses", href: "/courses", icon: GraduationCap },
   { label: "Donation Partners", href: "/partners", icon: HandHeart },
+  { label: "First Aid Kit Shop", href: "/shop", icon: ShoppingBag },
 ];
 
 export default function HamburgerMenu() {
