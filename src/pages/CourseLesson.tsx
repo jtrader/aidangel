@@ -103,5 +103,6 @@ export default function CourseLesson() {
         </div>
       </main>
     </div>
+    </CourseLayout>
   );
 }
