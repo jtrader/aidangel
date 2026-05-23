@@ -138,7 +138,7 @@ const Index = () => {
 
       {/* Header */}
       <header className="border-b border-border bg-card px-4 py-4">
-        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-3">
+        <div className="max-w-3xl mx-auto flex flex-row items-center gap-3">
           <div className="flex items-center gap-3 flex-1">
             {!isEmpty && (
               <button
