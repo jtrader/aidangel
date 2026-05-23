@@ -126,7 +126,7 @@ export default function WorkplaceIndex() {
         </section>
       </main>
 
-      <NetworkFooter />
+      <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );
 }

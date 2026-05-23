@@ -311,7 +311,7 @@ export default function WorkplaceVertical() {
         )}
       </main>
 
-      <NetworkFooter />
+      <NetworkFooter currentApp="First Aid Angel" />
     </div>
   );
 }
