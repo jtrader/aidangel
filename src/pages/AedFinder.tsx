@@ -102,8 +102,8 @@ async function fetchAeds(bounds: { south: number; west: number; north: number; e
 
 export default function AedFinder() {
   const { country } = useCountry();
-  const { t } = useLanguage();
-  const emergency = emergencyNumberForCountry(country);
+  const { language } = useLanguage();
+  const emergency = emergencyNumberForCountry(country ?? undefined);
 
   const mapEl = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
@@ -280,6 +280,8 @@ export default function AedFinder() {
   return (
     <>
       <SeoHead
+        lang={language}
+        basePath="/aed-finder"
         title="AED Finder — Find a Defibrillator Near You | First Aid Angel"
         description="Locate the nearest publicly accessible AED (defibrillator) on an interactive map. Crowd-sourced data from OpenStreetMap and OpenAEDMap."
       />
