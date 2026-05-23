@@ -28,6 +28,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Education Partners", href: "/learn", icon: School },
   { label: "Donation Partners", href: "/partners", icon: HandHeart },
   { label: "First Aid Kit Shop", href: "/shop", icon: ShoppingBag },
+  { label: "About", href: "/about", icon: Info },
 ];
 
 export default function HamburgerMenu() {
