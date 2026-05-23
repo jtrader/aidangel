@@ -11,6 +11,7 @@ import { LANGS } from "@/lib/i18n";
 import Index from "./pages/Index";
 import KbIndex from "./pages/KbIndex";
 import KbTopic from "./pages/KbTopic";
+import AngelActionIndex from "./pages/AngelActionIndex";
 import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
 import AdminEducators from "./pages/AdminEducators";
@@ -74,6 +75,8 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/" element={<Index />} />
                 <Route path="/kb" element={<KbIndex />} />
                 <Route path="/kb/:slug" element={<KbTopic />} />
+                <Route path="/angel-action" element={<AngelActionIndex />} />
+                <Route path="/:lang/angel-action" element={<AngelActionIndex />} />
                 <Route path="/symptoms" element={<SymptomFinder />} />
                 <Route path="/symptoms/:slug" element={<SymptomLander />} />
                 <Route path="/learn" element={<LearnIndex />} />

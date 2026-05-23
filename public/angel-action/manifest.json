@@ -1,0 +1,167 @@
+[
+  {
+    "slug": "drsabcd",
+    "title": "DRSABCD Action Plan",
+    "size_kb": 4
+  },
+  {
+    "slug": "cpr",
+    "title": "CPR \u2014 Cardiopulmonary Resuscitation",
+    "size_kb": 5
+  },
+  {
+    "slug": "aed",
+    "title": "AED \u2014 Automated External Defibrillator",
+    "size_kb": 4
+  },
+  {
+    "slug": "recovery-position",
+    "title": "Recovery Position",
+    "size_kb": 3
+  },
+  {
+    "slug": "choking",
+    "title": "Choking \u2014 Adult, Child and Infant",
+    "size_kb": 4
+  },
+  {
+    "slug": "bleeding",
+    "title": "Severe External Bleeding",
+    "size_kb": 3
+  },
+  {
+    "slug": "burns",
+    "title": "Burns and Scalds",
+    "size_kb": 4
+  },
+  {
+    "slug": "shock",
+    "title": "Shock (Hypovolaemic / Circulatory)",
+    "size_kb": 3
+  },
+  {
+    "slug": "asthma",
+    "title": "Asthma Attack \u2014 4 x 4 x 4 Plan",
+    "size_kb": 3
+  },
+  {
+    "slug": "anaphylaxis",
+    "title": "Anaphylaxis",
+    "size_kb": 4
+  },
+  {
+    "slug": "allergic-reactions",
+    "title": "Mild to Moderate Allergic Reactions",
+    "size_kb": 3
+  },
+  {
+    "slug": "heart-attack",
+    "title": "Heart Attack",
+    "size_kb": 3
+  },
+  {
+    "slug": "stroke",
+    "title": "Stroke \u2014 The FAST Test",
+    "size_kb": 3
+  },
+  {
+    "slug": "seizures",
+    "title": "Seizures and Epilepsy",
+    "size_kb": 3
+  },
+  {
+    "slug": "diabetes",
+    "title": "Diabetic Emergencies",
+    "size_kb": 3
+  },
+  {
+    "slug": "head-injury",
+    "title": "Head Injury and Concussion",
+    "size_kb": 3
+  },
+  {
+    "slug": "spinal-injury",
+    "title": "Suspected Spinal Injury",
+    "size_kb": 3
+  },
+  {
+    "slug": "fractures",
+    "title": "Fractures (Broken Bones)",
+    "size_kb": 3
+  },
+  {
+    "slug": "sprains-strains",
+    "title": "Sprains and Strains \u2014 RICE",
+    "size_kb": 3
+  },
+  {
+    "slug": "snake-bite",
+    "title": "Snake Bite \u2014 Pressure Immobilisation",
+    "size_kb": 3
+  },
+  {
+    "slug": "spider-bite",
+    "title": "Spider Bites",
+    "size_kb": 3
+  },
+  {
+    "slug": "jellyfish-stings",
+    "title": "Jellyfish and Marine Stings",
+    "size_kb": 3
+  },
+  {
+    "slug": "heat-illness",
+    "title": "Heat Exhaustion and Heat Stroke",
+    "size_kb": 3
+  },
+  {
+    "slug": "hypothermia",
+    "title": "Hypothermia",
+    "size_kb": 3
+  },
+  {
+    "slug": "poisoning",
+    "title": "Poisoning",
+    "size_kb": 3
+  },
+  {
+    "slug": "drowning",
+    "title": "Drowning",
+    "size_kb": 3
+  },
+  {
+    "slug": "nosebleed",
+    "title": "Nosebleed",
+    "size_kb": 3
+  },
+  {
+    "slug": "fainting",
+    "title": "Fainting (Syncope)",
+    "size_kb": 3
+  },
+  {
+    "slug": "dehydration",
+    "title": "Dehydration",
+    "size_kb": 3
+  },
+  {
+    "slug": "sunburn",
+    "title": "Sunburn",
+    "size_kb": 3
+  },
+  {
+    "slug": "dental-injury",
+    "title": "Knocked-Out Tooth",
+    "size_kb": 3
+  },
+  {
+    "slug": "eye-injuries",
+    "title": "Eye Injuries",
+    "size_kb": 3
+  },
+  {
+    "slug": "electric-shock",
+    "title": "Electric Shock",
+    "size_kb": 3
+  }
+]

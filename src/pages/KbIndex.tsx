@@ -198,6 +198,12 @@ const KbIndex = () => {
               </span>
             ))}
           </p>
+          <Link
+            to={localizedPath(language, "/angel-action")}
+            className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold shadow-sm hover:bg-primary/90 transition-colors mb-4"
+          >
+            📄 Download Angel Action PDF cards
+          </Link>
           <div className="mb-6">
             <Link
               to="/symptoms"

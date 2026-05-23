@@ -11,6 +11,7 @@ import LanguageSelector from "@/components/LanguageSelector";
 import TopicIllustration from "@/components/TopicIllustration";
 import PlayAudioButton from "@/components/PlayAudioButton";
 import NearbyEducators from "@/components/NearbyEducators";
+import AngelActionDownload from "@/components/AngelActionDownload";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
@@ -414,6 +415,10 @@ const KbTopic = () => {
               {linkedBody}
             </ReactMarkdown>
           </div>
+
+          <AngelActionDownload slug={topicEn.slug} title={translated.title} />
+
+
 
           {qa.length > 0 && (
             <section className="mt-12 pt-8 border-t border-border">
