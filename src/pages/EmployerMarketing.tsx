@@ -7,7 +7,7 @@ import { SeoHead } from "@/components/SeoHead";
 import CoursesHeader from "@/components/CoursesHeader";
 
 const TIERS = [
-  { name: "Starter", price: "AU$29", unit: "/ seat / month", seats: "Up to 10 seats", popular: false,
+  { name: "Starter", price: "AU$29", unit: "/ seat / year", seats: "Up to 10 seats", popular: false,
     features: ["Bulk CSV import", "Course assignments", "Compliance dashboard", "Email invitations"] },
   { name: "Team 25", price: "AU$625", unit: "flat / year", seats: "25 seats included", popular: true,
     features: ["Everything in Starter", "Branded certificates", "Manager roles", "CSV / PDF reports"] },
@@ -31,7 +31,7 @@ export default function EmployerMarketing() {
       <SeoHead
         lang="en"
         basePath="/employer"
-        title="First Aid Training for Teams | First Aid Angel for Employers"
+        title="First Aid Training for Teams | First Aid Angel for Continuing Professional Development"
         description="Train and certify your whole workforce in evidence-based first aid. Bulk import, automatic compliance tracking, branded certificates. Plans from AU$29/seat."
       />
       <CoursesHeader />
@@ -40,7 +40,7 @@ export default function EmployerMarketing() {
       <section className="relative bg-gradient-to-br from-[#F7F7F7] to-card border-b">
         <div className="container max-w-6xl mx-auto px-4 py-20 text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-            <Building2 className="h-4 w-4" /> First Aid Angel for Employers
+            <Building2 className="h-4 w-4" /> First Aid Angel for Continuing Professional Development
           </div>
           <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Train your whole team in <span className="text-primary">first aid</span>.<br className="hidden md:inline" />
