@@ -61,22 +61,7 @@ export default function EmployerOnboarding() {
       return;
     }
 
-    // Add creator as owner
-    const { error: memErr } = await supabase.from("org_members").insert({
-      org_id: org.id,
-      user_id: user.id,
-      email: user.email!,
-      full_name: (user.user_metadata as Record<string, unknown> | null)?.full_name as string | undefined ?? user.email,
-      role: "owner",
-      status: "active",
-      joined_at: new Date().toISOString(),
-    });
-
-    if (memErr) {
-      toast({ title: "Created org but couldn't add you as owner", description: memErr.message, variant: "destructive" });
-      setBusy(false);
-      return;
-    }
+    // Owner membership is created automatically by the trg_add_creator_as_owner trigger.
 
     await refresh();
     setActive(org.id);
