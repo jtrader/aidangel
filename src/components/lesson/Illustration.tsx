@@ -28,7 +28,7 @@ function humanizeKey(key: string) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function IllustrationFallback({ key: label }: { key: string }) {
+function IllustrationFallback({ name }: { name: string }) {
   return (
     <figure
       role="img"
