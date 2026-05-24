@@ -39,6 +39,11 @@ import CourseCertificate from "./pages/CourseCertificate";
 import CertificateVerify from "./pages/CertificateVerify";
 import MyLearning from "./pages/MyLearning";
 import AdminCourses from "./pages/AdminCourses";
+import AdminPrograms from "./pages/AdminPrograms";
+import Programs from "./pages/Programs";
+import ProgramDetail from "./pages/ProgramDetail";
+import ProgramQuiz from "./pages/ProgramQuiz";
+import ProgramCertificate from "./pages/ProgramCertificate";
 import RequireAuth from "./components/RequireAuth";
 import OfflineBanner from "./components/OfflineBanner";
 import InstallPrompt from "./components/InstallPrompt";
@@ -116,6 +121,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/admin/educators" element={<AdminEducators />} />
                 <Route path="/admin/kb" element={<AdminKb />} />
                 <Route path="/admin/courses" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
+                <Route path="/admin/programs" element={<RequireAuth adminOnly><AdminPrograms /></RequireAuth>} />
 
                 {/* Learning / LMS */}
                 <Route path="/auth" element={<Auth />} />
@@ -128,6 +134,10 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/courses/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
                 <Route path="/courses/:slug/quiz" element={<RequireAuth><CourseQuiz /></RequireAuth>} />
                 <Route path="/courses/:slug/certificate" element={<RequireAuth><CourseCertificate /></RequireAuth>} />
+                <Route path="/programs" element={<Programs />} />
+                <Route path="/programs/:slug" element={<ProgramDetail />} />
+                <Route path="/programs/:slug/quiz" element={<RequireAuth><ProgramQuiz /></RequireAuth>} />
+                <Route path="/programs/:slug/certificate" element={<RequireAuth><ProgramCertificate /></RequireAuth>} />
                 <Route path="/my-learning" element={<RequireAuth><MyLearning /></RequireAuth>} />
                 <Route path="/verify/:number" element={<CertificateVerify />} />
 
