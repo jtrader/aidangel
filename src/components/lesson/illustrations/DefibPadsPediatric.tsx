@@ -8,7 +8,13 @@ const SLATE_2 = "#475569";
 const RED = "#F20822";
 const RED_2 = "#FF4D5A";
 
-function PanelLabel({ x, y, text }: { x: number; y: number; text: string }) {
+interface PanelLabelProps {
+  x: number | string;
+  y: number | string;
+  text: string;
+}
+
+function PanelLabel({ x, y, text }: PanelLabelProps) {
   return (
     <text
       x={x}
@@ -25,11 +31,15 @@ function PanelLabel({ x, y, text }: { x: number; y: number; text: string }) {
   );
 }
 
+interface DefibPadsPediatricProps extends SVGProps<SVGSVGElement> {
+  title?: string;
+}
+
 export default function DefibPadsPediatric({
   className,
   title,
   ...props
-}: SVGProps<SVGSVGElement>) {
+}: DefibPadsPediatricProps) {
   return (
     <svg
       viewBox="0 0 400 260"
