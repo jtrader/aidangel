@@ -99,8 +99,8 @@ export default function ProgramDetail() {
                       to={`/courses/${c.slug}`}
                       className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted/60 transition-colors group"
                     >
-                      <div className={`flex items-center justify-center shrink-0 w-7 h-7 rounded-full text-xs font-semibold ${done ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
-                        {done ? <CheckCircle2 className="h-4 w-4" /> : i + 1}
+                      <div className={`flex items-center justify-center shrink-0 w-7 h-7 rounded-full text-xs font-semibold ${done ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
+                        {done ? <CheckCircle2 className="h-4 w-4" /> : <span className="w-2 h-2 rounded-full bg-current" />}
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="text-sm font-medium leading-tight group-hover:text-primary">{c.title}</div>
