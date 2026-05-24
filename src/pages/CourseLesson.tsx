@@ -16,7 +16,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export default function CourseLesson() {
   const { slug, lessonSlug } = useParams();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const [course, setCourse] = useState<any>(null);
   const [lesson, setLesson] = useState<any>(null);
