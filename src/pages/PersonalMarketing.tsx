@@ -102,21 +102,6 @@ export default function PersonalMarketing() {
       .then(({ data }) => setTopics((data as TopicCard[]) ?? []));
   }, []);
 
-  const handleBrowseTopics = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("topics-marquee");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      // Fallback if topics haven't loaded yet — retry shortly
-      setTimeout(() => {
-        document
-          .getElementById("topics-marquee")
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 300);
-    }
-  };
-
   const marqueeTrack =
     topics.length > 0 ? [...topics, ...topics, ...topics] : [];
 
