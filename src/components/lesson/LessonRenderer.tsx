@@ -114,6 +114,11 @@ export default function LessonRenderer() {
           </p>
         </header>
 
+        {/* Markdown body — parses `:::illustration[key]` directives */}
+        <section className="rounded-2xl border bg-card p-4 md:p-6 shadow-sm space-y-3">
+          {renderLessonBody(LESSON_BODY)}
+        </section>
+
         {/* Interactive Steps */}
         <section className="rounded-2xl border bg-card p-4 md:p-6 shadow-sm">
           <h2 className="font-display text-lg font-semibold mb-4 text-foreground">
