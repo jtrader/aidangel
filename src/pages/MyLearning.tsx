@@ -166,24 +166,6 @@ export default function MyLearning() {
                 </div>
               </>
             )}
-            {certs.length > 0 && (
-              <>
-                <h2 className="font-display text-xl font-bold mb-3">{t("myLearningCertificates")}</h2>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {certs.map((c) => (
-                    <Link to={`/courses/${c.course.slug}/certificate`} key={c.certificate_number}>
-                      <Card className="p-4 hover:shadow-md transition flex items-center gap-3">
-                        <Award className="h-8 w-8 text-primary" />
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium truncate">{c.course.title}</div>
-                          <div className="text-xs text-muted-foreground">{c.certificate_number} · {new Date(c.issued_at).toLocaleDateString()}</div>
-                        </div>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-              </>
-            )}
           </>
         )}
       </main>
