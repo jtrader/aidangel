@@ -125,6 +125,7 @@ export default function MyLearning() {
                   })}
                 </div>
               </>
+            )}
             {programs.length > 0 && (
               <>
                 <h2 className="font-display text-xl font-bold mb-3 flex items-center gap-2"><GraduationCap className="h-5 w-5 text-primary" /> Programs</h2>
