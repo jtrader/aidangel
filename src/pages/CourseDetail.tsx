@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Clock, BookOpen, Award, Play, CheckCircle2, Loader2 } from "lucide-react";
+import { Clock, BookOpen, Award, Play, CheckCircle2, Loader2, Lock } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import CourseLayout from "@/components/CourseLayout";
+import CourseVideoPlayer from "@/components/CourseVideoPlayer";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -27,6 +28,7 @@ export default function CourseDetail() {
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [enrolled, setEnrolled] = useState(false);
   const [passed, setPassed] = useState(false);
+  const [videoCompleted, setVideoCompleted] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -43,6 +45,8 @@ export default function CourseDetail() {
         setCompletedIds(new Set((prog ?? []).map(p => p.lesson_id)));
         const { data: attempt } = await supabase.from("quiz_attempts").select("id").eq("user_id", user.id).eq("course_id", c.id).eq("passed", true).limit(1).maybeSingle();
         setPassed(!!attempt);
+        const { data: vp } = await supabase.from("course_video_progress").select("completed").eq("user_id", user.id).eq("course_id", c.id).maybeSingle();
+        setVideoCompleted(!!vp?.completed);
       }
       setLoading(false);
     })();
