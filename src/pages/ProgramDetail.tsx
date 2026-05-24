@@ -77,86 +77,114 @@ export default function ProgramDetail() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
-      <main className="flex-1 container max-w-4xl mx-auto px-4 py-10">
+      <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
         <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← All programs</Link>
-        <Card className="overflow-hidden rounded-2xl mb-8">
-          {program.cover_url && (
-            <div className="aspect-[2/1] bg-muted">
-              <img src={program.cover_url} alt={program.title} className="w-full h-full object-cover" />
-            </div>
-          )}
-          <div className="p-6 md:p-8">
-            <div className="flex gap-2 mb-3 flex-wrap">
-              <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{topics.length} topics</Badge>
-              <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{program.duration_minutes} min</Badge>
-              <Badge variant="outline" className="gap-1"><Award className="h-3 w-3" />Pass {program.pass_mark}%</Badge>
-              {hasFinalQuiz && <Badge variant="outline">Final quiz</Badge>}
-            </div>
-            <h1 className="font-display text-3xl md:text-4xl font-bold mb-3">{program.title}</h1>
-            {program.summary && <p className="text-muted-foreground text-lg mb-6">{program.summary}</p>}
-            {program.description && <div className="prose prose-sm max-w-none text-foreground/80 mb-6 whitespace-pre-wrap">{program.description}</div>}
 
-            {enrolled && (
-              <div className="mb-6">
-                <div className="flex justify-between text-sm mb-1">
-                  <span>Topics complete</span>
-                  <span className="text-muted-foreground">{passedCount} / {topics.length}</span>
-                </div>
-                <Progress value={pct} />
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
+          {/* Left sidebar — program hierarchy */}
+          <aside className="lg:sticky lg:top-20 lg:self-start">
+            <Card className="p-4 rounded-2xl">
+              <div className="flex items-center gap-2 mb-3">
+                <Layers className="h-4 w-4 text-primary" />
+                <h2 className="font-display font-semibold text-sm uppercase tracking-wide text-muted-foreground">Program topics</h2>
               </div>
-            )}
-
-            <div className="flex gap-3 flex-wrap">
-              {!enrolled ? (
-                <Button size="lg" onClick={enroll}>
-                  <Play className="h-4 w-4 mr-2" /> {user ? "Start program" : "Sign in to start"}
-                </Button>
-              ) : hasCert ? (
-                <Button size="lg" onClick={() => navigate(`/programs/${slug}/certificate`)}>
-                  <Award className="h-4 w-4 mr-2" /> View program certificate
-                </Button>
-              ) : programDone ? (
-                <Button size="lg" onClick={() => navigate(`/programs/${slug}/certificate`)}>
-                  <Award className="h-4 w-4 mr-2" /> Claim program certificate
-                </Button>
-              ) : topicsDone && hasFinalQuiz ? (
-                <Button size="lg" onClick={() => navigate(`/programs/${slug}/quiz`)}>
-                  Take final quiz
-                </Button>
-              ) : (
-                <Button size="lg" onClick={() => {
-                  const next = topics.find(t => !passedCourseIds.has(t.course_id)) ?? topics[0];
-                  if (next?.courses) navigate(`/courses/${next.courses.slug}`);
-                }}>
-                  <Play className="h-4 w-4 mr-2" /> Continue
-                </Button>
+              <nav className="space-y-1">
+                {topics.map((t, i) => {
+                  const c = t.courses;
+                  if (!c) return null;
+                  const done = passedCourseIds.has(t.course_id);
+                  return (
+                    <Link
+                      key={t.course_id}
+                      to={`/courses/${c.slug}`}
+                      className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted/60 transition-colors group"
+                    >
+                      <div className={`flex items-center justify-center shrink-0 w-7 h-7 rounded-full text-xs font-semibold ${done ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
+                        {done ? <CheckCircle2 className="h-4 w-4" /> : i + 1}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-sm font-medium leading-tight group-hover:text-primary">{c.title}</div>
+                        <div className="text-[11px] text-muted-foreground flex items-center gap-1 mt-0.5">
+                          <Clock className="h-3 w-3" /> {c.duration_minutes} min
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </nav>
+              {hasFinalQuiz && (
+                <div className="mt-3 pt-3 border-t">
+                  <Link
+                    to={enrolled && topicsDone ? `/programs/${slug}/quiz` : "#"}
+                    className={`flex items-center gap-2 p-2 rounded-lg text-sm ${enrolled && topicsDone ? "hover:bg-muted/60 text-foreground" : "text-muted-foreground cursor-not-allowed"}`}
+                    onClick={(e) => { if (!(enrolled && topicsDone)) e.preventDefault(); }}
+                  >
+                    <Award className="h-4 w-4" />
+                    <span className="font-medium">Final program quiz</span>
+                  </Link>
+                </div>
               )}
-            </div>
-          </div>
-        </Card>
+            </Card>
+          </aside>
 
-        <h2 className="font-display text-2xl font-bold mb-4">Topics in this program</h2>
-        <div className="space-y-2">
-          {topics.map((t, i) => {
-            const c = t.courses;
-            if (!c) return null;
-            const done = passedCourseIds.has(t.course_id);
-            return (
-              <Link key={t.course_id} to={`/courses/${c.slug}`} className="block">
-                <Card className="p-4 flex items-center gap-4 hover:bg-muted/50 transition-colors">
-                  <div className={`flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold ${done ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
-                    {done ? <CheckCircle2 className="h-5 w-5" /> : i + 1}
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-medium">{c.title}</div>
-                    <div className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                      <Clock className="h-3 w-3" /> {c.duration_minutes} min
+          {/* Main column */}
+          <div>
+            <Card className="overflow-hidden rounded-2xl">
+              {program.cover_url && (
+                <div className="aspect-[2/1] bg-muted">
+                  <img src={program.cover_url} alt={program.title} className="w-full h-full object-cover" />
+                </div>
+              )}
+              <div className="p-6 md:p-8">
+                <div className="flex gap-2 mb-3 flex-wrap">
+                  <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{topics.length} topics</Badge>
+                  <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{program.duration_minutes} min</Badge>
+                  <Badge variant="outline" className="gap-1"><Award className="h-3 w-3" />Pass {program.pass_mark}%</Badge>
+                  {hasFinalQuiz && <Badge variant="outline">Final quiz</Badge>}
+                </div>
+                <h1 className="font-display text-3xl md:text-4xl font-bold mb-3">{program.title}</h1>
+                {program.summary && <p className="text-muted-foreground text-lg mb-6">{program.summary}</p>}
+                {program.description && <div className="prose prose-sm max-w-none text-foreground/80 mb-6 whitespace-pre-wrap">{program.description}</div>}
+
+                {enrolled && (
+                  <div className="mb-6">
+                    <div className="flex justify-between text-sm mb-1">
+                      <span>Topics complete</span>
+                      <span className="text-muted-foreground">{passedCount} / {topics.length}</span>
                     </div>
+                    <Progress value={pct} />
                   </div>
-                </Card>
-              </Link>
-            );
-          })}
+                )}
+
+                <div className="flex gap-3 flex-wrap">
+                  {!enrolled ? (
+                    <Button size="lg" onClick={enroll}>
+                      <Play className="h-4 w-4 mr-2" /> {user ? "Start program" : "Sign in to start"}
+                    </Button>
+                  ) : hasCert ? (
+                    <Button size="lg" onClick={() => navigate(`/programs/${slug}/certificate`)}>
+                      <Award className="h-4 w-4 mr-2" /> View program certificate
+                    </Button>
+                  ) : programDone ? (
+                    <Button size="lg" onClick={() => navigate(`/programs/${slug}/certificate`)}>
+                      <Award className="h-4 w-4 mr-2" /> Claim program certificate
+                    </Button>
+                  ) : topicsDone && hasFinalQuiz ? (
+                    <Button size="lg" onClick={() => navigate(`/programs/${slug}/quiz`)}>
+                      Take final quiz
+                    </Button>
+                  ) : (
+                    <Button size="lg" onClick={() => {
+                      const next = topics.find(t => !passedCourseIds.has(t.course_id)) ?? topics[0];
+                      if (next?.courses) navigate(`/courses/${next.courses.slug}`);
+                    }}>
+                      <Play className="h-4 w-4 mr-2" /> Continue
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
       </main>
       <NetworkFooter />
