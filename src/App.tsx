@@ -76,6 +76,7 @@ import PersonalMarketing from "./pages/PersonalMarketing";
 import JoinCodeEntry from "./pages/JoinCodeEntry";
 import JoinOrg from "./pages/JoinOrg";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
+import LessonRenderer from "./components/lesson/LessonRenderer";
 import { PaymentTestModeBanner } from "./components/PaymentTestModeBanner";
 import RequireProgramAccess from "./components/RequireProgramAccess";
 
@@ -178,6 +179,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/join" element={<JoinCodeEntry />} />
                 <Route path="/join/:token" element={<JoinOrg />} />
                 <Route path="/checkout/success" element={<CheckoutSuccess />} />
+                <Route path="/test-renderer" element={<LessonRenderer />} />
 
                 {/* Localized */}
                 <Route
