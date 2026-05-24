@@ -177,7 +177,4 @@ function JoinCodeEditor({ orgId, current, onSaved }: { orgId: string; current: s
   );
 }
 
-    </EmployerLayout>
-  );
-}
 
