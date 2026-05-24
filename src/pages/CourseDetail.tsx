@@ -41,8 +41,8 @@ export default function CourseDetail() {
         setEnrolled(!!enr);
         const { data: prog } = await supabase.from("lesson_progress").select("lesson_id").eq("user_id", user.id).eq("course_id", c.id);
         setCompletedIds(new Set((prog ?? []).map(p => p.lesson_id)));
-        const { data: cert } = await supabase.from("certificates").select("id").eq("user_id", user.id).eq("course_id", c.id).maybeSingle();
-        setHasCert(!!cert);
+        const { data: attempt } = await supabase.from("quiz_attempts").select("id").eq("user_id", user.id).eq("course_id", c.id).eq("passed", true).limit(1).maybeSingle();
+        setPassed(!!attempt);
       }
       setLoading(false);
     })();
