@@ -7,6 +7,7 @@ export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [adminLoading, setAdminLoading] = useState(true);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
@@ -22,15 +23,16 @@ export function useAuth() {
   }, []);
 
   useEffect(() => {
-    if (!user) { setIsAdmin(false); return; }
+    if (!user) { setIsAdmin(false); setAdminLoading(false); return; }
+    setAdminLoading(true);
     supabase.from("user_roles").select("role").eq("user_id", user.id).eq("role", "admin").maybeSingle()
-      .then(({ data }) => setIsAdmin(!!data));
+      .then(({ data }) => { setIsAdmin(!!data); setAdminLoading(false); });
   }, [user]);
 
   return {
     session,
     user,
-    loading,
+    loading: loading || adminLoading,
     isAdmin,
     signOut: () => supabase.auth.signOut(),
   };
