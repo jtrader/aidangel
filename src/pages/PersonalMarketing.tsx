@@ -169,7 +169,9 @@ export default function PersonalMarketing() {
             <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#F7F7F7] to-transparent z-10" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-card to-transparent z-10" />
             <div className="flex topics-marquee-track gap-4 px-4">
-              {marqueeTrack.map((c, i) => (
+              {marqueeTrack.map((c, i) => {
+                const isEager = i < 3;
+                return (
                 <Link
                   key={`${c.id}-${i}`}
                   to={`/topics/${c.slug}`}
@@ -179,10 +181,14 @@ export default function PersonalMarketing() {
                     <div className="aspect-video bg-muted relative">
                       {c.cover_url ? (
                         <img
-                          src={c.cover_url}
+                          src={optimizeSupabaseImage(c.cover_url, 512)}
                           alt={c.title}
+                          width={512}
+                          height={288}
                           className="w-full h-full object-cover"
-                          loading="lazy"
+                          loading={isEager ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={i === 0 ? "high" : isEager ? "auto" : "low"}
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
