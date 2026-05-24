@@ -38,6 +38,7 @@ const REGISTRY: Record<string, ComponentType<{ className?: string; title?: strin
   "shock-management-blanket": lazy(() => import("./illustrations/ShockManagementBlanket")),
   "spinal-inline-stabilization": lazy(() => import("./illustrations/SpinalInlineStabilization")),
   "sprain-compression-wrap": lazy(() => import("./illustrations/SprainCompressionWrap")),
+  "sunburn-soothe-cool": lazy(() => import("./illustrations/SunburnSootheCool")),
 };
 
 interface IllustrationProps {
