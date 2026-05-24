@@ -91,7 +91,7 @@ export default function MyLearning() {
         <h1 className="font-display text-3xl font-bold mb-6">{t("myLearningTitle")}</h1>
         {loading ? (
           <div className="flex justify-center py-16"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>
-        ) : rows.length === 0 && certs.length === 0 ? (
+        ) : rows.length === 0 && certs.length === 0 && programs.length === 0 && programCerts.length === 0 ? (
           <Card className="p-8 rounded-2xl text-center">
             <BookOpen className="h-10 w-10 text-primary/40 mx-auto mb-3" />
             <p className="text-muted-foreground mb-4">{t("myLearningEmpty")}</p>
