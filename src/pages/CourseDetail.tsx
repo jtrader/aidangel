@@ -120,9 +120,9 @@ export default function CourseDetail() {
                 <Button size="lg" onClick={enroll}>
                   <Play className="h-4 w-4 mr-2" /> {user ? t("courseStart") : t("courseSignInToStart")}
                 </Button>
-              ) : hasCert ? (
-                <Button size="lg" onClick={() => navigate(`/courses/${slug}/certificate`)}>
-                  <Award className="h-4 w-4 mr-2" /> {t("courseViewCert")}
+              ) : passed ? (
+                <Button size="lg" variant="outline" disabled>
+                  <CheckCircle2 className="h-4 w-4 mr-2" /> {t("courseCompleted") || "Topic completed"}
                 </Button>
               ) : allDone ? (
                 <Button size="lg" onClick={() => navigate(`/courses/${slug}/quiz`)}>
