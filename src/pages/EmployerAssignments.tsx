@@ -119,6 +119,15 @@ export default function EmployerAssignments() {
       toast({ title: "Couldn't assign", description: error.message, variant: "destructive" });
       return;
     }
+    const course = courses.find((c) => c.id === selectedCourse);
+    await supabase.from("org_audit_log").insert({
+      org_id: activeOrg.id,
+      actor_id: userRes.user?.id ?? null,
+      action: "assignments.created",
+      target_type: "course",
+      target_id: selectedCourse,
+      metadata: { count: rows.length, course_title: course?.title, due_at: dueAt || null },
+    });
     toast({ title: "Assigned", description: `${rows.length} assignment${rows.length === 1 ? "" : "s"} created.` });
     setSelectedMembers(new Set());
     setSelectedCourse("");
@@ -133,6 +142,13 @@ export default function EmployerAssignments() {
     if (error) {
       toast({ title: "Couldn't remove", description: error.message, variant: "destructive" });
       return;
+    }
+    if (activeOrg) {
+      const { data: u } = await supabase.auth.getUser();
+      await supabase.from("org_audit_log").insert({
+        org_id: activeOrg.id, actor_id: u.user?.id ?? null,
+        action: "assignment.deleted", target_type: "assignment", target_id: id, metadata: {},
+      });
     }
     load();
   };
