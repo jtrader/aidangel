@@ -86,6 +86,15 @@ export function remarkLessonDirectives() {
         return;
       }
 
+      if (name === "illustration") {
+        data.hName = "illustration";
+        // `:::illustration[key]` -> label becomes the registry key.
+        // Also support `{name="key"}` attribute form.
+        data.hProperties = { name: attrs.name ?? label, title: label, ...attrs };
+        node.children = [];
+        return;
+      }
+
       // Unknown directive: render as a plain div with a data attribute
       data.hName = "div";
       data.hProperties = { "data-directive": name, ...attrs };
