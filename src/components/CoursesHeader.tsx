@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ShieldPlus, LogOut, User as UserIcon, BookOpen, Layers } from "lucide-react";
+import { LogOut, User as UserIcon, BookOpen, Layers } from "lucide-react";
+import aidAngelLogo from "@/assets/aidangel-logo.png";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
