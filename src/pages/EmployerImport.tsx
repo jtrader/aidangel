@@ -124,7 +124,9 @@ export default function EmployerImport() {
             <code className="text-xs bg-muted px-1 py-0.5 rounded">full_name</code>, optional{" "}
             <code className="text-xs bg-muted px-1 py-0.5 rounded">role</code> (owner/admin/manager/learner),{" "}
             <code className="text-xs bg-muted px-1 py-0.5 rounded">department</code>,{" "}
-            <code className="text-xs bg-muted px-1 py-0.5 rounded">employee_ref</code>. Duplicate emails are skipped.
+            <code className="text-xs bg-muted px-1 py-0.5 rounded">employee_ref</code>,{" "}
+            <code className="text-xs bg-muted px-1 py-0.5 rounded">assign_course_slugs</code> (comma-separated published course slugs).
+            Duplicate emails are skipped. Each new person is emailed a secure join link.
           </p>
           <div className="flex flex-wrap gap-3">
             <Button variant="outline" onClick={downloadTemplate}>
