@@ -22,6 +22,7 @@ export default function CourseCertificate() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
   const [issuing, setIssuing] = useState(false);
+  const [org, setOrg] = useState<{ name: string; logoUrl: string | null; primaryColor: string | null } | null>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -38,6 +39,20 @@ export default function CourseCertificate() {
           .order("score", { ascending: false }).limit(1).maybeSingle();
         setBestScore(attempt?.score ?? null);
         setName((user.user_metadata?.full_name as string) ?? "");
+      }
+      // Look up org branding (first active membership)
+      const { data: mem } = await supabase
+        .from("org_members")
+        .select("org_id")
+        .eq("user_id", user.id).eq("status", "active")
+        .order("joined_at", { ascending: false })
+        .limit(1).maybeSingle();
+      if (mem?.org_id) {
+        const { data: o } = await supabase
+          .from("organisations")
+          .select("name, logo_url, primary_color")
+          .eq("id", mem.org_id).maybeSingle();
+        if (o) setOrg({ name: o.name, logoUrl: o.logo_url, primaryColor: o.primary_color });
       }
       setLoading(false);
     })();
@@ -61,6 +76,7 @@ export default function CourseCertificate() {
       courseTitle: course.title,
       certificateNumber: cert.certificate_number,
       issuedAt: cert.issued_at,
+      org: org,
     });
   };
 
@@ -98,17 +114,26 @@ export default function CourseCertificate() {
         ) : (
           <>
             {/* Certificate preview */}
-            <Card className="rounded-2xl overflow-hidden mb-6 border-4 border-primary/20">
-              <div className="bg-[#F7F7F7] p-10 text-center">
-                <div className="inline-flex items-center gap-2 text-primary mb-2">
+            <Card
+              className="rounded-2xl overflow-hidden mb-6 border-4"
+              style={{ borderColor: (org?.primaryColor ?? "hsl(var(--primary))") + "33" }}
+            >
+              <div className="bg-[#F7F7F7] p-10 text-center relative">
+                {org?.logoUrl && (
+                  <img src={org.logoUrl} alt={`${org.name} logo`} className="absolute top-4 left-4 h-12 w-12 object-contain" />
+                )}
+                {org?.name && (
+                  <div className="absolute top-6 right-6 text-xs text-muted-foreground font-medium">Issued for {org.name}</div>
+                )}
+                <div className="inline-flex items-center gap-2 mb-2" style={{ color: org?.primaryColor ?? undefined }}>
                   <ShieldPlus className="h-5 w-5" />
                   <span className="font-display font-bold tracking-widest text-sm">FIRST AID ANGEL</span>
                 </div>
                 <div className="text-xs text-muted-foreground mb-6">Love Key Emergency & Recovery Network</div>
                 <h2 className="font-display text-3xl font-bold mb-3">Certificate of Completion</h2>
                 <p className="text-muted-foreground mb-2">This certifies that</p>
-                <p className="font-display text-3xl text-primary font-bold mb-2">{cert.learner_name}</p>
-                <div className="h-0.5 w-48 bg-primary mx-auto mb-4" />
+                <p className="font-display text-3xl font-bold mb-2" style={{ color: org?.primaryColor ?? undefined }}>{cert.learner_name}</p>
+                <div className="h-0.5 w-48 mx-auto mb-4" style={{ backgroundColor: org?.primaryColor ?? "hsl(var(--primary))" }} />
                 <p className="text-muted-foreground mb-1">has successfully completed</p>
                 <p className="font-display text-xl font-bold mb-6">{course.title}</p>
                 <div className="flex justify-between text-xs text-muted-foreground mt-8">
