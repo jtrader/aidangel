@@ -1046,6 +1046,67 @@ export type Database = {
           },
         ]
       }
+      org_program_assignments: {
+        Row: {
+          assigned_by: string | null
+          completed_at: string | null
+          created_at: string
+          due_at: string | null
+          id: string
+          member_id: string
+          org_id: string
+          program_id: string
+          status: Database["public"]["Enums"]["org_assignment_status"]
+          updated_at: string
+        }
+        Insert: {
+          assigned_by?: string | null
+          completed_at?: string | null
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          member_id: string
+          org_id: string
+          program_id: string
+          status?: Database["public"]["Enums"]["org_assignment_status"]
+          updated_at?: string
+        }
+        Update: {
+          assigned_by?: string | null
+          completed_at?: string | null
+          created_at?: string
+          due_at?: string | null
+          id?: string
+          member_id?: string
+          org_id?: string
+          program_id?: string
+          status?: Database["public"]["Enums"]["org_assignment_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_program_assignments_member_id_fkey"
+            columns: ["member_id"]
+            isOneToOne: false
+            referencedRelation: "org_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "org_program_assignments_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organisations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "org_program_assignments_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       organisations: {
         Row: {
           billing_email: string | null
@@ -1193,6 +1254,239 @@ export type Database = {
           type?: Database["public"]["Enums"]["educator_type"]
           updated_at?: string
           website?: string | null
+        }
+        Relationships: []
+      }
+      program_certificates: {
+        Row: {
+          certificate_number: string
+          id: string
+          issued_at: string
+          learner_name: string
+          program_id: string
+          user_id: string
+        }
+        Insert: {
+          certificate_number?: string
+          id?: string
+          issued_at?: string
+          learner_name: string
+          program_id: string
+          user_id: string
+        }
+        Update: {
+          certificate_number?: string
+          id?: string
+          issued_at?: string
+          learner_name?: string
+          program_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_certificates_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      program_enrollments: {
+        Row: {
+          id: string
+          program_id: string
+          started_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          program_id: string
+          started_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          program_id?: string
+          started_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_enrollments_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      program_quiz_attempts: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          passed: boolean
+          program_id: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          passed: boolean
+          program_id: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          passed?: boolean
+          program_id?: string
+          score?: number
+          total?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_quiz_attempts_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      program_quiz_questions: {
+        Row: {
+          choices: Json
+          correct_index: number
+          created_at: string
+          explanation: string | null
+          id: string
+          program_id: string
+          question: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          choices: Json
+          correct_index: number
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          program_id: string
+          question: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          choices?: Json
+          correct_index?: number
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          program_id?: string
+          question?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_quiz_questions_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      program_topics: {
+        Row: {
+          course_id: string
+          created_at: string
+          id: string
+          program_id: string
+          sort_order: number
+        }
+        Insert: {
+          course_id: string
+          created_at?: string
+          id?: string
+          program_id: string
+          sort_order?: number
+        }
+        Update: {
+          course_id?: string
+          created_at?: string
+          id?: string
+          program_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "program_topics_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "program_topics_program_id_fkey"
+            columns: ["program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      programs: {
+        Row: {
+          cover_url: string | null
+          created_at: string
+          description: string | null
+          duration_minutes: number
+          id: string
+          is_published: boolean
+          pass_mark: number
+          slug: string
+          sort_order: number
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_published?: boolean
+          pass_mark?: number
+          slug: string
+          sort_order?: number
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_published?: boolean
+          pass_mark?: number
+          slug?: string
+          sort_order?: number
+          summary?: string | null
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
