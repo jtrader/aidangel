@@ -14,7 +14,7 @@ export default function CoursesHeader() {
       <div className="container max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 text-foreground">
           <img src={aidAngelLogo} alt="First Aid Angel Training" className="h-7 w-7" />
-          <span className="font-display font-bold">First Aid Angel Training</span>
+          <span className="font-display font-bold"><span className="text-foreground">First Aid Angel </span><span className="text-primary">Training</span></span>
         </Link>
         <nav className="flex items-center gap-2">
           <Link to="/programs" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
