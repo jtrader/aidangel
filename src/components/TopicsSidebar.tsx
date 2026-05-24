@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { CheckCircle2, BookOpen, Loader2, GraduationCap } from "lucide-react";
+import { CheckCircle2, BookOpen, Loader2, GraduationCap, ClipboardCheck } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -155,6 +155,16 @@ export default function TopicsSidebar() {
                     </SidebarMenuItem>
                   );
                 })}
+                {program && (
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild tooltip="Program Final Quiz">
+                      <NavLink to={`/programs/${program.slug}/quiz`} className="flex items-center gap-2">
+                        <ClipboardCheck className="h-4 w-4 text-primary shrink-1" />
+                        {!collapsed && <span className="font-semibold">Program Final Quiz</span>}
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )}
               </SidebarMenu>
             )}
           </SidebarGroupContent>
