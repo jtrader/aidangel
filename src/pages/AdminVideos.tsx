@@ -44,6 +44,158 @@ async function getMp4Duration(file: File): Promise<number> {
   });
 }
 
+interface Lesson {
+  id: string;
+  slug: string;
+  title: string;
+  video_url: string | null;
+  sort_order: number;
+  course_id: string;
+}
+
+function LessonVideos({ course }: { course: Course }) {
+  const [lessons, setLessons] = useState<Lesson[]>([]);
+  const [loaded, setLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
+  const [urlEdits, setUrlEdits] = useState<Record<string, string>>({});
+  const [savingId, setSavingId] = useState<string | null>(null);
+  const fileRefs = useRef<Record<string, HTMLInputElement | null>>({});
+
+  const load = async () => {
+    const { data } = await supabase
+      .from("lessons")
+      .select("id,slug,title,video_url,sort_order,course_id")
+      .eq("course_id", course.id)
+      .order("sort_order");
+    const list = (data ?? []) as Lesson[];
+    setLessons(list);
+    setUrlEdits(Object.fromEntries(list.map(l => [l.id, l.video_url ?? ""])));
+    setLoaded(true);
+  };
+
+  const onOpenChange = (v: boolean) => {
+    setOpen(v);
+    if (v && !loaded) load();
+  };
+
+  const uploadFile = async (lesson: Lesson, file: File) => {
+    if (!file.type.startsWith("video/")) { toast.error("Pick a video file"); return; }
+    setUploadingId(lesson.id);
+    try {
+      const ext = file.name.split(".").pop() || "mp4";
+      const path = `${course.slug}/lessons/${lesson.slug}/${Date.now()}.${ext}`;
+      const { error: upErr } = await supabase.storage
+        .from("lesson-videos").upload(path, file, { upsert: true, contentType: file.type });
+      if (upErr) throw upErr;
+      const { data: pub } = supabase.storage.from("lesson-videos").getPublicUrl(path);
+      // best-effort delete old uploaded file
+      if (lesson.video_url?.includes("/lesson-videos/")) {
+        const oldPath = lesson.video_url.split("/lesson-videos/")[1];
+        if (oldPath) await supabase.storage.from("lesson-videos").remove([oldPath]);
+      }
+      const { error: updErr } = await supabase
+        .from("lessons").update({ video_url: pub.publicUrl }).eq("id", lesson.id);
+      if (updErr) throw updErr;
+      toast.success(`Uploaded video for "${lesson.title}"`);
+      await load();
+    } catch (e: any) {
+      toast.error(e?.message ?? "Upload failed");
+    } finally {
+      setUploadingId(null);
+    }
+  };
+
+  const saveUrl = async (lesson: Lesson) => {
+    const val = (urlEdits[lesson.id] ?? "").trim() || null;
+    setSavingId(lesson.id);
+    const { error } = await supabase.from("lessons").update({ video_url: val }).eq("id", lesson.id);
+    setSavingId(null);
+    if (error) { toast.error(error.message); return; }
+    toast.success("Lesson video URL saved");
+    await load();
+  };
+
+  const removeVideo = async (lesson: Lesson) => {
+    if (!lesson.video_url) return;
+    if (!confirm(`Remove video from "${lesson.title}"?`)) return;
+    if (lesson.video_url.includes("/lesson-videos/")) {
+      const oldPath = lesson.video_url.split("/lesson-videos/")[1];
+      if (oldPath) await supabase.storage.from("lesson-videos").remove([oldPath]);
+    }
+    const { error } = await supabase.from("lessons").update({ video_url: null }).eq("id", lesson.id);
+    if (error) { toast.error(error.message); return; }
+    toast.success("Video removed");
+    await load();
+  };
+
+  const withVideo = lessons.filter(l => l.video_url).length;
+
+  return (
+    <Collapsible open={open} onOpenChange={onOpenChange} className="mt-4 pt-4 border-t">
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost" size="sm" className="w-full justify-between hover:bg-muted/50">
+          <span className="text-sm font-medium">
+            Lesson videos {loaded && `(${withVideo}/${lessons.length})`}
+          </span>
+          <ChevronDown className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`} />
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent className="mt-3 space-y-2">
+        {!loaded ? (
+          <div className="flex justify-center py-4"><Loader2 className="h-4 w-4 animate-spin text-muted-foreground" /></div>
+        ) : lessons.length === 0 ? (
+          <p className="text-xs text-muted-foreground px-2 py-3">No lessons in this topic yet.</p>
+        ) : lessons.map((l) => {
+          const hasVid = !!l.video_url;
+          const isUp = uploadingId === l.id;
+          return (
+            <div key={l.id} className="rounded-lg border bg-muted/30 p-3">
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
+                <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold shrink-0 ${hasVid ? "bg-primary/15 text-primary" : "bg-background border text-muted-foreground"}`}>
+                  {hasVid ? <CheckCircle2 className="h-3.5 w-3.5" /> : l.sort_order + 1}
+                </span>
+                <span className="text-sm font-medium flex-1 min-w-0 truncate">{l.title}</span>
+                {hasVid && (
+                  <a href={l.video_url!} target="_blank" rel="noreferrer" className="text-xs text-primary hover:underline">Preview</a>
+                )}
+                <input
+                  ref={(el) => { fileRefs.current[l.id] = el; }}
+                  type="file" accept="video/*" className="hidden"
+                  onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadFile(l, f); e.target.value = ""; }}
+                />
+                <Button size="sm" variant={hasVid ? "outline" : "default"} disabled={isUp}
+                  onClick={() => fileRefs.current[l.id]?.click()}>
+                  {isUp ? <Loader2 className="h-3.5 w-3.5 mr-1 animate-spin" /> : <Upload className="h-3.5 w-3.5 mr-1" />}
+                  {hasVid ? "Replace" : "Upload"}
+                </Button>
+                {hasVid && !isUp && (
+                  <Button size="sm" variant="ghost" onClick={() => removeVideo(l)} className="text-destructive hover:text-destructive">
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </Button>
+                )}
+              </div>
+              <div className="flex gap-2 items-center">
+                <LinkIcon className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                <Input
+                  placeholder="…or paste a YouTube embed / Vimeo / MP4 URL"
+                  value={urlEdits[l.id] ?? ""}
+                  onChange={(e) => setUrlEdits(p => ({ ...p, [l.id]: e.target.value }))}
+                  className="h-8 text-xs"
+                />
+                <Button size="sm" variant="outline" disabled={savingId === l.id || (urlEdits[l.id] ?? "") === (l.video_url ?? "")}
+                  onClick={() => saveUrl(l)}>
+                  {savingId === l.id ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Save className="h-3.5 w-3.5" />}
+                </Button>
+              </div>
+            </div>
+          );
+        })}
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+
 export default function AdminVideos() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
