@@ -48,6 +48,7 @@ import CourseQuiz from "./pages/CourseQuiz";
 import CertificateVerify from "./pages/CertificateVerify";
 import MyLearning from "./pages/MyLearning";
 import AdminCourses from "./pages/AdminCourses";
+import AdminVideos from "./pages/AdminVideos";
 import AdminPrograms from "./pages/AdminPrograms";
 import Programs from "./pages/Programs";
 import ProgramDetail from "./pages/ProgramDetail";
@@ -136,6 +137,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/admin/kb" element={<AdminKb />} />
                 <Route path="/admin/courses" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
                 <Route path="/admin/topics" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
+                <Route path="/admin/videos" element={<RequireAuth adminOnly><AdminVideos /></RequireAuth>} />
                 <Route path="/admin/programs" element={<RequireAuth adminOnly><AdminPrograms /></RequireAuth>} />
 
                 {/* Learning / LMS */}
