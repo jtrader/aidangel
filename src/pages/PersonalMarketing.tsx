@@ -92,11 +92,11 @@ export default function PersonalMarketing() {
       <section className="relative bg-gradient-to-br from-[#F7F7F7] to-card border-b">
         <div className="container max-w-6xl mx-auto px-4 py-20 text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-            <User className="h-4 w-4" /> First Aid Angel for Individuals
+            <User className="h-4 w-4" /> First Aid Angel Training for Individuals
           </div>
           <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight">
             First aid training,{" "}
-            <span className="text-primary">from just AU$25</span>.
+            <span className="text-primary">from just $25</span>.
             <br />
             Learn the skills that save lives.
           </h1>
