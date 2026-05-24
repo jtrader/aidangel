@@ -155,7 +155,8 @@ export default function EmployerMarketing() {
                     </div>
                   </Card>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
