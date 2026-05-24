@@ -95,9 +95,9 @@ export default function PersonalMarketing() {
             <User className="h-4 w-4" /> First Aid Angel for Individuals
           </div>
           <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Personal first aid training,{" "}
+            First aid training,{" "}
             <span className="text-primary">from just AU$25</span>.
-            <br className="hidden md:inline" />
+            <br />
             Learn the skills that save lives.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
