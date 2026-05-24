@@ -9,6 +9,9 @@ import { cn } from "@/lib/utils";
  */
 const REGISTRY: Record<string, ComponentType<{ className?: string; title?: string }>> = {
   "snake-bite-bandage": lazy(() => import("./illustrations/SnakeBiteBandage")),
+  "danger-check": lazy(() => import("./illustrations/DangerCheck")),
+  "response-check": lazy(() => import("./illustrations/ResponseCheck")),
+  "send-for-help": lazy(() => import("./illustrations/SendForHelp")),
 };
 
 interface IllustrationProps {
