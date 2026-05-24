@@ -137,11 +137,14 @@ export default function TopicsSidebar() {
               <SidebarMenu>
                 {courses.map((c, i) => {
                   const isActive = c.slug === slug;
+                  const isPassed = passedCourseIds.has(c.id);
                   return (
                     <SidebarMenuItem key={c.id}>
                   <SidebarMenuButton asChild isActive={isActive} tooltip={c.title} className="data-[active=true]:bg-primary/10 data-[active=true]:text-primary">
                         <NavLink to={`/courses/${c.slug}`} className="flex items-center gap-2">
-                          <span className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 ${isActive ? "bg-primary border border-primary text-primary-foreground" : "border border-muted-foreground/30"}`} />
+                          <span className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 ${isPassed ? "bg-green-600 border border-green-600 text-white" : isActive ? "bg-primary border border-primary text-primary-foreground" : "border border-muted-foreground/30"}`}>
+                            {isPassed && <CheckCircle2 className="h-3.5 w-3.5" />}
+                          </span>
                           {!collapsed && <span className="truncate">{c.title}</span>}
                         </NavLink>
                       </SidebarMenuButton>
