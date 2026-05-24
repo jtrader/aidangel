@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, BookOpen, Award, Loader2 } from "lucide-react";
+import { Clock, BookOpen, Loader2 } from "lucide-react";
 import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
@@ -71,9 +71,6 @@ export default function Courses() {
                     </div>
                     <h2 className="font-display font-bold text-lg mb-1 group-hover:text-primary">{c.title}</h2>
                     {c.summary && <p className="text-sm text-muted-foreground line-clamp-2">{c.summary}</p>}
-                    <div className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-                      <Award className="h-4 w-4" /> {t("coursesCertOnComplete")}
-                    </div>
                   </div>
                 </Card>
               </Link>
