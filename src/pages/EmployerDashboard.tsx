@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import EmployerLayout from "@/components/employer/EmployerLayout";
 import { useOrg } from "@/hooks/useOrg";
 import { supabase } from "@/integrations/supabase/client";
-import { Users, ListChecks, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Users, ListChecks, AlertTriangle, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Stats {
@@ -12,6 +12,8 @@ interface Stats {
   assigned: number;
   completed: number;
   overdue: number;
+  programsAssigned: number;
+  programsCompleted: number;
 }
 
 function StatCard({ icon: Icon, label, value, hint }: { icon: React.ComponentType<{ className?: string }>; label: string; value: number | string; hint?: string }) {
@@ -29,17 +31,19 @@ function StatCard({ icon: Icon, label, value, hint }: { icon: React.ComponentTyp
 
 export default function EmployerDashboard() {
   const { activeOrg } = useOrg();
-  const [stats, setStats] = useState<Stats>({ members: 0, active: 0, assigned: 0, completed: 0, overdue: 0 });
+  const [stats, setStats] = useState<Stats>({ members: 0, active: 0, assigned: 0, completed: 0, overdue: 0, programsAssigned: 0, programsCompleted: 0 });
 
   useEffect(() => {
     if (!activeOrg) return;
     (async () => {
-      const [{ count: members }, { count: active }, { count: assigned }, { count: completed }, { count: overdue }] = await Promise.all([
+      const [{ count: members }, { count: active }, { count: assigned }, { count: completed }, { count: overdue }, { count: pAssigned }, { count: pCompleted }] = await Promise.all([
         supabase.from("org_members").select("id", { count: "exact", head: true }).eq("org_id", activeOrg.id),
         supabase.from("org_members").select("id", { count: "exact", head: true }).eq("org_id", activeOrg.id).eq("status", "active"),
         supabase.from("org_course_assignments").select("id", { count: "exact", head: true }).eq("org_id", activeOrg.id),
         supabase.from("org_course_assignments").select("id", { count: "exact", head: true }).eq("org_id", activeOrg.id).eq("status", "completed"),
         supabase.from("org_course_assignments").select("id", { count: "exact", head: true }).eq("org_id", activeOrg.id).eq("status", "overdue"),
+        supabase.from("org_program_assignments").select("id", { count: "exact", head: true }).eq("org_id", activeOrg.id),
+        supabase.from("org_program_assignments").select("id", { count: "exact", head: true }).eq("org_id", activeOrg.id).eq("status", "completed"),
       ]);
       setStats({
         members: members ?? 0,
@@ -47,6 +51,8 @@ export default function EmployerDashboard() {
         assigned: assigned ?? 0,
         completed: completed ?? 0,
         overdue: overdue ?? 0,
+        programsAssigned: pAssigned ?? 0,
+        programsCompleted: pCompleted ?? 0,
       });
     })();
   }, [activeOrg]);
@@ -55,9 +61,9 @@ export default function EmployerDashboard() {
     <EmployerLayout title={activeOrg ? `${activeOrg.name} dashboard` : "Dashboard"}>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard icon={Users} label="People" value={stats.members} hint={`${stats.active} active of ${activeOrg?.seat_limit ?? 0} seats`} />
-        <StatCard icon={ListChecks} label="Assignments" value={stats.assigned} />
-        <StatCard icon={CheckCircle2} label="Completed" value={stats.completed} />
-        <StatCard icon={AlertTriangle} label="Overdue" value={stats.overdue} />
+        <StatCard icon={ListChecks} label="Topic assignments" value={stats.assigned} hint={`${stats.completed} completed`} />
+        <StatCard icon={GraduationCap} label="Programs assigned" value={stats.programsAssigned} hint={`${stats.programsCompleted} completed`} />
+        <StatCard icon={AlertTriangle} label="Overdue topics" value={stats.overdue} />
       </div>
 
       <div className="bg-card rounded-2xl shadow-sm p-6 space-y-3">
