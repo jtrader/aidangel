@@ -96,8 +96,24 @@ type TopicCard = {
 
 export default function PersonalMarketing() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const startHref = user ? "/programs" : "/auth?redirect=/programs";
+  const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
   const [topics, setTopics] = useState<TopicCard[]>([]);
+
+  const handleBuy = (priceId: string) => {
+    if (!user) {
+      navigate(`/auth?redirect=/personal`);
+      return;
+    }
+    openCheckout({
+      priceId,
+      customerEmail: user.email ?? undefined,
+      customData: { userId: user.id },
+      successUrl: `${window.location.origin}/checkout/success`,
+    });
+  };
+
 
   useEffect(() => {
     supabase
@@ -281,11 +297,12 @@ export default function PersonalMarketing() {
                   ))}
                 </ul>
                 <Button
-                  asChild
                   className="w-full"
                   variant={t.popular ? "default" : "outline"}
+                  disabled={checkoutLoading}
+                  onClick={() => handleBuy(t.priceId)}
                 >
-                  <Link to={startHref}>Get started</Link>
+                  {checkoutLoading ? "Loading…" : "Get started"}
                 </Button>
               </Card>
             ))}
