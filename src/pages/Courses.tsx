@@ -30,7 +30,7 @@ export default function Courses() {
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead
         lang="en"
-        basePath="/courses"
+        basePath="/topics"
         title="Free Online First Aid Courses with Certificate | First Aid Angel"
         description="Self-paced first aid courses with quizzes and free PDF certificate. CPR, choking, bleeding, burns and more — based on Australian First Aid 5th Edition."
       />
@@ -52,7 +52,7 @@ export default function Courses() {
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {courses.map((c) => (
-              <Link key={c.id} to={`/courses/${c.slug}`} className="block group">
+              <Link key={c.id} to={`/topics/${c.slug}`} className="block group">
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative">
                     {c.cover_url ? (

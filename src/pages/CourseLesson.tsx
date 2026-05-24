@@ -62,10 +62,10 @@ export default function CourseLesson() {
   return (
     <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
-      <SeoHead lang="en" basePath="/courses" title={`${lesson.title} — ${course?.title} | First Aid Angel`} description={`Lesson: ${lesson.title}`} />
+      <SeoHead lang="en" basePath="/topics" title={`${lesson.title} — ${course?.title} | First Aid Angel`} description={`Lesson: ${lesson.title}`} />
       <CoursesHeader />
       <main className="flex-1 container max-w-3xl mx-auto px-4 py-8">
-        <Link to={`/courses/${slug}`} className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {course?.title}</Link>
+        <Link to={`/topics/${slug}`} className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {course?.title}</Link>
         <h1 className="font-display text-3xl font-bold mb-2">{lesson.title}</h1>
         <p className="text-sm text-muted-foreground mb-6">{t("lessonOfTotal").replace("{n}", String(idx + 1)).replace("{total}", String(lessons.length))}</p>
 
@@ -123,13 +123,13 @@ export default function CourseLesson() {
 
 
         <div className="flex items-center justify-between gap-3 flex-wrap">
-          <Button variant="outline" onClick={() => prev && navigate(`/courses/${slug}/lesson/${prev.slug}`)} disabled={!prev}>
+          <Button variant="outline" onClick={() => prev && navigate(`/topics/${slug}/lesson/${prev.slug}`)} disabled={!prev}>
             <ChevronLeft className="h-4 w-4 mr-1" /> {t("lessonPrevious")}
           </Button>
           <Button onClick={async () => {
             await markComplete();
-            if (next) navigate(`/courses/${slug}/lesson/${next.slug}`);
-            else navigate(`/courses/${slug}/quiz`);
+            if (next) navigate(`/topics/${slug}/lesson/${next.slug}`);
+            else navigate(`/topics/${slug}/quiz`);
           }}>
             {done ? <CheckCircle2 className="h-4 w-4 mr-1" /> : null}
             {isLast ? t("lessonCompleteStartQuiz") : (done ? t("lessonNextLesson") : t("lessonMarkCompleteNext"))}
