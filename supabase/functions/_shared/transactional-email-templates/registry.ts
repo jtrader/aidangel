@@ -12,9 +12,11 @@ export interface TemplateEntry {
 import { template as claimReceived } from './claim-received.tsx'
 import { template as claimApproved } from './claim-approved.tsx'
 import { template as claimRejected } from './claim-rejected.tsx'
+import { template as orgInvite } from './org-invite.tsx'
 
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'claim-received': claimReceived,
   'claim-approved': claimApproved,
   'claim-rejected': claimRejected,
+  'org-invite': orgInvite,
 }
