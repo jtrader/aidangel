@@ -320,7 +320,7 @@ export default function AdminVideos() {
           <div>
             <h1 className="font-display text-3xl font-bold">Course videos</h1>
             <p className="text-muted-foreground text-sm mt-1">
-              Upload one MP4 per topic. Learners must watch 90% before they can take the quiz.
+              Upload one MP4 per topic (counted toward quiz unlock), plus optional videos per lesson — uploaded MP4s or YouTube/Vimeo embed URLs.
             </p>
           </div>
           <Badge variant="secondary" className="text-sm">
