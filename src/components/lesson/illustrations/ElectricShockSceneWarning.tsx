@@ -111,7 +111,7 @@ export default function ElectricShockSceneWarning({
         stroke="#F20822"
         strokeWidth="3"
         strokeDasharray="4,4"
-        markerEnd="url(#url(#arrowhead))"
+        markerEnd="url(#arrowhead)"
       />
 
       {/* Small red pulse dot near the plug-to-puddle gap */}
