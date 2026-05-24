@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 interface Props {
   courseId: string;
   videoUrl: string;
+  posterUrl?: string | null;
   storedDuration?: number | null;
   onCompleted?: () => void;
   trackProgress?: boolean;
@@ -17,7 +18,7 @@ const SAVE_INTERVAL_SEC = 5;
 // Allow small forward jumps (e.g. browser buffering) but block real skip-ahead.
 const FORWARD_SEEK_TOLERANCE_SEC = 2;
 
-export default function CourseVideoPlayer({ courseId, videoUrl, storedDuration, onCompleted, trackProgress = true }: Props) {
+export default function CourseVideoPlayer({ courseId, videoUrl, posterUrl, storedDuration, onCompleted, trackProgress = true }: Props) {
   const { user } = useAuth();
   const videoRef = useRef<HTMLVideoElement>(null);
   const maxWatchedRef = useRef(0);
@@ -115,6 +116,7 @@ export default function CourseVideoPlayer({ courseId, videoUrl, storedDuration, 
         <video
           ref={videoRef}
           src={videoUrl}
+          poster={posterUrl || undefined}
           controls
           controlsList="nodownload"
           onContextMenu={(e) => e.preventDefault()}
