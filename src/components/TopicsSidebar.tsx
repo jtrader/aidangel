@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { CheckCircle2, BookOpen, Loader2 } from "lucide-react";
+import { CheckCircle2, BookOpen, Loader2, GraduationCap } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -31,6 +31,7 @@ export default function TopicsSidebar() {
   const [activeLessons, setActiveLessons] = useState<Lesson[]>([]);
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
+  const [program, setProgram] = useState<{ slug: string; title: string } | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -38,9 +39,10 @@ export default function TopicsSidebar() {
       // matches the program hierarchy. Fall back to courses.sort_order.
       const { data: prog } = await supabase
         .from("programs")
-        .select("id")
+        .select("id, slug, title")
         .eq("slug", "emergency-response-program")
         .maybeSingle();
+      if (prog) setProgram({ slug: prog.slug, title: prog.title });
 
       if (prog?.id) {
         const { data: topics } = await supabase
@@ -92,6 +94,23 @@ export default function TopicsSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
+        {program && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Program</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild tooltip={program.title}>
+                    <NavLink to={`/programs/${program.slug}`} className="flex items-center gap-2">
+                      <GraduationCap className="h-4 w-4 shrink-0 text-primary" />
+                      {!collapsed && <span className="truncate font-semibold">{program.title}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
         <SidebarGroup>
           <SidebarGroupLabel>Topics</SidebarGroupLabel>
           <SidebarGroupContent>
