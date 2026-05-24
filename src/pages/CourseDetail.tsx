@@ -119,7 +119,7 @@ export default function CourseDetail() {
                 />
                 {(course.video_source_name || course.video_source_website || course.video_source_youtube) && (
                   <p className="text-xs text-muted-foreground -mt-2 mb-6">
-                    Source/Credit:{" "}
+                    Source/credit:{" "}
                     {course.video_source_website ? (
                       <a href={course.video_source_website} target="_blank" rel="noreferrer noopener" className="underline hover:text-primary">
                         {course.video_source_name || course.video_source_website}
