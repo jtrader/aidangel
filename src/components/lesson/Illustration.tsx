@@ -32,7 +32,7 @@ function IllustrationFallback({ name }: { name: string }) {
   return (
     <figure
       role="img"
-      aria-label={`Illustration placeholder: ${label}`}
+      aria-label={`Illustration placeholder: ${name}`}
       className={cn(
         "my-6 overflow-hidden rounded-2xl border border-border bg-card shadow-sm",
         "border-l-4 border-l-primary"
@@ -47,7 +47,7 @@ function IllustrationFallback({ name }: { name: string }) {
             Graphic coming soon
           </p>
           <p className="font-display text-lg font-bold text-foreground">
-            {humanizeKey(label)}
+            {humanizeKey(name)}
           </p>
         </div>
         <p className="max-w-xs text-xs text-muted-foreground">
@@ -65,7 +65,7 @@ export default function Illustration({ name, title, className }: IllustrationPro
   const Component = key ? REGISTRY[key] : undefined;
 
   if (!Component) {
-    return <IllustrationFallback key={key} />;
+    return <IllustrationFallback name={key || "unknown"} />;
   }
 
   return (
