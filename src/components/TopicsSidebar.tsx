@@ -39,9 +39,10 @@ export default function TopicsSidebar() {
       // matches the program hierarchy. Fall back to courses.sort_order.
       const { data: prog } = await supabase
         .from("programs")
-        .select("id")
+        .select("id, slug, title")
         .eq("slug", "emergency-response-program")
         .maybeSingle();
+      if (prog) setProgram({ slug: prog.slug, title: prog.title });
 
       if (prog?.id) {
         const { data: topics } = await supabase
