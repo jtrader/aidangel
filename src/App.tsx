@@ -20,6 +20,7 @@ function RedirectCourseToTopic({ suffix }: { suffix?: "lesson" | "quiz" }) {
 import Index from "./pages/Index";
 import KbIndex from "./pages/KbIndex";
 import KbTopic from "./pages/KbTopic";
+import StyleGuide from "./pages/StyleGuide";
 import AngelActionIndex from "./pages/AngelActionIndex";
 import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
@@ -111,6 +112,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/" element={<Index />} />
                 <Route path="/kb" element={<KbIndex />} />
                 <Route path="/kb/:slug" element={<KbTopic />} />
+                <Route path="/style-guide" element={<StyleGuide />} />
                 <Route path="/angel-action" element={<AngelActionIndex />} />
                 <Route path="/:lang/angel-action" element={<AngelActionIndex />} />
                 <Route path="/symptoms" element={<SymptomFinder />} />
