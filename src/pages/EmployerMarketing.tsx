@@ -70,7 +70,7 @@ export default function EmployerMarketing() {
           </div>
           <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Train your whole team in <span className="text-primary">first aid</span>.<br className="hidden md:inline" />
-            Prove compliance in a click.
+            Prove CPD compliance in a click.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Bulk-invite your workforce, assign Australian First Aid 5th Edition courses, and track completion in a single dashboard. CPD-certified branded certificates included.
