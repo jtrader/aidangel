@@ -132,11 +132,11 @@ export default function TopicsSidebar() {
                   <SidebarMenuButton
                     asChild
                     tooltip={program.title}
-                    className="h-auto min-h-8 items-start overflow-visible [&>span:last-child]:truncate-0 [&>span:last-child]:whitespace-normal"
+                    className="h-auto min-h-8 items-start overflow-visible"
                   >
                     <NavLink to={`/programs/${program.slug}`} className="flex min-w-0 items-start gap-2">
                       <GraduationCap className="h-4 w-4 shrink-0 text-primary" />
-                      {!collapsed && <span className="min-w-0 flex-1 whitespace-normal break-words font-semibold leading-tight">{program.title}</span>}
+                      {!collapsed && <span className="min-w-0 flex-1 !overflow-visible !whitespace-normal !text-clip break-words font-semibold leading-tight">{program.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
