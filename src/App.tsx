@@ -52,6 +52,7 @@ import EmployerDashboard from "./pages/EmployerDashboard";
 import EmployerPeople from "./pages/EmployerPeople";
 import EmployerSettings from "./pages/EmployerSettings";
 import EmployerPlaceholder from "./pages/EmployerPlaceholder";
+import EmployerImport from "./pages/EmployerImport";
 import JoinOrg from "./pages/JoinOrg";
 
 const queryClient = new QueryClient();
@@ -131,7 +132,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/employer/onboarding" element={<RequireAuth><EmployerOnboarding /></RequireAuth>} />
                 <Route path="/employer/dashboard" element={<RequireAuth><EmployerDashboard /></RequireAuth>} />
                 <Route path="/employer/people" element={<RequireAuth><EmployerPeople /></RequireAuth>} />
-                <Route path="/employer/people/import" element={<RequireAuth><EmployerPlaceholder title="Bulk import" phase="Phase 2" /></RequireAuth>} />
+                <Route path="/employer/people/import" element={<RequireAuth><EmployerImport /></RequireAuth>} />
                 <Route path="/employer/assignments" element={<RequireAuth><EmployerPlaceholder title="Assignments" phase="Phase 3" /></RequireAuth>} />
                 <Route path="/employer/reports" element={<RequireAuth><EmployerPlaceholder title="Reports" phase="Phase 4" /></RequireAuth>} />
                 <Route path="/employer/settings" element={<RequireAuth><EmployerSettings /></RequireAuth>} />
