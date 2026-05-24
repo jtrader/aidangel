@@ -102,8 +102,8 @@ export default function CourseQuiz() {
                       .replace("{total}", String(questions.length))}
                   </p>
                   <div className="flex gap-3 justify-center flex-wrap">
-                    <Button size="lg" onClick={() => navigate(`/courses/${slug}/certificate`)}>
-                      <Award className="h-4 w-4 mr-2" /> {t("quizGetCertificate")}
+                    <Button size="lg" onClick={() => navigate(`/courses/${slug}`)}>
+                      <CheckCircle2 className="h-4 w-4 mr-2" /> {t("courseBackToTopic") || "Back to topic"}
                     </Button>
                     <Button variant="outline" size="lg" onClick={() => { setResult(null); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
                       {t("quizRetake")}
