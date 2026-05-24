@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ShieldPlus, LogOut, User as UserIcon, BookOpen } from "lucide-react";
+import { ShieldPlus, LogOut, User as UserIcon, BookOpen, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
@@ -16,8 +16,11 @@ export default function CoursesHeader() {
           <span className="font-display font-bold">First Aid Angel</span>
         </Link>
         <nav className="flex items-center gap-2">
+          <Link to="/programs" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
+            <Layers className="h-4 w-4" /> Programs
+          </Link>
           <Link to="/courses" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
-            <BookOpen className="h-4 w-4" /> Courses
+            <BookOpen className="h-4 w-4" /> Topics
           </Link>
           <HamburgerMenu />
           {user ? (
@@ -30,7 +33,8 @@ export default function CoursesHeader() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => navigate("/my-learning")}>My learning</DropdownMenuItem>
-                {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/courses")}>Admin · Courses</DropdownMenuItem>}
+                {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/programs")}>Admin · Programs</DropdownMenuItem>}
+                {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/courses")}>Admin · Topics</DropdownMenuItem>}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => signOut().then(() => navigate("/"))}>
                   <LogOut className="h-4 w-4 mr-2" /> Sign out
