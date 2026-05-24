@@ -110,12 +110,34 @@ export default function CourseDetail() {
             {course.description && <div className="prose prose-sm max-w-none text-foreground/80 mb-6 whitespace-pre-wrap">{course.description}</div>}
 
             {enrolled && course.video_url && (
-              <CourseVideoPlayer
-                courseId={course.id}
-                videoUrl={course.video_url}
-                storedDuration={course.video_duration_seconds}
-                onCompleted={() => setVideoCompleted(true)}
-              />
+              <>
+                <CourseVideoPlayer
+                  courseId={course.id}
+                  videoUrl={course.video_url}
+                  storedDuration={course.video_duration_seconds}
+                  onCompleted={() => setVideoCompleted(true)}
+                />
+                {(course.video_source_name || course.video_source_website || course.video_source_youtube) && (
+                  <p className="text-xs text-muted-foreground -mt-2 mb-6">
+                    Video credit:{" "}
+                    {course.video_source_website ? (
+                      <a href={course.video_source_website} target="_blank" rel="noreferrer noopener" className="underline hover:text-primary">
+                        {course.video_source_name || course.video_source_website}
+                      </a>
+                    ) : (
+                      <span>{course.video_source_name}</span>
+                    )}
+                    {course.video_source_youtube && (
+                      <>
+                        {" · "}
+                        <a href={course.video_source_youtube} target="_blank" rel="noreferrer noopener" className="underline hover:text-primary">
+                          Watch on YouTube
+                        </a>
+                      </>
+                    )}
+                  </p>
+                )}
+              </>
             )}
 
             {enrolled && (
