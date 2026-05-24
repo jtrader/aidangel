@@ -103,10 +103,17 @@ export default function PersonalMarketing() {
   }, []);
 
   const handleBrowseTopics = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     const el = document.getElementById("topics-marquee");
     if (el) {
-      e.preventDefault();
       el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      // Fallback if topics haven't loaded yet — retry shortly
+      setTimeout(() => {
+        document
+          .getElementById("topics-marquee")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
     }
   };
 
