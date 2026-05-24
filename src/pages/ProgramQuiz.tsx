@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Loader2, CheckCircle2, XCircle, ArrowLeft } from "lucide-react";
+import { Loader2, CheckCircle2, XCircle, ArrowLeft, Lock } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
 import { toast } from "sonner";
@@ -18,6 +18,8 @@ export default function ProgramQuiz() {
   const [result, setResult] = useState<{ score: number; total: number; passed: boolean } | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [topicCount, setTopicCount] = useState(0);
+  const [topicsPassed, setTopicsPassed] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -26,9 +28,22 @@ export default function ProgramQuiz() {
       setProgram(p);
       const { data: qs } = await supabase.from("program_quiz_questions").select("*").eq("program_id", p.id).order("sort_order");
       setQuestions(qs ?? []);
+      const { data: topics } = await supabase.from("program_topics").select("course_id").eq("program_id", p.id);
+      const courseIds = (topics ?? []).map((t: any) => t.course_id);
+      setTopicCount(courseIds.length);
+      if (user && courseIds.length) {
+        const { data: attempts } = await supabase
+          .from("quiz_attempts")
+          .select("course_id")
+          .eq("user_id", user.id)
+          .eq("passed", true)
+          .in("course_id", courseIds);
+        const passed = new Set((attempts ?? []).map((a: any) => a.course_id));
+        setTopicsPassed(courseIds.filter((id) => passed.has(id)).length);
+      }
       setLoading(false);
     })();
-  }, [slug]);
+  }, [slug, user]);
 
   const submit = async () => {
     if (!user || !program) return;
@@ -61,7 +76,16 @@ export default function ProgramQuiz() {
         <h1 className="font-display text-3xl font-bold mb-2">{program.title} — Final quiz</h1>
         <p className="text-muted-foreground mb-6">Pass mark: {program.pass_mark}%</p>
 
-        {result ? (
+        {topicCount > 0 && topicsPassed < topicCount ? (
+          <Card className="p-8 text-center rounded-2xl">
+            <Lock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h2 className="font-display text-2xl font-bold mb-2">Final quiz locked</h2>
+            <p className="text-muted-foreground mb-6">
+              Pass all {topicCount} topic quizzes to unlock the program final quiz. You've passed {topicsPassed} of {topicCount}.
+            </p>
+            <Button onClick={() => navigate(`/programs/${slug}`)}>Back to program</Button>
+          </Card>
+        ) : result ? (
           <Card className="p-8 text-center rounded-2xl">
             {result.passed ? (
               <CheckCircle2 className="h-16 w-16 text-primary mx-auto mb-4" />

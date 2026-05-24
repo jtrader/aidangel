@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { CheckCircle2, BookOpen, Loader2, GraduationCap, ClipboardCheck } from "lucide-react";
+import { CheckCircle2, BookOpen, Loader2, GraduationCap, ClipboardCheck, Lock } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -31,7 +31,9 @@ export default function TopicsSidebar() {
   const [activeLessons, setActiveLessons] = useState<Lesson[]>([]);
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
-  const [program, setProgram] = useState<{ slug: string; title: string } | null>(null);
+  const [program, setProgram] = useState<{ id: string; slug: string; title: string } | null>(null);
+  const [programCourseIds, setProgramCourseIds] = useState<string[]>([]);
+  const [passedCourseIds, setPassedCourseIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     (async () => {
@@ -42,7 +44,7 @@ export default function TopicsSidebar() {
         .select("id, slug, title")
         .eq("slug", "emergency-response-program")
         .maybeSingle();
-      if (prog) setProgram({ slug: prog.slug, title: prog.title });
+      if (prog) setProgram({ id: prog.id, slug: prog.slug, title: prog.title });
 
       if (prog?.id) {
         const { data: topics } = await supabase
@@ -55,6 +57,7 @@ export default function TopicsSidebar() {
           .filter(Boolean) as Course[];
         if (ordered.length) {
           setCourses(ordered);
+          setProgramCourseIds(ordered.map((c) => c.id));
           setLoading(false);
           return;
         }
@@ -90,6 +93,20 @@ export default function TopicsSidebar() {
       }
     })();
   }, [slug, courses, user]);
+  useEffect(() => {
+    (async () => {
+      if (!user || programCourseIds.length === 0) { setPassedCourseIds(new Set()); return; }
+      const { data } = await supabase
+        .from("quiz_attempts")
+        .select("course_id")
+        .eq("user_id", user.id)
+        .eq("passed", true)
+        .in("course_id", programCourseIds);
+      setPassedCourseIds(new Set((data ?? []).map((r: any) => r.course_id)));
+    })();
+  }, [user, programCourseIds]);
+
+  const allTopicsPassed = programCourseIds.length > 0 && programCourseIds.every((id) => passedCourseIds.has(id));
 
   return (
     <Sidebar collapsible="icon">
@@ -157,12 +174,27 @@ export default function TopicsSidebar() {
                 })}
                 {program && (
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip="Program Final Quiz">
-                      <NavLink to={`/programs/${program.slug}/quiz`} className="flex items-center gap-2">
-                        <ClipboardCheck className="h-4 w-4 text-primary shrink-1" />
-                        {!collapsed && <span className="font-semibold">Program Final Quiz</span>}
-                      </NavLink>
-                    </SidebarMenuButton>
+                    {allTopicsPassed ? (
+                      <SidebarMenuButton asChild tooltip="Program Final Quiz">
+                        <NavLink to={`/programs/${program.slug}/quiz`} className="flex items-center gap-2">
+                          <ClipboardCheck className="h-4 w-4 text-primary shrink-1" />
+                          {!collapsed && <span className="font-semibold">Program Final Quiz</span>}
+                        </NavLink>
+                      </SidebarMenuButton>
+                    ) : (
+                      <SidebarMenuButton
+                        tooltip={`Complete all ${programCourseIds.length} topic quizzes to unlock (${passedCourseIds.size}/${programCourseIds.length} passed)`}
+                        className="opacity-60 cursor-not-allowed"
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <Lock className="h-4 w-4 text-muted-foreground shrink-1" />
+                        {!collapsed && (
+                          <span className="font-semibold text-muted-foreground">
+                            Program Final Quiz ({passedCourseIds.size}/{programCourseIds.length})
+                          </span>
+                        )}
+                      </SidebarMenuButton>
+                    )}
                   </SidebarMenuItem>
                 )}
               </SidebarMenu>
