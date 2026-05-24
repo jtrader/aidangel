@@ -73,6 +73,8 @@ import EmployerMarketing from "./pages/EmployerMarketing";
 import PersonalMarketing from "./pages/PersonalMarketing";
 import JoinCodeEntry from "./pages/JoinCodeEntry";
 import JoinOrg from "./pages/JoinOrg";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
+import { PaymentTestModeBanner } from "./components/PaymentTestModeBanner";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +101,7 @@ const App = forwardRef(function App(_props, _ref) {
             <Toaster />
             <Sonner />
             <OfflineBanner />
+            <PaymentTestModeBanner />
             <InstallPrompt />
             <BrowserRouter>
               <Routes>
@@ -169,6 +172,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/employer/settings" element={<RequireAuth><EmployerSettings /></RequireAuth>} />
                 <Route path="/join" element={<JoinCodeEntry />} />
                 <Route path="/join/:token" element={<JoinOrg />} />
+                <Route path="/checkout/success" element={<CheckoutSuccess />} />
 
                 {/* Localized */}
                 <Route

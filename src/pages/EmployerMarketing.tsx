@@ -9,6 +9,8 @@ import CoursesHeader from "@/components/CoursesHeader";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
+import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
+import { useNavigate } from "react-router-dom";
 
 type TopicCard = {
   id: string;
@@ -21,13 +23,13 @@ type TopicCard = {
 };
 
 const TIERS = [
-  { name: "Starter", price: "AU$29", unit: "/ seat / year", seats: "Up to 10 seats", popular: false,
+  { name: "Starter", priceId: "employer_starter_seat_annual", perSeat: true, price: "AU$29", unit: "/ seat / year", seats: "Up to 10 seats", popular: false,
     features: ["Bulk CSV import", "Course assignments", "Compliance dashboard", "Email invitations"] },
-  { name: "Team 25", price: "AU$625", unit: "flat / year", seats: "25 seats included", popular: true,
+  { name: "Team 25", priceId: "employer_team_25_annual", perSeat: false, price: "AU$625", unit: "flat / year", seats: "25 seats included", popular: true,
     features: ["Everything in Starter", "CPD-certified branded certificates", "Manager roles", "CSV / PDF reports"] },
-  { name: "Team 50", price: "AU$1,250", unit: "flat / year", seats: "50 seats included", popular: false,
+  { name: "Team 50", priceId: "employer_team_50_annual", perSeat: false, price: "AU$1,250", unit: "flat / year", seats: "50 seats included", popular: false,
     features: ["Everything in Team 25", "Priority support", "Audit log access"] },
-  { name: "Workplace", price: "AU$1,500", unit: "/ year", seats: "Unlimited seats", popular: false,
+  { name: "Workplace", priceId: "employer_workplace_annual", perSeat: false, price: "AU$1,500", unit: "/ year", seats: "Unlimited seats", popular: false,
     features: ["Everything in Team 50", "SAML SSO (Okta, Azure AD)", "Custom join code"] },
 ];
 
@@ -39,7 +41,32 @@ const FEATURES = [
 
 export default function EmployerMarketing() {
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
   const [topics, setTopics] = useState<TopicCard[]>([]);
+
+  const handleBuy = (tier: (typeof TIERS)[number]) => {
+    if (!user) {
+      navigate(`/auth?redirect=/employer`);
+      return;
+    }
+    let quantity = 1;
+    if (tier.perSeat) {
+      const input = window.prompt("How many seats? (1–10)", "5");
+      if (!input) return;
+      const n = Math.max(1, Math.min(10, parseInt(input, 10) || 0));
+      if (!n) return;
+      quantity = n;
+    }
+    openCheckout({
+      priceId: tier.priceId,
+      quantity,
+      customerEmail: user.email ?? undefined,
+      customData: { userId: user.id },
+      successUrl: `${window.location.origin}/checkout/success`,
+    });
+  };
+
 
   useEffect(() => {
     supabase
@@ -209,10 +236,13 @@ export default function EmployerMarketing() {
                     </li>
                   ))}
                 </ul>
-                <Button asChild className="w-full" variant={t.popular ? "default" : "outline"}>
-                  <Link to={user ? "/employer/onboarding" : "/auth?redirect=/employer/onboarding"}>
-                    Get started
-                  </Link>
+                <Button
+                  className="w-full"
+                  variant={t.popular ? "default" : "outline"}
+                  disabled={checkoutLoading}
+                  onClick={() => handleBuy(t)}
+                >
+                  {checkoutLoading ? "Loading…" : t.perSeat ? "Buy seats" : "Get started"}
                 </Button>
               </Card>
             ))}

@@ -1,10 +1,7 @@
 project_id = "luocpjawdzwreskitrqj"
 
-[functions.get-mapbox-token]
+[functions.payments-webhook]
 verify_jwt = false
 
-[functions.generate-educator-profile]
-verify_jwt = false
-
-[functions.org-overdue-sweep]
+[functions.get-paddle-price]
 verify_jwt = false
