@@ -22,6 +22,7 @@ export default function CourseCertificate() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
   const [issuing, setIssuing] = useState(false);
+  const [org, setOrg] = useState<{ name: string; logoUrl: string | null; primaryColor: string | null } | null>(null);
 
   useEffect(() => {
     if (!user) return;
