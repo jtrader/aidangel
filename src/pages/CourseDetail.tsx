@@ -122,7 +122,7 @@ export default function CourseDetail() {
                 </Button>
               ) : passed ? (
                 <Button size="lg" variant="outline" disabled>
-                  <CheckCircle2 className="h-4 w-4 mr-2" /> {t("courseCompleted") || "Topic completed"}
+                  <CheckCircle2 className="h-4 w-4 mr-2" /> Topic completed
                 </Button>
               ) : allDone ? (
                 <Button size="lg" onClick={() => navigate(`/courses/${slug}/quiz`)}>
