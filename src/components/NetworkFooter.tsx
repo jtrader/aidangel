@@ -41,7 +41,7 @@ interface NetworkFooterProps {
   currentApp?: string;
 }
 
-export default function NetworkFooter({ currentApp = "Aid Angel" }: NetworkFooterProps) {
+export default function NetworkFooter({ currentApp = "First Aid Angel" }: NetworkFooterProps) {
   const { language } = useLanguage();
   const [tr, setTr] = useState({
     donate: "Give",
