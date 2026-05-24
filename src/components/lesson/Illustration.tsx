@@ -12,6 +12,10 @@ const REGISTRY: Record<string, ComponentType<{ className?: string; title?: strin
   "danger-check": lazy(() => import("./illustrations/DangerCheck")),
   "response-check": lazy(() => import("./illustrations/ResponseCheck")),
   "send-for-help": lazy(() => import("./illustrations/SendForHelp")),
+  "airway-open": lazy(() => import("./illustrations/AirwayOpen")),
+  "breathing-check": lazy(() => import("./illustrations/BreathingCheck")),
+  "cpr-essentials": lazy(() => import("./illustrations/CPREssentials")),
+  "defib-pads": lazy(() => import("./illustrations/DefibPads")),
 };
 
 interface IllustrationProps {
