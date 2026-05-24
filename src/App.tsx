@@ -55,6 +55,8 @@ import EmployerPlaceholder from "./pages/EmployerPlaceholder";
 import EmployerImport from "./pages/EmployerImport";
 import EmployerAssignments from "./pages/EmployerAssignments";
 import EmployerReports from "./pages/EmployerReports";
+import EmployerMarketing from "./pages/EmployerMarketing";
+import JoinCodeEntry from "./pages/JoinCodeEntry";
 import JoinOrg from "./pages/JoinOrg";
 
 const queryClient = new QueryClient();
@@ -130,7 +132,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/verify/:number" element={<CertificateVerify />} />
 
                 {/* Employer admin */}
-                <Route path="/employer" element={<RequireAuth><EmployerDashboard /></RequireAuth>} />
+                <Route path="/employer" element={<EmployerMarketing />} />
                 <Route path="/employer/onboarding" element={<RequireAuth><EmployerOnboarding /></RequireAuth>} />
                 <Route path="/employer/dashboard" element={<RequireAuth><EmployerDashboard /></RequireAuth>} />
                 <Route path="/employer/people" element={<RequireAuth><EmployerPeople /></RequireAuth>} />
@@ -138,6 +140,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/employer/assignments" element={<RequireAuth><EmployerAssignments /></RequireAuth>} />
                 <Route path="/employer/reports" element={<RequireAuth><EmployerReports /></RequireAuth>} />
                 <Route path="/employer/settings" element={<RequireAuth><EmployerSettings /></RequireAuth>} />
+                <Route path="/join" element={<JoinCodeEntry />} />
                 <Route path="/join/:token" element={<JoinOrg />} />
 
                 {/* Localized */}

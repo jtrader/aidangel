@@ -129,21 +129,52 @@ export default function EmployerSettings() {
         {can("admin") && <Button type="submit" disabled={busy}>{busy ? "Saving…" : "Save changes"}</Button>}
       </form>
 
-      {joinUrl && (
-        <div className="bg-card rounded-2xl shadow-sm p-6 space-y-3 max-w-2xl">
-          <h2 className="font-bold">Self-serve join link</h2>
-          <p className="text-sm text-muted-foreground">
-            Share this with new employees so they can join your organisation directly.
-          </p>
+      <div className="bg-card rounded-2xl shadow-sm p-6 space-y-3 max-w-2xl">
+        <h2 className="font-bold">Self-serve join code</h2>
+        <p className="text-sm text-muted-foreground">
+          New employees can join at <span className="font-mono">{window.location.origin}/join</span> using your code, or open the direct link below.
+        </p>
+        {can("admin") && (
+          <JoinCodeEditor orgId={activeOrg.id} current={activeOrg.join_code} onSaved={refresh} />
+        )}
+        {joinUrl && (
           <div className="flex gap-2">
             <Input readOnly value={joinUrl} />
             <Button type="button" variant="outline" onClick={() => { navigator.clipboard.writeText(joinUrl); toast({ title: "Copied" }); }}>
               <Copy className="h-4 w-4" />
             </Button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </EmployerLayout>
   );
 }
+
+function JoinCodeEditor({ orgId, current, onSaved }: { orgId: string; current: string | null | undefined; onSaved: () => Promise<void> | void }) {
+  const [code, setCode] = useState(current ?? "");
+  const [saving, setSaving] = useState(false);
+
+  const save = async () => {
+    const slug = code.trim().toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+    if (!slug) { toast({ title: "Code can't be empty", variant: "destructive" }); return; }
+    setSaving(true);
+    const { error } = await supabase.from("organisations").update({ join_code: slug }).eq("id", orgId);
+    setSaving(false);
+    if (error) {
+      toast({ title: "Couldn't save", description: error.message.includes("duplicate") ? "That code is already taken." : error.message, variant: "destructive" });
+      return;
+    }
+    setCode(slug);
+    await onSaved();
+    toast({ title: "Join code updated" });
+  };
+
+  return (
+    <div className="flex gap-2">
+      <Input value={code} onChange={(e) => setCode(e.target.value)} placeholder="e.g. acme-warehouse" maxLength={60} />
+      <Button type="button" variant="outline" onClick={save} disabled={saving}>{saving ? "Saving…" : "Set code"}</Button>
+    </div>
+  );
+}
+
 
