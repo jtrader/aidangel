@@ -109,13 +109,14 @@ export default function CourseDetail() {
             {course.summary && <p className="text-muted-foreground text-lg mb-6">{course.summary}</p>}
             {course.description && <div className="prose prose-sm max-w-none text-foreground/80 mb-6 whitespace-pre-wrap">{course.description}</div>}
 
-            {enrolled && course.video_url && (
+            {course.video_url && (
               <>
                 <CourseVideoPlayer
                   courseId={course.id}
                   videoUrl={course.video_url}
                   storedDuration={course.video_duration_seconds}
                   onCompleted={() => setVideoCompleted(true)}
+                  trackProgress={enrolled}
                 />
                 {(course.video_source_name || course.video_source_website || course.video_source_youtube) && (
                   <p className="text-xs text-muted-foreground -mt-2 mb-6">
