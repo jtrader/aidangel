@@ -94,12 +94,14 @@ export default function EmployerImport() {
 
       await supabase.from("org_import_jobs").update({ file_path: path }).eq("id", job.id);
 
-      const { data: result, error: fnErr } = await supabase.functions.invoke("org-import-process", { body: { job_id: job.id } });
+      const { data: result, error: fnErr } = await supabase.functions.invoke("org-import-process", {
+        body: { job_id: job.id, site_url: window.location.origin },
+      });
       if (fnErr) throw fnErr;
 
       toast({
         title: "Import finished",
-        description: `${result?.inserted ?? 0} added · ${result?.errors ?? 0} errors of ${result?.total ?? 0} rows.`,
+        description: `${result?.inserted ?? 0} added · ${result?.invitesSent ?? 0} invites sent · ${result?.assignmentsCreated ?? 0} courses assigned · ${result?.errors ?? 0} errors.`,
       });
       load();
     } catch (e) {
