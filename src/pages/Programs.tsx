@@ -50,9 +50,9 @@ export default function Programs() {
             No programs published yet.
           </Card>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {programs.map((p) => (
-              <Link key={p.id} to={`/programs/${p.slug}`} className="block group">
+              <Link key={p.id} to={`/programs/${p.slug}`} className="block group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative">
                     {p.cover_url ? (
