@@ -40,6 +40,20 @@ export default function CourseCertificate() {
         setBestScore(attempt?.score ?? null);
         setName((user.user_metadata?.full_name as string) ?? "");
       }
+      // Look up org branding (first active membership)
+      const { data: mem } = await supabase
+        .from("org_members")
+        .select("org_id")
+        .eq("user_id", user.id).eq("status", "active")
+        .order("joined_at", { ascending: false })
+        .limit(1).maybeSingle();
+      if (mem?.org_id) {
+        const { data: o } = await supabase
+          .from("organisations")
+          .select("name, logo_url, primary_color")
+          .eq("id", mem.org_id).maybeSingle();
+        if (o) setOrg({ name: o.name, logoUrl: o.logo_url, primaryColor: o.primary_color });
+      }
       setLoading(false);
     })();
   }, [slug, user]);
