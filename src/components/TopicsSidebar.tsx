@@ -139,9 +139,9 @@ export default function TopicsSidebar() {
                   const isActive = c.slug === slug;
                   return (
                     <SidebarMenuItem key={c.id}>
-                      <SidebarMenuButton asChild isActive={isActive} tooltip={c.title}>
+                  <SidebarMenuButton asChild isActive={isActive} tooltip={c.title} className="data-[active=true]:bg-primary/10 data-[active=true]:text-primary">
                         <NavLink to={`/courses/${c.slug}`} className="flex items-center gap-2">
-                          <span className="flex items-center justify-center w-5 h-5 rounded-full border border-muted-foreground/30 shrink-0" />
+                          <span className={`flex items-center justify-center w-5 h-5 rounded-full shrink-0 ${isActive ? "bg-primary border border-primary text-primary-foreground" : "border border-muted-foreground/30"}`} />
                           {!collapsed && <span className="truncate">{c.title}</span>}
                         </NavLink>
                       </SidebarMenuButton>
@@ -152,12 +152,12 @@ export default function TopicsSidebar() {
                             const lessonActive = l.slug === lessonSlug;
                             return (
                               <SidebarMenuSubItem key={l.id}>
-                                <SidebarMenuSubButton asChild isActive={lessonActive}>
+                                <SidebarMenuSubButton asChild isActive={lessonActive} className="data-[active=true]:bg-primary/10 data-[active=true]:text-primary">
                                   <NavLink to={`/courses/${c.slug}/lesson/${l.slug}`} className="flex items-center gap-2">
                                     {done ? (
-                                      <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
+                                      <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-1" />
                                     ) : (
-                                      <BookOpen className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                                      <BookOpen className={`h-3.5 w-3.5 shrink-0 ${lessonActive ? "text-primary" : "text-muted-foreground"}`} />
                                     )}
                                     <span className="truncate">{l.title}</span>
                                   </NavLink>
