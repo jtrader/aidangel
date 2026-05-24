@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,10 +10,13 @@ import {
   HeartPulse,
   ArrowRight,
   Building2,
+  Clock,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { SeoHead } from "@/components/SeoHead";
 import CoursesHeader from "@/components/CoursesHeader";
+import { supabase } from "@/integrations/supabase/client";
+import { Badge } from "@/components/ui/badge";
 
 const TIERS = [
   {
@@ -74,9 +78,40 @@ const FEATURES = [
   },
 ];
 
+type TopicCard = {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string | null;
+  cover_url: string | null;
+  level: string;
+  duration_minutes: number;
+};
+
 export default function PersonalMarketing() {
   const { user } = useAuth();
   const startHref = user ? "/programs" : "/auth?redirect=/programs";
+  const [topics, setTopics] = useState<TopicCard[]>([]);
+
+  useEffect(() => {
+    supabase
+      .from("courses")
+      .select("id,slug,title,summary,cover_url,level,duration_minutes")
+      .eq("is_published", true)
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => setTopics((data as TopicCard[]) ?? []));
+  }, []);
+
+  const handleBrowseTopics = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = document.getElementById("topics-marquee");
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const marqueeTrack =
+    topics.length > 0 ? [...topics, ...topics, ...topics] : [];
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -90,7 +125,7 @@ export default function PersonalMarketing() {
 
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#F7F7F7] to-card border-b">
-        <div className="container max-w-6xl mx-auto px-4 py-20 text-center">
+        <div className="container max-w-6xl mx-auto px-4 pt-20 pb-10 text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
             <User className="h-4 w-4" /> First Aid Angel Training for Individuals
           </div>
@@ -112,7 +147,9 @@ export default function PersonalMarketing() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link to="/topics">Browse topics</Link>
+              <a href="#topics-marquee" onClick={handleBrowseTopics}>
+                Browse topics
+              </a>
             </Button>
           </div>
           <p className="text-xs text-muted-foreground mt-4">
@@ -120,6 +157,72 @@ export default function PersonalMarketing() {
             anytime
           </p>
         </div>
+
+        {/* Auto-scrolling topic marquee */}
+        {marqueeTrack.length > 0 && (
+          <div
+            id="topics-marquee"
+            className="relative pb-12 pt-2 overflow-hidden scroll-mt-24"
+            aria-label="Browse first aid topics"
+          >
+            <style>{`
+              @keyframes topicsMarquee {
+                from { transform: translateX(0); }
+                to { transform: translateX(-33.3333%); }
+              }
+              .topics-marquee-track {
+                animation: topicsMarquee 60s linear infinite;
+                width: max-content;
+              }
+              .topics-marquee-track:hover { animation-play-state: paused; }
+              @media (prefers-reduced-motion: reduce) {
+                .topics-marquee-track { animation: none; }
+              }
+            `}</style>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#F7F7F7] to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-card to-transparent z-10" />
+            <div className="flex topics-marquee-track gap-4 px-4">
+              {marqueeTrack.map((c, i) => (
+                <Link
+                  key={`${c.id}-${i}`}
+                  to={`/topics/${c.slug}`}
+                  className="block group shrink-0 w-64"
+                >
+                  <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow bg-card">
+                    <div className="aspect-video bg-muted relative">
+                      {c.cover_url ? (
+                        <img
+                          src={c.cover_url}
+                          alt={c.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+                          <BookOpen className="h-10 w-10 text-primary/40" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4 text-left">
+                      <div className="flex gap-1.5 mb-2 flex-wrap">
+                        <Badge variant="secondary" className="capitalize text-[10px]">
+                          {c.level}
+                        </Badge>
+                        <Badge variant="outline" className="gap-1 text-[10px]">
+                          <Clock className="h-3 w-3" />
+                          {c.duration_minutes}m
+                        </Badge>
+                      </div>
+                      <h3 className="font-display font-bold text-sm leading-snug group-hover:text-primary line-clamp-2">
+                        {c.title}
+                      </h3>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Features */}
