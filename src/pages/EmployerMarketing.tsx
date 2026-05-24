@@ -113,7 +113,7 @@ export default function EmployerMarketing() {
               <Link to="/join">Have a join code?</Link>
             </Button>
           </div>
-          <p className="text-xs text-muted-foreground mt-4">5 seats free during trial · No credit card to start</p>
+          <p className="text-xs text-muted-foreground mt-4">1 month free trial on all employer plans</p>
         </div>
 
         {/* Auto-scrolling topic marquee */}
