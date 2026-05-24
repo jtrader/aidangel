@@ -93,7 +93,7 @@ export default function CourseDetail() {
       <main className="flex-1 container max-w-4xl mx-auto px-4 py-10">
         <Link to="/topics" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {t("courseAllCourses")}</Link>
         <Card className="overflow-hidden rounded-2xl mb-8">
-          {course.cover_url && (
+          {course.cover_url && !course.video_url && (
             <div className="aspect-[2/1] bg-muted">
               <img src={course.cover_url} alt={course.title} className="w-full h-full object-cover" />
             </div>
@@ -114,6 +114,7 @@ export default function CourseDetail() {
                 <CourseVideoPlayer
                   courseId={course.id}
                   videoUrl={course.video_url}
+                  posterUrl={course.cover_url}
                   storedDuration={course.video_duration_seconds}
                   onCompleted={() => setVideoCompleted(true)}
                   trackProgress={enrolled}
