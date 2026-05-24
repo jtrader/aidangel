@@ -32,6 +32,7 @@ export default function ProgramDetail() {
       const { data: p } = await supabase.from("programs").select("*").eq("slug", slug).eq("is_published", true).maybeSingle();
       if (!p) { setLoading(false); return; }
       setProgram(p);
+      try { localStorage.setItem("currentProgramSlug", p.slug); } catch {}
 
       const { data: pt } = await supabase.from("program_topics")
         .select("course_id, sort_order, courses(id,slug,title,duration_minutes,cover_url)")

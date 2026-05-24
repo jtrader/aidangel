@@ -38,14 +38,43 @@ export default function TopicsSidebar() {
 
   useEffect(() => {
     (async () => {
-      // Prefer the Emergency Response Program topic order so the sidebar
-      // matches the program hierarchy. Fall back to courses.sort_order.
+      setLoading(true);
+      // Determine which program context to show:
+      // 1. localStorage (set when visiting a program page)
+      // 2. first published program that contains the current course
+      // 3. fall back to emergency-response-program
+      let targetSlug: string | null = null;
+      try { targetSlug = localStorage.getItem("currentProgramSlug"); } catch {}
+
+      if (slug) {
+        const { data: course } = await supabase
+          .from("courses").select("id").eq("slug", slug).maybeSingle();
+        if (course?.id) {
+          const { data: matches } = await supabase
+            .from("program_topics")
+            .select("programs:program_id(id,slug,title,is_published,sort_order)")
+            .eq("course_id", course.id);
+          const published = (matches ?? [])
+            .map((m: any) => m.programs)
+            .filter((p: any) => p?.is_published)
+            .sort((a: any, b: any) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+          if (targetSlug && !published.some((p: any) => p.slug === targetSlug)) {
+            targetSlug = null;
+          }
+          if (!targetSlug && published[0]) targetSlug = published[0].slug;
+        }
+      }
+      if (!targetSlug) targetSlug = "emergency-response-program";
+
       const { data: prog } = await supabase
         .from("programs")
         .select("id, slug, title")
-        .eq("slug", "emergency-response-program")
+        .eq("slug", targetSlug)
         .maybeSingle();
-      if (prog) setProgram({ id: prog.id, slug: prog.slug, title: prog.title });
+      if (prog) {
+        setProgram({ id: prog.id, slug: prog.slug, title: prog.title });
+        try { localStorage.setItem("currentProgramSlug", prog.slug); } catch {}
+      }
 
       if (prog?.id) {
         const { data: topics } = await supabase
@@ -72,7 +101,7 @@ export default function TopicsSidebar() {
       setCourses(data ?? []);
       setLoading(false);
     })();
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     (async () => {
