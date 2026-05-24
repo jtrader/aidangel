@@ -131,7 +131,7 @@ export default function CourseDetail() {
                       <>
                         {" · "}
                         <a href={course.video_source_youtube} target="_blank" rel="noreferrer noopener" className="underline hover:text-primary">
-                          Watch on YouTube
+                          Youtube Channel
                         </a>
                       </>
                     )}
