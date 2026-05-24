@@ -19,7 +19,7 @@ interface ImportJob {
   created_at: string;
 }
 
-const TEMPLATE = "email,full_name,role,department,employee_ref\nalice@example.com,Alice Nguyen,learner,Operations,EMP-001\nbob@example.com,Bob Smith,manager,Safety,EMP-002\n";
+const TEMPLATE = "email,full_name,role,department,employee_ref,assign_course_slugs\nalice@example.com,Alice Nguyen,learner,Operations,EMP-001,cpr-basics\nbob@example.com,Bob Smith,manager,Safety,EMP-002,\"cpr-basics,bleeding-control\"\n";
 
 export default function EmployerImport() {
   const { activeOrg, can } = useOrg();
