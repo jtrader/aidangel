@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ShieldPlus, LogOut, User as UserIcon, BookOpen, Layers } from "lucide-react";
+import { LogOut, User as UserIcon, BookOpen, Layers } from "lucide-react";
+import aidAngelLogo from "@/assets/aidangel-logo.png";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
@@ -12,8 +13,8 @@ export default function CoursesHeader() {
     <header className="border-b bg-card sticky top-0 z-30">
       <div className="container max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 text-primary">
-          <ShieldPlus className="h-6 w-6" />
-          <span className="font-display font-bold">First Aid Angel</span>
+          <img src={aidAngelLogo} alt="First Aid Angel Training" className="h-7 w-7" />
+          <span className="font-display font-bold">First Aid Angel Training</span>
         </Link>
         <nav className="flex items-center gap-2">
           <Link to="/programs" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
