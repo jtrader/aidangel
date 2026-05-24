@@ -25,7 +25,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "AED Finder", href: "/aed-finder", icon: MapPin },
   { label: "Workplace First Aid", href: "/workplace", icon: Briefcase },
   { label: "Angel Action PDFs", href: "/angel-action", icon: FileText },
-  { label: "First Aid Topics", href: "/topics", icon: GraduationCap },
+  { label: "First Aid Training", href: "/personal", icon: GraduationCap },
   { label: "Education Partners", href: "/learn", icon: School },
   { label: "Donation Partners", href: "/partners", icon: HandHeart },
   { label: "First Aid Kit Shop", href: "/shop", icon: ShoppingBag },
