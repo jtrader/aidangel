@@ -112,8 +112,8 @@ export default function CourseVideoPlayer({ courseId, videoUrl, posterUrl, store
   const requiredPct = COMPLETION_RATIO * 100;
 
   return (
-    <div className="mb-6">
-      <div className="relative bg-black rounded-2xl overflow-hidden aspect-video">
+    <div className={edgeToEdge ? "" : "mb-6"}>
+      <div className={`relative bg-black overflow-hidden aspect-video ${edgeToEdge ? "" : "rounded-2xl"}`}>
         <video
           ref={videoRef}
           src={videoUrl}
