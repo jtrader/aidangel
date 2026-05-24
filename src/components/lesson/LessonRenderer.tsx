@@ -148,6 +148,9 @@ export default function LessonRenderer() {
 
   return (
     <div className="min-h-screen bg-muted/40 py-8 px-4">
+      <Helmet>
+        <script type="application/ld+json">{schemaJson}</script>
+      </Helmet>
       <article className="mx-auto max-w-2xl space-y-6">
         {/* Header */}
         <header className="space-y-2">
