@@ -71,14 +71,25 @@ export default function CourseLesson() {
 
         {lesson.video_url && (
           <Card className="overflow-hidden rounded-2xl mb-6">
-            <div className="aspect-video">
-              <iframe
-                src={lesson.video_url}
-                title={lesson.title}
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+            <div className="aspect-video bg-black">
+              {/\.(mp4|webm|mov|m4v)(\?|$)/i.test(lesson.video_url) ? (
+                <video
+                  src={lesson.video_url}
+                  title={lesson.title}
+                  className="w-full h-full"
+                  controls
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <iframe
+                  src={lesson.video_url}
+                  title={lesson.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )}
             </div>
           </Card>
         )}
