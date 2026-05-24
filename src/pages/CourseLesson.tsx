@@ -9,13 +9,14 @@ import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
 import CourseLayout from "@/components/CourseLayout";
 import { SeoHead } from "@/components/SeoHead";
+import { buildLessonSeo } from "@/lib/lessonSeo";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function CourseLesson() {
   const { slug, lessonSlug } = useParams();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const [course, setCourse] = useState<any>(null);
   const [lesson, setLesson] = useState<any>(null);
@@ -59,10 +60,22 @@ export default function CourseLesson() {
   if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>;
   if (!lesson) return <div className="min-h-screen flex items-center justify-center">{t("lessonNotFound")}</div>;
 
+  const seo = course && lesson
+    ? buildLessonSeo({ lesson, course, lang: language, t })
+    : null;
+
   return (
     <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
-      <SeoHead lang="en" basePath="/topics" title={`${lesson.title} — ${course?.title} | First Aid Angel`} description={`Lesson: ${lesson.title}`} />
+      {seo ? (
+        <SeoHead
+          lang={language}
+          basePath={seo.basePath}
+          title={seo.title}
+          description={seo.description}
+          jsonLd={seo.jsonLd}
+        />
+      ) : null}
       <CoursesHeader />
       <main className="flex-1 container max-w-3xl mx-auto px-4 py-8">
         <Link to={`/topics/${slug}`} className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {course?.title}</Link>
