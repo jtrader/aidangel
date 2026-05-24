@@ -1,10 +1,14 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
+
+const MAX_ITEMS = 50;
+const MAX_TOTAL_CHARS = 40 * 1024;
 
 const LANG_NAMES: Record<string, string> = {
   zh: "Mandarin Chinese (普通话)",
@@ -62,10 +66,51 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
   try {
+    // Require a valid Supabase JWT (anon JWT is fine).
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const authClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsErr } = await authClient.auth.getClaims(token);
+    if (claimsErr || !claimsData?.claims) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const payload = await req.json();
     const { language } = payload;
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
+
+    if (Array.isArray(payload.items)) {
+      if (payload.items.length > MAX_ITEMS) {
+        return new Response(JSON.stringify({ error: `Too many items (max ${MAX_ITEMS})` }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const chars = JSON.stringify(payload.items).length;
+      if (chars > MAX_TOTAL_CHARS) {
+        return new Response(JSON.stringify({ error: "Payload too large" }), {
+          status: 413, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    } else {
+      const chars = (payload.title?.length || 0) + (payload.summary?.length || 0) + (payload.body?.length || 0);
+      if (chars > MAX_TOTAL_CHARS) {
+        return new Response(JSON.stringify({ error: "Payload too large" }), {
+          status: 413, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
 
     // ---------- Batch mode: translate many (slug,title,summary) pairs in one call ----------
     if (Array.isArray(payload.items)) {

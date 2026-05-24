@@ -59,6 +59,36 @@ Deno.serve(async (req) => {
     if (!FIRECRAWL_API_KEY) throw new Error("FIRECRAWL_API_KEY not configured");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
+    // The `force` flag bypasses cache and triggers fresh crawls + AI calls.
+    // Gate it behind an admin JWT to prevent credit-exhaustion abuse.
+    if (force) {
+      const authHeader = req.headers.get("Authorization");
+      if (!authHeader?.startsWith("Bearer ")) {
+        return new Response(JSON.stringify({ error: "Unauthorized: 'force' requires admin auth" }), {
+          status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const userClient = createClient(SUPABASE_URL, Deno.env.get("SUPABASE_ANON_KEY")!, {
+        global: { headers: { Authorization: authHeader } },
+      });
+      const token = authHeader.replace("Bearer ", "");
+      const { data: claimsData } = await userClient.auth.getClaims(token);
+      const userId = claimsData?.claims?.sub;
+      if (!userId) {
+        return new Response(JSON.stringify({ error: "Unauthorized" }), {
+          status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const adminCheck = createClient(SUPABASE_URL, SERVICE_ROLE);
+      const { data: roleRow } = await adminCheck
+        .from("user_roles").select("role").eq("user_id", userId).eq("role", "admin").maybeSingle();
+      if (!roleRow) {
+        return new Response(JSON.stringify({ error: "Forbidden: admin role required for force refresh" }), {
+          status: 403, headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
     const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
 
     if (!force) {

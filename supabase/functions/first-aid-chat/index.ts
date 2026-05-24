@@ -551,33 +551,78 @@ FORMAT YOUR RESPONSES:
 - Use emoji sparingly and purposefully: ⚠️ life threat, 🚨 emergency call, ✅ step done, 💙 emotional support.
 - Avoid walls of text. If the protocol is long, give critical steps first and ask if they want the rest.`;
 
+const MAX_MESSAGES = 40;
+const MAX_PAYLOAD_BYTES = 32 * 1024;
+
+const LANG_NAMES: Record<string, string> = {
+  zh: "Mandarin Chinese (普通话)",
+  yue: "Cantonese Chinese (廣東話)",
+  ar: "Arabic (العربية)",
+  vi: "Vietnamese (Tiếng Việt)",
+  pa: "Punjabi (ਪੰਜਾਬੀ)",
+  el: "Greek (Ελληνικά)",
+  it: "Italian (Italiano)",
+  kriol: "Australian Kriol (a creole language spoken across Northern Australia)",
+  yolngu: "Yolŋu Matha (spoken in Arnhem Land, Northern Territory)",
+  pitjantjatjara: "Pitjantjatjara (spoken in Central Australia, including parts of SA, WA, and NT)",
+  arrernte: "Arrernte (spoken in the Alice Springs region, Northern Territory)",
+  tsi: "Yumplatok / Torres Strait Creole (spoken in the Torres Strait Islands, Queensland)",
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Require a valid Supabase JWT (anon is fine — blocks anonymous abuse from non-app callers).
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const authClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsErr } = await authClient.auth.getClaims(token);
+    if (claimsErr || !claimsData?.claims) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { messages, language } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return new Response(JSON.stringify({ error: "messages[] required" }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (messages.length > MAX_MESSAGES) {
+      return new Response(JSON.stringify({ error: `Too many messages (max ${MAX_MESSAGES})` }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const totalBytes = messages.reduce(
+      (n: number, m: { content?: string }) => n + (typeof m?.content === "string" ? m.content.length : 0),
+      0,
+    );
+    if (totalBytes > MAX_PAYLOAD_BYTES) {
+      return new Response(JSON.stringify({ error: "Payload too large" }), {
+        status: 413, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     let systemPrompt = FIRST_AID_SYSTEM_PROMPT;
-    if (language && language !== "en") {
-      const langNames: Record<string, string> = {
-        zh: "Mandarin Chinese (普通话)",
-        yue: "Cantonese Chinese (廣東話)",
-        ar: "Arabic (العربية)",
-        vi: "Vietnamese (Tiếng Việt)",
-        pa: "Punjabi (ਪੰਜਾਬੀ)",
-        el: "Greek (Ελληνικά)",
-        it: "Italian (Italiano)",
-        kriol: "Australian Kriol (a creole language spoken across Northern Australia)",
-        yolngu: "Yolŋu Matha (spoken in Arnhem Land, Northern Territory)",
-        pitjantjatjara: "Pitjantjatjara (spoken in Central Australia, including parts of SA, WA, and NT)",
-        arrernte: "Arrernte (spoken in the Alice Springs region, Northern Territory)",
-        tsi: "Yumplatok / Torres Strait Creole (spoken in the Torres Strait Islands, Queensland)",
-      };
-      const langName = langNames[language] || language;
+    // Validate language strictly against allowlist to prevent prompt injection.
+    if (typeof language === "string" && language !== "en" && Object.prototype.hasOwnProperty.call(LANG_NAMES, language)) {
+      const langName = LANG_NAMES[language];
       systemPrompt += `\n\nCRITICAL LANGUAGE INSTRUCTION: You MUST respond entirely in ${langName}. The user has selected this as their preferred language. Translate all your first aid guidance, headings, and instructions into ${langName}. Use simple, clear language. Keep medical terms like CPR, AED, and DRSABCD in English as they are internationally recognised. Emergency number Triple Zero (000) must always stay as "000". If you are unsure of the exact translation for a term, provide the English term alongside the ${langName} translation in brackets.`;
     }
 

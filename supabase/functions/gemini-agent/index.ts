@@ -1,5 +1,7 @@
 // Direct call to Google's Gemini API (AI Studio) with streaming SSE output
 // compatible with the existing chat-stream client.
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
@@ -11,12 +13,38 @@ const SYSTEM_PROMPT = `You are First Aid Angel — a calm, friendly Australian f
 Give clear, practical, step-by-step guidance based on Australian First Aid (5th Edition).
 Always advise calling 000 in life-threatening emergencies. Use short sentences and bullet points where helpful.`;
 
+const MAX_MESSAGES = 40;
+const MAX_PAYLOAD_BYTES = 32 * 1024;
+
 type Msg = { role: "user" | "assistant"; content: string };
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   try {
+    // Auth: require a valid Supabase JWT (anon JWT is acceptable for app visitors,
+    // but blocks unauthenticated callers from abusing the GEMINI quota).
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsErr } = await supabase.auth.getClaims(token);
+    if (claimsErr || !claimsData?.claims) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const apiKey = Deno.env.get("GEMINI_API_KEY");
     if (!apiKey) {
       return new Response(JSON.stringify({ error: "GEMINI_API_KEY not configured" }), {
@@ -29,6 +57,19 @@ Deno.serve(async (req) => {
     if (!Array.isArray(messages) || messages.length === 0) {
       return new Response(JSON.stringify({ error: "messages[] required" }), {
         status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (messages.length > MAX_MESSAGES) {
+      return new Response(JSON.stringify({ error: `Too many messages (max ${MAX_MESSAGES})` }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const totalBytes = messages.reduce((n, m) => n + (typeof m?.content === "string" ? m.content.length : 0), 0);
+    if (totalBytes > MAX_PAYLOAD_BYTES) {
+      return new Response(JSON.stringify({ error: "Payload too large" }), {
+        status: 413,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }

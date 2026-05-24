@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -10,6 +11,9 @@ const PRESERVE = [
   "000", "CPR", "AED", "DRSABCD", "FAST", "RICE", "EpiPen",
   "AFA5", "13 11 26", "13 11 14", "1800 022 222",
 ];
+
+const MAX_TEXTS = 50;
+const MAX_TOTAL_CHARS = 20 * 1024;
 
 const LANG_NAMES: Record<string, string> = {
   zh: "Mandarin Chinese (普通话)",
@@ -31,12 +35,45 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
   try {
+    // Require a valid Supabase JWT (anon JWT is fine — blocks unauthenticated callers).
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const authClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsErr } = await authClient.auth.getClaims(token);
+    if (claimsErr || !claimsData?.claims) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { language, texts } = await req.json();
     if (!language || !Array.isArray(texts) || texts.length === 0) {
       return new Response(
         JSON.stringify({ error: "language and non-empty texts[] required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
+    }
+    if (texts.length > MAX_TEXTS) {
+      return new Response(JSON.stringify({ error: `Too many texts (max ${MAX_TEXTS})` }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const totalChars = (texts as unknown[]).reduce(
+      (n: number, t) => n + (typeof t === "string" ? t.length : 0), 0,
+    );
+    if (totalChars > MAX_TOTAL_CHARS) {
+      return new Response(JSON.stringify({ error: "Payload too large" }), {
+        status: 413, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
     if (language === "en") {
       return new Response(JSON.stringify({ translations: texts }), {

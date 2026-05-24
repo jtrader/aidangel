@@ -25,12 +25,9 @@ export default function JoinOrg() {
   useEffect(() => {
     if (!token) return;
     (async () => {
-      // try invitation first, then join_code
-      const { data: inv } = await supabase
-        .from("org_invitations")
-        .select("org_id, expires_at, accepted_at")
-        .eq("token", token)
-        .maybeSingle();
+      // try invitation first (via security-definer RPC), then join_code
+      const { data: invRows } = await supabase.rpc("get_invitation_by_token", { _token: token });
+      const inv = Array.isArray(invRows) ? invRows[0] : null;
 
       let orgId: string | null = null;
       if (inv) {
@@ -82,7 +79,7 @@ export default function JoinOrg() {
       return;
     }
     // Mark invitation accepted (if it was one)
-    await supabase.from("org_invitations").update({ accepted_at: new Date().toISOString() }).eq("token", token);
+    await supabase.rpc("accept_invitation_by_token", { _token: token });
     await refresh();
     setActive(org.id);
     toast({ title: "Welcome", description: `You've joined ${org.name}.` });

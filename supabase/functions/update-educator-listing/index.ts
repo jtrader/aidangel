@@ -22,6 +22,24 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
+    // Require a signed-in user — the claim UUID is no longer sufficient on its own.
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return json(401, { error: "Sign in required to edit listing" });
+    }
+    const userClient = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      { global: { headers: { Authorization: authHeader } } },
+    );
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData, error: claimsErr } = await userClient.auth.getClaims(token);
+    if (claimsErr || !claimsData?.claims?.sub) {
+      return json(401, { error: "Invalid session" });
+    }
+    const callerId = claimsData.claims.sub as string;
+    const callerEmail = (claimsData.claims.email as string | undefined)?.toLowerCase();
+
     const { claimId, educatorId, updates } = await req.json();
     if (!claimId || !educatorId || !updates || typeof updates !== "object") {
       return json(400, { error: "claimId, educatorId and updates are required" });
@@ -34,7 +52,7 @@ Deno.serve(async (req) => {
 
     const { data: claim, error: claimErr } = await admin
       .from("educator_claims")
-      .select("id, status, educator_id")
+      .select("id, status, educator_id, claimed_user_id, submitter_user_id, claimant_email")
       .eq("id", claimId)
       .maybeSingle();
 
@@ -43,6 +61,22 @@ Deno.serve(async (req) => {
     if (claim.educator_id !== educatorId) return json(403, { error: "Claim does not match listing" });
     if (claim.status !== "approved") {
       return json(403, { error: `Editing is disabled (claim status: ${claim.status})` });
+    }
+
+    // Site admins are always allowed to edit any approved listing.
+    const { data: adminRow } = await admin
+      .from("user_roles").select("role").eq("user_id", callerId).eq("role", "admin").maybeSingle();
+    const isAdmin = !!adminRow;
+
+    // Otherwise bind the claim to the caller: match by user id or email.
+    const ownsClaim =
+      isAdmin ||
+      claim.claimed_user_id === callerId ||
+      claim.submitter_user_id === callerId ||
+      (!!callerEmail && claim.claimant_email?.toLowerCase() === callerEmail);
+
+    if (!ownsClaim) {
+      return json(403, { error: "You don't have permission to edit this listing" });
     }
 
     const sanitized: Partial<Record<EditableField, string | null>> = {};
