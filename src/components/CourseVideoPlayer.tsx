@@ -126,7 +126,7 @@ export default function CourseVideoPlayer({ courseId, videoUrl, posterUrl, store
           onLoadedMetadata={handleLoadedMetadata}
           onEnded={handleEnded}
           onPause={() => void save(true)}
-          className="w-full h-full"
+          className="w-full h-full object-cover"
           preload="metadata"
         />
       </div>
