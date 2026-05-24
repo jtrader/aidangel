@@ -102,21 +102,6 @@ export default function PersonalMarketing() {
       .then(({ data }) => setTopics((data as TopicCard[]) ?? []));
   }, []);
 
-  const handleBrowseTopics = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const el = document.getElementById("topics-marquee");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      // Fallback if topics haven't loaded yet — retry shortly
-      setTimeout(() => {
-        document
-          .getElementById("topics-marquee")
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 300);
-    }
-  };
-
   const marqueeTrack =
     topics.length > 0 ? [...topics, ...topics, ...topics] : [];
 
@@ -152,11 +137,6 @@ export default function PersonalMarketing() {
               <Link to={startHref}>
                 Start learning <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <a href="#topics-marquee" onClick={handleBrowseTopics}>
-                Browse topics
-              </a>
             </Button>
           </div>
           <p className="text-xs text-muted-foreground mt-4">
