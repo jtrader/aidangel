@@ -8,6 +8,15 @@ import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { LangParamSync } from "@/components/LangParamSync";
 import { LANGS } from "@/lib/i18n";
+
+function RedirectCourseToTopic({ suffix }: { suffix?: "lesson" | "quiz" }) {
+  const params = useParams();
+  const slug = params.slug;
+  if (!slug) return <Navigate to="/topics" replace />;
+  if (suffix === "lesson") return <Navigate to={`/topics/${slug}/lesson/${params.lessonSlug}`} replace />;
+  if (suffix === "quiz") return <Navigate to={`/topics/${slug}/quiz`} replace />;
+  return <Navigate to={`/topics/${slug}`} replace />;
+}
 import Index from "./pages/Index";
 import KbIndex from "./pages/KbIndex";
 import KbTopic from "./pages/KbTopic";
@@ -130,10 +139,15 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/:lang/partners" element={<Partners />} />
                 <Route path="/shop" element={<ShopPartners />} />
                 <Route path="/:lang/shop" element={<ShopPartners />} />
-                <Route path="/courses" element={<Courses />} />
-                <Route path="/courses/:slug" element={<CourseDetail />} />
-                <Route path="/courses/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
-                <Route path="/courses/:slug/quiz" element={<RequireAuth><CourseQuiz /></RequireAuth>} />
+                <Route path="/topics" element={<Courses />} />
+                <Route path="/topics/:slug" element={<CourseDetail />} />
+                <Route path="/topics/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
+                <Route path="/topics/:slug/quiz" element={<RequireAuth><CourseQuiz /></RequireAuth>} />
+                {/* Legacy /courses redirects */}
+                <Route path="/courses" element={<Navigate to="/topics" replace />} />
+                <Route path="/courses/:slug" element={<RedirectCourseToTopic />} />
+                <Route path="/courses/:slug/lesson/:lessonSlug" element={<RedirectCourseToTopic suffix="lesson" />} />
+                <Route path="/courses/:slug/quiz" element={<RedirectCourseToTopic suffix="quiz" />} />
                 
                 <Route path="/programs" element={<Programs />} />
                 <Route path="/programs/:slug" element={<ProgramDetail />} />

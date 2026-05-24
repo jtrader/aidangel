@@ -90,7 +90,7 @@ export default function NearbyEducators({
       </p>
 
       <Link
-        to="/courses"
+        to="/topics"
         className="group block mb-3 p-4 rounded-xl border border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover:border-primary transition-all"
       >
         <div className="flex items-start gap-3">

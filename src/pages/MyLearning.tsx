@@ -90,7 +90,7 @@ export default function MyLearning() {
           <Card className="p-8 rounded-2xl text-center">
             <BookOpen className="h-10 w-10 text-primary/40 mx-auto mb-3" />
             <p className="text-muted-foreground mb-4">{t("myLearningEmpty")}</p>
-            <Link to="/courses" className="text-primary underline">{t("myLearningBrowse")}</Link>
+            <Link to="/topics" className="text-primary underline">{t("myLearningBrowse")}</Link>
           </Card>
         ) : (
           <>
@@ -101,7 +101,7 @@ export default function MyLearning() {
                   {rows.map((r) => {
                     const pct = r.total ? (r.completed / r.total) * 100 : 0;
                     return (
-                      <Link to={`/courses/${r.course.slug}`} key={r.course_id}>
+                      <Link to={`/topics/${r.course.slug}`} key={r.course_id}>
                         <Card className="p-4 hover:shadow-md transition flex gap-4">
                           <div className="w-20 h-20 rounded-lg bg-muted flex-shrink-0 overflow-hidden">
                             {r.course.cover_url && <img src={r.course.cover_url} alt="" className="w-full h-full object-cover" />}

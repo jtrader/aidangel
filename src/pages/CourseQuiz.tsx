@@ -60,10 +60,10 @@ export default function CourseQuiz() {
   return (
     <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
-      <SeoHead lang="en" basePath="/courses" title={`${course.title} Quiz | First Aid Angel`} description="Test your knowledge and earn your certificate." />
+      <SeoHead lang="en" basePath="/topics" title={`${course.title} Quiz | First Aid Angel`} description="Test your knowledge and earn your certificate." />
       <CoursesHeader />
       <main className="flex-1 container max-w-3xl mx-auto px-4 py-8">
-        <Link to={`/courses/${slug}`} className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {course.title}</Link>
+        <Link to={`/topics/${slug}`} className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {course.title}</Link>
         <h1 className="font-display text-3xl font-bold mb-2">{t("quizFinalTitle")}</h1>
         <p className="text-muted-foreground mb-6">{t("quizScoreToPass").replace("{percent}", String(course.pass_mark))}</p>
 
@@ -102,7 +102,7 @@ export default function CourseQuiz() {
                       .replace("{total}", String(questions.length))}
                   </p>
                   <div className="flex gap-3 justify-center flex-wrap">
-                    <Button size="lg" onClick={() => navigate(`/courses/${slug}`)}>
+                    <Button size="lg" onClick={() => navigate(`/topics/${slug}`)}>
                       <CheckCircle2 className="h-4 w-4 mr-2" /> Back to topic
                     </Button>
                     <Button variant="outline" size="lg" onClick={() => { setResult(null); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
@@ -121,7 +121,7 @@ export default function CourseQuiz() {
                       .replace("{pct}", String(course.pass_mark))}
                   </p>
                   <div className="flex gap-3 justify-center flex-wrap">
-                    <Button variant="outline" onClick={() => navigate(`/courses/${slug}`)}>{t("quizReviewLessons")}</Button>
+                    <Button variant="outline" onClick={() => navigate(`/topics/${slug}`)}>{t("quizReviewLessons")}</Button>
                     <Button onClick={() => { setResult(null); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{t("quizRetake")}</Button>
                   </div>
                 </>
@@ -178,7 +178,7 @@ export default function CourseQuiz() {
             </div>
 
             <div className="flex gap-3 justify-center flex-wrap pt-2">
-              <Button variant="outline" onClick={() => navigate(`/courses/${slug}`)}>{t("quizBackToCourse")}</Button>
+              <Button variant="outline" onClick={() => navigate(`/topics/${slug}`)}>{t("quizBackToCourse")}</Button>
               <Button onClick={() => { setResult(null); setAnswers({}); window.scrollTo({ top: 0, behavior: "smooth" }); }}>{t("quizRetake")}</Button>
             </div>
           </div>

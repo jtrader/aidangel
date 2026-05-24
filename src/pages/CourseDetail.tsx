@@ -49,11 +49,11 @@ export default function CourseDetail() {
   }, [slug, user]);
 
   const enroll = async () => {
-    if (!user) { navigate(`/auth?redirect=/courses/${slug}`); return; }
+    if (!user) { navigate(`/auth?redirect=/topics/${slug}`); return; }
     const { error } = await supabase.from("course_enrollments").insert({ user_id: user.id, course_id: course.id });
     if (error && !error.message.includes("duplicate")) { toast.error(error.message); return; }
     setEnrolled(true);
-    if (lessons[0]) navigate(`/courses/${slug}/lesson/${lessons[0].slug}`);
+    if (lessons[0]) navigate(`/topics/${slug}/lesson/${lessons[0].slug}`);
   };
 
   if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>;
@@ -68,7 +68,7 @@ export default function CourseDetail() {
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead
         lang="en"
-        basePath="/courses"
+        basePath="/topics"
         title={`${course.title} — Free Online Course | First Aid Angel`}
         description={course.summary ?? `Free self-paced ${course.title} course with quiz.`}
         jsonLd={{
@@ -87,7 +87,7 @@ export default function CourseDetail() {
       />
       <CoursesHeader />
       <main className="flex-1 container max-w-4xl mx-auto px-4 py-10">
-        <Link to="/courses" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {t("courseAllCourses")}</Link>
+        <Link to="/topics" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {t("courseAllCourses")}</Link>
         <Card className="overflow-hidden rounded-2xl mb-8">
           {course.cover_url && (
             <div className="aspect-[2/1] bg-muted">
@@ -125,13 +125,13 @@ export default function CourseDetail() {
                   <CheckCircle2 className="h-4 w-4 mr-2" /> Topic completed
                 </Button>
               ) : allDone ? (
-                <Button size="lg" onClick={() => navigate(`/courses/${slug}/quiz`)}>
+                <Button size="lg" onClick={() => navigate(`/topics/${slug}/quiz`)}>
                   {t("courseTakeFinalQuiz")}
                 </Button>
               ) : (
                 <Button size="lg" onClick={() => {
                   const next = lessons.find(l => !completedIds.has(l.id)) ?? lessons[0];
-                  navigate(`/courses/${slug}/lesson/${next.slug}`);
+                  navigate(`/topics/${slug}/lesson/${next.slug}`);
                 }}>
                   <Play className="h-4 w-4 mr-2" /> {t("actionContinue")}
                 </Button>
@@ -147,7 +147,7 @@ export default function CourseDetail() {
             return (
               <Link
                 key={l.id}
-                to={enrolled ? `/courses/${slug}/lesson/${l.slug}` : "#"}
+                to={enrolled ? `/topics/${slug}/lesson/${l.slug}` : "#"}
                 onClick={(e) => { if (!enrolled) { e.preventDefault(); enroll(); } }}
                 className="block"
               >

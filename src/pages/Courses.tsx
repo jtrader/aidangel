@@ -30,9 +30,9 @@ export default function Courses() {
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead
         lang="en"
-        basePath="/courses"
-        title="Free Online First Aid Courses with Certificate | First Aid Angel"
-        description="Self-paced first aid courses with quizzes and free PDF certificate. CPR, choking, bleeding, burns and more — based on Australian First Aid 5th Edition."
+        basePath="/topics"
+        title="First Aid Topics — Free Online Lessons with Certificate | First Aid Angel"
+        description="Self-paced first aid topics with quizzes and free PDF certificate. CPR, choking, bleeding, burns and more — based on Australian First Aid 5th Edition."
       />
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
@@ -52,7 +52,7 @@ export default function Courses() {
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {courses.map((c) => (
-              <Link key={c.id} to={`/courses/${c.slug}`} className="block group">
+              <Link key={c.id} to={`/topics/${c.slug}`} className="block group">
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative">
                     {c.cover_url ? (
