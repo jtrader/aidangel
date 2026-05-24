@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import {
   Check,
   X,
@@ -12,6 +13,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Illustration from "./Illustration";
+import { buildLessonSchema, type LessonSchemaStep } from "@/lib/lessonSchema";
 
 /**
  * Demo markdown body that includes an `:::illustration[...]` directive.
