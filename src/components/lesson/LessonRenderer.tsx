@@ -11,6 +11,55 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Illustration from "./Illustration";
+
+/**
+ * Demo markdown body that includes an `:::illustration[...]` directive.
+ * The parser below scans for these directives and mounts the matching
+ * inline SVG component from the Illustration registry.
+ */
+const LESSON_BODY = `
+Apply a pressure immobilisation bandage to slow venom spread.
+
+:::illustration[snake-bite-bandage]
+
+Then splint the limb and keep the patient completely still.
+`;
+
+/**
+ * Very small markdown -> blocks parser. Splits the body on
+ * `:::illustration[key]` directives and renders the matching component
+ * inline. Plain text segments are rendered as paragraphs.
+ */
+function renderLessonBody(md: string) {
+  const RE = /:::illustration\[([a-z0-9-]+)\]/gi;
+  const out: React.ReactNode[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  let i = 0;
+
+  while ((m = RE.exec(md)) !== null) {
+    const before = md.slice(last, m.index).trim();
+    if (before) {
+      out.push(
+        <p key={`t-${i++}`} className="text-sm md:text-base text-foreground leading-relaxed">
+          {before}
+        </p>,
+      );
+    }
+    out.push(<Illustration key={`i-${i++}`} name={m[1]} />);
+    last = m.index + m[0].length;
+  }
+  const tail = md.slice(last).trim();
+  if (tail) {
+    out.push(
+      <p key={`t-${i++}`} className="text-sm md:text-base text-foreground leading-relaxed">
+        {tail}
+      </p>,
+    );
+  }
+  return out;
+}
 
 interface ActionItem {
   icon: React.ReactNode;
