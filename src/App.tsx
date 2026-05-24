@@ -130,10 +130,15 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/:lang/partners" element={<Partners />} />
                 <Route path="/shop" element={<ShopPartners />} />
                 <Route path="/:lang/shop" element={<ShopPartners />} />
-                <Route path="/courses" element={<Courses />} />
-                <Route path="/courses/:slug" element={<CourseDetail />} />
-                <Route path="/courses/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
-                <Route path="/courses/:slug/quiz" element={<RequireAuth><CourseQuiz /></RequireAuth>} />
+                <Route path="/topics" element={<Courses />} />
+                <Route path="/topics/:slug" element={<CourseDetail />} />
+                <Route path="/topics/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
+                <Route path="/topics/:slug/quiz" element={<RequireAuth><CourseQuiz /></RequireAuth>} />
+                {/* Legacy /courses redirects */}
+                <Route path="/courses" element={<Navigate to="/topics" replace />} />
+                <Route path="/courses/:slug" element={<RedirectCourseToTopic />} />
+                <Route path="/courses/:slug/lesson/:lessonSlug" element={<RedirectCourseToTopic suffix="lesson" />} />
+                <Route path="/courses/:slug/quiz" element={<RedirectCourseToTopic suffix="quiz" />} />
                 
                 <Route path="/programs" element={<Programs />} />
                 <Route path="/programs/:slug" element={<ProgramDetail />} />
