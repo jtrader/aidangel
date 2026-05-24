@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight, CheckCircle2, Loader2, FileText, Globe } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import LessonContent from "@/components/lesson/LessonContent";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
 import CourseLayout from "@/components/CourseLayout";
@@ -84,8 +84,8 @@ export default function CourseLesson() {
         )}
 
         {lesson.body && (
-          <Card className="p-6 md:p-8 rounded-2xl mb-6 prose prose-sm md:prose-base max-w-none">
-            <ReactMarkdown>{lesson.body}</ReactMarkdown>
+          <Card className="p-6 md:p-8 rounded-2xl mb-6">
+            <LessonContent>{lesson.body}</LessonContent>
           </Card>
         )}
 
