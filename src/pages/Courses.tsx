@@ -67,6 +67,7 @@ export default function Courses() {
                     <div className="flex gap-2 mb-2">
                       <Badge variant="secondary" className="capitalize">{c.level}</Badge>
                       <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{c.duration_minutes} {t("courseDurationMin")}</Badge>
+                      <Badge>Topic</Badge>
                     </div>
                     <h2 className="font-display font-bold text-lg mb-1 group-hover:text-primary">{c.title}</h2>
                     {c.summary && <p className="text-sm text-muted-foreground line-clamp-2">{c.summary}</p>}

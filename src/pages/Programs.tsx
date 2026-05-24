@@ -67,6 +67,7 @@ export default function Programs() {
                     <div className="flex gap-2 mb-2 flex-wrap">
                       <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{counts[p.id] ?? 0} topics</Badge>
                       <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{p.duration_minutes} min</Badge>
+                      <Badge>Course</Badge>
                     </div>
                     <h2 className="font-display font-bold text-lg mb-1 group-hover:text-primary">{p.title}</h2>
                     {p.summary && <p className="text-sm text-muted-foreground line-clamp-2">{p.summary}</p>}
