@@ -34,6 +34,30 @@ export default function TopicsSidebar() {
 
   useEffect(() => {
     (async () => {
+      // Prefer the Emergency Response Program topic order so the sidebar
+      // matches the program hierarchy. Fall back to courses.sort_order.
+      const { data: prog } = await supabase
+        .from("programs")
+        .select("id")
+        .eq("slug", "emergency-response-program")
+        .maybeSingle();
+
+      if (prog?.id) {
+        const { data: topics } = await supabase
+          .from("program_topics")
+          .select("sort_order, courses:course_id(id,slug,title)")
+          .eq("program_id", prog.id)
+          .order("sort_order");
+        const ordered = (topics ?? [])
+          .map((t: any) => (t.courses ? { ...t.courses, sort_order: t.sort_order } : null))
+          .filter(Boolean) as Course[];
+        if (ordered.length) {
+          setCourses(ordered);
+          setLoading(false);
+          return;
+        }
+      }
+
       const { data } = await supabase
         .from("courses")
         .select("id,slug,title,sort_order")
