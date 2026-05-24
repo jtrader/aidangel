@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import TopicsSidebar from "@/components/TopicsSidebar";
 
 export default function CourseLayout({ children }: { children: ReactNode }) {
