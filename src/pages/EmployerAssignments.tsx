@@ -153,13 +153,13 @@ export default function EmployerAssignments() {
     <EmployerLayout title="Assignments">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-2 flex-1">
-          <Input placeholder="Search by person, topic, or program…" value={filter} onChange={(e) => setFilter(e.target.value)} className="max-w-sm" />
+          <Input placeholder="Search by person, topic, or course…" value={filter} onChange={(e) => setFilter(e.target.value)} className="max-w-sm" />
           <Select value={kindFilter} onValueChange={setKindFilter}>
             <SelectTrigger className="w-[140px]"><SelectValue /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All kinds</SelectItem>
               <SelectItem value="topic">Topics</SelectItem>
-              <SelectItem value="program">Programs</SelectItem>
+              <SelectItem value="program">Courses</SelectItem>
             </SelectContent>
           </Select>
           <Select value={statusFilter} onValueChange={setStatusFilter}>
