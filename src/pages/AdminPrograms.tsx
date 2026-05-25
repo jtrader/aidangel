@@ -195,7 +195,7 @@ export default function AdminPrograms() {
       <CoursesHeader />
       <main className="flex-1 container max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="font-display text-2xl font-bold">Programs</h1>
+          <h1 className="font-display text-2xl font-bold">Courses</h1>
           <Link to="/admin/courses" className="text-sm text-muted-foreground hover:text-primary">→ Manage topics</Link>
         </div>
 

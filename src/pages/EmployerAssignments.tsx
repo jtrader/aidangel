@@ -153,13 +153,13 @@ export default function EmployerAssignments() {
     <EmployerLayout title="Assignments">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-2 flex-1">
-          <Input placeholder="Search by person, topic, or program…" value={filter} onChange={(e) => setFilter(e.target.value)} className="max-w-sm" />
+          <Input placeholder="Search by person, topic, or course…" value={filter} onChange={(e) => setFilter(e.target.value)} className="max-w-sm" />
           <Select value={kindFilter} onValueChange={setKindFilter}>
             <SelectTrigger className="w-[140px]"><SelectValue /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All kinds</SelectItem>
               <SelectItem value="topic">Topics</SelectItem>
-              <SelectItem value="program">Programs</SelectItem>
+              <SelectItem value="program">Courses</SelectItem>
             </SelectContent>
           </Select>
           <Select value={statusFilter} onValueChange={setStatusFilter}>
@@ -186,13 +186,13 @@ export default function EmployerAssignments() {
                   <Select value={kind} onValueChange={(v) => { setKind(v as any); setSelectedItem(""); }}>
                     <SelectTrigger><SelectValue /></SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="topic">Topic (single course)</SelectItem>
-                      <SelectItem value="program">Program (bundle of topics)</SelectItem>
+                      <SelectItem value="topic">Topic (single subject)</SelectItem>
+                      <SelectItem value="program">Course (bundle of topics)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <Label>{kind === "topic" ? "Topic" : "Program"}</Label>
+                  <Label>{kind === "topic" ? "Topic" : "Course"}</Label>
                   <Select value={selectedItem} onValueChange={setSelectedItem}>
                     <SelectTrigger><SelectValue placeholder={`Pick a ${kind}…`} /></SelectTrigger>
                     <SelectContent>

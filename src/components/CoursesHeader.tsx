@@ -18,7 +18,7 @@ export default function CoursesHeader() {
         </Link>
         <nav className="flex items-center gap-2">
           <Link to="/programs" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
-            <Layers className="h-4 w-4" /> Programs
+            <Layers className="h-4 w-4" /> Courses
           </Link>
           <Link to="/topics" className="hidden sm:flex items-center gap-1 text-sm font-medium hover:text-primary">
             <BookOpen className="h-4 w-4" /> Topics
@@ -33,7 +33,7 @@ export default function CoursesHeader() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => navigate("/my-learning")}>My learning</DropdownMenuItem>
-                {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/programs")}>Admin · Programs</DropdownMenuItem>}
+                {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/programs")}>Admin · Courses</DropdownMenuItem>}
                 {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/courses")}>Admin · Topics</DropdownMenuItem>}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => signOut().then(() => navigate("/"))}>

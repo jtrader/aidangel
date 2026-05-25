@@ -52,15 +52,15 @@ export default function Programs() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead lang="en" basePath="/programs"
-        title="First Aid Programs & Certifications | First Aid Angel"
-        description="Choose a curated first aid program — for parents, workplaces, outdoor adventurers or carers. Each ends with a final exam and program certificate." />
+        title="First Aid Courses & Certifications | First Aid Angel"
+        description="Choose a curated first aid course — for parents, workplaces, outdoor adventurers or carers. Each ends with a final exam and course certificate." />
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
         <header className="mb-10 text-center">
           <Badge variant="secondary" className="mb-3">Australian First Aid · 5th Edition aligned</Badge>
-          <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">First Aid Programs</h1>
+          <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">First Aid Courses</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Curated 12-topic learning paths with a final exam and printable program certificate. Pick the program that matches your life.
+            Curated 12-topic learning paths with a final exam and printable course certificate. Pick the course that matches your life.
           </p>
         </header>
 
@@ -80,7 +80,7 @@ export default function Programs() {
                           <Layers className="h-16 w-16 text-primary/40" />
                         </div>
                       )}
-                      <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">Featured · Core Program</Badge>
+                      <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">Featured · Core Course</Badge>
                     </div>
                     <div className="p-8 flex flex-col justify-center">
                       <div className="flex gap-2 mb-3 flex-wrap">
@@ -90,7 +90,7 @@ export default function Programs() {
                       </div>
                       <h2 className="font-display font-bold text-2xl md:text-3xl mb-2 group-hover:text-primary transition-colors">{featured.title}</h2>
                       <p className="text-muted-foreground mb-5">{featured.summary}</p>
-                      <Button className="w-fit gap-2">Start the Core Program <ArrowRight className="h-4 w-4" /></Button>
+                      <Button className="w-fit gap-2">Start the Core Course <ArrowRight className="h-4 w-4" /></Button>
                     </div>
                   </div>
                 </Card>
@@ -100,7 +100,7 @@ export default function Programs() {
             {niches.length > 0 && (
               <section>
                 <div className="text-center mb-6">
-                  <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">Specialised Programs</h2>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">Specialised Courses</h2>
                   <p className="text-muted-foreground">Same trusted guidelines, tailored to your audience.</p>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">

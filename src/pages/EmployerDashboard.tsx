@@ -62,7 +62,7 @@ export default function EmployerDashboard() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard icon={Users} label="People" value={stats.members} hint={`${stats.active} active of ${activeOrg?.seat_limit ?? 0} seats`} />
         <StatCard icon={ListChecks} label="Topic assignments" value={stats.assigned} hint={`${stats.completed} completed`} />
-        <StatCard icon={GraduationCap} label="Programs assigned" value={stats.programsAssigned} hint={`${stats.programsCompleted} completed`} />
+        <StatCard icon={GraduationCap} label="Courses assigned" value={stats.programsAssigned} hint={`${stats.programsCompleted} completed`} />
         <StatCard icon={AlertTriangle} label="Overdue topics" value={stats.overdue} />
       </div>
 

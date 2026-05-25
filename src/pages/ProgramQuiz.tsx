@@ -64,7 +64,7 @@ export default function ProgramQuiz() {
   };
 
   if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>;
-  if (!program) return <div className="min-h-screen flex items-center justify-center">Program not found</div>;
+  if (!program) return <div className="min-h-screen flex items-center justify-center">Course not found</div>;
 
   return (
     <div className="min-h-screen bg-background">

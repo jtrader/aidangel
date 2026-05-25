@@ -123,7 +123,7 @@ export default function MyLearning() {
             )}
             {programs.length > 0 && (
               <>
-                <h2 className="font-display text-xl font-bold mb-3 flex items-center gap-2"><GraduationCap className="h-5 w-5 text-primary" /> Programs</h2>
+                <h2 className="font-display text-xl font-bold mb-3 flex items-center gap-2"><GraduationCap className="h-5 w-5 text-primary" /> Courses</h2>
                 <div className="grid gap-3 mb-10">
                   {programs.map((p) => {
                     const pct = p.total ? (p.passed / p.total) * 100 : 0;
@@ -135,7 +135,7 @@ export default function MyLearning() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="font-medium truncate">{p.program.title}</div>
-                            <Badge variant="secondary" className="text-xs mt-1">Program</Badge>
+                            <Badge variant="secondary" className="text-xs mt-1">Course</Badge>
                             <div className="mt-2">
                               <Progress value={pct} className="h-2" />
                               <div className="text-xs text-muted-foreground mt-1">{p.passed} of {p.total} topics passed</div>
@@ -150,7 +150,7 @@ export default function MyLearning() {
             )}
             {programCerts.length > 0 && (
               <>
-                <h2 className="font-display text-xl font-bold mb-3">Program certificates</h2>
+                <h2 className="font-display text-xl font-bold mb-3">Course certificates</h2>
                 <div className="grid sm:grid-cols-2 gap-3 mb-10">
                   {programCerts.map((c) => (
                     <Link to={`/programs/${c.program.slug}/certificate`} key={c.certificate_number}>

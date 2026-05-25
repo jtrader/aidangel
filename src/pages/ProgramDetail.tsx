@@ -72,7 +72,7 @@ export default function ProgramDetail() {
   };
 
   if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>;
-  if (!program) return <div className="min-h-screen flex items-center justify-center">Program not found</div>;
+  if (!program) return <div className="min-h-screen flex items-center justify-center">Course not found</div>;
 
   const passedCount = topics.filter(t => passedCourseIds.has(t.course_id)).length;
   const topicsDone = topics.length > 0 && passedCount === topics.length;
@@ -83,7 +83,7 @@ export default function ProgramDetail() {
     <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
-        <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← All programs</Link>
+        <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← All courses</Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
           {/* Left sidebar — program hierarchy */}
@@ -91,7 +91,7 @@ export default function ProgramDetail() {
             <Card className="p-4 rounded-2xl">
               <div className="flex items-center gap-2 mb-3">
                 <Layers className="h-4 w-4 text-primary" />
-                <h2 className="font-display font-semibold text-sm uppercase tracking-wide text-muted-foreground">Program topics</h2>
+                <h2 className="font-display font-semibold text-sm uppercase tracking-wide text-muted-foreground">Course topics</h2>
               </div>
               <nav className="space-y-1">
                 {topics.map((t, i) => {

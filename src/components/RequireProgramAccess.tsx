@@ -40,11 +40,11 @@ export function ProgramPaywall({ reason, redirect }: { reason: "signin" | "upgra
             <Lock className="h-6 w-6 text-primary" />
           </div>
           <h1 className="font-display text-2xl md:text-3xl font-bold mb-3">
-            Programs are a paid feature
+            Courses are a paid feature
           </h1>
           <p className="text-muted-foreground mb-6">
             Chat, AED finder, the Live CPR Guide and individual topics stay free. Full
-            certified programs — lessons, quizzes and certificates — need an active plan.
+            certified courses — lessons, quizzes and certificates — need an active plan.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             {reason === "signin" ? (

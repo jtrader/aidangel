@@ -78,7 +78,7 @@ export default function ProgramCertificate() {
   };
 
   if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>;
-  if (!program) return <div className="min-h-screen flex items-center justify-center">Program not found</div>;
+  if (!program) return <div className="min-h-screen flex items-center justify-center">Course not found</div>;
 
   return (
     <div className="min-h-screen bg-background">
@@ -86,7 +86,7 @@ export default function ProgramCertificate() {
       <main className="container max-w-2xl mx-auto px-4 py-10">
         <Card className="p-8 text-center rounded-2xl">
           <Award className="h-16 w-16 text-primary mx-auto mb-4" />
-          <h1 className="font-display text-3xl font-bold mb-2">Program Certificate</h1>
+          <h1 className="font-display text-3xl font-bold mb-2">Course Certificate</h1>
           <p className="text-muted-foreground mb-6">{program.title}</p>
 
           {cert ? (
