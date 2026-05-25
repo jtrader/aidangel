@@ -150,7 +150,7 @@ export default function MyLearning() {
             )}
             {programCerts.length > 0 && (
               <>
-                <h2 className="font-display text-xl font-bold mb-3">Program certificates</h2>
+                <h2 className="font-display text-xl font-bold mb-3">Course certificates</h2>
                 <div className="grid sm:grid-cols-2 gap-3 mb-10">
                   {programCerts.map((c) => (
                     <Link to={`/programs/${c.program.slug}/certificate`} key={c.certificate_number}>
