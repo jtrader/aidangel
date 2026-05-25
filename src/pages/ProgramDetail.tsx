@@ -83,7 +83,7 @@ export default function ProgramDetail() {
     <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
-        <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← All programs</Link>
+        <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← All courses</Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
           {/* Left sidebar — program hierarchy */}
