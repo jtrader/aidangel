@@ -20,6 +20,7 @@ const REGISTRY: Record<string, ComponentType<{ className?: string; title?: strin
   "severe-bleeding-pressure": lazy(() => import("./illustrations/SevereBleedingPressure")),
   "burns-cooling": lazy(() => import("./illustrations/BurnsCooling")),
   "burn-depth-layers": lazy(() => import("./illustrations/BurnDepthLayers")),
+  "heart-attack-pain-map": lazy(() => import("./illustrations/HeartAttackPainMap")),
   "anaphylaxis-injector": lazy(() => import("./illustrations/AnaphylaxisAutoInjector")),
   "stroke-face-check": lazy(() => import("./illustrations/StrokeFaceCheck")),
   "head-injury-cradle": lazy(() => import("./illustrations/HeadInjuryCradle")),
