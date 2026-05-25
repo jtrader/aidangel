@@ -86,7 +86,7 @@ export default function ProgramCertificate() {
       <main className="container max-w-2xl mx-auto px-4 py-10">
         <Card className="p-8 text-center rounded-2xl">
           <Award className="h-16 w-16 text-primary mx-auto mb-4" />
-          <h1 className="font-display text-3xl font-bold mb-2">Program Certificate</h1>
+          <h1 className="font-display text-3xl font-bold mb-2">Course Certificate</h1>
           <p className="text-muted-foreground mb-6">{program.title}</p>
 
           {cert ? (
