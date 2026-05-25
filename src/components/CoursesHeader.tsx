@@ -33,7 +33,7 @@ export default function CoursesHeader() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => navigate("/my-learning")}>My learning</DropdownMenuItem>
-                {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/programs")}>Admin · Programs</DropdownMenuItem>}
+                {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/programs")}>Admin · Courses</DropdownMenuItem>}
                 {isAdmin && <DropdownMenuItem onClick={() => navigate("/admin/courses")}>Admin · Topics</DropdownMenuItem>}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => signOut().then(() => navigate("/"))}>
