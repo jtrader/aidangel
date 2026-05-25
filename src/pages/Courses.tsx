@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, BookOpen, Loader2 } from "lucide-react";
+import { COVERS as KB_COVERS } from "@/components/TopicCover";
 import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
@@ -55,13 +56,16 @@ export default function Courses() {
               <Link key={c.id} to={`/topics/${c.slug}`} className="block group">
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative">
-                    {c.cover_url ? (
-                      <img src={c.cover_url} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-                        <BookOpen className="h-12 w-12 text-primary/40" />
-                      </div>
-                    )}
+                    {(() => {
+                      const src = c.cover_url ?? (KB_COVERS.has(c.slug) ? `/kb-covers/${c.slug}.webp` : null);
+                      return src ? (
+                        <img src={src} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+                          <BookOpen className="h-12 w-12 text-primary/40" />
+                        </div>
+                      );
+                    })()}
                   </div>
                   <div className="p-5">
                     <div className="flex gap-2 mb-2">

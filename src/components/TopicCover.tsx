@@ -2,7 +2,7 @@
 // Only topics with a matching file render a cover; others render nothing so the
 // existing inline SVG TopicIllustration continues to handle visual context.
 
-const COVERS = new Set([
+export const COVERS = new Set([
   "asthma",
   "dehydration",
   "dental-injury",
