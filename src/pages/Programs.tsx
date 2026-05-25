@@ -80,7 +80,7 @@ export default function Programs() {
                           <Layers className="h-16 w-16 text-primary/40" />
                         </div>
                       )}
-                      <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">Featured · Core Program</Badge>
+                      <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">Featured · Core Course</Badge>
                     </div>
                     <div className="p-8 flex flex-col justify-center">
                       <div className="flex gap-2 mb-3 flex-wrap">
