@@ -1,0 +1,1 @@
+UPDATE lessons SET body = replace(body, E'## How to apply a tourniquet\n\n:::steps[Applying a Tourniquet]', E'## How to apply a tourniquet\n\n:::illustration[tourniquet-application]\n\n:::steps[Applying a Tourniquet]') WHERE id = '092449fd-efa1-411d-969c-921955a7c2ec';
