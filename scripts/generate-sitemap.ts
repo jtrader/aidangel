@@ -135,11 +135,55 @@ for (const b of aedPaths) {
   );
 }
 
-// LMS / Courses (catalog only — course detail URLs are dynamic & emitted at runtime)
-const lmsPaths = [
+// LMS / Courses — catalog + per-topic + per-lesson URLs fetched from the
+// backend so every published topic/lesson is discoverable to crawlers.
+const lmsPaths: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: "/courses", changefreq: "weekly", priority: "0.9" },
+  { path: "/topics", changefreq: "weekly", priority: "0.9" },
 ];
+
+async function fetchLmsPaths(): Promise<void> {
+  const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
+  const SUPABASE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    console.warn("[sitemap] Supabase env vars missing — skipping LMS topic/lesson URLs");
+    return;
+  }
+  const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
+  try {
+    const cRes = await fetch(
+      `${SUPABASE_URL}/rest/v1/courses?select=id,slug&is_published=eq.true`,
+      { headers },
+    );
+    const courses = (await cRes.json()) as Array<{ id: string; slug: string }>;
+    for (const c of courses) {
+      lmsPaths.push({ path: `/topics/${c.slug}`, changefreq: "monthly", priority: "0.8" });
+    }
+    const lRes = await fetch(
+      `${SUPABASE_URL}/rest/v1/lessons?select=slug,course_id&order=sort_order`,
+      { headers },
+    );
+    const lessons = (await lRes.json()) as Array<{ slug: string; course_id: string }>;
+    const bySlug = new Map(courses.map((c) => [c.id, c.slug]));
+    for (const l of lessons) {
+      const courseSlug = bySlug.get(l.course_id);
+      if (!courseSlug) continue;
+      lmsPaths.push({
+        path: `/topics/${courseSlug}/lesson/${l.slug}`,
+        changefreq: "monthly",
+        priority: "0.7",
+      });
+    }
+    console.log(`[sitemap] LMS: ${courses.length} topics, ${lessons.length} lessons`);
+  } catch (e) {
+    console.warn("[sitemap] LMS fetch failed:", (e as Error).message);
+  }
+}
+
+await fetchLmsPaths();
+
 for (const b of lmsPaths) {
+
   urls.push(
     [
       `  <url>`,

@@ -37,8 +37,9 @@ export interface LessonSeoMeta {
    *  generates hreflang alternates for every supported locale. */
   basePath: string;
   canonicalPath: string;
-  jsonLd: Record<string, unknown>;
+  jsonLd: Array<Record<string, unknown>>;
 }
+
 
 const BRAND = "First Aid Angel";
 const MAX_DESC = 158; // <160 incl. ellipsis
@@ -122,18 +123,22 @@ export function buildLessonSeo({
   const basePath = `/topics/${course.slug}/lesson/${lesson.slug}`;
   const canonicalPath = basePath;
 
-  const jsonLd: Record<string, unknown> = {
+  const lessonUrl = `https://firstaidangel.org${basePath}`;
+  const courseUrl = `https://firstaidangel.org/topics/${course.slug}`;
+
+  const learningResource: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "LearningResource",
+    "@type": ["LearningResource", "Article"],
     name: lesson.title,
     headline: lesson.title,
     description,
     inLanguage: lang,
+    url: lessonUrl,
     learningResourceType: "Lesson",
     isPartOf: {
       "@type": "Course",
       name: course.title,
-      url: `https://firstaidangel.org/topics/${course.slug}`,
+      url: courseUrl,
     },
     provider: {
       "@type": "Organization",
@@ -142,5 +147,17 @@ export function buildLessonSeo({
     },
   };
 
-  return { title, description, basePath, canonicalPath, jsonLd };
+  const breadcrumbs: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://firstaidangel.org/" },
+      { "@type": "ListItem", position: 2, name: "Topics", item: "https://firstaidangel.org/topics" },
+      { "@type": "ListItem", position: 3, name: course.title, item: courseUrl },
+      { "@type": "ListItem", position: 4, name: lesson.title, item: lessonUrl },
+    ],
+  };
+
+  return { title, description, basePath, canonicalPath, jsonLd: [learningResource, breadcrumbs] };
 }
+

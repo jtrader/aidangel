@@ -21,7 +21,8 @@ type Lesson = { id: string; slug: string; title: string; duration_minutes: numbe
 export default function CourseDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
   const navigate = useNavigate();
   const [course, setCourse] = useState<Course | null>(null);
   const [lessons, setLessons] = useState<Lesson[]>([]);
@@ -71,24 +72,37 @@ export default function CourseDetail() {
     <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead
-        lang="en"
-        basePath="/topics"
+        lang={language}
+        basePath={`/topics/${course.slug}`}
         title={`${course.title} — Free Online Course | First Aid Angel`}
-        description={course.summary ?? `Free self-paced ${course.title} course with quiz.`}
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Course",
-          "name": course.title,
-          "description": course.summary,
-          "provider": { "@type": "Organization", "name": "First Aid Angel", "url": "https://firstaidangel.org" },
-          "hasCourseInstance": {
-            "@type": "CourseInstance",
-            "courseMode": "online",
-            "courseWorkload": `PT${course.duration_minutes}M`
+        description={course.summary ?? `Free self-paced ${course.title} course with quiz, ${lessons.length} lessons.`}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": course.title,
+            "description": course.summary,
+            "url": `https://firstaidangel.org/topics/${course.slug}`,
+            "provider": { "@type": "Organization", "name": "First Aid Angel", "url": "https://firstaidangel.org" },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "online",
+              "courseWorkload": `PT${course.duration_minutes}M`
+            },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "category": "Free" }
           },
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "category": "Free" }
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://firstaidangel.org/" },
+              { "@type": "ListItem", "position": 2, "name": "Topics", "item": "https://firstaidangel.org/topics" },
+              { "@type": "ListItem", "position": 3, "name": course.title, "item": `https://firstaidangel.org/topics/${course.slug}` }
+            ]
+          }
+        ]}
       />
+
       <CoursesHeader />
       <main className="flex-1 container max-w-4xl mx-auto px-4 py-10">
         <Link to="/topics" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {t("courseAllCourses")}</Link>
