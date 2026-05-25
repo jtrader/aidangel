@@ -9,6 +9,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 
 import TopicIllustration from "@/components/TopicIllustration";
+import TopicCover from "@/components/TopicCover";
 import PlayAudioButton from "@/components/PlayAudioButton";
 import NearbyEducators from "@/components/NearbyEducators";
 import AngelActionDownload from "@/components/AngelActionDownload";
@@ -338,6 +339,7 @@ const KbTopic = () => {
             />
           </div>
 
+          <TopicCover slug={topicEn.slug} title={translated.title} />
           <TopicIllustration slug={topicEn.slug} />
 
           {translating && (
