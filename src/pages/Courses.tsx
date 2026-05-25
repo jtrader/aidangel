@@ -57,7 +57,7 @@ export default function Courses() {
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative">
                     {(() => {
-                      const src = c.cover_url ?? (KB_COVERS.has(c.slug) ? `/kb-covers/${c.slug}.webp` : null);
+                      const src = KB_COVERS.has(c.slug) ? `/kb-covers/${c.slug}.webp` : c.cover_url;
                       return src ? (
                         <img src={src} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
                       ) : (
