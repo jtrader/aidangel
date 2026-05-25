@@ -55,6 +55,7 @@ const REGISTRY: Record<string, ComponentType<{ className?: string; title?: strin
   "button-battery-warning": lazy(() => import("./illustrations/ButtonBatteryWarning")),
   "marine-sting-vinegar": lazy(() => import("./illustrations/MarineStingVinegar")),
   "seizure-protect-head": lazy(() => import("./illustrations/SeizureProtectHead")),
+  "fracture-splint-immobilise": lazy(() => import("./illustrations/FractureSplintImmobilise")),
 };
 
 interface IllustrationProps {
