@@ -154,7 +154,7 @@ export default function TopicsSidebar() {
       <SidebarContent>
         {program && (
           <SidebarGroup>
-            <SidebarGroupLabel>Program</SidebarGroupLabel>
+            <SidebarGroupLabel>Course</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 <SidebarMenuItem>
