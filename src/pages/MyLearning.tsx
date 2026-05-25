@@ -135,7 +135,7 @@ export default function MyLearning() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="font-medium truncate">{p.program.title}</div>
-                            <Badge variant="secondary" className="text-xs mt-1">Program</Badge>
+                            <Badge variant="secondary" className="text-xs mt-1">Course</Badge>
                             <div className="mt-2">
                               <Progress value={pct} className="h-2" />
                               <div className="text-xs text-muted-foreground mt-1">{p.passed} of {p.total} topics passed</div>
