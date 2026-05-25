@@ -33,7 +33,7 @@ export default function Courses() {
         lang="en"
         basePath="/topics"
         title="First Aid Topics — Free Online Lessons with Certificate | First Aid Angel"
-        description="Self-paced first aid topics with quizzes and free PDF certificate. CPR, choking, bleeding, burns and more — based on Australian First Aid 5th Edition."
+        description="Self-paced first aid topics with quizzes and free PDF certificate. CPR, choking, bleeding, burns and more — based on St John Australian First Aid 5th Edition."
       />
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">

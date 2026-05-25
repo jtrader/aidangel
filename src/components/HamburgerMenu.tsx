@@ -92,7 +92,7 @@ export default function HamburgerMenu() {
 
           <div className="px-6 py-4 border-t border-border bg-muted/30">
             <p className="text-xs text-muted-foreground text-center">
-              First Aid Angel — Australian First Aid 5th Edition
+              First Aid Angel — St John Australian First Aid 5th Edition
             </p>
           </div>
         </div>

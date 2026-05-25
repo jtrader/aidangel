@@ -1,7 +1,7 @@
 // Long-tail symptom landing pages.
 // Each lander targets a real Australian search query and routes to the
 // authoritative KB topic for the full step-by-step procedure.
-// Source for all clinical content: Australian First Aid 5th Edition
+// Source for all clinical content: St John Australian First Aid 5th Edition
 // (St John Ambulance Australia) and Australian Resuscitation Council (ARC).
 
 export type SymptomLander = {
@@ -81,7 +81,7 @@ export const SYMPTOM_LANDERS: SymptomLander[] = [
     h1: "Severe bleeding — how to stop it fast",
     title: "How to stop severe bleeding · First Aid Angel",
     description:
-      "Heavy bleeding from a cut, wound or accident? Apply firm direct pressure, call 000, keep pressing. Australian First Aid 5th Edition steps.",
+      "Heavy bleeding from a cut, wound or accident? Apply firm direct pressure, call 000, keep pressing. St John Australian First Aid 5th Edition steps.",
     intro:
       "Severe bleeding can kill in minutes. The single most important thing you can do is press hard on the wound and keep pressing — do not stop to look.",
     callTriple: [

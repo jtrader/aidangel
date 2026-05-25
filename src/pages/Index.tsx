@@ -118,7 +118,7 @@ const Index = () => {
             url: "https://firstaidangel.org",
             logo: "https://firstaidangel.org/apple-touch-icon.png",
             description:
-              "AI first aid assistant for Australia, based on Australian First Aid 5th Edition.",
+              "AI first aid assistant for Australia, based on St John Australian First Aid 5th Edition.",
           },
           {
             "@context": "https://schema.org",

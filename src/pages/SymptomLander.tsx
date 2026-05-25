@@ -49,7 +49,7 @@ const SymptomLander = () => {
       audience: { "@type": "MedicalAudience", audienceType: "Patient" },
       mainEntityOfPage: pageUrl,
       citation: [
-        { "@type": "CreativeWork", name: "Australian First Aid 5th Edition (St John Ambulance Australia)" },
+        { "@type": "CreativeWork", name: "St John Australian First Aid 5th Edition (St John Ambulance Australia)" },
         { "@type": "CreativeWork", name: "Australian Resuscitation Council Guidelines" },
       ],
     },
@@ -256,7 +256,7 @@ const SymptomLander = () => {
               Reviewed by {REVIEWED_BY}. Last updated {DATE_MODIFIED}.
             </p>
             <p>
-              Source: Australian First Aid 5th Edition (St John Ambulance Australia) and
+              Source: St John Australian First Aid 5th Edition (St John Ambulance Australia) and
               Australian Resuscitation Council Guidelines. This is general information,
               not a substitute for professional medical care — in an emergency always call{" "}
               <a href={`tel:${emergencyNumber}`} className="underline text-primary font-semibold">
