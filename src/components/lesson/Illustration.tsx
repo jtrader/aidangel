@@ -47,6 +47,8 @@ const REGISTRY: Record<string, ComponentType<{ className?: string; title?: strin
   "anaphylaxis-positioning": lazy(() => import("./illustrations/AnaphylaxisPositioning")),
   "tourniquet-application": lazy(() => import("./illustrations/TourniquetApplication")),
   "infant-back-blows": lazy(() => import("./illustrations/InfantBackBlows")),
+  "choking-back-blows": lazy(() => import("./illustrations/ChokingBackBlows")),
+  "choking-abdominal-thrusts": lazy(() => import("./illustrations/ChokingAbdominalThrusts")),
 };
 
 interface IllustrationProps {
