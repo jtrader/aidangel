@@ -143,7 +143,7 @@ export default function EmployerMarketing() {
                 return (
                 <Link
                   key={`${c.id}-${i}`}
-                  to={`/topics/${c.slug}`}
+                  to={`/programs/${c.slug}`}
                   className="block group shrink-0 w-64"
                 >
                   <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow bg-card">
@@ -167,17 +167,14 @@ export default function EmployerMarketing() {
                     </div>
                     <div className="p-4 text-left">
                       <div className="flex gap-1.5 mb-2 flex-wrap">
-                        <Badge variant="secondary" className="capitalize text-[10px]">
-                          {c.level}
-                        </Badge>
-                        <Badge variant="outline" className="gap-1 text-[10px]">
-                          <Clock className="h-3 w-3" />
-                          {c.duration_minutes}m
-                        </Badge>
+                        <Badge variant="secondary" className="text-[10px]">Course</Badge>
                       </div>
                       <h3 className="font-display font-bold text-sm leading-snug group-hover:text-primary line-clamp-2">
                         {c.title}
                       </h3>
+                      {c.summary && (
+                        <p className="text-xs text-muted-foreground line-clamp-2 mt-1">{c.summary}</p>
+                      )}
                     </div>
                   </Card>
                 </Link>
