@@ -52,15 +52,15 @@ export default function Programs() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead lang="en" basePath="/programs"
-        title="First Aid Programs & Certifications | First Aid Angel"
-        description="Choose a curated first aid program — for parents, workplaces, outdoor adventurers or carers. Each ends with a final exam and program certificate." />
+        title="First Aid Courses & Certifications | First Aid Angel"
+        description="Choose a curated first aid course — for parents, workplaces, outdoor adventurers or carers. Each ends with a final exam and course certificate." />
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
         <header className="mb-10 text-center">
           <Badge variant="secondary" className="mb-3">Australian First Aid · 5th Edition aligned</Badge>
-          <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">First Aid Programs</h1>
+          <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">First Aid Courses</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Curated 12-topic learning paths with a final exam and printable program certificate. Pick the program that matches your life.
+            Curated 12-topic learning paths with a final exam and printable course certificate. Pick the course that matches your life.
           </p>
         </header>
 
