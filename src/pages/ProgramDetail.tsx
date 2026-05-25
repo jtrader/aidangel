@@ -91,7 +91,7 @@ export default function ProgramDetail() {
             <Card className="p-4 rounded-2xl">
               <div className="flex items-center gap-2 mb-3">
                 <Layers className="h-4 w-4 text-primary" />
-                <h2 className="font-display font-semibold text-sm uppercase tracking-wide text-muted-foreground">Program topics</h2>
+                <h2 className="font-display font-semibold text-sm uppercase tracking-wide text-muted-foreground">Course topics</h2>
               </div>
               <nav className="space-y-1">
                 {topics.map((t, i) => {
