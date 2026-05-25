@@ -96,7 +96,7 @@ const SymptomFinder = () => {
         lang={language}
         basePath="/symptoms"
         title="First aid by symptom — what to do right now · First Aid Angel"
-        description="Find first aid steps fast by symptom: chest pain, severe bleeding, choking, stroke signs, allergic reaction, snake bite, burns and more. Australian First Aid 5th Edition."
+        description="Find first aid steps fast by symptom: chest pain, severe bleeding, choking, stroke signs, allergic reaction, snake bite, burns and more. St John Australian First Aid 5th Edition."
         jsonLd={[
           {
             "@context": "https://schema.org",

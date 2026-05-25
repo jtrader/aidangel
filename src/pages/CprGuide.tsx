@@ -513,7 +513,7 @@ export default function CprGuide() {
                 </div>
 
                 <p className="text-xs text-muted-foreground pt-1 border-t border-border">
-                  Source: First Aid Angel Knowledge Base · Australian First Aid 5th Edition.
+                  Source: First Aid Angel Knowledge Base · St John Australian First Aid 5th Edition.
                   CPR is step <strong>C</strong> of{" "}
                   <Link to="/kb/drsabcd" className="text-primary hover:underline">DRSABCD</Link>.
                   Apply an <Link to="/kb/aed" className="text-primary hover:underline">AED</Link>{" "}

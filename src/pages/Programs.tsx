@@ -57,7 +57,7 @@ export default function Programs() {
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
         <header className="mb-10 text-center">
-          <Badge variant="secondary" className="mb-3">Australian First Aid · 5th Edition aligned</Badge>
+          <Badge variant="secondary" className="mb-3">St John Australian First Aid · 5th Edition aligned</Badge>
           <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">First Aid Courses</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Curated 12-topic learning paths with a final exam and printable course certificate. Pick the course that matches your life.

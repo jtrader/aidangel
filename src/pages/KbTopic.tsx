@@ -229,7 +229,7 @@ const KbTopic = () => {
               citation: [
                 {
                   "@type": "Book",
-                  name: "Australian First Aid 5th Edition",
+                  name: "St John Australian First Aid 5th Edition",
                   publisher: "St John Ambulance Australia",
                 },
                 {

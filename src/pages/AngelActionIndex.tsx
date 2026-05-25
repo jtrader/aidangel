@@ -105,7 +105,7 @@ const AngelActionIndex = () => {
           <aside className="mt-8 p-5 rounded-2xl border border-border bg-card text-sm text-muted-foreground">
             <p className="text-foreground font-semibold mb-1">About these cards</p>
             <p>
-              Adapted from the <em>Australian First Aid 5th Edition</em> and aligned with
+              Adapted from the <em>St John Australian First Aid 5th Edition</em> and aligned with
               Australian Resuscitation Council guidelines. For learning and refresher use —
               in an emergency, call your local emergency number (000 in Australia).
             </p>

@@ -13550,32 +13550,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/shock/lesson/overview</loc>
+    <loc>https://firstaidangel.org/topics/recovery-drsabcd/lesson/drsabcd-walkthrough</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/dental-injury/lesson/overview</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/sprains-strains/lesson/overview</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/fractures/lesson/overview</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/cpr-essentials/lesson/when-to-start</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/eye-injuries/lesson/overview</loc>
+    <loc>https://firstaidangel.org/topics/mental-health-first-aid/lesson/overview</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13590,37 +13570,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/mental-health-first-aid/lesson/overview</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/dehydration/lesson/overview</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/burns-scalds/lesson/types-of-burns</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/aed-use/lesson/what-is-an-aed</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/spinal-injury/lesson/overview</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/fainting/lesson/overview</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/stroke-heart-attack/lesson/fast-test</loc>
+    <loc>https://firstaidangel.org/topics/shock/lesson/overview</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13635,7 +13585,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/recovery-drsabcd/lesson/drsabcd-walkthrough</loc>
+    <loc>https://firstaidangel.org/topics/burns-scalds/lesson/types-of-burns</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/stroke-heart-attack/lesson/fast-test</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13650,12 +13605,57 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/topics/asthma/lesson/overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/cpr-essentials/lesson/when-to-start</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/dental-injury/lesson/overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/fractures/lesson/overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/aed-use/lesson/what-is-an-aed</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/eye-injuries/lesson/overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/topics/sunburn/lesson/overview</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/asthma/lesson/overview</loc>
+    <loc>https://firstaidangel.org/topics/dehydration/lesson/overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/fainting/lesson/overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/sprains-strains/lesson/overview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/spinal-injury/lesson/overview</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13670,12 +13670,57 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/heat-emergencies/lesson/body-heat-regulation</loc>
+    <loc>https://firstaidangel.org/topics/asthma/lesson/recognise-an-asthma-attack</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/dehydration/lesson/signs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/sprains-strains/lesson/sprain-vs-strain</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/sunburn/lesson/what-to-do</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/head-injuries-seizures/lesson/recognising-head-injuries</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/electric-shock/lesson/safety-first</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://firstaidangel.org/topics/recovery-drsabcd/lesson/recovery-position</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/bites-and-stings/lesson/snake-bites</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/aed-use/lesson/when-to-use</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/choking/lesson/adult-child</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/severe-bleeding/lesson/direct-pressure</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13690,42 +13735,22 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/sunburn/lesson/what-to-do</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/electric-shock/lesson/safety-first</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/bites-and-stings/lesson/snake-bites</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/choking/lesson/adult-child</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/anaphylaxis-allergies/lesson/epipen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/severe-bleeding/lesson/direct-pressure</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://firstaidangel.org/topics/mental-health-first-aid/lesson/algee</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://firstaidangel.org/topics/fractures/lesson/signs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/spinal-injury/lesson/suspect</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/anaphylaxis-allergies/lesson/epipen</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13740,6 +13765,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/topics/dental-injury/lesson/knocked-out-adult-tooth</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/diabetes/lesson/hypoglycaemia-low-blood-sugar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/topics/burns-scalds/lesson/cool-cover</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -13750,7 +13785,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/topics/heat-emergencies/lesson/body-heat-regulation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/topics/eye-injuries/lesson/foreign-body</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/cold-emergencies/lesson/hypothermia-cold-stress</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13765,52 +13810,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/sprains-strains/lesson/sprain-vs-strain</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/dental-injury/lesson/knocked-out-adult-tooth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/diabetes/lesson/hypoglycaemia-low-blood-sugar</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/spinal-injury/lesson/suspect</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/asthma/lesson/recognise-an-asthma-attack</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/dehydration/lesson/signs</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/head-injuries-seizures/lesson/recognising-head-injuries</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/aed-use/lesson/when-to-use</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/cold-emergencies/lesson/hypothermia-cold-stress</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/choking/lesson/infant</loc>
+    <loc>https://firstaidangel.org/topics/dental-injury/lesson/baby-teeth</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13885,12 +13885,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/aed-use/lesson/pad-placement</loc>
+    <loc>https://firstaidangel.org/topics/fractures/lesson/what-to-do</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/fractures/lesson/what-to-do</loc>
+    <loc>https://firstaidangel.org/topics/aed-use/lesson/pad-placement</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -13925,11 +13925,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/dental-injury/lesson/baby-teeth</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://firstaidangel.org/topics/sprains-strains/lesson/rice</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -13950,52 +13945,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/topics/choking/lesson/infant</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/anaphylaxis-allergies/lesson/asthma-overlap</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/topics/cpr-essentials/lesson/aed-use</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/diabetes/lesson/when-in-doubt-give-sugar</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/drowning/lesson/hypothermia</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/fractures/lesson/do-not</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/severe-bleeding/lesson/shock</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/eye-injuries/lesson/chemical</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/choking/lesson/after-care</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/burns-scalds/lesson/special-cases</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/recovery-drsabcd/lesson/common-mistakes-scenarios</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/heat-emergencies/lesson/heat-illness-first-aid</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -14005,12 +13965,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/topics/eye-injuries/lesson/chemical</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/topics/fainting/lesson/warning</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/spinal-injury/lesson/what-to-do</loc>
+    <loc>https://firstaidangel.org/topics/drowning/lesson/hypothermia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/heat-emergencies/lesson/heat-illness-first-aid</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -14030,32 +14000,17 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/asthma/lesson/severe-attack-call-000-first</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/cold-emergencies/lesson/first-aid-cold-exposure</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/anaphylaxis-allergies/lesson/asthma-overlap</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://firstaidangel.org/topics/sprains-strains/lesson/harm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/poisoning/lesson/absorbed</loc>
+    <loc>https://firstaidangel.org/topics/asthma/lesson/severe-attack-call-000-first</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/nosebleed/lesson/after</loc>
+    <loc>https://firstaidangel.org/topics/aed-use/lesson/aed-with-cpr</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -14065,7 +14020,62 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/aed-use/lesson/aed-with-cpr</loc>
+    <loc>https://firstaidangel.org/topics/diabetes/lesson/when-in-doubt-give-sugar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/burns-scalds/lesson/special-cases</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/severe-bleeding/lesson/shock</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/choking/lesson/after-care</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/poisoning/lesson/absorbed</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/fractures/lesson/do-not</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/nosebleed/lesson/after</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/spinal-injury/lesson/what-to-do</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/cold-emergencies/lesson/first-aid-cold-exposure</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/recovery-drsabcd/lesson/common-mistakes-scenarios</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/heat-emergencies/lesson/heat-prevention</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/head-injuries-seizures/lesson/seizure-first-aid</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -14080,27 +14090,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/head-injuries-seizures/lesson/seizure-first-aid</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/heat-emergencies/lesson/heat-prevention</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/eye-injuries/lesson/blow</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://firstaidangel.org/topics/asthma/lesson/adrenaline-anaphylaxis-with-asthma</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/mental-health-first-aid/lesson/suicide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -14110,7 +14100,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/bites-and-stings/lesson/insect-bites-and-ticks</loc>
+    <loc>https://firstaidangel.org/topics/mental-health-first-aid/lesson/suicide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/eye-injuries/lesson/blow</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -14120,12 +14115,17 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/mental-health-first-aid/lesson/psychosis</loc>
+    <loc>https://firstaidangel.org/topics/bites-and-stings/lesson/insect-bites-and-ticks</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://firstaidangel.org/topics/bites-and-stings/lesson/venom-anaphylaxis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/mental-health-first-aid/lesson/psychosis</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

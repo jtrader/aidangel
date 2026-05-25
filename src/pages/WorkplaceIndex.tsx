@@ -63,7 +63,7 @@ export default function WorkplaceIndex() {
             <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl">
               Twenty industry verticals, each with the WHS requirements, the most common injuries
               and the AI-guided first aid steps that match. Built around Australia's HLTAID
-              certifications and the Australian First Aid 5th Edition.
+              certifications and the St John Australian First Aid 5th Edition.
             </p>
 
             {/* Stat infographic */}

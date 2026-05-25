@@ -30,7 +30,7 @@ const TIERS = [
     seats: "1 learner",
     popular: false,
     features: [
-      "Full Australian First Aid 5th Ed. course library",
+      "Full St John Australian First Aid 5th Ed. course library",
       "Interactive quizzes & progress tracking",
       "CPD-certified personal completion certificate",
       "Lifetime access to updates for the year",
@@ -75,7 +75,7 @@ const FEATURES = [
   {
     icon: Award,
     title: "Earn a CPD-certified certificate",
-    body: "Complete the course and quizzes to download a CPD-certified personal certificate of completion based on Australian First Aid 5th Edition.",
+    body: "Complete the course and quizzes to download a CPD-certified personal certificate of completion based on St John Australian First Aid 5th Edition.",
   },
   {
     icon: HeartPulse,
@@ -133,7 +133,7 @@ export default function PersonalMarketing() {
         lang="en"
         basePath="/personal"
         title="Personal First Aid Training Licences | First Aid Angel"
-        description="Australian First Aid 5th Edition training for individuals and families. Personal licences from AU$25/year with certificates, quizzes and lifetime updates."
+        description="St John Australian First Aid 5th Edition training for individuals and families. Personal licences from AU$25/year with certificates, quizzes and lifetime updates."
       />
       <CoursesHeader />
 
@@ -150,7 +150,7 @@ export default function PersonalMarketing() {
             Learn the skills that save lives.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Self-paced Australian First Aid 5th Edition courses with quizzes, a
+            Self-paced St John Australian First Aid 5th Edition courses with quizzes, a
             personal certificate and tools like the Live CPR Guide and AED
             Finder — all in one place.
           </p>

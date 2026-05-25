@@ -34,7 +34,7 @@ const TIERS = [
 const FEATURES = [
   { icon: Upload, title: "Bulk import in minutes", body: "Upload a CSV of your team and we'll invite everyone, auto-link them when they sign up, and pre-assign their courses." },
   { icon: BarChart3, title: "Live compliance tracking", body: "See who's done, who's overdue, and who needs a nudge. Export CSV/PDF for audits anytime." },
-  { icon: ShieldCheck, title: "Australian First Aid 5th Ed.", body: "Every learner gets the same evidence-based content used across our public courses, with a CPD-certified branded certificate." },
+  { icon: ShieldCheck, title: "St John Australian First Aid 5th Ed.", body: "Every learner gets the same evidence-based content used across our public courses, with a CPD-certified branded certificate." },
 ];
 
 export default function EmployerMarketing() {
@@ -99,7 +99,7 @@ export default function EmployerMarketing() {
             Prove CPD compliance in a click.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Bulk-invite your workforce, assign Australian First Aid 5th Edition courses, and track completion in a single dashboard. CPD-certified branded certificates included.
+            Bulk-invite your workforce, assign St John Australian First Aid 5th Edition courses, and track completion in a single dashboard. CPD-certified branded certificates included.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
