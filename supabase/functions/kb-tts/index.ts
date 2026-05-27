@@ -72,8 +72,9 @@ Deno.serve(async (req) => {
     if (!resp.ok) {
       const errTxt = await resp.text();
       console.error("kb-tts ElevenLabs error", resp.status, errTxt);
-      if (resp.status === 429 || resp.status >= 500) {
-        return fallbackResponse(`upstream_${resp.status}`);
+      const isQuota = resp.status === 401 && /quota_exceeded/i.test(errTxt);
+      if (resp.status === 429 || resp.status >= 500 || isQuota) {
+        return fallbackResponse(isQuota ? "quota_exceeded" : `upstream_${resp.status}`);
       }
       return new Response(JSON.stringify({ error: `TTS failed: ${resp.status}` }), {
         status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" },
