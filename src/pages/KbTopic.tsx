@@ -8,7 +8,7 @@ import { canonicalUrl, HREFLANG, localizedPath, SITE_ORIGIN } from "@/lib/i18n";
 import NetworkFooter from "@/components/NetworkFooter";
 import SupportUsBar from "@/components/SupportUsBar";
 
-import TopicIllustration from "@/components/TopicIllustration";
+
 import TopicCover from "@/components/TopicCover";
 import PlayAudioButton from "@/components/PlayAudioButton";
 import NearbyEducators from "@/components/NearbyEducators";
@@ -340,7 +340,6 @@ const KbTopic = () => {
           </div>
 
           <TopicCover slug={topicEn.slug} title={translated.title} />
-          <TopicIllustration slug={topicEn.slug} />
 
           {translating && (
             <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
