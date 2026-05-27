@@ -340,7 +340,6 @@ const KbTopic = () => {
           </div>
 
           <TopicCover slug={topicEn.slug} title={translated.title} />
-          <TopicIllustration slug={topicEn.slug} />
 
           {translating && (
             <div className="mb-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
