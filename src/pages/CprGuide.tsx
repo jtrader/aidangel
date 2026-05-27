@@ -457,6 +457,7 @@ export default function CprGuide() {
 
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Adult &amp; child (over 1 year)</h4>
+                  <Illustration name="cpr-essentials" />
                   <ol className="list-decimal pl-5 space-y-1">
                     <li>Lay the person flat on a firm surface and kneel beside their chest.</li>
                     <li>
@@ -482,6 +483,7 @@ export default function CprGuide() {
 
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Infant (under 1 year)</h4>
+                  <Illustration name="infant-cpr-essentials" />
                   <ol className="list-decimal pl-5 space-y-1">
                     <li>Place the infant on a firm surface.</li>
                     <li>Use <strong>two fingers</strong> on the lower half of the sternum.</li>
