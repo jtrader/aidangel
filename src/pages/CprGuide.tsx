@@ -461,21 +461,7 @@ export default function CprGuide() {
                   </Link>
                 </div>
 
-                {/* Quick Action Buttons */}
-                <div className="flex items-center gap-3">
-                  <a
-                    href="#adult-cpr"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive text-destructive-foreground font-semibold text-sm shadow-sm hover:bg-destructive/90 transition-colors"
-                  >
-                    <HeartPulse className="h-4 w-4" /> Adult CPR
-                  </a>
-                  <a
-                    href="#infant-cpr"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold text-sm shadow-sm hover:bg-primary/90 transition-colors"
-                  >
-                    <HeartPulse className="h-4 w-4" /> Infant CPR
-                  </a>
-                </div>
+
 
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">When to start CPR</h4>
