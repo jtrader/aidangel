@@ -10,97 +10,180 @@ interface Props {
   stopLabel?: string;
 }
 
-/**
- * Reads topic text aloud using the browser's built-in SpeechSynthesis API.
- * Free, no API key, works offline on most devices, supports 48+ languages
- * (voice availability depends on the user's OS/browser).
- */
+// Top-10 most widely spoken languages we have ElevenLabs coverage for.
+// Other languages fall back to the browser SpeechSynthesis API.
+const ELEVEN_LANGS = new Set<Lang>([
+  "en", "zh", "es", "ar", "fr", "pt", "bn", "ur", "id", "ja",
+]);
+
+const MAX_CHARS = 2000;
+
+function cleanForSpeech(raw: string): string {
+  return raw
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/[#>*_`~]/g, "")
+    .replace(/\n{2,}/g, ". ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// Split into <= MAX_CHARS chunks at sentence boundaries.
+function chunkText(text: string, max = MAX_CHARS): string[] {
+  if (text.length <= max) return [text];
+  const sentences = text.match(/[^.!?]+[.!?]+|\s*[^.!?]+$/g) ?? [text];
+  const out: string[] = [];
+  let buf = "";
+  for (const s of sentences) {
+    if ((buf + s).length > max) {
+      if (buf) out.push(buf.trim());
+      if (s.length > max) {
+        // Hard split very long sentence by words.
+        const words = s.split(/\s+/);
+        let w = "";
+        for (const word of words) {
+          if ((w + " " + word).length > max) { out.push(w.trim()); w = word; }
+          else { w = w ? `${w} ${word}` : word; }
+        }
+        if (w) buf = w;
+        else buf = "";
+      } else {
+        buf = s;
+      }
+    } else {
+      buf += s;
+    }
+  }
+  if (buf.trim()) out.push(buf.trim());
+  return out;
+}
+
 const PlayAudioButton = ({ text, language, label = "Listen", stopLabel = "Stop" }: Props) => {
-  const [supported, setSupported] = useState(false);
+  const [supportsBrowserTTS, setSupportsBrowserTTS] = useState(false);
   const [speaking, setSpeaking] = useState(false);
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [loading, setLoading] = useState(false);
+  const cancelRef = useRef(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    setSupported(typeof window !== "undefined" && "speechSynthesis" in window);
-    return () => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
-    };
+    setSupportsBrowserTTS(typeof window !== "undefined" && "speechSynthesis" in window);
+    return () => stopAll();
   }, []);
 
   // Stop playback when language or text changes
   useEffect(() => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      setSpeaking(false);
-    }
+    stopAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, language]);
 
-  const pickVoice = (langTag: string): SpeechSynthesisVoice | undefined => {
-    const voices = window.speechSynthesis.getVoices();
+  function stopAll() {
+    cancelRef.current = true;
+    if (audioRef.current) {
+      try { audioRef.current.pause(); } catch { /* ignore */ }
+      audioRef.current = null;
+    }
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      try { window.speechSynthesis.cancel(); } catch { /* ignore */ }
+    }
+    setSpeaking(false);
+    setLoading(false);
+  }
+
+  async function speakWithElevenLabs(chunks: string[]): Promise<boolean> {
+    const base = import.meta.env.VITE_SUPABASE_URL as string;
+    const anon = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+    if (!base || !anon) return false;
+
+    for (let i = 0; i < chunks.length; i++) {
+      if (cancelRef.current) return true;
+      try {
+        const resp = await fetch(`${base}/functions/v1/kb-tts`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: anon,
+            Authorization: `Bearer ${anon}`,
+          },
+          body: JSON.stringify({ text: chunks[i], lang: language }),
+        });
+        if (!resp.ok) return false;
+        const ct = resp.headers.get("content-type") || "";
+        if (ct.includes("application/json")) return false; // fallback signal
+        const blob = await resp.blob();
+        if (!blob.size) return false;
+        if (cancelRef.current) return true;
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio(url);
+        audioRef.current = audio;
+        if (i === 0) setLoading(false);
+        await audio.play();
+        await new Promise<void>((resolve) => {
+          audio.onended = () => { URL.revokeObjectURL(url); resolve(); };
+          audio.onerror = () => { URL.revokeObjectURL(url); resolve(); };
+        });
+        if (cancelRef.current) return true;
+      } catch (e) {
+        console.warn("kb-tts chunk failed", e);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function speakWithBrowser(clean: string) {
+    if (!supportsBrowserTTS) return;
+    const synth = window.speechSynthesis;
+    const langTag = HREFLANG[language] || language;
+    const voices = synth.getVoices();
     const lower = langTag.toLowerCase();
     const base = lower.split("-")[0];
-    return (
+    const voice =
       voices.find((v) => v.lang.toLowerCase() === lower) ||
       voices.find((v) => v.lang.toLowerCase().startsWith(base + "-")) ||
-      voices.find((v) => v.lang.toLowerCase().startsWith(base))
-    );
-  };
+      voices.find((v) => v.lang.toLowerCase().startsWith(base));
+    const utter = new SpeechSynthesisUtterance(clean);
+    utter.lang = langTag;
+    if (voice) utter.voice = voice;
+    utter.rate = 0.95;
+    utter.onend = () => setSpeaking(false);
+    utter.onerror = () => setSpeaking(false);
+    synth.cancel();
+    synth.speak(utter);
+  }
 
-  const handleClick = () => {
-    if (!supported) return;
-    const synth = window.speechSynthesis;
+  const handleClick = async () => {
+    if (speaking || loading) {
+      stopAll();
+      return;
+    }
+    const clean = cleanForSpeech(text);
+    if (!clean) return;
 
-    if (speaking) {
-      synth.cancel();
+    cancelRef.current = false;
+    setSpeaking(true);
+
+    if (ELEVEN_LANGS.has(language)) {
+      setLoading(true);
+      const chunks = chunkText(clean);
+      const ok = await speakWithElevenLabs(chunks);
+      setLoading(false);
+      if (!ok && !cancelRef.current) {
+        // Fallback to browser TTS on failure
+        speakWithBrowser(clean);
+        return;
+      }
       setSpeaking(false);
       return;
     }
 
-    // Strip markdown for cleaner reading
-    const clean = text
-      .replace(/```[\s\S]*?```/g, "")
-      .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-      .replace(/[#>*_`~]/g, "")
-      .replace(/\n{2,}/g, ". ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    if (!clean) return;
-
-    const langTag = HREFLANG[language] || language;
-    const speak = () => {
-      const utter = new SpeechSynthesisUtterance(clean);
-      utter.lang = langTag;
-      const v = pickVoice(langTag);
-      if (v) utter.voice = v;
-      utter.rate = 0.95;
-      utter.pitch = 1;
-      utter.onend = () => setSpeaking(false);
-      utter.onerror = () => setSpeaking(false);
-      utteranceRef.current = utter;
-      synth.cancel();
-      synth.speak(utter);
-      setSpeaking(true);
-    };
-
-    // Voices load asynchronously in some browsers
-    if (synth.getVoices().length === 0) {
-      const onVoices = () => {
-        synth.removeEventListener("voiceschanged", onVoices);
-        speak();
-      };
-      synth.addEventListener("voiceschanged", onVoices);
-      // Fallback in case event never fires
-      setTimeout(speak, 250);
-    } else {
-      speak();
-    }
+    // Non-supported language → browser TTS path
+    if (!supportsBrowserTTS) { setSpeaking(false); return; }
+    speakWithBrowser(clean);
   };
 
-  if (!supported) return null;
+  // If neither path works, hide the button
+  if (!supportsBrowserTTS && !ELEVEN_LANGS.has(language)) return null;
 
   return (
     <button
@@ -109,7 +192,12 @@ const PlayAudioButton = ({ text, language, label = "Listen", stopLabel = "Stop" 
       aria-label={speaking ? stopLabel : label}
       className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20 hover:border-primary transition-colors"
     >
-      {speaking ? (
+      {loading ? (
+        <>
+          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          {label}
+        </>
+      ) : speaking ? (
         <>
           <Square className="h-3.5 w-3.5 fill-current" />
           {stopLabel}
