@@ -4,7 +4,7 @@
   "_model": "google/gemini-3-flash-preview",
   "emergencyBanner": "Vid en livshotande nödsituation, ring omedelbart Triple Zero (000)",
   "appTitle": "First Aid Angel",
-  "appSubtitle": "Din första hjälpen-assistent • Baserad på The St John of God First Aid Manual 5:e upplagan",
+  "appSubtitle": "Din första hjälpen-assistent",
   "welcomeHeading": "Hur kan jag hjälpa till?",
   "welcomeDescription": "Fråga mig om valfri första hjälpen-situation. Jag ger steg-för-steg-vägledning baserad på The St John of God First Aid Manual.",
   "inputPlaceholder": "Beskriv din första hjälpen-situation...",
@@ -40,7 +40,7 @@
   "actionSearch": "Sök",
   "actionLearnMore": "Läs mer",
   "actionViewAll": "Visa alla",
-  "coursesTitle": "Kurser i första hjälpen",
+  "coursesTitle": "Första hjälpen – snabbkurs",
   "coursesSubtitle": "Gratis utbildning baserad på Australian First Aid Manual",
   "courseStart": "Starta kursen",
   "courseContinue": "Fortsätt kursen",
@@ -61,7 +61,7 @@
   "sourcesDisclaimer": "Rätta dig alltid efter lokala räddningstjänster och aktuella riktlinjer",
   "footerNetwork": "En del av Love Key Emergency and Recovery Network",
   "footerCallEmergency": "Vid nödsituation, ring 000",
-  "coursesPageTitle": "Kostnadsfria onlinekurser i första hjälpen",
+  "coursesPageTitle": "Första hjälpen-ämnen",
   "learnCoursesNearYou": "Kurser nära dig",
   "lessonMarkCompleteNext": "Markera som klar & nästa",
   "lessonCompleteStartQuiz": "Slutför & starta prov",
@@ -111,5 +111,5 @@
   "learnBrowseByCountry": "Bläddra efter land",
   "learnFindBySymptom": "sök efter symtom",
   "coursesEmpty": "Kurser kommer snart. Kontrollera igen inom kort.",
-  "courseAllCourses": "Alla kurser"
+  "courseAllCourses": "Alla ämnen"
 }
