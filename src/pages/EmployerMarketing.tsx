@@ -102,7 +102,7 @@ export default function EmployerMarketing() {
             Prove CPD compliance in a click.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Bulk-invite your workforce, assign St John Australian First Aid 5th Edition courses, and track completion in a single dashboard. CPD-certified branded certificates included.
+            Bulk-invite your workforce, assign St John Australian First Aid 5th Edition aligned courses, and track completion in a single dashboard. CPD-certified branded certificates included.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
