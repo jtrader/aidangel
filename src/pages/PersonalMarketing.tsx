@@ -20,6 +20,39 @@ import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
 import { useNavigate } from "react-router-dom";
+import TopicIllustration, { hasIllustration } from "@/components/TopicIllustration";
+
+// Map LMS course slug → KB topic slug for illustration fallback
+const COURSE_TO_KB: Record<string, string> = {
+  "aed-use": "aed",
+  "anaphylaxis-allergies": "anaphylaxis",
+  asthma: "asthma",
+  "severe-bleeding": "bleeding",
+  "burns-scalds": "burns",
+  choking: "choking",
+  "cpr-essentials": "cpr",
+  dehydration: "dehydration",
+  "dental-injury": "dental-injury",
+  diabetes: "diabetes",
+  drowning: "drowning",
+  "recovery-drsabcd": "drsabcd",
+  "electric-shock": "electric-shock",
+  "eye-injuries": "eye-injuries",
+  fainting: "fainting",
+  fractures: "fractures",
+  "head-injuries-seizures": "head-injury",
+  "stroke-heart-attack": "stroke",
+  "heat-emergencies": "heat-illness",
+  "cold-emergencies": "hypothermia",
+  "bites-and-stings": "snake-bite",
+  "mental-health-first-aid": "mental-health-first-aid",
+  nosebleed: "nosebleed",
+  poisoning: "poisoning",
+  shock: "shock",
+  "spinal-injury": "spinal-injury",
+  "sprains-strains": "sprains-strains",
+  sunburn: "sunburn",
+};
 
 const TIERS = [
   {
@@ -124,10 +157,13 @@ export default function PersonalMarketing() {
       .then(({ data }) => setTopics((data as TopicCard[]) ?? []));
   }, []);
 
-  const topicsWithCovers = topics.filter((t) => !!t.cover_url);
+  // Include topics with a cover image OR a matching KB illustration in the registry
+  const topicsWithVisual = topics.filter(
+    (t) => !!t.cover_url || hasIllustration(COURSE_TO_KB[t.slug] ?? t.slug),
+  );
   const marqueeTrack =
-    topicsWithCovers.length > 0
-      ? [...topicsWithCovers, ...topicsWithCovers, ...topicsWithCovers]
+    topicsWithVisual.length > 0
+      ? [...topicsWithVisual, ...topicsWithVisual, ...topicsWithVisual]
       : [];
 
   return (
@@ -216,11 +252,15 @@ export default function PersonalMarketing() {
                           fetchPriority={i === 0 ? "high" : isEager ? "auto" : "low"}
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-                          <BookOpen className="h-10 w-10 text-primary/40" />
+                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10 text-primary p-4">
+                          <TopicIllustration
+                            slug={COURSE_TO_KB[c.slug] ?? c.slug}
+                            className="!my-0 !p-0 !border-0 !bg-transparent w-full"
+                          />
                         </div>
                       )}
                     </div>
+
                     <div className="p-4 text-left">
                       <div className="flex gap-1.5 mb-2 flex-wrap">
                         <Badge variant="secondary" className="capitalize text-[10px]">
