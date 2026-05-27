@@ -471,7 +471,7 @@ export default function CprGuide() {
                   </p>
                 </div>
 
-                <div>
+                <div id="adult-cpr">
                   <h4 className="font-semibold text-foreground mb-1">Adult &amp; child (over 1 year)</h4>
                   <Illustration name="cpr-essentials" />
                   <ol className="list-decimal pl-5 space-y-1">
