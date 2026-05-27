@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Building2,
   Clock,
+  AlertTriangle,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { SeoHead } from "@/components/SeoHead";
@@ -156,7 +157,7 @@ export default function PersonalMarketing() {
       <SeoHead
         lang="en"
         basePath="/personal"
-        title="Personal First Aid Training Licences | First Aid Angel"
+        title="Personal First Aid Training Licences | First Aid Angel "
         description="St John Australian First Aid 5th Edition training for individuals and families. Personal licences from AU$25/year with certificates, quizzes and lifetime updates."
       />
       <CoursesHeader />
@@ -165,7 +166,7 @@ export default function PersonalMarketing() {
       <section className="relative bg-gradient-to-br from-[#F7F7F7] to-card border-b">
         <div className="container max-w-6xl mx-auto px-4 pt-20 pb-10 text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-            <User className="h-4 w-4" /> First Aid Angel Training for Individuals
+            <User className="h-4 w-4" /> First Aid Angel  Training for Individuals
           </div>
           <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight">
             First aid training,{" "}
@@ -178,6 +179,17 @@ export default function PersonalMarketing() {
             personal certificate and tools like the Live CPR Guide and AED
             Finder — all in one place.
           </p>
+          <div className="max-w-2xl mx-auto mb-8 rounded-xl border border-amber-200 bg-amber-50/80 p-4 text-left">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+              <div className="text-sm text-amber-900">
+                <p className="font-semibold mb-1">Not a substitute for accredited hands-on training</p>
+                <p>
+                  These short courses are designed for essential general knowledge, continuing professional development (CPD), and as a study guide for accredited in-person training. They do not replace official hands-on training accreditation.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
               <Link to={startHref}>
@@ -363,8 +375,8 @@ export default function PersonalMarketing() {
           Ready to start learning?
         </h2>
         <p className="text-muted-foreground mb-6">
-          Join thousands of people building life-saving skills with First
-          Aid Angel.
+          Join thousands of people building life-saving skills with First Aid
+          Angel .
         </p>
         <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
           <Link to={startHref}>
