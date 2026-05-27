@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Building2,
   Clock,
+  AlertTriangle,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { SeoHead } from "@/components/SeoHead";
