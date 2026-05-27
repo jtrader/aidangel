@@ -1795,6 +1795,7 @@ export type Database = {
           org_id: string
         }[]
       }
+      get_org_billing_email: { Args: { _org: string }; Returns: string }
       has_active_subscription: {
         Args: { check_env?: string; user_uuid: string }
         Returns: boolean
