@@ -124,8 +124,11 @@ export default function PersonalMarketing() {
       .then(({ data }) => setTopics((data as TopicCard[]) ?? []));
   }, []);
 
+  const topicsWithCovers = topics.filter((t) => !!t.cover_url);
   const marqueeTrack =
-    topics.length > 0 ? [...topics, ...topics, ...topics] : [];
+    topicsWithCovers.length > 0
+      ? [...topicsWithCovers, ...topicsWithCovers, ...topicsWithCovers]
+      : [];
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
