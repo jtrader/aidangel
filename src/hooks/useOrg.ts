@@ -15,7 +15,8 @@ export interface OrgSummary {
   primary_color: string | null;
   country_code: string | null;
   industry: string | null;
-  billing_email: string | null;
+  /** Only readable by org admins/owners via get_org_billing_email RPC. */
+  billing_email?: string | null;
   join_code: string | null;
 }
 
@@ -52,7 +53,7 @@ export function useOrg() {
     const orgIds = members.map((m) => m.org_id);
     const { data: orgRows } = await supabase
       .from("organisations")
-      .select("*")
+      .select("id, name, slug, seat_limit, status, logo_url, primary_color, country_code, industry, join_code")
       .in("id", orgIds);
     const byId = new Map(orgRows?.map((o) => [o.id, o]) ?? []);
     const summaries: OrgSummary[] = members
@@ -70,7 +71,6 @@ export function useOrg() {
           primary_color: o.primary_color,
           country_code: o.country_code,
           industry: o.industry,
-          billing_email: o.billing_email,
           join_code: o.join_code,
         };
       })

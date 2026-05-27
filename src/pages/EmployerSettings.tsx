@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import EmployerLayout from "@/components/employer/EmployerLayout";
 import { useOrg } from "@/hooks/useOrg";
 import { supabase } from "@/integrations/supabase/client";
@@ -12,12 +12,23 @@ export default function EmployerSettings() {
   const { activeOrg, refresh, can } = useOrg();
   const [name, setName] = useState(activeOrg?.name ?? "");
   const [industry, setIndustry] = useState(activeOrg?.industry ?? "");
-  const [billing, setBilling] = useState(activeOrg?.billing_email ?? "");
+  const [billing, setBilling] = useState("");
   const [logo, setLogo] = useState(activeOrg?.logo_url ?? "");
   const [color, setColor] = useState(activeOrg?.primary_color ?? "");
   const [busy, setBusy] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  // Billing email is column-restricted to org admins/owners — load it via secure RPC.
+  useEffect(() => {
+    if (!activeOrg || !can("admin")) return;
+    let cancelled = false;
+    (async () => {
+      const { data } = await supabase.rpc("get_org_billing_email", { _org: activeOrg.id });
+      if (!cancelled && typeof data === "string") setBilling(data);
+    })();
+    return () => { cancelled = true; };
+  }, [activeOrg, can]);
 
   if (!activeOrg) return <EmployerLayout title="Settings"><p>No organisation selected.</p></EmployerLayout>;
 
