@@ -1,61 +1,60 @@
-import { lazy, Suspense, type ComponentType } from "react";
 import { Image } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * Registry of available inline SVG illustration components.
- * Add new illustrations here so they can be referenced from markdown via:
- *   :::illustration[key]
+ * Registry of available illustrations. Each entry maps a key (used in
+ * markdown via `:::illustration[key]`) to its file basename under
+ * `/public/illustrations/{mobile,tablet,desktop}/<basename>-<device>.webp`.
  */
-const REGISTRY: Record<string, ComponentType<{ className?: string; title?: string }>> = {
-  "snake-bite-bandage": lazy(() => import("./illustrations/SnakeBiteBandage")),
-  "danger-check": lazy(() => import("./illustrations/DangerCheck")),
-  "response-check": lazy(() => import("./illustrations/ResponseCheck")),
-  "send-for-help": lazy(() => import("./illustrations/SendForHelp")),
-  "airway-open": lazy(() => import("./illustrations/AirwayOpen")),
-  "breathing-check": lazy(() => import("./illustrations/BreathingCheck")),
-  "cpr-essentials": lazy(() => import("./illustrations/CPREssentials")),
-  "defib-pads": lazy(() => import("./illustrations/DefibPads")),
-  "choking-airway": lazy(() => import("./illustrations/ChokingAirway")),
-  "severe-bleeding-pressure": lazy(() => import("./illustrations/SevereBleedingPressure")),
-  "burns-cooling": lazy(() => import("./illustrations/BurnsCooling")),
-  "burn-depth-layers": lazy(() => import("./illustrations/BurnDepthLayers")),
-  "heart-attack-pain-map": lazy(() => import("./illustrations/HeartAttackPainMap")),
-  "anaphylaxis-injector": lazy(() => import("./illustrations/AnaphylaxisAutoInjector")),
-  "stroke-face-check": lazy(() => import("./illustrations/StrokeFaceCheck")),
-  "head-injury-cradle": lazy(() => import("./illustrations/HeadInjuryCradle")),
-  "heat-cooling-active": lazy(() => import("./illustrations/HeatCoolingActive")),
-  "hypothermia-insulation": lazy(() => import("./illustrations/HypothermiaInsulation")),
-  "asthma-inhaler-spacer": lazy(() => import("./illustrations/AsthmaInhalerSpacer")),
-  "dehydration-rehydration": lazy(() => import("./illustrations/DehydrationRehydration")),
-  "dental-stabilization": lazy(() => import("./illustrations/DentalStabilization")),
-  "diabetic-hypo-sugar": lazy(() => import("./illustrations/DiabeticHypoSugar")),
-  "drowning-airway-check": lazy(() => import("./illustrations/DrowningAirwayCheck")),
-  "electric-shock-scene-warning": lazy(() => import("./illustrations/ElectricShockSceneWarning")),
-  "eye-injury-flushing": lazy(() => import("./illustrations/EyeInjuryFlushing")),
-  "fainting-leg-elevation": lazy(() => import("./illustrations/FaintingLegElevation")),
-  "mental-health-listening": lazy(() => import("./illustrations/MentalHealthListening")),
-  "nosebleed-management": lazy(() => import("./illustrations/NosebleedManagement")),
-  "poisoning-container-check": lazy(() => import("./illustrations/PoisoningContainerCheck")),
-  "shock-management-blanket": lazy(() => import("./illustrations/ShockManagementBlanket")),
-  "spinal-inline-stabilization": lazy(() => import("./illustrations/SpinalInlineStabilization")),
-  "sprain-compression-wrap": lazy(() => import("./illustrations/SprainCompressionWrap")),
-  "sunburn-soothe-cool": lazy(() => import("./illustrations/SunburnSootheCool")),
-  "infant-cpr-essentials": lazy(() => import("./illustrations/InfantCPREssentials")),
-  "defib-pads-pediatric": lazy(() => import("./illustrations/DefibPadsPediatric")),
-  "spider-bite-check": lazy(() => import("./illustrations/SpiderBiteCheck")),
-  "anaphylaxis-positioning": lazy(() => import("./illustrations/AnaphylaxisPositioning")),
-  "tourniquet-application": lazy(() => import("./illustrations/TourniquetApplication")),
-  "infant-back-blows": lazy(() => import("./illustrations/InfantBackBlows")),
-  "choking-back-blows": lazy(() => import("./illustrations/ChokingBackBlows")),
-  "choking-abdominal-thrusts": lazy(() => import("./illustrations/ChokingAbdominalThrusts")),
-  "aed-device-anatomy": lazy(() => import("./illustrations/AedDeviceAnatomy")),
-  "recovery-position": lazy(() => import("./illustrations/RecoveryPosition")),
-  "frostbite-rewarming": lazy(() => import("./illustrations/FrostbiteRewarming")),
-  "button-battery-warning": lazy(() => import("./illustrations/ButtonBatteryWarning")),
-  "marine-sting-vinegar": lazy(() => import("./illustrations/MarineStingVinegar")),
-  "seizure-protect-head": lazy(() => import("./illustrations/SeizureProtectHead")),
-  "fracture-splint-immobilise": lazy(() => import("./illustrations/FractureSplintImmobilise")),
+const REGISTRY: Record<string, { basename: string; label: string }> = {
+  "snake-bite-bandage": { basename: "snake-bite-bandage", label: "Snake bite bandage" },
+  "danger-check": { basename: "danger-check", label: "Check for danger" },
+  "response-check": { basename: "response-check", label: "Check for response" },
+  "send-for-help": { basename: "send-for-help", label: "Send for help" },
+  "airway-open": { basename: "airway-open", label: "Open the airway" },
+  "breathing-check": { basename: "breathing-check", label: "Check breathing" },
+  "cpr-essentials": { basename: "cpr-essentials", label: "CPR essentials" },
+  "defib-pads": { basename: "defib-pads", label: "Defibrillator pad placement" },
+  "choking-airway": { basename: "choking-airway", label: "Choking airway" },
+  "severe-bleeding-pressure": { basename: "severe-bleeding-pressure", label: "Severe bleeding — apply pressure" },
+  "burns-cooling": { basename: "burns-cooling", label: "Cool the burn" },
+  "burn-depth-layers": { basename: "burn-depth-layers", label: "Burn depth layers" },
+  "heart-attack-pain-map": { basename: "heart-attack-pain-map", label: "Heart attack pain map" },
+  "anaphylaxis-injector": { basename: "anaphylaxis-injector", label: "Anaphylaxis auto-injector" },
+  "stroke-face-check": { basename: "stroke-face-check", label: "Stroke face check" },
+  "head-injury-cradle": { basename: "head-injury-cradle", label: "Head injury cradle" },
+  "heat-cooling-active": { basename: "heat-cooling-active", label: "Active cooling for heat illness" },
+  "hypothermia-insulation": { basename: "hypothermia-insulation", label: "Hypothermia insulation" },
+  "asthma-inhaler-spacer": { basename: "asthma-inhaler-spacer", label: "Asthma inhaler with spacer" },
+  "dehydration-rehydration": { basename: "dehydration-rehydration", label: "Rehydration" },
+  "dental-stabilization": { basename: "dental-stabilization", label: "Dental stabilization" },
+  "diabetic-hypo-sugar": { basename: "diabetic-hypo-sugar", label: "Diabetic hypoglycaemia — give sugar" },
+  "drowning-airway-check": { basename: "drowning-airway-check", label: "Drowning airway check" },
+  "electric-shock-scene-warning": { basename: "electric-shock-scene-warning", label: "Electric shock — scene warning" },
+  "eye-injury-flushing": { basename: "eye-injury-flushing", label: "Eye injury flushing" },
+  "fainting-leg-elevation": { basename: "fainting-leg-elevation", label: "Fainting — elevate legs" },
+  "mental-health-listening": { basename: "mental-health-listening", label: "Mental health — active listening" },
+  "nosebleed-management": { basename: "nosebleed-management", label: "Nosebleed management" },
+  "poisoning-container-check": { basename: "poisoning-container-check", label: "Poisoning — check the container" },
+  "shock-management-blanket": { basename: "shock-management-blanket", label: "Shock management — blanket" },
+  "spinal-inline-stabilization": { basename: "spinal-inline-stabilization", label: "Spinal in-line stabilization" },
+  "sprain-compression-wrap": { basename: "sprain-compression-wrap", label: "Sprain compression wrap" },
+  "sunburn-soothe-cool": { basename: "sunburn-soothe-cool", label: "Sunburn — soothe and cool" },
+  "infant-cpr-essentials": { basename: "infant-cpr-essentials", label: "Infant CPR essentials" },
+  "defib-pads-pediatric": { basename: "defib-pads-pediatric", label: "Paediatric defib pad placement" },
+  "spider-bite-check": { basename: "spider-bite-check", label: "Spider bite check" },
+  "anaphylaxis-positioning": { basename: "anaphylaxis-positioning", label: "Anaphylaxis positioning" },
+  "tourniquet-application": { basename: "tourniquet-application", label: "Tourniquet application" },
+  "infant-back-blows": { basename: "infant-back-blows", label: "Infant back blows" },
+  "choking-back-blows": { basename: "choking-back-blows", label: "Choking — back blows" },
+  "choking-abdominal-thrusts": { basename: "choking-abdominal-thrusts", label: "Choking — abdominal thrusts" },
+  "aed-device-anatomy": { basename: "aed-device-anatomy", label: "AED device anatomy" },
+  "recovery-position": { basename: "recovery-position", label: "Recovery position" },
+  "frostbite-rewarming": { basename: "frostbite-rewarming", label: "Frostbite rewarming" },
+  "button-battery-warning": { basename: "button-battery-warning", label: "Button battery warning" },
+  "marine-sting-vinegar": { basename: "marine-sting-vinegar", label: "Marine sting — vinegar" },
+  "seizure-protect-head": { basename: "seizure-protect-head", label: "Seizure — protect the head" },
+  "fracture-splint-immobilise": { basename: "fracture-splint-immobilise", label: "Fracture — splint and immobilise" },
 };
 
 interface IllustrationProps {
@@ -106,21 +105,30 @@ export default function Illustration({ name, title, className }: IllustrationPro
   // The remark directive passes `:::illustration[key]` as the `title` prop.
   // Also accept an explicit `name` attribute for `{name="..."}` usage.
   const key = (name ?? title ?? "").trim();
-  const Component = key ? REGISTRY[key] : undefined;
+  const entry = key ? REGISTRY[key] : undefined;
 
-  if (!Component) {
+  if (!entry) {
     return <IllustrationFallback name={key || "unknown"} />;
   }
 
+  const { basename, label } = entry;
+  const mobile = `/illustrations/mobile/${basename}-mobile.webp`;
+  const tablet = `/illustrations/tablet/${basename}-tablet.webp`;
+  const desktop = `/illustrations/desktop/${basename}-desktop.webp`;
+
   return (
     <figure className={cn("my-6 flex justify-center", className)}>
-      <Suspense
-        fallback={
-          <div className="h-40 w-full max-w-md animate-pulse rounded-2xl bg-muted" />
-        }
-      >
-        <Component className="w-full max-w-md mx-auto" />
-      </Suspense>
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={desktop} type="image/webp" />
+        <source media="(min-width: 640px)" srcSet={tablet} type="image/webp" />
+        <img
+          src={mobile}
+          alt={label}
+          loading="lazy"
+          decoding="async"
+          className="w-full max-w-md mx-auto h-auto rounded-2xl"
+        />
+      </picture>
     </figure>
   );
 }
