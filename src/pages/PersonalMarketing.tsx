@@ -59,7 +59,7 @@ const TIERS = [
     popular: false,
     features: [
       "Everything in Household 3-Pack",
-      "Ideal for larger families",
+      "Ideal for larger groups",
       "Save AU$35 vs. individual licences",
       "Priority email support",
     ],
