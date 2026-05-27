@@ -56,16 +56,13 @@ export default function Courses() {
               <Link key={c.id} to={`/topics/${c.slug}`} className="block group">
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative">
-                    {(() => {
-                      const src = KB_COVERS.has(c.slug) ? `/kb-covers/${c.slug}.webp` : c.cover_url;
-                      return src ? (
-                        <img src={src} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-                          <BookOpen className="h-12 w-12 text-primary/40" />
-                        </div>
-                      );
-                    })()}
+                    {c.cover_url ? (
+                      <img src={c.cover_url} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+                        <BookOpen className="h-12 w-12 text-primary/40" />
+                      </div>
+                    )}
                   </div>
                   <div className="p-5">
                     <div className="flex gap-2 mb-2">
