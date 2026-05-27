@@ -507,12 +507,23 @@ export default function CprGuide() {
 
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">When to stop</h4>
+                  <Illustration name="recovery-position" />
                   <ul className="list-disc pl-5 space-y-1">
-                    <li>The person starts breathing normally.</li>
+                    <li>The person starts breathing normally — place them in the <Link to="/kb/recovery-position" className="text-primary hover:underline">recovery position</Link>.</li>
                     <li>A paramedic or doctor takes over.</li>
                     <li>An AED tells you to stand clear (resume immediately if prompted).</li>
                     <li>You are physically exhausted and no one can take over.</li>
                   </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Pair CPR with an AED</h4>
+                  <Illustration name="defib-pads" />
+                  <p>
+                    As soon as a defibrillator arrives, bare the chest and apply the pads —
+                    one upper right, one lower left. Follow the voice prompts and resume
+                    compressions immediately when told to.
+                  </p>
                 </div>
 
                 <p className="text-xs text-muted-foreground pt-1 border-t border-border">
