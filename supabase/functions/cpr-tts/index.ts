@@ -2,7 +2,7 @@
 // Returns MP3 audio bytes for a given text + language.
 // On rate-limit / upstream failure, returns JSON { fallback: true } with 200
 // so the client can gracefully fall back to the browser SpeechSynthesis API.
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+// Public endpoint: no auth required (the CPR page is public).
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
