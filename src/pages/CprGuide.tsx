@@ -342,6 +342,21 @@ export default function CprGuide() {
 
           {isCpr && (
             <div className="space-y-4" id="start-cpr">
+              {/* Quick Action Buttons */}
+              <div className="flex items-center justify-center gap-3">
+                <a
+                  href="#adult-cpr"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-destructive text-destructive-foreground font-semibold text-sm shadow-sm hover:bg-destructive/90 transition-colors"
+                >
+                  <HeartPulse className="h-4 w-4" /> Adult CPR
+                </a>
+                <a
+                  href="#infant-cpr"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground font-semibold text-sm shadow-sm hover:bg-primary/90 transition-colors"
+                >
+                  <HeartPulse className="h-4 w-4" /> Infant CPR
+                </a>
+              </div>
               <div className="flex flex-col items-center py-4">
                 <div className="relative h-44 w-44 sm:h-52 sm:w-52 flex items-center justify-center">
                   <div
