@@ -17,6 +17,7 @@ import { SeoHead } from "@/components/SeoHead";
 import CoursesHeader from "@/components/CoursesHeader";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
+import { optimizeSupabaseImage } from "@/lib/imageOptimization";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
 import { useNavigate } from "react-router-dom";
 
@@ -93,12 +94,21 @@ type TopicCard = {
   duration_minutes: number;
 };
 
+type CourseCard = {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string | null;
+  cover_url: string | null;
+};
+
 export default function PersonalMarketing() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const startHref = user ? "/programs" : "/auth?redirect=/programs";
   const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
   const [topics, setTopics] = useState<TopicCard[]>([]);
+  const [courses, setCourses] = useState<CourseCard[]>([]);
 
   const handleBuy = (priceId: string) => {
     if (!user) {
@@ -121,12 +131,24 @@ export default function PersonalMarketing() {
       .eq("is_published", true)
       .order("sort_order", { ascending: true })
       .then(({ data }) => setTopics((data as TopicCard[]) ?? []));
+    supabase
+      .from("programs")
+      .select("id,slug,title,summary,cover_url")
+      .eq("is_published", true)
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => setCourses((data as CourseCard[]) ?? []));
   }, []);
 
   const topicsWithCovers = topics.filter((t) => !!t.cover_url);
-  const marqueeTrack =
+  const topicsTrack =
     topicsWithCovers.length > 0
       ? [...topicsWithCovers, ...topicsWithCovers, ...topicsWithCovers]
+      : [];
+
+  const coursesWithCovers = courses.filter((c) => !!c.cover_url);
+  const coursesTrack =
+    coursesWithCovers.length > 0
+      ? [...coursesWithCovers, ...coursesWithCovers, ...coursesWithCovers]
       : [];
 
   return (
@@ -169,68 +191,67 @@ export default function PersonalMarketing() {
           </p>
         </div>
 
-        {/* Auto-scrolling topic marquee */}
-        {marqueeTrack.length > 0 && (
+        {/* Auto-scrolling courses marquee (programs) */}
+        {coursesTrack.length > 0 && (
           <div
-            id="topics-marquee"
+            id="courses-marquee"
             className="relative pb-12 pt-2 overflow-hidden scroll-mt-24"
-            aria-label="Browse first aid topics"
+            aria-label="Browse first aid courses"
           >
             <style>{`
-              @keyframes topicsMarquee {
+              @keyframes coursesMarquee {
                 from { transform: translateX(0); }
                 to { transform: translateX(-33.3333%); }
               }
-              .topics-marquee-track {
-                animation: topicsMarquee 60s linear infinite;
+              .courses-marquee-track {
+                animation: coursesMarquee 60s linear infinite;
                 width: max-content;
               }
-              .topics-marquee-track:hover { animation-play-state: paused; }
+              .courses-marquee-track:hover { animation-play-state: paused; }
               @media (prefers-reduced-motion: reduce) {
-                .topics-marquee-track { animation: none; }
+                .courses-marquee-track { animation: none; }
               }
             `}</style>
             <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#F7F7F7] to-transparent z-10" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-card to-transparent z-10" />
-            <div className="flex topics-marquee-track gap-4 px-4">
-              {marqueeTrack.map((c, i) => {
+            <div className="flex courses-marquee-track gap-4 px-4">
+              {coursesTrack.map((c, i) => {
                 const isEager = i < 3;
                 return (
                 <Link
                   key={`${c.id}-${i}`}
-                  to={`/topics/${c.slug}`}
+                  to={`/programs/${c.slug}`}
                   className="block group shrink-0 w-64"
                 >
                   <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow bg-card">
                     <div className="aspect-video bg-muted relative">
                       {c.cover_url ? (
                         <img
-                          src={c.cover_url}
+                          src={optimizeSupabaseImage(c.cover_url, 512)}
                           alt={c.title}
+                          width={512}
+                          height={288}
                           className="w-full h-full object-cover"
                           loading={isEager ? "eager" : "lazy"}
                           decoding="async"
+                          fetchPriority={i === 0 ? "high" : isEager ? "auto" : "low"}
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-                          <BookOpen className="h-12 w-12 text-primary/40" />
+                          <BookOpen className="h-10 w-10 text-primary/40" />
                         </div>
                       )}
                     </div>
-
                     <div className="p-4 text-left">
                       <div className="flex gap-1.5 mb-2 flex-wrap">
-                        <Badge variant="secondary" className="capitalize text-[10px]">
-                          {c.level}
-                        </Badge>
-                        <Badge variant="outline" className="gap-1 text-[10px]">
-                          <Clock className="h-3 w-3" />
-                          {c.duration_minutes}m
-                        </Badge>
+                        <Badge variant="secondary" className="text-[10px]">Course</Badge>
                       </div>
                       <h3 className="font-display font-bold text-sm leading-snug group-hover:text-primary line-clamp-2">
                         {c.title}
                       </h3>
+                      {c.summary && (
+                        <p className="text-xs text-muted-foreground line-clamp-2 mt-1">{c.summary}</p>
+                      )}
                     </div>
                   </Card>
                 </Link>
@@ -351,6 +372,85 @@ export default function PersonalMarketing() {
           </Link>
         </Button>
       </section>
+
+      {/* Topics marquee (moved to footer) */}
+      {topicsTrack.length > 0 && (
+        <section
+          id="topics-marquee"
+          className="relative py-12 overflow-hidden border-t bg-[#F7F7F7] scroll-mt-24"
+          aria-label="Browse first aid topics"
+        >
+          <div className="container max-w-6xl mx-auto px-4 mb-6 text-center">
+            <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">
+              Explore first aid topics
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Quick-reference guides included with every licence.
+            </p>
+          </div>
+          <style>{`
+            @keyframes topicsMarquee {
+              from { transform: translateX(0); }
+              to { transform: translateX(-33.3333%); }
+            }
+            .topics-marquee-track {
+              animation: topicsMarquee 60s linear infinite;
+              width: max-content;
+            }
+            .topics-marquee-track:hover { animation-play-state: paused; }
+            @media (prefers-reduced-motion: reduce) {
+              .topics-marquee-track { animation: none; }
+            }
+          `}</style>
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#F7F7F7] to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#F7F7F7] to-transparent z-10" />
+          <div className="flex topics-marquee-track gap-4 px-4">
+            {topicsTrack.map((c, i) => {
+              const isEager = i < 3;
+              return (
+              <Link
+                key={`${c.id}-${i}`}
+                to={`/topics/${c.slug}`}
+                className="block group shrink-0 w-64"
+              >
+                <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow bg-card">
+                  <div className="aspect-video bg-muted relative">
+                    {c.cover_url ? (
+                      <img
+                        src={c.cover_url}
+                        alt={c.title}
+                        className="w-full h-full object-cover"
+                        loading={isEager ? "eager" : "lazy"}
+                        decoding="async"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+                        <BookOpen className="h-12 w-12 text-primary/40" />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="p-4 text-left">
+                    <div className="flex gap-1.5 mb-2 flex-wrap">
+                      <Badge variant="secondary" className="capitalize text-[10px]">
+                        {c.level}
+                      </Badge>
+                      <Badge variant="outline" className="gap-1 text-[10px]">
+                        <Clock className="h-3 w-3" />
+                        {c.duration_minutes}m
+                      </Badge>
+                    </div>
+                    <h3 className="font-display font-bold text-sm leading-snug group-hover:text-primary line-clamp-2">
+                      {c.title}
+                    </h3>
+                  </div>
+                </Card>
+              </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
