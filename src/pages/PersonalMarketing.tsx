@@ -252,11 +252,15 @@ export default function PersonalMarketing() {
                           fetchPriority={i === 0 ? "high" : isEager ? "auto" : "low"}
                         />
                       ) : (
-                        <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-                          <BookOpen className="h-10 w-10 text-primary/40" />
+                        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10 text-primary p-4">
+                          <TopicIllustration
+                            slug={COURSE_TO_KB[c.slug] ?? c.slug}
+                            className="!my-0 !p-0 !border-0 !bg-transparent w-full"
+                          />
                         </div>
                       )}
                     </div>
+
                     <div className="p-4 text-left">
                       <div className="flex gap-1.5 mb-2 flex-wrap">
                         <Badge variant="secondary" className="capitalize text-[10px]">
