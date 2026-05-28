@@ -84,11 +84,13 @@ export default function EmployerMarketing() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SeoHead
         lang="en"
         basePath="/employer"
         title="Free Team First Aid Training + Bulk CPD Certificates | First Aid Angel"
         description="Give your whole team free St John Australian First Aid 5th Edition training. Buy CPD-certified certificate credits in bulk — from AU$25 each in workforce packs."
       />
+
       <CoursesHeader />
 
       {/* Hero */}
