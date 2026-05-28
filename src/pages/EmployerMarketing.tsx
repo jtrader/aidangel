@@ -21,21 +21,22 @@ type CourseCard = {
 };
 
 const TIERS = [
-  { name: "Starter", priceId: "employer_starter_seat_annual", perSeat: true, price: "AU$29", unit: "/ seat / year", seats: "Up to 10 seats", popular: false,
-    features: ["Bulk CSV import", "Course assignments", "Compliance dashboard", "Email invitations"] },
-  { name: "Team 25", priceId: "employer_team_25_annual", perSeat: false, price: "AU$625", unit: "flat / year", seats: "25 seats included", popular: true,
-    features: ["Everything in Starter", "CPD-certified branded certificates", "Manager roles", "CSV / PDF reports"] },
-  { name: "Team 50", priceId: "employer_team_50_annual", perSeat: false, price: "AU$1,250", unit: "flat / year", seats: "50 seats included", popular: false,
+  { name: "Starter Pack", priceId: "employer_starter_seat_annual", perSeat: true, price: "AU$29", unit: "/ credit", seats: "Per-credit pricing (1–10)", popular: false,
+    features: ["Bulk CSV import of your team", "Assign courses to anyone", "Compliance dashboard", "CPD-certified certificate per credit"] },
+  { name: "Team 25", priceId: "employer_team_25_annual", perSeat: false, price: "AU$625", unit: "flat / year", seats: "25 certificate credits ($25 ea)", popular: true,
+    features: ["Everything in Starter", "25 CPD-certified branded certificates", "Manager roles", "CSV / PDF reports"] },
+  { name: "Team 50", priceId: "employer_team_50_annual", perSeat: false, price: "AU$1,250", unit: "flat / year", seats: "50 certificate credits ($25 ea)", popular: false,
     features: ["Everything in Team 25", "Priority support", "Audit log access"] },
-  { name: "Workplace", priceId: "employer_workplace_annual", perSeat: false, price: "AU$1,500", unit: "/ year", seats: "Unlimited seats", popular: false,
-    features: ["Everything in Team 50", "SAML SSO (Okta, Azure AD)", "Custom join code"] },
+  { name: "Workplace Unlimited", priceId: "employer_workplace_annual", perSeat: false, price: "AU$1,500", unit: "/ year", seats: "Unlimited certificate credits", popular: false,
+    features: ["Everything in Team 50", "Unlimited CPD certificates for your team", "SAML SSO (Okta, Azure AD)", "Custom join code"] },
 ];
 
 const FEATURES = [
-  { icon: Upload, title: "Bulk import in minutes", body: "Upload a CSV of your team and we'll invite everyone, auto-link them when they sign up, and pre-assign their courses." },
+  { icon: Upload, title: "All courses free for your team", body: "Every learner gets free access to the full St John Australian First Aid 5th Edition library. You only pay for CPD certificates when staff complete and need proof." },
   { icon: BarChart3, title: "Live compliance tracking", body: "See who's done, who's overdue, and who needs a nudge. Export CSV/PDF for audits anytime." },
-  { icon: ShieldCheck, title: "St John Australian First Aid 5th Ed.", body: "Every learner gets the same evidence-based content used across our public courses, with a CPD-certified branded certificate." },
+  { icon: ShieldCheck, title: "CPD certificate credits in bulk", body: "Buy credit packs and assign one CPD-certified branded certificate to each learner who passes — at a much better rate than the individual AU$29 price." },
 ];
+
 
 export default function EmployerMarketing() {
   const { user } = useAuth();
