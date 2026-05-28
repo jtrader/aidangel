@@ -41,6 +41,7 @@ import AedIndex from "./pages/AedIndex";
 import AedCountry from "./pages/AedCountry";
 import AedCity from "./pages/AedCity";
 import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
 import CourseLesson from "./pages/CourseLesson";
