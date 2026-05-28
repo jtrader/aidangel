@@ -51,7 +51,7 @@ export default function EmployerMarketing() {
     }
     let quantity = 1;
     if (tier.perSeat) {
-      const input = window.prompt("How many seats? (1–10)", "5");
+      const input = window.prompt("How many certificate credits? (1–10)", "5");
       if (!input) return;
       const n = Math.max(1, Math.min(10, parseInt(input, 10) || 0));
       if (!n) return;
