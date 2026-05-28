@@ -54,15 +54,17 @@ function countryFlag(code: string | null): string {
 }
 
 function AuthPanel({ onAuthed }: { onAuthed: () => void }) {
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [mode, setMode] = useState<"signin" | "signup" | "forgot">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setInfo(null);
     setLoading(true);
     try {
       if (mode === "signup") {
@@ -72,11 +74,17 @@ function AuthPanel({ onAuthed }: { onAuthed: () => void }) {
           options: { emailRedirectTo: redirectTo },
         });
         if (error) throw error;
+      } else if (mode === "forgot") {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/reset-password`,
+        });
+        if (error) throw error;
+        setInfo("If an account exists for that email, a reset link has been sent.");
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        onAuthed();
       }
-      onAuthed();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Authentication failed");
     } finally {
@@ -87,7 +95,9 @@ function AuthPanel({ onAuthed }: { onAuthed: () => void }) {
   return (
     <Card className="max-w-md mx-auto mt-12">
       <CardHeader>
-        <CardTitle>Admin sign in</CardTitle>
+        <CardTitle>
+          {mode === "forgot" ? "Reset password" : mode === "signup" ? "Create admin account" : "Admin sign in"}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={submit} className="space-y-3">
@@ -95,21 +105,31 @@ function AuthPanel({ onAuthed }: { onAuthed: () => void }) {
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
-          <div>
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
+          {mode !== "forgot" && (
+            <div>
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+          )}
           {error && <p className="text-sm text-destructive">{error}</p>}
+          {info && <p className="text-sm text-emerald-600">{info}</p>}
           <Button type="submit" disabled={loading} className="w-full">
-            {loading ? "…" : mode === "signin" ? "Sign in" : "Create account"}
+            {loading ? "…" : mode === "signin" ? "Sign in" : mode === "signup" ? "Create account" : "Send reset link"}
           </Button>
-          <button
-            type="button"
-            className="text-xs text-muted-foreground hover:underline w-full text-center"
-            onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-          >
-            {mode === "signin" ? "Need an account? Sign up" : "Have an account? Sign in"}
-          </button>
+          <div className="flex justify-between text-xs">
+            {mode !== "forgot" ? (
+              <button type="button" className="text-muted-foreground hover:underline" onClick={() => { setMode("forgot"); setError(null); setInfo(null); }}>
+                Forgot password?
+              </button>
+            ) : <span />}
+            <button
+              type="button"
+              className="text-muted-foreground hover:underline"
+              onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setError(null); setInfo(null); }}
+            >
+              {mode === "signin" ? "Need an account? Sign up" : mode === "signup" ? "Have an account? Sign in" : "Back to sign in"}
+            </button>
+          </div>
           <p className="text-[11px] text-muted-foreground text-center">
             The first user to sign up automatically becomes the admin.
           </p>
