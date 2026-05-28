@@ -386,9 +386,7 @@ export default function PersonalMarketing() {
         </Button>
       </section>
 
-          </Link>
-        </Button>
-      </section>
+
 
       {/* Topics marquee (moved to footer) */}
       {topicsTrack.length > 0 && (
