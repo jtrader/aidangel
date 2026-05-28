@@ -24,8 +24,6 @@ import { useNavigate } from "react-router-dom";
 
 const TIERS = [
   {
-const TIERS = [
-  {
     name: "Single Credit",
     priceId: "personal_individual_annual",
     price: "AU$25",
@@ -87,24 +85,6 @@ const FEATURES = [
   },
 ];
 
-
-const FEATURES = [
-  {
-    icon: BookOpen,
-    title: "Learn at your own pace",
-    body: "Bite-sized lessons covering CPR, choking, bleeding, burns and more. Pause and resume anytime, on any device.",
-  },
-  {
-    icon: Award,
-    title: "Earn a CPD-certified certificate",
-    body: "Complete the course and quizzes to download a CPD-certified personal certificate of completion based on St John Australian First Aid 5th Edition.",
-  },
-  {
-    icon: HeartPulse,
-    title: "Be ready when it matters",
-    body: "Practice with our Live CPR Guide, AED Finder and step-by-step emergency walkthroughs — designed for real-world moments.",
-  },
-];
 
 type TopicCard = {
   id: string;
