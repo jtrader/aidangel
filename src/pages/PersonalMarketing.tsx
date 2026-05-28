@@ -372,19 +372,20 @@ export default function PersonalMarketing() {
           </div>
         </Card>
       </section>
-
-      {/* Final CTA */}
       <section className="container max-w-3xl mx-auto px-4 py-16 text-center">
         <h2 className="font-display text-3xl font-bold mb-4">
-          Ready to start learning?
+          Ready to start learning — for free?
         </h2>
         <p className="text-muted-foreground mb-6">
-          Join thousands of people building life-saving skills with First Aid
-          Angel .
+          All courses are 100% free. Pay only when you want your CPD-certified certificate of completion.
         </p>
         <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
           <Link to={startHref}>
-            Get your licence <ArrowRight className="h-4 w-4 ml-2" />
+            Start learning free <ArrowRight className="h-4 w-4 ml-2" />
+          </Link>
+        </Button>
+      </section>
+
           </Link>
         </Button>
       </section>
