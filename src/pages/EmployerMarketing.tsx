@@ -224,8 +224,8 @@ export default function EmployerMarketing() {
       <section className="bg-[#F7F7F7] border-y">
         <div className="container max-w-6xl mx-auto px-4 py-16">
           <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-3">Simple, seat-based pricing</h2>
-            <p className="text-muted-foreground">All prices in AUD. Cancel anytime.</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-3">CPD certificate credit packs</h2>
+            <p className="text-muted-foreground">All courses free. Buy credits in bulk — assign one per learner who passes.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {TIERS.map((t) => (
