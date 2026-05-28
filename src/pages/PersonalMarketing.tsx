@@ -337,7 +337,8 @@ export default function PersonalMarketing() {
                   variant={t.popular ? "default" : "outline"}
                   disabled={checkoutLoading}
                   onClick={() => handleBuy(t.priceId)}
-                >
+                  {checkoutLoading ? "Loading…" : "Buy credit pack"}
+
                   {checkoutLoading ? "Loading…" : "Get started"}
                 </Button>
               </Card>
