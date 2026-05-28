@@ -12,6 +12,52 @@ function getSupabase() {
   return _supabase;
 }
 
+// price_id → certificate credits granted per unit purchased
+const CREDIT_MAP: Record<string, number> = {
+  certificate_single: 1,
+  personal_individual_annual: 1,
+  personal_family_annual: 3,
+  personal_family_plus_annual: 5,
+  employer_starter_seat_annual: 1, // per seat (uses quantity)
+  employer_team_25_annual: 25,
+  employer_team_50_annual: 50,
+};
+const UNLIMITED_PRICE_IDS = new Set(['employer_workplace_annual']);
+
+async function grantCredits(
+  userId: string,
+  priceId: string,
+  quantity: number,
+  env: PaddleEnv,
+) {
+  const supabase = getSupabase();
+  const unlimited = UNLIMITED_PRICE_IDS.has(priceId);
+  const perUnit = CREDIT_MAP[priceId] ?? 0;
+  const add = unlimited ? 0 : perUnit * Math.max(1, quantity);
+  if (!unlimited && add <= 0) return;
+
+  const { data: existing } = await supabase
+    .from('certificate_credits')
+    .select('balance, unlimited')
+    .eq('user_id', userId)
+    .eq('environment', env)
+    .maybeSingle();
+
+  const nextBalance = (existing?.balance ?? 0) + add;
+  const nextUnlimited = (existing?.unlimited ?? false) || unlimited;
+
+  await supabase.from('certificate_credits').upsert(
+    {
+      user_id: userId,
+      balance: nextBalance,
+      unlimited: nextUnlimited,
+      environment: env,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id' },
+  );
+}
+
 async function handleSubscriptionCreated(data: any, env: PaddleEnv) {
   const { id, customerId, items, status, currentBillingPeriod, customData } = data;
 
@@ -24,6 +70,7 @@ async function handleSubscriptionCreated(data: any, env: PaddleEnv) {
   const item = items[0];
   const priceId = item.price?.importMeta?.externalId;
   const productId = item.product?.importMeta?.externalId;
+  const quantity = item.quantity ?? 1;
   if (!priceId || !productId) {
     console.warn('Skipping subscription: missing importMeta.externalId', {
       rawPriceId: item.price?.id,
@@ -47,6 +94,8 @@ async function handleSubscriptionCreated(data: any, env: PaddleEnv) {
     },
     { onConflict: 'paddle_subscription_id' },
   );
+
+  await grantCredits(userId, priceId, quantity, env);
 }
 
 async function handleSubscriptionUpdated(data: any, env: PaddleEnv) {
@@ -72,6 +121,22 @@ async function handleSubscriptionCanceled(data: any, env: PaddleEnv) {
     .eq('environment', env);
 }
 
+async function handleTransactionCompleted(data: any, env: PaddleEnv) {
+  // Used for one-off purchases (e.g. certificate_single). Subscription creates
+  // already grant credits via handleSubscriptionCreated, so we only act on
+  // transactions with no subscription_id to avoid double-granting.
+  if (data.subscriptionId) return;
+
+  const userId = data.customData?.userId;
+  if (!userId) return;
+
+  for (const item of data.items ?? []) {
+    const priceId = item.price?.importMeta?.externalId;
+    if (!priceId) continue;
+    await grantCredits(userId, priceId, item.quantity ?? 1, env);
+  }
+}
+
 async function handleWebhook(req: Request, env: PaddleEnv) {
   const event = await verifyWebhook(req, env);
   switch (event.eventType) {
@@ -83,6 +148,9 @@ async function handleWebhook(req: Request, env: PaddleEnv) {
       break;
     case EventName.SubscriptionCanceled:
       await handleSubscriptionCanceled(event.data, env);
+      break;
+    case EventName.TransactionCompleted:
+      await handleTransactionCompleted(event.data, env);
       break;
     default:
       console.log('Unhandled event:', event.eventType);
