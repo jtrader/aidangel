@@ -24,17 +24,19 @@ import { useNavigate } from "react-router-dom";
 
 const TIERS = [
   {
-    name: "Single Licence",
+const TIERS = [
+  {
+    name: "Single Credit",
     priceId: "personal_individual_annual",
     price: "AU$25",
-    unit: "/ licence / year",
-    seats: "1 learner",
+    unit: "/ year",
+    seats: "1 certificate credit (save $4)",
     popular: false,
     features: [
-      "Full St John Australian First Aid 5th Ed. course library",
-      "Interactive quizzes & progress tracking",
-      "CPD-certified personal completion certificate",
-      "Lifetime access to updates for the year",
+      "1 CPD-certified certificate credit",
+      "Use it on any course once you pass the quiz",
+      "Cheaper than buying a single certificate on its own",
+      "Credit valid for 12 months",
     ],
   },
   {
@@ -42,13 +44,13 @@ const TIERS = [
     priceId: "personal_family_annual",
     price: "AU$60",
     unit: "/ year",
-    seats: "3 licences",
+    seats: "3 certificate credits ($20 ea)",
     popular: true,
     features: [
-      "Everything in Single Licence",
+      "3 CPD-certified certificate credits",
       "Share with colleagues, friends or family",
-      "Save $15 vs. individual licences",
-      "Individual CPD-certified certificates for each learner",
+      "Save $27 vs. buying single certificates",
+      "Credits valid for 12 months",
     ],
   },
   {
@@ -56,16 +58,35 @@ const TIERS = [
     priceId: "personal_family_plus_annual",
     price: "AU$90",
     unit: "/ year",
-    seats: "5 licences",
+    seats: "5 certificate credits ($18 ea)",
     popular: false,
     features: [
-      "Everything in Household 3-Pack",
+      "5 CPD-certified certificate credits",
       "Ideal for larger groups",
-      "Save AU$35 vs. individual licences",
+      "Save $55 vs. buying single certificates",
       "Priority email support",
     ],
   },
 ];
+
+const FEATURES = [
+  {
+    icon: BookOpen,
+    title: "All courses are free, forever",
+    body: "Watch the lessons, take the quizzes, and use the Live CPR Guide and AED Finder — no payment, no sign-up wall. Pay only when you want a CPD certificate.",
+  },
+  {
+    icon: Award,
+    title: "CPD certificate on completion — AU$29",
+    body: "Pass the quiz and unlock a CPD-certified personal certificate of completion based on the St John Australian First Aid 5th Edition. Buy a single certificate or save with a credit pack below.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Be ready when it matters",
+    body: "Practice with our Live CPR Guide, AED Finder and step-by-step emergency walkthroughs — designed for real-world moments.",
+  },
+];
+
 
 const FEATURES = [
   {
