@@ -137,16 +137,237 @@ const FAQS = [
   },
 ];
 
+function HardcodedAbout() {
+  return (
+    <>
+      {/* Hero */}
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary text-primary-foreground mb-4 shadow-sm">
+          <Info className="h-7 w-7" />
+        </div>
+        <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
+          About
+        </p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+          First Aid Angel
+        </h1>
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          A free, offline-capable AI first aid companion — built to{" "}
+          <strong className="text-foreground">educate</strong>,{" "}
+          <strong className="text-foreground">prevent</strong> and{" "}
+          <strong className="text-foreground">aid</strong> in emergency
+          situations.
+        </p>
+      </div>
+
+      {/* Purpose */}
+      <section className="bg-card border border-border rounded-2xl p-6 sm:p-8 mb-8">
+        <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+          <Sparkles className="h-6 w-6 text-primary" />
+          Our purpose
+        </h2>
+        <div className="space-y-4 text-foreground/90 leading-relaxed">
+          <p>
+            Every year, preventable deaths occur in the first few minutes of
+            an emergency — before paramedics arrive — simply because the
+            people on the scene don't know what to do. First Aid Angel exists
+            to close that gap.
+          </p>
+          <ul className="space-y-2 pl-1">
+            <li className="flex gap-3">
+              <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <span>
+                <strong>Educate</strong> — make trustworthy first aid
+                knowledge available to anyone with a phone, in their own
+                language.
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <span>
+                <strong>Prevent</strong> — promote safe behaviour, hazard
+                awareness and early action that stops emergencies escalating.
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <span>
+                <strong>Aid</strong> — guide bystanders and trained
+                responders through the critical minutes before professional
+                help arrives.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Credentials & Sources */}
+      <section className="bg-card border border-border rounded-2xl p-6 sm:p-8 mb-8">
+        <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+          <ShieldCheck className="h-6 w-6 text-primary" />
+          Credentials &amp; sources
+        </h2>
+        <p className="text-foreground/90 leading-relaxed mb-5">
+          First Aid Angel's guidance is grounded in established, peer-reviewed
+          first aid and resuscitation literature. We do not invent medical
+          advice — we present current best-practice steps in plain language.
+        </p>
+        <ul className="space-y-3">
+          {SOURCES.map((s) => (
+            <li
+              key={s.name}
+              className="border border-border rounded-xl p-4 bg-background/50"
+            >
+              <p className="font-semibold text-foreground flex items-start gap-2">
+                <BookOpen className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
+                {s.name}
+              </p>
+              <p className="text-sm text-muted-foreground mt-1 pl-6">
+                {s.detail}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <p className="text-xs text-muted-foreground mt-5">
+          First Aid Angel is an educational tool. It is not a registered
+          medical device and does not provide medical diagnosis. In any
+          emergency, call your local emergency number (in Australia,{" "}
+          <a href="tel:000" className="text-primary font-semibold">
+            Triple Zero (000)
+          </a>
+          ).
+        </p>
+      </section>
+
+      {/* Offline app vs no training */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+          <WifiOff className="h-6 w-6 text-primary" />
+          Offline app vs. no first aid education
+        </h2>
+        <p className="text-muted-foreground mb-5">
+          Why having a first aid app on your phone matters — even if you've
+          never taken a course.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {APP_VS_NO_TRAINING.map((col) => {
+            const Icon = col.icon;
+            const tone =
+              col.tone === "positive"
+                ? "border-primary/30 bg-primary/5"
+                : "border-destructive/30 bg-destructive/5";
+            const iconTone =
+              col.tone === "positive" ? "text-primary" : "text-destructive";
+            return (
+              <div
+                key={col.label}
+                className={`border rounded-2xl p-5 ${tone}`}
+              >
+                <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
+                  <Icon className={`h-5 w-5 ${iconTone}`} />
+                  {col.label}
+                </h3>
+                <ul className="space-y-2 text-sm text-foreground/90">
+                  {col.pros.map((p) => (
+                    <li key={p} className="flex gap-2">
+                      <span className={`mt-1 ${iconTone}`}>•</span>
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* AI vs Traditional */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
+          <Sparkles className="h-6 w-6 text-primary" />
+          AI first aid vs. traditional resources
+        </h2>
+        <p className="text-muted-foreground mb-5">
+          The two work best together — here's how they compare.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {AI_VS_TRADITIONAL.map((col) => (
+            <div
+              key={col.label}
+              className="border border-border rounded-2xl p-5 bg-card"
+            >
+              <h3 className="font-bold text-foreground mb-3">{col.label}</h3>
+              <ul className="space-y-2 text-sm text-foreground/90">
+                {col.points.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <span className="mt-1 text-primary">•</span>
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-card border border-border rounded-2xl p-6 sm:p-8 mb-8">
+        <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+          <HelpCircle className="h-6 w-6 text-primary" />
+          Frequently asked questions
+        </h2>
+        <Accordion type="single" collapsible className="w-full">
+          {FAQS.map((f, i) => (
+            <AccordionItem key={f.q} value={`item-${i}`}>
+              <AccordionTrigger className="text-left text-base font-semibold">
+                {f.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-foreground/90 leading-relaxed">
+                {f.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </section>
+
+      {/* JSON-LD FAQ schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: FAQS.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: f.a,
+              },
+            })),
+          }),
+        }}
+      />
+    </>
+  );
+}
+
 export default function About() {
   const { language } = useLanguage();
+  const { page, loading } = useCmsPage("about");
+
+  const seoTitle = page?.title ?? "About First Aid Angel · Sources, Purpose & FAQ";
+  const seoDesc =
+    page?.description ??
+    "Learn about First Aid Angel — our credentials, sources, mission to educate and aid in emergencies, and how an offline AI first aid app compares to traditional resources.";
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SeoHead
         lang={language}
         basePath="/about"
-        title="About First Aid Angel · Sources, Purpose & FAQ"
-        description="Learn about First Aid Angel — our credentials, sources, mission to educate and aid in emergencies, and how an offline AI first aid app compares to traditional resources."
+        title={seoTitle}
+        description={seoDesc}
       />
 
       <header className="border-b border-border bg-card">
@@ -164,214 +385,11 @@ export default function About() {
 
       <main className="flex-1 px-4 py-10">
         <div className="max-w-4xl mx-auto">
-          {/* Hero */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary text-primary-foreground mb-4 shadow-sm">
-              <Info className="h-7 w-7" />
-            </div>
-            <p className="text-xs font-bold uppercase tracking-wider text-primary mb-2">
-              About
-            </p>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-              First Aid Angel
-            </h1>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              A free, offline-capable AI first aid companion — built to{" "}
-              <strong className="text-foreground">educate</strong>,{" "}
-              <strong className="text-foreground">prevent</strong> and{" "}
-              <strong className="text-foreground">aid</strong> in emergency
-              situations.
-            </p>
-          </div>
-
-          {/* Purpose */}
-          <section className="bg-card border border-border rounded-2xl p-6 sm:p-8 mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-              <Sparkles className="h-6 w-6 text-primary" />
-              Our purpose
-            </h2>
-            <div className="space-y-4 text-foreground/90 leading-relaxed">
-              <p>
-                Every year, preventable deaths occur in the first few minutes of
-                an emergency — before paramedics arrive — simply because the
-                people on the scene don't know what to do. First Aid Angel exists
-                to close that gap.
-              </p>
-              <ul className="space-y-2 pl-1">
-                <li className="flex gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Educate</strong> — make trustworthy first aid
-                    knowledge available to anyone with a phone, in their own
-                    language.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Prevent</strong> — promote safe behaviour, hazard
-                    awareness and early action that stops emergencies escalating.
-                  </span>
-                </li>
-                <li className="flex gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Aid</strong> — guide bystanders and trained
-                    responders through the critical minutes before professional
-                    help arrives.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          {/* Credentials & Sources */}
-          <section className="bg-card border border-border rounded-2xl p-6 sm:p-8 mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-              <ShieldCheck className="h-6 w-6 text-primary" />
-              Credentials &amp; sources
-            </h2>
-            <p className="text-foreground/90 leading-relaxed mb-5">
-              First Aid Angel's guidance is grounded in established, peer-reviewed
-              first aid and resuscitation literature. We do not invent medical
-              advice — we present current best-practice steps in plain language.
-            </p>
-            <ul className="space-y-3">
-              {SOURCES.map((s) => (
-                <li
-                  key={s.name}
-                  className="border border-border rounded-xl p-4 bg-background/50"
-                >
-                  <p className="font-semibold text-foreground flex items-start gap-2">
-                    <BookOpen className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
-                    {s.name}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1 pl-6">
-                    {s.detail}
-                  </p>
-                </li>
-              ))}
-            </ul>
-            <p className="text-xs text-muted-foreground mt-5">
-              First Aid Angel is an educational tool. It is not a registered
-              medical device and does not provide medical diagnosis. In any
-              emergency, call your local emergency number (in Australia,{" "}
-              <a href="tel:000" className="text-primary font-semibold">
-                Triple Zero (000)
-              </a>
-              ).
-            </p>
-          </section>
-
-          {/* Offline app vs no training */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
-              <WifiOff className="h-6 w-6 text-primary" />
-              Offline app vs. no first aid education
-            </h2>
-            <p className="text-muted-foreground mb-5">
-              Why having a first aid app on your phone matters — even if you've
-              never taken a course.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {APP_VS_NO_TRAINING.map((col) => {
-                const Icon = col.icon;
-                const tone =
-                  col.tone === "positive"
-                    ? "border-primary/30 bg-primary/5"
-                    : "border-destructive/30 bg-destructive/5";
-                const iconTone =
-                  col.tone === "positive" ? "text-primary" : "text-destructive";
-                return (
-                  <div
-                    key={col.label}
-                    className={`border rounded-2xl p-5 ${tone}`}
-                  >
-                    <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-                      <Icon className={`h-5 w-5 ${iconTone}`} />
-                      {col.label}
-                    </h3>
-                    <ul className="space-y-2 text-sm text-foreground/90">
-                      {col.pros.map((p) => (
-                        <li key={p} className="flex gap-2">
-                          <span className={`mt-1 ${iconTone}`}>•</span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* AI vs Traditional */}
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
-              <Sparkles className="h-6 w-6 text-primary" />
-              AI first aid vs. traditional resources
-            </h2>
-            <p className="text-muted-foreground mb-5">
-              The two work best together — here's how they compare.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {AI_VS_TRADITIONAL.map((col) => (
-                <div
-                  key={col.label}
-                  className="border border-border rounded-2xl p-5 bg-card"
-                >
-                  <h3 className="font-bold text-foreground mb-3">{col.label}</h3>
-                  <ul className="space-y-2 text-sm text-foreground/90">
-                    {col.points.map((p) => (
-                      <li key={p} className="flex gap-2">
-                        <span className="mt-1 text-primary">•</span>
-                        <span>{p}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* FAQ */}
-          <section className="bg-card border border-border rounded-2xl p-6 sm:p-8 mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-              <HelpCircle className="h-6 w-6 text-primary" />
-              Frequently asked questions
-            </h2>
-            <Accordion type="single" collapsible className="w-full">
-              {FAQS.map((f, i) => (
-                <AccordionItem key={f.q} value={`item-${i}`}>
-                  <AccordionTrigger className="text-left text-base font-semibold">
-                    {f.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-foreground/90 leading-relaxed">
-                    {f.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </section>
-
-          {/* JSON-LD FAQ schema */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                mainEntity: FAQS.map((f) => ({
-                  "@type": "Question",
-                  name: f.q,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: f.a,
-                  },
-                })),
-              }),
-            }}
-          />
+          {!loading && page?.is_published && page.blocks.length > 0 ? (
+            <CmsBlocksRenderer page={page} />
+          ) : (
+            <HardcodedAbout />
+          )}
         </div>
       </main>
 
