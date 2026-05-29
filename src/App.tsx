@@ -195,6 +195,12 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/checkout/success" element={<CheckoutSuccess />} />
                 <Route path="/test-renderer" element={<LessonRenderer />} />
 
+                {/* Legal */}
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/refund" element={<RefundPolicy />} />
+                <Route path="/medical-disclaimer" element={<MedicialDisclaimer />} />
+
                 {/* Localized */}
                 <Route
                   path="/:lang"
