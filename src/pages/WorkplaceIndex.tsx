@@ -6,6 +6,7 @@ import MentalHealthCallout from "@/components/MentalHealthCallout";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { VERTICALS, VERTICALS_BY_TIER } from "@/data/workplaceVerticals";
+import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
 const TIER_LABEL: Record<1 | 2 | 3, string> = {
   1: "Tier 1 — High-priority, high-risk verticals",
