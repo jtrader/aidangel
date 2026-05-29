@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Loader2, CheckCircle2, XCircle, ArrowLeft, Lock } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
+import NetworkFooter from "@/components/NetworkFooter";
 import { toast } from "sonner";
 
 export default function ProgramQuiz() {
@@ -67,7 +68,7 @@ export default function ProgramQuiz() {
   if (!program) return <div className="min-h-screen flex items-center justify-center">Course not found</div>;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
       <main className="container max-w-3xl mx-auto px-4 py-10">
         <button onClick={() => navigate(`/programs/${slug}`)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4 transition-colors">
@@ -129,6 +130,7 @@ export default function ProgramQuiz() {
           </div>
         )}
       </main>
+      <NetworkFooter />
     </div>
   );
 }

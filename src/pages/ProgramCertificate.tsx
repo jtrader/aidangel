@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Loader2, Award, Download, Lock } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
+import NetworkFooter from "@/components/NetworkFooter";
 import { toast } from "sonner";
 import { generateCertificatePdf } from "@/lib/certificate";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
@@ -117,7 +118,7 @@ export default function ProgramCertificate() {
   const hasCredit = credits?.unlimited || (credits?.balance ?? 0) > 0;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
       <main className="container max-w-2xl mx-auto px-4 py-10">
         <Card className="p-8 text-center rounded-2xl">
@@ -174,6 +175,7 @@ export default function ProgramCertificate() {
           )}
         </Card>
       </main>
+      <NetworkFooter />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useOrg } from "@/hooks/useOrg";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Building2 } from "lucide-react";
+import NetworkFooter from "@/components/NetworkFooter";
 
 interface OrgInfo {
   id: string;
@@ -89,29 +90,32 @@ export default function JoinOrg() {
   if (authLoading) return <div className="p-12 text-center text-muted-foreground">Loading…</div>;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 p-6">
-      <div className="max-w-md w-full bg-card rounded-2xl shadow-sm p-8 text-center space-y-4">
-        <Building2 className="h-10 w-10 mx-auto text-primary" />
-        {error ? (
-          <>
-            <h1 className="text-xl font-bold">Can't join</h1>
-            <p className="text-sm text-muted-foreground">{error}</p>
-            <Button variant="outline" onClick={() => navigate("/")}>Go home</Button>
-          </>
-        ) : !org ? (
-          <p className="text-muted-foreground">Checking link…</p>
-        ) : (
-          <>
-            <h1 className="text-2xl font-bold">Join {org.name}</h1>
-            <p className="text-sm text-muted-foreground">
-              {user ? `You'll be added as a learner.` : `Sign in or create an account to join.`}
-            </p>
-            <Button className="w-full" onClick={accept} disabled={busy}>
-              {busy ? "Joining…" : user ? "Accept & join" : "Sign in to join"}
-            </Button>
-          </>
-        )}
+    <div className="min-h-screen flex flex-col bg-muted/30">
+      <div className="flex-1 flex items-center justify-center p-6">
+        <div className="max-w-md w-full bg-card rounded-2xl shadow-sm p-8 text-center space-y-4">
+          <Building2 className="h-10 w-10 mx-auto text-primary" />
+          {error ? (
+            <>
+              <h1 className="text-xl font-bold">Can't join</h1>
+              <p className="text-sm text-muted-foreground">{error}</p>
+              <Button variant="outline" onClick={() => navigate("/")}>Go home</Button>
+            </>
+          ) : !org ? (
+            <p className="text-muted-foreground">Checking link…</p>
+          ) : (
+            <>
+              <h1 className="text-2xl font-bold">Join {org.name}</h1>
+              <p className="text-sm text-muted-foreground">
+                {user ? `You'll be added as a learner.` : `Sign in or create an account to join.`}
+              </p>
+              <Button className="w-full" onClick={accept} disabled={busy}>
+                {busy ? "Joining…" : user ? "Accept & join" : "Sign in to join"}
+              </Button>
+            </>
+          )}
+        </div>
       </div>
+      <NetworkFooter />
     </div>
   );
 }

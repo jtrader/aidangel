@@ -9,6 +9,7 @@ import { CheckCircle2, XCircle, Loader2, Award, Lock, Play } from "lucide-react"
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
 import CourseLayout from "@/components/CourseLayout";
+import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -78,6 +79,7 @@ export default function CourseQuiz() {
               <Play className="h-4 w-4 mr-2" /> Go to the video
             </Button>
           </main>
+          <NetworkFooter />
         </div>
       </CourseLayout>
     );
@@ -210,6 +212,7 @@ export default function CourseQuiz() {
           </div>
         )}
       </main>
+      <NetworkFooter />
     </div>
     </CourseLayout>
   );
