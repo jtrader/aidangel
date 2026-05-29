@@ -46,6 +46,7 @@ export function SeoHead({ lang, basePath, title, description, ogImage, jsonLd }:
       {desc ? <meta property="og:description" content={desc} /> : null}
       <meta property="og:url" content={canonical} />
       <meta property="og:locale" content={ogLocale} />
+      <meta name="google-site-verification" content="e0mjhVCjf457Cy5PuZFPCkt9XFfepknYoJttXqBePok" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={image} />
       <meta name="twitter:card" content="summary_large_image" />
