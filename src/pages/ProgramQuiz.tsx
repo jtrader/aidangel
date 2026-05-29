@@ -130,6 +130,7 @@ export default function ProgramQuiz() {
           </div>
         )}
       </main>
+      <NetworkFooter />
     </div>
   );
 }
