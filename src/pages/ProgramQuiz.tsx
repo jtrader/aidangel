@@ -7,12 +7,30 @@ import { Loader2, CheckCircle2, XCircle, ArrowLeft, Lock } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
+import { useUiStrings } from "@/hooks/useUiStrings";
 import { toast } from "sonner";
 
 export default function ProgramQuiz() {
   const { slug } = useParams<{ slug: string }>();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const tr = useUiStrings({
+    backToProgram: "Back to program",
+    finalQuiz: "Final quiz",
+    passMark: "Pass mark",
+    locked: "Final quiz locked",
+    lockedHint: "Pass all topic quizzes to unlock the program final quiz.",
+    passedLabel: "Passed!",
+    notQuite: "Not quite",
+    youScored: "You scored",
+    claimCertificate: "Claim certificate",
+    tryAgain: "Try again",
+    answerAll: "Please answer all questions",
+    submitting: "Submitting…",
+    submitAnswers: "Submit answers",
+    courseNotFound: "Course not found",
+    progress: "You've passed {n} of {total}.",
+  });
   const [program, setProgram] = useState<any>(null);
   const [questions, setQuestions] = useState<any[]>([]);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -49,7 +67,7 @@ export default function ProgramQuiz() {
   const submit = async () => {
     if (!user || !program) return;
     if (Object.keys(answers).length !== questions.length) {
-      toast.error("Please answer all questions");
+      toast.error(tr.answerAll);
       return;
     }
     setSubmitting(true);
@@ -65,26 +83,26 @@ export default function ProgramQuiz() {
   };
 
   if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>;
-  if (!program) return <div className="min-h-screen flex items-center justify-center">Course not found</div>;
+  if (!program) return <div className="min-h-screen flex items-center justify-center">{tr.courseNotFound}</div>;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
       <main className="container max-w-3xl mx-auto px-4 py-10">
         <button onClick={() => navigate(`/programs/${slug}`)} className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-4 transition-colors">
-          <ArrowLeft className="h-4 w-4" /> Back to program
+          <ArrowLeft className="h-4 w-4" /> {tr.backToProgram}
         </button>
-        <h1 className="font-display text-3xl font-bold mb-2">{program.title} — Final quiz</h1>
-        <p className="text-muted-foreground mb-6">Pass mark: {program.pass_mark}%</p>
+        <h1 className="font-display text-3xl font-bold mb-2">{program.title} — {tr.finalQuiz}</h1>
+        <p className="text-muted-foreground mb-6">{tr.passMark}: {program.pass_mark}%</p>
 
         {topicCount > 0 && topicsPassed < topicCount ? (
           <Card className="p-8 text-center rounded-2xl">
             <Lock className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-            <h2 className="font-display text-2xl font-bold mb-2">Final quiz locked</h2>
+            <h2 className="font-display text-2xl font-bold mb-2">{tr.locked}</h2>
             <p className="text-muted-foreground mb-6">
-              Pass all {topicCount} topic quizzes to unlock the program final quiz. You've passed {topicsPassed} of {topicCount}.
+              {tr.lockedHint} {tr.progress.replace("{n}", String(topicsPassed)).replace("{total}", String(topicCount))}
             </p>
-            <Button onClick={() => navigate(`/programs/${slug}`)}>Back to program</Button>
+            <Button onClick={() => navigate(`/programs/${slug}`)}>{tr.backToProgram}</Button>
           </Card>
         ) : result ? (
           <Card className="p-8 text-center rounded-2xl">
@@ -94,18 +112,18 @@ export default function ProgramQuiz() {
               <XCircle className="h-16 w-16 text-destructive mx-auto mb-4" />
             )}
             <h2 className="font-display text-2xl font-bold mb-2">
-              {result.passed ? "Passed!" : "Not quite"}
+              {result.passed ? tr.passedLabel : tr.notQuite}
             </h2>
             <p className="text-muted-foreground mb-6">
-              You scored {result.score} / {result.total} ({Math.round((result.score / result.total) * 100)}%)
+              {tr.youScored} {result.score} / {result.total} ({Math.round((result.score / result.total) * 100)}%)
             </p>
             <div className="flex gap-3 justify-center">
               {result.passed ? (
-                <Button onClick={() => navigate(`/programs/${slug}/certificate`)}>Claim certificate</Button>
+                <Button onClick={() => navigate(`/programs/${slug}/certificate`)}>{tr.claimCertificate}</Button>
               ) : (
-                <Button onClick={() => { setResult(null); setAnswers({}); }}>Try again</Button>
+                <Button onClick={() => { setResult(null); setAnswers({}); }}>{tr.tryAgain}</Button>
               )}
-              <Button variant="outline" onClick={() => navigate(`/programs/${slug}`)}>Back to program</Button>
+              <Button variant="outline" onClick={() => navigate(`/programs/${slug}`)}>{tr.backToProgram}</Button>
             </div>
           </Card>
         ) : (
@@ -125,7 +143,7 @@ export default function ProgramQuiz() {
               </Card>
             ))}
             <Button size="lg" onClick={submit} disabled={submitting}>
-              {submitting ? "Submitting…" : "Submit answers"}
+              {submitting ? tr.submitting : tr.submitAnswers}
             </Button>
           </div>
         )}

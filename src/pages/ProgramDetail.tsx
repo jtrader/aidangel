@@ -12,12 +12,32 @@ import NetworkFooter from "@/components/NetworkFooter";
 import { toast } from "sonner";
 import { useSubscription } from "@/hooks/useSubscription";
 import { Lock, Sparkles } from "lucide-react";
+import { useUiStrings } from "@/hooks/useUiStrings";
 
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { user } = useAuth();
   const { hasProgramAccess, loading: subLoading } = useSubscription();
   const navigate = useNavigate();
+  const tr = useUiStrings({
+    allCourses: "← All courses",
+    courseTopics: "Course topics",
+    finalProgramQuiz: "Final program quiz",
+    minSuffix: "min",
+    topics: "topics",
+    pass: "Pass",
+    finalQuiz: "Final quiz",
+    topicsComplete: "Topics complete",
+    unlockPlan: "Unlock with a plan",
+    employerPlans: "Employer plans",
+    startProgram: "Start program",
+    signInToStart: "Sign in to start",
+    viewCertificate: "View program certificate",
+    claimCertificate: "Claim program certificate",
+    takeFinalQuiz: "Take final quiz",
+    continue: "Continue",
+    courseNotFound: "Course not found",
+  });
   const [program, setProgram] = useState<any>(null);
   const [topics, setTopics] = useState<any[]>([]);
   const [passedCourseIds, setPassedCourseIds] = useState<Set<string>>(new Set());
@@ -72,7 +92,7 @@ export default function ProgramDetail() {
   };
 
   if (loading) return <div className="flex h-screen items-center justify-center"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>;
-  if (!program) return <div className="min-h-screen flex items-center justify-center">Course not found</div>;
+  if (!program) return <div className="min-h-screen flex items-center justify-center">{tr.courseNotFound}</div>;
 
   const passedCount = topics.filter(t => passedCourseIds.has(t.course_id)).length;
   const topicsDone = topics.length > 0 && passedCount === topics.length;
@@ -83,7 +103,7 @@ export default function ProgramDetail() {
     <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
-        <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← All courses</Link>
+        <Link to="/programs" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">{tr.allCourses}</Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
           {/* Left sidebar — program hierarchy */}
@@ -91,7 +111,7 @@ export default function ProgramDetail() {
             <Card className="p-4 rounded-2xl">
               <div className="flex items-center gap-2 mb-3">
                 <Layers className="h-4 w-4 text-primary" />
-                <h2 className="font-display font-semibold text-sm uppercase tracking-wide text-muted-foreground">Course topics</h2>
+                <h2 className="font-display font-semibold text-sm uppercase tracking-wide text-muted-foreground">{tr.courseTopics}</h2>
               </div>
               <nav className="space-y-1">
                 {topics.map((t, i) => {
@@ -110,7 +130,7 @@ export default function ProgramDetail() {
                       <div className="min-w-0 flex-1">
                         <div className="text-sm font-medium leading-tight group-hover:text-primary">{c.title}</div>
                         <div className="text-[11px] text-muted-foreground flex items-center gap-1 mt-0.5">
-                          <Clock className="h-3 w-3" /> {c.duration_minutes} min
+                          <Clock className="h-3 w-3" /> {c.duration_minutes} {tr.minSuffix}
                         </div>
                       </div>
                     </Link>
@@ -125,7 +145,7 @@ export default function ProgramDetail() {
                     onClick={(e) => { if (!(enrolled && topicsDone)) e.preventDefault(); }}
                   >
                     <Award className="h-4 w-4" />
-                    <span className="font-medium">Final program quiz</span>
+                    <span className="font-medium">{tr.finalProgramQuiz}</span>
                   </Link>
                 </div>
               )}
@@ -142,10 +162,10 @@ export default function ProgramDetail() {
               )}
               <div className="p-6 md:p-8">
                 <div className="flex gap-2 mb-3 flex-wrap">
-                  <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{topics.length} topics</Badge>
+                  <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{topics.length} {tr.topics}</Badge>
                   <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{program.slug === "emergency-response-program" ? "60-90 min" : `${program.duration_minutes} min`}</Badge>
-                  <Badge variant="outline" className="gap-1"><Award className="h-3 w-3" />Pass {program.pass_mark}%</Badge>
-                  {hasFinalQuiz && <Badge variant="outline">Final quiz</Badge>}
+                  <Badge variant="outline" className="gap-1"><Award className="h-3 w-3" />{tr.pass} {program.pass_mark}%</Badge>
+                  {hasFinalQuiz && <Badge variant="outline">{tr.finalQuiz}</Badge>}
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl font-bold mb-3">{program.title}</h1>
                 {program.summary && <p className="text-muted-foreground text-lg mb-6">{program.summary}</p>}
@@ -154,7 +174,7 @@ export default function ProgramDetail() {
                 {enrolled && (
                   <div className="mb-6">
                     <div className="flex justify-between text-sm mb-1">
-                      <span>Topics complete</span>
+                      <span>{tr.topicsComplete}</span>
                       <span className="text-muted-foreground">{passedCount} / {topics.length}</span>
                     </div>
                     <Progress value={pct} />
@@ -166,35 +186,35 @@ export default function ProgramDetail() {
                     user && !subLoading && !hasProgramAccess ? (
                       <>
                         <Button size="lg" onClick={() => navigate("/personal")}>
-                          <Sparkles className="h-4 w-4 mr-2" /> Unlock with a plan
+                          <Sparkles className="h-4 w-4 mr-2" /> {tr.unlockPlan}
                         </Button>
                         <Button size="lg" variant="outline" onClick={() => navigate("/employer")}>
-                          <Lock className="h-4 w-4 mr-2" /> Employer plans
+                          <Lock className="h-4 w-4 mr-2" /> {tr.employerPlans}
                         </Button>
                       </>
                     ) : (
                       <Button size="lg" onClick={enroll}>
-                        <Play className="h-4 w-4 mr-2" /> {user ? "Start program" : "Sign in to start"}
+                        <Play className="h-4 w-4 mr-2" /> {user ? tr.startProgram : tr.signInToStart}
                       </Button>
                     )
                   ) : hasCert ? (
                     <Button size="lg" onClick={() => navigate(`/programs/${slug}/certificate`)}>
-                      <Award className="h-4 w-4 mr-2" /> View program certificate
+                      <Award className="h-4 w-4 mr-2" /> {tr.viewCertificate}
                     </Button>
                   ) : programDone ? (
                     <Button size="lg" onClick={() => navigate(`/programs/${slug}/certificate`)}>
-                      <Award className="h-4 w-4 mr-2" /> Claim program certificate
+                      <Award className="h-4 w-4 mr-2" /> {tr.claimCertificate}
                     </Button>
                   ) : topicsDone && hasFinalQuiz ? (
                     <Button size="lg" onClick={() => navigate(`/programs/${slug}/quiz`)}>
-                      Take final quiz
+                      {tr.takeFinalQuiz}
                     </Button>
                   ) : (
                     <Button size="lg" onClick={() => {
                       const next = topics.find(t => !passedCourseIds.has(t.course_id)) ?? topics[0];
                       if (next?.courses) navigate(`/courses/${next.courses.slug}`);
                     }}>
-                      <Play className="h-4 w-4 mr-2" /> Continue
+                      <Play className="h-4 w-4 mr-2" /> {tr.continue}
                     </Button>
                   )}
                 </div>

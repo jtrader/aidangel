@@ -8,6 +8,7 @@ import { Clock, Layers, Loader2, ArrowRight, Award, CheckCircle2 } from "lucide-
 import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
+import { useUiStrings } from "@/hooks/useUiStrings";
 
 const AUDIENCE: Record<string, { label: string; tag: string }> = {
   "emergency-response-program": { label: "Core program", tag: "All Australians" },
@@ -18,6 +19,30 @@ const AUDIENCE: Record<string, { label: string; tag: string }> = {
 };
 
 export default function Programs() {
+  const tr = useUiStrings({
+    eyebrow: "St John Australian First Aid · 5th Edition aligned",
+    heading: "First Aid Courses",
+    subheading:
+      "Curated 12-topic learning paths with a final exam and printable course certificate. Pick the course that matches your life.",
+    featuredBadge: "Featured · Core Course",
+    topics: "topics",
+    minute: "60–90 min",
+    certificate: "Certificate",
+    startCore: "Start the Core Course",
+    specialised: "Specialised Courses",
+    specialisedSub: "Same trusted guidelines, tailored to your audience.",
+    finalExam: "Final exam",
+    viewProgram: "View program",
+    minSuffix: "min",
+  });
+  const audienceTags = useUiStrings({
+    "All Australians": "All Australians",
+    "Parents & Childcare": "Parents & Childcare",
+    "Workplace & Trades": "Workplace & Trades",
+    "Outdoor & Remote": "Outdoor & Remote",
+    "Aged Care & Carers": "Aged Care & Carers",
+  });
+
   const [programs, setPrograms] = useState<any[]>([]);
   const [counts, setCounts] = useState<Record<string, number>>({});
   const [finalCounts, setFinalCounts] = useState<Record<string, number>>({});
@@ -57,11 +82,9 @@ export default function Programs() {
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">
         <header className="mb-10 text-center">
-          <Badge variant="secondary" className="mb-3">St John Australian First Aid · 5th Edition aligned</Badge>
-          <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">First Aid Courses</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Curated 12-topic learning paths with a final exam and printable course certificate. Pick the course that matches your life.
-          </p>
+          <Badge variant="secondary" className="mb-3">{tr.eyebrow}</Badge>
+          <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">{tr.heading}</h1>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">{tr.subheading}</p>
         </header>
 
         {loading ? (
@@ -80,17 +103,17 @@ export default function Programs() {
                           <Layers className="h-16 w-16 text-primary/40" />
                         </div>
                       )}
-                      <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">Featured · Core Course</Badge>
+                      <Badge className="absolute top-4 left-4 bg-primary text-primary-foreground">{tr.featuredBadge}</Badge>
                     </div>
                     <div className="p-8 flex flex-col justify-center">
                       <div className="flex gap-2 mb-3 flex-wrap">
-                        <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{counts[featured.id] ?? 12} topics</Badge>
-                        <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />60–90 min</Badge>
-                        <Badge variant="outline" className="gap-1"><Award className="h-3 w-3" />Certificate</Badge>
+                        <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{counts[featured.id] ?? 12} {tr.topics}</Badge>
+                        <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{tr.minute}</Badge>
+                        <Badge variant="outline" className="gap-1"><Award className="h-3 w-3" />{tr.certificate}</Badge>
                       </div>
                       <h2 className="font-display font-bold text-2xl md:text-3xl mb-2 group-hover:text-primary transition-colors">{featured.title}</h2>
                       <p className="text-muted-foreground mb-5">{featured.summary}</p>
-                      <Button className="w-fit gap-2">Start the Core Course <ArrowRight className="h-4 w-4" /></Button>
+                      <Button className="w-fit gap-2">{tr.startCore} <ArrowRight className="h-4 w-4" /></Button>
                     </div>
                   </div>
                 </Card>
@@ -100,8 +123,8 @@ export default function Programs() {
             {niches.length > 0 && (
               <section>
                 <div className="text-center mb-6">
-                  <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">Specialised Courses</h2>
-                  <p className="text-muted-foreground">Same trusted guidelines, tailored to your audience.</p>
+                  <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">{tr.specialised}</h2>
+                  <p className="text-muted-foreground">{tr.specialisedSub}</p>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
                   {niches.map((p) => {
@@ -117,20 +140,20 @@ export default function Programs() {
                                 <Layers className="h-12 w-12 text-primary/40" />
                               </div>
                             )}
-                            {aud && <Badge className="absolute top-3 left-3 bg-background/95 text-foreground border">{aud.tag}</Badge>}
+                            {aud && <Badge className="absolute top-3 left-3 bg-background/95 text-foreground border">{audienceTags[aud.tag as keyof typeof audienceTags] ?? aud.tag}</Badge>}
                           </div>
                           <div className="p-5">
                             <div className="flex gap-2 mb-2 flex-wrap">
-                              <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{counts[p.id] ?? 0} topics</Badge>
-                              <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{p.duration_minutes} min</Badge>
+                              <Badge variant="secondary" className="gap-1"><Layers className="h-3 w-3" />{counts[p.id] ?? 0} {tr.topics}</Badge>
+                              <Badge variant="outline" className="gap-1"><Clock className="h-3 w-3" />{p.duration_minutes} {tr.minSuffix}</Badge>
                               {finalCounts[p.id] > 0 && (
-                                <Badge variant="outline" className="gap-1"><CheckCircle2 className="h-3 w-3" />Final exam</Badge>
+                                <Badge variant="outline" className="gap-1"><CheckCircle2 className="h-3 w-3" />{tr.finalExam}</Badge>
                               )}
                             </div>
                             <h3 className="font-display font-bold text-xl mb-1 group-hover:text-primary transition-colors">{p.title}</h3>
                             {p.summary && <p className="text-sm text-muted-foreground line-clamp-2">{p.summary}</p>}
                             <div className="mt-4 flex items-center gap-1 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                              View program <ArrowRight className="h-3.5 w-3.5" />
+                              {tr.viewProgram} <ArrowRight className="h-3.5 w-3.5" />
                             </div>
                           </div>
                         </Card>
