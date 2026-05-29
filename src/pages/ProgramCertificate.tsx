@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Loader2, Award, Download, Lock } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import CoursesHeader from "@/components/CoursesHeader";
+import NetworkFooter from "@/components/NetworkFooter";
 import { toast } from "sonner";
 import { generateCertificatePdf } from "@/lib/certificate";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
