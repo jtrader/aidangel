@@ -10,7 +10,10 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
-import { ArrowLeft, Plus, Trash2, ArrowUp, ArrowDown, Upload, Save, Languages } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, ArrowUp, ArrowDown, Upload, Save, Languages, Eye, ExternalLink } from "lucide-react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { CmsBlocksRenderer } from "@/components/CmsBlocksRenderer";
+import type { CmsPage } from "@/hooks/useCmsPage";
 
 type Block = {
   id: string;
@@ -114,6 +117,28 @@ export default function AdminCmsEditor() {
   };
 
   const [translating, setTranslating] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const previewPage: CmsPage | null = page
+    ? {
+        id: page.id,
+        slug: page.slug,
+        title: page.title,
+        description: page.description,
+        is_published: page.is_published,
+        blocks: blocks.map((b) => ({
+          id: b.id,
+          block_key: b.block_key,
+          block_type: b.block_type,
+          sort_order: b.sort_order,
+          title: b.title,
+          body_md: b.body_md,
+          image_url: b.image_url,
+          cta_label: b.cta_label,
+          cta_url: b.cta_url,
+          data: {},
+        })),
+      }
+    : null;
   const translateAll = async () => {
     if (!page) return;
     if (!confirm("Translate this page (title, description, and all blocks) into all 47 supported languages? This may take a minute and will overwrite existing machine translations.")) return;
@@ -161,6 +186,14 @@ export default function AdminCmsEditor() {
               </label>
               <div className="flex flex-wrap gap-2">
                 <Button onClick={savePageMeta} className="w-fit"><Save className="h-4 w-4 mr-1" /> Save page</Button>
+                <Button onClick={() => setPreviewOpen(true)} variant="secondary" className="w-fit">
+                  <Eye className="h-4 w-4 mr-1" /> Preview
+                </Button>
+                <Button asChild variant="outline" className="w-fit">
+                  <a href={`/${page.slug === "home" ? "" : page.slug}`} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="h-4 w-4 mr-1" /> Open live page
+                  </a>
+                </Button>
                 <Button onClick={translateAll} variant="outline" className="w-fit" disabled={translating}>
                   <Languages className="h-4 w-4 mr-1" /> {translating ? "Translating…" : "Translate into 47 languages"}
                 </Button>
@@ -239,6 +272,30 @@ export default function AdminCmsEditor() {
             )}
           </div>
         </div>
+
+        <Sheet open={previewOpen} onOpenChange={setPreviewOpen}>
+          <SheetContent side="right" className="w-full sm:max-w-4xl overflow-y-auto p-0">
+            <SheetHeader className="px-6 py-4 border-b sticky top-0 bg-background z-10">
+              <SheetTitle className="flex items-center gap-2">
+                <Eye className="h-5 w-5" /> Preview · /{page.slug}
+              </SheetTitle>
+              <SheetDescription>
+                Unsaved changes shown. {page.is_published ? "Published" : "Draft — not visible to visitors yet."}
+              </SheetDescription>
+            </SheetHeader>
+            <div className="bg-[#F7F7F7] p-6">
+              <div className="max-w-4xl mx-auto bg-background rounded-2xl p-6 sm:p-8 shadow-sm">
+                {previewPage && previewPage.blocks.length > 0 ? (
+                  <CmsBlocksRenderer page={previewPage} />
+                ) : (
+                  <p className="text-muted-foreground text-center py-10">
+                    No blocks yet — add content to preview it.
+                  </p>
+                )}
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </RequireAuth>
   );
