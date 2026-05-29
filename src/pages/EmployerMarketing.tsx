@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
 import { useNavigate } from "react-router-dom";
+import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
 type CourseCard = {
   id: string;
@@ -93,6 +94,17 @@ export default function EmployerMarketing() {
       />
 
       <CoursesHeader />
+
+      <CmsPageRenderer
+        slug="employer"
+        fallback={
+          <></>
+        }
+      />
+
+      {/* Hardcoded marketing content (hidden when CMS page published with blocks) */}
+      <CmsAwareFallback>
+
 
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#F7F7F7] to-card border-b">
