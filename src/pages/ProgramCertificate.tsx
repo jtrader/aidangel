@@ -175,6 +175,7 @@ export default function ProgramCertificate() {
           )}
         </Card>
       </main>
+      <NetworkFooter />
     </div>
   );
 }
