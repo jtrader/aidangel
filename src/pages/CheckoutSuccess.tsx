@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SeoHead } from "@/components/SeoHead";
 import CoursesHeader from "@/components/CoursesHeader";
+import NetworkFooter from "@/components/NetworkFooter";
 
 export default function CheckoutSuccess() {
   return (
@@ -37,6 +38,7 @@ export default function CheckoutSuccess() {
           </div>
         </Card>
       </main>
+      <NetworkFooter />
     </div>
   );
 }

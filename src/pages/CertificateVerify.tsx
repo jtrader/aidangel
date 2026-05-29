@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import CoursesHeader from "@/components/CoursesHeader";
+import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
 
 export default function CertificateVerify() {
@@ -48,6 +49,7 @@ export default function CertificateVerify() {
           )}
         </Card>
       </main>
+      <NetworkFooter />
     </div>
   );
 }

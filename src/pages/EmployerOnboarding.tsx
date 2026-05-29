@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Building2 } from "lucide-react";
+import NetworkFooter from "@/components/NetworkFooter";
 
 const slugify = (s: string) =>
   s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
@@ -70,33 +71,36 @@ export default function EmployerOnboarding() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 p-6">
-      <form onSubmit={handleCreate} className="max-w-md w-full bg-card rounded-2xl shadow-sm p-8 space-y-5">
-        <div className="text-center space-y-2">
-          <Building2 className="h-10 w-10 mx-auto text-primary" />
-          <h1 className="text-2xl font-bold">Create your organisation</h1>
-          <p className="text-sm text-muted-foreground">
-            You'll be the owner. You can invite teammates next.
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col bg-muted/30">
+      <div className="flex-1 flex items-center justify-center p-6">
+        <form onSubmit={handleCreate} className="max-w-md w-full bg-card rounded-2xl shadow-sm p-8 space-y-5">
+          <div className="text-center space-y-2">
+            <Building2 className="h-10 w-10 mx-auto text-primary" />
+            <h1 className="text-2xl font-bold">Create your organisation</h1>
+            <p className="text-sm text-muted-foreground">
+              You'll be the owner. You can invite teammates next.
+            </p>
+          </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="name">Organisation name</Label>
-          <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Acme Pty Ltd" required maxLength={120} />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="industry">Industry (optional)</Label>
-          <Input id="industry" value={industry} onChange={(e) => setIndustry(e.target.value)} placeholder="Construction, Childcare, Retail…" maxLength={80} />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="country">Country code</Label>
-          <Input id="country" value={country} onChange={(e) => setCountry(e.target.value.toUpperCase().slice(0, 2))} maxLength={2} />
-        </div>
+          <div className="space-y-2">
+            <Label htmlFor="name">Organisation name</Label>
+            <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Acme Pty Ltd" required maxLength={120} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="industry">Industry (optional)</Label>
+            <Input id="industry" value={industry} onChange={(e) => setIndustry(e.target.value)} placeholder="Construction, Childcare, Retail…" maxLength={80} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="country">Country code</Label>
+            <Input id="country" value={country} onChange={(e) => setCountry(e.target.value.toUpperCase().slice(0, 2))} maxLength={2} />
+          </div>
 
-        <Button type="submit" disabled={busy || !name.trim()} className="w-full">
-          {busy ? "Creating…" : "Create organisation"}
-        </Button>
-      </form>
+          <Button type="submit" disabled={busy || !name.trim()} className="w-full">
+            {busy ? "Creating…" : "Create organisation"}
+          </Button>
+        </form>
+      </div>
+      <NetworkFooter />
     </div>
   );
 }
