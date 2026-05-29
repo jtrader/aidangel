@@ -165,6 +165,10 @@ export default function PersonalMarketing() {
       />
       <CoursesHeader />
 
+      <CmsPageRenderer
+        slug="personal"
+        fallback={
+          <>
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-[#F7F7F7] to-card border-b">
         <div className="container max-w-6xl mx-auto px-4 pt-20 pb-10 text-center">
@@ -468,6 +472,9 @@ export default function PersonalMarketing() {
           </div>
         </section>
       )}
+          </>
+        }
+      />
       <NetworkFooter />
     </div>
   );
