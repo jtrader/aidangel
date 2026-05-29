@@ -21,8 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useCmsPage } from "@/hooks/useCmsPage";
-import { CmsBlocksRenderer } from "@/components/CmsBlocksRenderer";
+import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
 const SOURCES = [
   {
