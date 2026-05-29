@@ -24,6 +24,7 @@ import StyleGuide from "./pages/StyleGuide";
 import AngelActionIndex from "./pages/AngelActionIndex";
 import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
+import AdminIndex from "./pages/AdminIndex";
 import AdminEducators from "./pages/AdminEducators";
 import AdminKb from "./pages/AdminKb";
 import SymptomFinder from "./pages/SymptomFinder";
@@ -137,6 +138,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/workplace/:slug" element={<WorkplaceVertical />} />
 
                 <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/admin" element={<AdminIndex />} />
                 <Route path="/admin/donations" element={<AdminDonations />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />
                 <Route path="/admin/kb" element={<AdminKb />} />
