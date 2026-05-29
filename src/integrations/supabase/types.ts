@@ -73,6 +73,47 @@ export type Database = {
           },
         ]
       }
+      cms_block_translations: {
+        Row: {
+          block_id: string
+          body_md: string | null
+          cta_label: string | null
+          id: string
+          is_machine: boolean
+          lang: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          block_id: string
+          body_md?: string | null
+          cta_label?: string | null
+          id?: string
+          is_machine?: boolean
+          lang: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          block_id?: string
+          body_md?: string | null
+          cta_label?: string | null
+          id?: string
+          is_machine?: boolean
+          lang?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cms_block_translations_block_id_fkey"
+            columns: ["block_id"]
+            isOneToOne: false
+            referencedRelation: "cms_blocks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       cms_blocks: {
         Row: {
           block_key: string
@@ -122,6 +163,44 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "cms_blocks_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "cms_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cms_page_translations: {
+        Row: {
+          description: string | null
+          id: string
+          is_machine: boolean
+          lang: string
+          page_id: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          description?: string | null
+          id?: string
+          is_machine?: boolean
+          lang: string
+          page_id: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          description?: string | null
+          id?: string
+          is_machine?: boolean
+          lang?: string
+          page_id?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cms_page_translations_page_id_fkey"
             columns: ["page_id"]
             isOneToOne: false
             referencedRelation: "cms_pages"
