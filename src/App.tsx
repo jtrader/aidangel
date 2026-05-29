@@ -24,6 +24,7 @@ import StyleGuide from "./pages/StyleGuide";
 import AngelActionIndex from "./pages/AngelActionIndex";
 import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
+import AdminIndex from "./pages/AdminIndex";
 import AdminEducators from "./pages/AdminEducators";
 import AdminKb from "./pages/AdminKb";
 import SymptomFinder from "./pages/SymptomFinder";
