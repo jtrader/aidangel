@@ -12,6 +12,8 @@ type Props = {
   description?: string;
   /** Absolute URL to social preview image. Defaults to site og-image. */
   ogImage?: string;
+  /** og:type — defaults to "website". Use "article" for blog/KB pages. */
+  ogType?: string;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
@@ -26,7 +28,7 @@ function clampDesc(s?: string): string | undefined {
   return (lastSpace > 100 ? cut.slice(0, lastSpace) : cut) + "…";
 }
 
-export function SeoHead({ lang, basePath, title, description, ogImage, jsonLd }: Props) {
+export function SeoHead({ lang, basePath, title, description, ogImage, ogType, jsonLd }: Props) {
   const canonical = canonicalUrl(lang, basePath);
   const alts = alternates(basePath);
   const ogLocale = HREFLANG[lang].replace("-", "_");
@@ -47,7 +49,7 @@ export function SeoHead({ lang, basePath, title, description, ogImage, jsonLd }:
       <meta property="og:url" content={canonical} />
       <meta property="og:locale" content={ogLocale} />
       <meta name="google-site-verification" content="e0mjhVCjf457Cy5PuZFPCkt9XFfepknYoJttXqBePok" />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType ?? "website"} />
       <meta property="og:image" content={image} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />

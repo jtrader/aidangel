@@ -101,6 +101,8 @@ const englishOnlyPaths: Array<{ path: string; changefreq: string; priority: stri
   { path: "/learn", changefreq: "weekly", priority: "0.8" },
   { path: "/learn/submit", changefreq: "monthly", priority: "0.5" },
   { path: "/cpr", changefreq: "monthly", priority: "0.8" },
+  { path: "/about", changefreq: "monthly", priority: "0.7" },
+  { path: "/reset-password", changefreq: "yearly", priority: "0.3" },
 ];
 
 const localized = (lang: Lang, p: string) => {

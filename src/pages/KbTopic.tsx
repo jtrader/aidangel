@@ -196,6 +196,7 @@ const KbTopic = () => {
         basePath={`/kb/${topic.slug}`}
         title={`${translated.title} · First Aid Angel`}
         description={translated.summary}
+        ogType="article"
         jsonLd={(() => {
           const inLanguage = HREFLANG[language];
           const topicUrl = `${SITE_ORIGIN}${topicPath}`;

@@ -32,8 +32,16 @@ export default function Courses() {
       <SeoHead
         lang="en"
         basePath="/topics"
-        title="First Aid Topics — Free Online Lessons with Certificate | First Aid Angel"
+        title="Free First Aid Topics with Certificate | First Aid Angel"
         description="Self-paced first aid topics with quizzes and free PDF certificate. CPR, choking, bleeding, burns and more — based on St John Australian First Aid 5th Edition."
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "First Aid Topics",
+          description: "Self-paced first aid topics with quizzes and free PDF certificate.",
+          url: "https://firstaidangel.org/topics",
+          isPartOf: { "@type": "WebSite", name: "First Aid Angel", url: "https://firstaidangel.org" },
+        }}
       />
       <CoursesHeader />
       <main className="flex-1 container max-w-6xl mx-auto px-4 py-10">

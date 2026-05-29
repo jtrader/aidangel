@@ -229,9 +229,25 @@ export default function CprGuide() {
     <div className="min-h-screen flex flex-col bg-background">
       <SeoHead
         lang="en"
-        title="Live CPR Guide — Metronome & Voice-Guided DRSABCD | First Aid Angel"
+        title="Live CPR Guide — Metronome & DRSABCD | First Aid Angel"
         description="Hands-free CPR metronome at 100–120 bpm with voice-guided DRSABCD steps. Works offline. Free, no signup."
         basePath="/cpr"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: "How to perform CPR (DRSABCD)",
+          description: "Step-by-step DRSABCD CPR instructions for adults, with a hands-free metronome at 100–120 bpm.",
+          totalTime: "PT5M",
+          step: [
+            { "@type": "HowToStep", name: "Danger", text: "Check the scene is safe for you, bystanders and the patient." },
+            { "@type": "HowToStep", name: "Response", text: "Tap the patient's shoulders and ask loudly: 'Can you hear me?'" },
+            { "@type": "HowToStep", name: "Send for help", text: "Call 000 (or local emergency number) and request an ambulance." },
+            { "@type": "HowToStep", name: "Airway", text: "Tilt the head back gently and clear the airway of any obstruction." },
+            { "@type": "HowToStep", name: "Breathing", text: "Look, listen and feel for breathing for up to 10 seconds." },
+            { "@type": "HowToStep", name: "CPR", text: "If not breathing normally, give 30 chest compressions at 100–120 bpm, then 2 rescue breaths. Repeat." },
+            { "@type": "HowToStep", name: "Defibrillation", text: "Attach an AED as soon as one is available and follow its voice prompts." },
+          ],
+        }}
       />
       <header className="border-b border-border bg-card sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-3">

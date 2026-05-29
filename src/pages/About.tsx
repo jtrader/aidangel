@@ -148,7 +148,7 @@ function HardcodedAbout() {
           About
         </p>
         <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-          First Aid Angel
+          About First Aid Angel
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           A free, offline-capable AI first aid companion — built to{" "}
@@ -360,7 +360,7 @@ export default function About() {
         lang={language}
         basePath="/about"
         title="About First Aid Angel · Sources, Purpose & FAQ"
-        description="Learn about First Aid Angel — our credentials, sources, mission to educate and aid in emergencies, and how an offline AI first aid app compares to traditional resources."
+        description="About First Aid Angel — our credentials, sources, mission to educate and aid in emergencies, and how our offline AI app compares to traditional resources."
       />
 
       <header className="border-b border-border bg-card">
