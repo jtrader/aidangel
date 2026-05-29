@@ -160,12 +160,12 @@ function TermsContent() {
 
       <h2>14. Governing law and disputes</h2>
       <p>
-        These Terms are governed by the laws of the jurisdiction in which
-        {" "}{ENTITY} is established, without regard to its conflict of
-        laws rules. The courts of that jurisdiction have exclusive
-        jurisdiction over any dispute, except where mandatory consumer
-        protection laws give you the right to bring proceedings in your
-        place of residence.
+        These Terms are governed by the laws of the State of Victoria,
+        Australia, without regard to its conflict of laws rules. The
+        courts of Victoria, Australia have exclusive jurisdiction over
+        any dispute arising out of or relating to these Terms or the
+        Service, except where mandatory consumer protection laws give
+        you the right to bring proceedings in your place of residence.
       </p>
 
       <h2>15. Assignment</h2>
