@@ -162,6 +162,7 @@ export default function CourseLesson() {
           </Button>
         </div>
       </main>
+      <NetworkFooter />
     </div>
     </CourseLayout>
   );
