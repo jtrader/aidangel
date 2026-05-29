@@ -103,8 +103,6 @@ const englishOnlyPaths: Array<{ path: string; changefreq: string; priority: stri
   { path: "/about", changefreq: "monthly", priority: "0.7" },
   { path: "/reset-password", changefreq: "yearly", priority: "0.3" },
   { path: "/programs", changefreq: "weekly", priority: "0.8" },
-  { path: "/workplace", changefreq: "weekly", priority: "0.8" },
-  ...WORKPLACE_SLUGS.map((s) => ({ path: `/workplace/${s}`, changefreq: "monthly", priority: "0.7" })),
   { path: "/employer", changefreq: "monthly", priority: "0.7" },
   { path: "/personal", changefreq: "monthly", priority: "0.7" },
   { path: "/partners", changefreq: "monthly", priority: "0.6" },
