@@ -83,7 +83,7 @@ export default function Auth() {
       <SeoHead lang="en" basePath="/auth" title={`${mode === "signin" ? "Sign in" : "Create account"} — First Aid Angel Learning`} description="Sign in to track your first aid course progress and earn certificates." />
       <Card className="w-full max-w-md p-8 rounded-2xl">
         <Link to="/" className="flex items-center gap-2 mb-6">
-          <img src={aidAngelLogo} alt="First Aid Angel" className="h-7 w-7" />
+          <img src={aidAngelLogo} alt="First Aid Angel" width={28} height={28} className="h-7 w-7" />
           <span className="font-display font-bold text-lg">
             <span className="text-foreground">First Aid Angel </span>
             <span className="text-primary">Learning</span>

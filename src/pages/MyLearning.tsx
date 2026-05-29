@@ -104,7 +104,7 @@ export default function MyLearning() {
                       <Link to={`/topics/${r.course.slug}`} key={r.course_id}>
                         <Card className="p-4 hover:shadow-md transition flex gap-4">
                           <div className="w-20 h-20 rounded-lg bg-muted flex-shrink-0 overflow-hidden">
-                            {r.course.cover_url && <img src={r.course.cover_url} alt="" className="w-full h-full object-cover" />}
+                            {r.course.cover_url && <img src={r.course.cover_url} alt="" width={80} height={80} loading="lazy" decoding="async" className="w-full h-full object-cover" />}
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="font-medium truncate">{r.course.title}</div>
@@ -131,7 +131,7 @@ export default function MyLearning() {
                       <Link to={`/programs/${p.program.slug}`} key={p.program_id}>
                         <Card className="p-4 hover:shadow-md transition flex gap-4">
                           <div className="w-20 h-20 rounded-lg bg-muted flex-shrink-0 overflow-hidden flex items-center justify-center">
-                            {p.program.cover_url ? <img src={p.program.cover_url} alt="" className="w-full h-full object-cover" /> : <GraduationCap className="h-8 w-8 text-primary/40" />}
+                            {p.program.cover_url ? <img src={p.program.cover_url} alt="" width={80} height={80} loading="lazy" decoding="async" className="w-full h-full object-cover" /> : <GraduationCap className="h-8 w-8 text-primary/40" />}
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="font-medium truncate">{p.program.title}</div>

@@ -90,7 +90,9 @@ export default function TopicCover({ slug, title, className }: Props) {
         src={coverUrl}
         alt={`${title} — illustration`}
         width={1280}
-        loading="lazy"
+        height={720}
+        loading="eager"
+        fetchPriority="high"
         decoding="async"
         className="w-full h-auto block"
       />

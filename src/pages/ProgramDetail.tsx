@@ -157,7 +157,7 @@ export default function ProgramDetail() {
             <Card className="overflow-hidden rounded-2xl">
               {program.cover_url && (
                 <div className="aspect-[2/1] bg-muted">
-                  <img src={program.cover_url} alt={program.title} className="w-full h-full object-cover" />
+                  <img src={program.cover_url} alt={program.title} width={800} height={400} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 </div>
               )}
               <div className="p-6 md:p-8">

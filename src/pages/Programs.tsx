@@ -97,7 +97,7 @@ export default function Programs() {
                   <div className="grid md:grid-cols-2">
                     <div className="aspect-video md:aspect-auto bg-muted relative">
                       {featured.cover_url ? (
-                        <img src={featured.cover_url} alt={featured.title} className="w-full h-full object-cover" />
+                        <img src={featured.cover_url} alt={featured.title} width={800} height={450} fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
                           <Layers className="h-16 w-16 text-primary/40" />
@@ -134,7 +134,7 @@ export default function Programs() {
                         <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg hover:-translate-y-0.5 transition-all">
                           <div className="aspect-video bg-muted relative">
                             {p.cover_url ? (
-                              <img src={p.cover_url} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+                              <img src={p.cover_url} alt={p.title} width={800} height={450} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                             ) : (
                               <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
                                 <Layers className="h-12 w-12 text-primary/40" />

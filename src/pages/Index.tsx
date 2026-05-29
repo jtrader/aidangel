@@ -151,7 +151,7 @@ const Index = () => {
               </button>
             )}
             <a href="/" className="flex items-center gap-3 flex-1" onClick={(e) => { e.preventDefault(); setMessages([]); }}>
-              <img src={aidAngelLogo} alt="First Aid Angel logo" className="w-10 h-10 rounded-xl object-cover" />
+              <img src={aidAngelLogo} alt="First Aid Angel logo" width={40} height={40} fetchPriority="high" className="w-10 h-10 rounded-xl object-cover" />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <h1 className="font-display font-bold text-lg text-foreground leading-tight">
@@ -186,7 +186,7 @@ const Index = () => {
               fallback={
                 <>
                   <div className="text-center space-y-3">
-                    <img src={aidAngelLogo} alt="First Aid Angel" className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover mx-auto" />
+                    <img src={aidAngelLogo} alt="First Aid Angel" width={80} height={80} fetchPriority="high" className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover mx-auto" />
                     <h2 className="font-display font-bold text-xl sm:text-2xl text-foreground px-2">
                       {t("welcomeHeading")}
                     </h2>
