@@ -27,6 +27,7 @@ import AdminDonations from "./pages/AdminDonations";
 import AdminIndex from "./pages/AdminIndex";
 import AdminCms from "./pages/AdminCms";
 import AdminCmsEditor from "./pages/AdminCmsEditor";
+import CmsPreview from "./pages/CmsPreview";
 import AdminEducators from "./pages/AdminEducators";
 import AdminKb from "./pages/AdminKb";
 import SymptomFinder from "./pages/SymptomFinder";
