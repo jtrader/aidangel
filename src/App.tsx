@@ -25,6 +25,8 @@ import AngelActionIndex from "./pages/AngelActionIndex";
 import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
 import AdminIndex from "./pages/AdminIndex";
+import AdminCms from "./pages/AdminCms";
+import AdminCmsEditor from "./pages/AdminCmsEditor";
 import AdminEducators from "./pages/AdminEducators";
 import AdminKb from "./pages/AdminKb";
 import SymptomFinder from "./pages/SymptomFinder";
@@ -139,6 +141,8 @@ const App = forwardRef(function App(_props, _ref) {
 
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/admin" element={<AdminIndex />} />
+                <Route path="/admin/cms" element={<AdminCms />} />
+                <Route path="/admin/cms/:slug" element={<AdminCmsEditor />} />
                 <Route path="/admin/donations" element={<AdminDonations />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />
                 <Route path="/admin/kb" element={<AdminKb />} />

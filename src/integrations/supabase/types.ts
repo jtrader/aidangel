@@ -73,6 +73,95 @@ export type Database = {
           },
         ]
       }
+      cms_blocks: {
+        Row: {
+          block_key: string
+          block_type: string
+          body_md: string | null
+          created_at: string
+          cta_label: string | null
+          cta_url: string | null
+          data: Json
+          id: string
+          image_url: string | null
+          page_id: string
+          sort_order: number
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          block_key: string
+          block_type?: string
+          body_md?: string | null
+          created_at?: string
+          cta_label?: string | null
+          cta_url?: string | null
+          data?: Json
+          id?: string
+          image_url?: string | null
+          page_id: string
+          sort_order?: number
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          block_key?: string
+          block_type?: string
+          body_md?: string | null
+          created_at?: string
+          cta_label?: string | null
+          cta_url?: string | null
+          data?: Json
+          id?: string
+          image_url?: string | null
+          page_id?: string
+          sort_order?: number
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cms_blocks_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "cms_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cms_pages: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_published: boolean
+          slug: string
+          title: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          slug: string
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          slug?: string
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       course_enrollments: {
         Row: {
           course_id: string

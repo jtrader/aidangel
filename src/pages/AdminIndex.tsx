@@ -11,9 +11,16 @@ import {
   Users,
   Heart,
   ShieldCheck,
+  LayoutTemplate,
 } from "lucide-react";
 
 const sections = [
+  {
+    group: "Content (CMS)",
+    items: [
+      { to: "/admin/cms", title: "Pages & Blocks", desc: "Edit marketing pages and content blocks", icon: LayoutTemplate },
+    ],
+  },
   {
     group: "Learn (LMS)",
     items: [
