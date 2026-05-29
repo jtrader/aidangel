@@ -96,13 +96,21 @@ const basePaths: Array<{ path: string; changefreq: string; priority: string }> =
 const englishOnlyPaths: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: "/symptoms", changefreq: "weekly", priority: "0.9" },
   ...LANDER_SLUGS.map((s) => ({ path: `/symptoms/${s}`, changefreq: "monthly", priority: "0.8" })),
-  { path: "/style-guide", changefreq: "yearly", priority: "0.2" },
   { path: "/angel-action", changefreq: "monthly", priority: "0.7" },
   { path: "/learn", changefreq: "weekly", priority: "0.8" },
   { path: "/learn/submit", changefreq: "monthly", priority: "0.5" },
   { path: "/cpr", changefreq: "monthly", priority: "0.8" },
   { path: "/about", changefreq: "monthly", priority: "0.7" },
   { path: "/reset-password", changefreq: "yearly", priority: "0.3" },
+  { path: "/programs", changefreq: "weekly", priority: "0.8" },
+  { path: "/employer", changefreq: "monthly", priority: "0.7" },
+  { path: "/personal", changefreq: "monthly", priority: "0.7" },
+  { path: "/partners", changefreq: "monthly", priority: "0.6" },
+  { path: "/shop", changefreq: "monthly", priority: "0.6" },
+  { path: "/privacy", changefreq: "yearly", priority: "0.4" },
+  { path: "/terms", changefreq: "yearly", priority: "0.4" },
+  { path: "/refund", changefreq: "yearly", priority: "0.4" },
+  { path: "/medical-disclaimer", changefreq: "yearly", priority: "0.4" },
 ];
 
 const localized = (lang: Lang, p: string) => {

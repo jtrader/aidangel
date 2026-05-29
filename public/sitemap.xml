@@ -9634,12 +9634,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://firstaidangel.org/kb/mental-health-first-aid" />
   </url>
   <url>
-    <loc>https://firstaidangel.org/angel-action</loc>
+    <loc>https://firstaidangel.org/zh/angel-action</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/zh/angel-action</loc>
+    <loc>https://firstaidangel.org/zh/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -9649,7 +9649,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/yue/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/ar/angel-action</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/ar/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -9659,7 +9669,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/vi/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/pa/angel-action</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/pa/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -9669,7 +9689,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/el/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/it/angel-action</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/it/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -9679,7 +9709,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/kriol/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/yolngu/angel-action</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/yolngu/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -9689,12 +9729,27 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/pitjantjatjara/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/arrernte/angel-action</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/arrernte/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/tsi/angel-action</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/tsi/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -9764,11 +9819,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/style-guide</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
     <loc>https://firstaidangel.org/angel-action</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -9797,6 +9847,51 @@
     <loc>https://firstaidangel.org/reset-password</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/programs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/employer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/personal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/partners</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/shop</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/refund</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/medical-disclaimer</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://firstaidangel.org/aed</loc>
