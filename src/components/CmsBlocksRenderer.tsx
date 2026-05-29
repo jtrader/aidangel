@@ -20,8 +20,11 @@ function CmsBlockRender({ block }: { block: CmsBlock }) {
         <img
           src={block.image_url!}
           alt={block.title ?? ""}
+          width={800}
+          height={320}
           className="w-full h-auto max-h-80 object-cover rounded-xl mb-5 border border-border"
           loading="lazy"
+          decoding="async"
         />
       )}
 

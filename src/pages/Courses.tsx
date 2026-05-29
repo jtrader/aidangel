@@ -57,7 +57,7 @@ export default function Courses() {
                 <Card className="overflow-hidden rounded-2xl h-full hover:shadow-lg transition-shadow">
                   <div className="aspect-video bg-muted relative">
                     {c.cover_url ? (
-                      <img src={c.cover_url} alt={c.title} className="w-full h-full object-cover" loading="lazy" />
+                      <img src={c.cover_url} alt={c.title} width={800} height={450} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
                         <BookOpen className="h-12 w-12 text-primary/40" />

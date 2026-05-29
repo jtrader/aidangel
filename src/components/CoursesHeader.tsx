@@ -13,7 +13,7 @@ export default function CoursesHeader() {
     <header className="border-b bg-card sticky top-0 z-30">
       <div className="container max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 text-foreground">
-          <img src={aidAngelLogo} alt="First Aid - Online Course" className="h-7 w-7" />
+          <img src={aidAngelLogo} alt="First Aid - Online Course" width={28} height={28} className="h-7 w-7" />
           <span className="font-display font-bold"><span className="text-foreground">First Aid </span><span className="text-primary">- Online Course</span></span>
         </Link>
         <nav className="flex items-center gap-2">

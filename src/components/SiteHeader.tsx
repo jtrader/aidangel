@@ -19,6 +19,8 @@ export default function SiteHeader({ backTo, backLabel }: SiteHeaderProps) {
             <img
               src={aidAngelLogo}
               alt="First Aid Angel logo"
+              width={40}
+              height={40}
               className="w-10 h-10 rounded-xl object-cover flex-shrink-0"
             />
             <div className="flex-1 min-w-0">

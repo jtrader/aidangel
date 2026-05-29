@@ -124,6 +124,8 @@ export default function Illustration({ name, title, className }: IllustrationPro
         <img
           src={mobile}
           alt={label}
+          width={800}
+          height={600}
           loading="lazy"
           decoding="async"
           className="w-full max-w-md mx-auto h-auto rounded-2xl"
