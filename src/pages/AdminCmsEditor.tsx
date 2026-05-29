@@ -12,8 +12,10 @@ import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 import { ArrowLeft, Plus, Trash2, ArrowUp, ArrowDown, Upload, Save, Languages, Eye, ExternalLink } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CmsBlocksRenderer } from "@/components/CmsBlocksRenderer";
 import type { CmsPage } from "@/hooks/useCmsPage";
+import { languages, type LanguageCode } from "@/contexts/LanguageContext";
 
 type Block = {
   id: string;
@@ -118,25 +120,57 @@ export default function AdminCmsEditor() {
 
   const [translating, setTranslating] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewLang, setPreviewLang] = useState<LanguageCode>("en");
+  const [pageTr, setPageTr] = useState<{ title: string | null; description: string | null } | null>(null);
+  const [blockTrs, setBlockTrs] = useState<Record<string, { title: string | null; body_md: string | null; cta_label: string | null }>>({});
+  const [loadingTr, setLoadingTr] = useState(false);
+
+  useEffect(() => {
+    if (!previewOpen || !page || previewLang === "en") {
+      setPageTr(null); setBlockTrs({}); return;
+    }
+    let cancelled = false;
+    (async () => {
+      setLoadingTr(true);
+      const [{ data: pt }, { data: bts }] = await Promise.all([
+        supabase.from("cms_page_translations")
+          .select("title, description").eq("page_id", page.id).eq("lang", previewLang).maybeSingle(),
+        supabase.from("cms_block_translations")
+          .select("block_id, title, body_md, cta_label").eq("lang", previewLang)
+          .in("block_id", blocks.map((b) => b.id)),
+      ]);
+      if (cancelled) return;
+      setPageTr(pt ?? null);
+      const map: Record<string, any> = {};
+      (bts ?? []).forEach((t: any) => { map[t.block_id] = t; });
+      setBlockTrs(map);
+      setLoadingTr(false);
+    })();
+    return () => { cancelled = true; };
+  }, [previewOpen, previewLang, page?.id, blocks.length]);
+
   const previewPage: CmsPage | null = page
     ? {
         id: page.id,
         slug: page.slug,
-        title: page.title,
-        description: page.description,
+        title: pageTr?.title ?? page.title,
+        description: pageTr?.description ?? page.description,
         is_published: page.is_published,
-        blocks: blocks.map((b) => ({
-          id: b.id,
-          block_key: b.block_key,
-          block_type: b.block_type,
-          sort_order: b.sort_order,
-          title: b.title,
-          body_md: b.body_md,
-          image_url: b.image_url,
-          cta_label: b.cta_label,
-          cta_url: b.cta_url,
-          data: {},
-        })),
+        blocks: blocks.map((b) => {
+          const t = blockTrs[b.id];
+          return {
+            id: b.id,
+            block_key: b.block_key,
+            block_type: b.block_type,
+            sort_order: b.sort_order,
+            title: t?.title ?? b.title,
+            body_md: t?.body_md ?? b.body_md,
+            image_url: b.image_url,
+            cta_label: t?.cta_label ?? b.cta_label,
+            cta_url: b.cta_url,
+            data: {},
+          };
+        }),
       }
     : null;
   const translateAll = async () => {
@@ -282,6 +316,23 @@ export default function AdminCmsEditor() {
               <SheetDescription>
                 Unsaved changes shown. {page.is_published ? "Published" : "Draft — not visible to visitors yet."}
               </SheetDescription>
+              <div className="flex items-center gap-2 pt-2">
+                <Label className="text-xs text-muted-foreground">Language</Label>
+                <Select value={previewLang} onValueChange={(v) => setPreviewLang(v as LanguageCode)}>
+                  <SelectTrigger className="w-64 h-8 text-sm"><SelectValue /></SelectTrigger>
+                  <SelectContent className="max-h-80">
+                    {languages.map((l) => (
+                      <SelectItem key={l.code} value={l.code}>
+                        {l.name} {l.code !== "en" && <span className="text-muted-foreground">· {l.nativeName}</span>}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {loadingTr && <span className="text-xs text-muted-foreground">Loading…</span>}
+                {previewLang !== "en" && !loadingTr && !pageTr && Object.keys(blockTrs).length === 0 && (
+                  <span className="text-xs text-amber-600">No translation yet — showing English.</span>
+                )}
+              </div>
             </SheetHeader>
             <div className="bg-[#F7F7F7] p-6">
               <div className="max-w-4xl mx-auto bg-background rounded-2xl p-6 sm:p-8 shadow-sm">
