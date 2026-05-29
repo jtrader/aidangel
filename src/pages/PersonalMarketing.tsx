@@ -22,6 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
 import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
 import { useNavigate } from "react-router-dom";
+import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
 const TIERS = [
   {
