@@ -12,8 +12,10 @@ import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 import { ArrowLeft, Plus, Trash2, ArrowUp, ArrowDown, Upload, Save, Languages, Eye, ExternalLink } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CmsBlocksRenderer } from "@/components/CmsBlocksRenderer";
 import type { CmsPage } from "@/hooks/useCmsPage";
+import { languages, type LanguageCode } from "@/contexts/LanguageContext";
 
 type Block = {
   id: string;
