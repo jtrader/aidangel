@@ -85,12 +85,21 @@ const aedPaths: Array<{ path: string; changefreq: string; priority: string }> = 
   ),
 ];
 
+// Multilingual routes — ONLY these paths are mounted under /:lang/* in App.tsx.
 const basePaths: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/kb", changefreq: "weekly", priority: "0.9" },
+  ...meta.map((t) => ({ path: `/kb/${t.slug}`, changefreq: "monthly", priority: "0.7" })),
+];
+
+// English-only routes (no /:lang/* mount in App.tsx).
+const englishOnlyPaths: Array<{ path: string; changefreq: string; priority: string }> = [
   { path: "/symptoms", changefreq: "weekly", priority: "0.9" },
   ...LANDER_SLUGS.map((s) => ({ path: `/symptoms/${s}`, changefreq: "monthly", priority: "0.8" })),
-  ...meta.map((t) => ({ path: `/kb/${t.slug}`, changefreq: "monthly", priority: "0.7" })),
+  { path: "/style-guide", changefreq: "yearly", priority: "0.2" },
+  { path: "/angel-action", changefreq: "monthly", priority: "0.7" },
+  { path: "/learn", changefreq: "weekly", priority: "0.8" },
+  { path: "/learn/submit", changefreq: "monthly", priority: "0.5" },
 ];
 
 const localized = (lang: Lang, p: string) => {
@@ -120,6 +129,33 @@ for (const lang of LANGS) {
     lines.push(`  </url>`);
     urls.push(lines.join("\n"));
   }
+}
+
+// /:lang/angel-action — mounted in App.tsx for every supported lang.
+for (const lang of LANGS) {
+  const path = lang === "en" ? "/angel-action" : `/${lang}/angel-action`;
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}${path}</loc>`,
+      `    <changefreq>monthly</changefreq>`,
+      `    <priority>0.7</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
+}
+
+// English-only routes
+for (const b of englishOnlyPaths) {
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}${b.path}</loc>`,
+      `    <changefreq>${b.changefreq}</changefreq>`,
+      `    <priority>${b.priority}</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
 }
 
 // AED hub: English-only URLs (routes are not localized).
