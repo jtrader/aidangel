@@ -160,6 +160,15 @@ export default function NetworkFooter({ currentApp = "First Aid Angel" }: Networ
             )}
           </ul>
         </div>
+        <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 pt-3 text-[11px] text-muted-foreground">
+          <a href="/privacy" className="hover:text-foreground hover:underline transition-colors">Privacy Policy</a>
+          <span aria-hidden>·</span>
+          <a href="/terms" className="hover:text-foreground hover:underline transition-colors">Terms and Conditions</a>
+          <span aria-hidden>·</span>
+          <a href="/refund" className="hover:text-foreground hover:underline transition-colors">Refund Policy</a>
+          <span aria-hidden>·</span>
+          <a href="/medical-disclaimer" className="hover:text-foreground hover:underline transition-colors">Medical Disclaimer</a>
+        </nav>
         <p className="text-[11px] text-muted-foreground flex items-center justify-center gap-1 mt-2">
           {tr.copyright} <Heart className="h-3 w-3 inline" />
         </p>
