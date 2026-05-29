@@ -58,15 +58,14 @@ export function SeoHead({ lang, basePath, title, description, ogImage, jsonLd }:
           {JSON.stringify(Array.isArray(jsonLd) ? jsonLd : { ...jsonLd, inLanguage: HREFLANG[lang] })}
         </script>
       ) : null}
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSXCZTK1V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FTSXCZTK1V');
-</script>
+      {/* Google tag (gtag.js) */}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTSXCZTK1V"></script>
+      <script>{`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FTSXCZTK1V');
+      `}</script>
     </Helmet>
   );
 }
