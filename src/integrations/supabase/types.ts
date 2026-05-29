@@ -214,6 +214,7 @@ export type Database = {
           description: string | null
           id: string
           is_published: boolean
+          preview_token: string
           slug: string
           title: string
           updated_at: string
@@ -224,6 +225,7 @@ export type Database = {
           description?: string | null
           id?: string
           is_published?: boolean
+          preview_token?: string
           slug: string
           title: string
           updated_at?: string
@@ -234,6 +236,7 @@ export type Database = {
           description?: string | null
           id?: string
           is_published?: boolean
+          preview_token?: string
           slug?: string
           title?: string
           updated_at?: string
@@ -1982,6 +1985,10 @@ export type Database = {
           reviewed_at: string
           status: string
         }[]
+      }
+      get_cms_preview: {
+        Args: { p_lang?: string; p_slug: string; p_token: string }
+        Returns: Json
       }
       get_invitation_by_token: {
         Args: { _token: string }

@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
-import { ArrowLeft, Plus, Trash2, ArrowUp, ArrowDown, Upload, Save, Languages, Eye, ExternalLink } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, ArrowUp, ArrowDown, Upload, Save, Languages, Eye, ExternalLink, Link2, QrCode } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CmsBlocksRenderer } from "@/components/CmsBlocksRenderer";
@@ -30,7 +30,7 @@ type Block = {
   cta_url: string | null;
 };
 
-type Page = { id: string; slug: string; title: string; description: string | null; is_published: boolean };
+type Page = { id: string; slug: string; title: string; description: string | null; is_published: boolean; preview_token: string };
 
 export default function AdminCmsEditor() {
   const { slug } = useParams<{ slug: string }>();
@@ -191,6 +191,19 @@ export default function AdminCmsEditor() {
     else toast.success(`Translated into ${ok} languages`);
   };
 
+  const previewUrl = page
+    ? `${window.location.origin}/cms-preview/${page.slug}?token=${page.preview_token}${previewLang !== "en" ? `&lang=${previewLang}` : ""}`
+    : "";
+  const copyPreviewLink = async () => {
+    if (!previewUrl) return;
+    try {
+      await navigator.clipboard.writeText(previewUrl);
+      toast.success("Preview link copied — open it on any device.");
+    } catch {
+      toast.message(previewUrl);
+    }
+  };
+
   if (loading) return <div className="p-10 text-muted-foreground">Loading…</div>;
   if (!page) return <div className="p-10">Page not found. <Link to="/admin/cms" className="text-primary underline">Back</Link></div>;
 
@@ -226,6 +239,14 @@ export default function AdminCmsEditor() {
                 <Button asChild variant="outline" className="w-fit">
                   <a href={`/${page.slug === "home" ? "" : page.slug}`} target="_blank" rel="noopener noreferrer">
                     <ExternalLink className="h-4 w-4 mr-1" /> Open live page
+                  </a>
+                </Button>
+                <Button onClick={copyPreviewLink} variant="outline" className="w-fit">
+                  <Link2 className="h-4 w-4 mr-1" /> Copy preview link
+                </Button>
+                <Button asChild variant="outline" className="w-fit" title="Open QR code for mobile">
+                  <a href={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(previewUrl)}`} target="_blank" rel="noopener noreferrer">
+                    <QrCode className="h-4 w-4 mr-1" /> QR for mobile
                   </a>
                 </Button>
                 <Button onClick={translateAll} variant="outline" className="w-fit" disabled={translating}>
