@@ -241,6 +241,14 @@ export default function AdminCmsEditor() {
                     <ExternalLink className="h-4 w-4 mr-1" /> Open live page
                   </a>
                 </Button>
+                <Button onClick={copyPreviewLink} variant="outline" className="w-fit">
+                  <Link2 className="h-4 w-4 mr-1" /> Copy preview link
+                </Button>
+                <Button asChild variant="outline" className="w-fit" title="Open QR code for mobile">
+                  <a href={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(previewUrl)}`} target="_blank" rel="noopener noreferrer">
+                    <QrCode className="h-4 w-4 mr-1" /> QR for mobile
+                  </a>
+                </Button>
                 <Button onClick={translateAll} variant="outline" className="w-fit" disabled={translating}>
                   <Languages className="h-4 w-4 mr-1" /> {translating ? "Translating…" : "Translate into 47 languages"}
                 </Button>
