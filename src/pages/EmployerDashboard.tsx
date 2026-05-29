@@ -5,6 +5,7 @@ import { useOrg } from "@/hooks/useOrg";
 import { supabase } from "@/integrations/supabase/client";
 import { Users, ListChecks, AlertTriangle, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useUiStrings } from "@/hooks/useUiStrings";
 
 interface Stats {
   members: number;
@@ -31,6 +32,26 @@ function StatCard({ icon: Icon, label, value, hint }: { icon: React.ComponentTyp
 
 export default function EmployerDashboard() {
   const { activeOrg } = useOrg();
+  const tr = useUiStrings({
+    dashboard: "Dashboard",
+    dashboardSuffix: "dashboard",
+    people: "People",
+    activeOfSeats: "{a} active of {s} seats",
+    topicAssignments: "Topic assignments",
+    completed: "completed",
+    coursesAssigned: "Courses assigned",
+    overdueTopics: "Overdue topics",
+    getStarted: "Get started",
+    addPeople: "Add your first people",
+    or: "manually, or",
+    uploadCsv: "upload a CSV",
+    assignCourses: "Assign courses",
+    withDue: "with due dates.",
+    trackProgress: "Track progress and download compliance reports from",
+    reports: "Reports",
+    managePeople: "Manage people",
+    bulkImport: "Bulk import",
+  });
   const [stats, setStats] = useState<Stats>({ members: 0, active: 0, assigned: 0, completed: 0, overdue: 0, programsAssigned: 0, programsCompleted: 0 });
 
   useEffect(() => {
@@ -58,31 +79,31 @@ export default function EmployerDashboard() {
   }, [activeOrg]);
 
   return (
-    <EmployerLayout title={activeOrg ? `${activeOrg.name} dashboard` : "Dashboard"}>
+    <EmployerLayout title={activeOrg ? `${activeOrg.name} ${tr.dashboardSuffix}` : tr.dashboard}>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard icon={Users} label="People" value={stats.members} hint={`${stats.active} active of ${activeOrg?.seat_limit ?? 0} seats`} />
-        <StatCard icon={ListChecks} label="Topic assignments" value={stats.assigned} hint={`${stats.completed} completed`} />
-        <StatCard icon={GraduationCap} label="Courses assigned" value={stats.programsAssigned} hint={`${stats.programsCompleted} completed`} />
-        <StatCard icon={AlertTriangle} label="Overdue topics" value={stats.overdue} />
+        <StatCard icon={Users} label={tr.people} value={stats.members} hint={tr.activeOfSeats.replace("{a}", String(stats.active)).replace("{s}", String(activeOrg?.seat_limit ?? 0))} />
+        <StatCard icon={ListChecks} label={tr.topicAssignments} value={stats.assigned} hint={`${stats.completed} ${tr.completed}`} />
+        <StatCard icon={GraduationCap} label={tr.coursesAssigned} value={stats.programsAssigned} hint={`${stats.programsCompleted} ${tr.completed}`} />
+        <StatCard icon={AlertTriangle} label={tr.overdueTopics} value={stats.overdue} />
       </div>
 
       <div className="bg-card rounded-2xl shadow-sm p-6 space-y-3">
-        <h2 className="font-bold text-lg">Get started</h2>
+        <h2 className="font-bold text-lg">{tr.getStarted}</h2>
         <ol className="list-decimal pl-5 text-sm space-y-2 text-foreground">
           <li>
-            <Link to="/employer/people" className="text-primary hover:underline">Add your first people</Link> manually, or
-            <Link to="/employer/people/import" className="text-primary hover:underline ml-1">upload a CSV</Link>.
+            <Link to="/employer/people" className="text-primary hover:underline">{tr.addPeople}</Link> {tr.or}
+            <Link to="/employer/people/import" className="text-primary hover:underline ml-1">{tr.uploadCsv}</Link>.
           </li>
           <li>
-            <Link to="/employer/assignments" className="text-primary hover:underline">Assign courses</Link> with due dates.
+            <Link to="/employer/assignments" className="text-primary hover:underline">{tr.assignCourses}</Link> {tr.withDue}
           </li>
           <li>
-            Track progress and download compliance reports from <Link to="/employer/reports" className="text-primary hover:underline">Reports</Link>.
+            {tr.trackProgress} <Link to="/employer/reports" className="text-primary hover:underline">{tr.reports}</Link>.
           </li>
         </ol>
         <div className="flex flex-wrap gap-2 pt-2">
-          <Button asChild><Link to="/employer/people">Manage people</Link></Button>
-          <Button asChild variant="outline"><Link to="/employer/people/import">Bulk import</Link></Button>
+          <Button asChild><Link to="/employer/people">{tr.managePeople}</Link></Button>
+          <Button asChild variant="outline"><Link to="/employer/people/import">{tr.bulkImport}</Link></Button>
         </div>
       </div>
     </EmployerLayout>

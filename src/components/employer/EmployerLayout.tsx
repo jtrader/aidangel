@@ -14,6 +14,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import NetworkFooter from "@/components/NetworkFooter";
+import { useUiStrings } from "@/hooks/useUiStrings";
 
 interface Props {
   children: ReactNode;
@@ -21,26 +22,31 @@ interface Props {
 }
 
 const NAV = [
-  { to: "/employer/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/employer/people", label: "People", icon: Users },
-  { to: "/employer/people/import", label: "Bulk import", icon: Upload },
-  { to: "/employer/assignments", label: "Assignments", icon: ListChecks },
-  { to: "/employer/reports", label: "Reports", icon: BarChart3 },
-  { to: "/employer/settings", label: "Settings", icon: Settings },
+  { to: "/employer/dashboard", key: "dashboard" as const, label: "Dashboard", icon: LayoutDashboard },
+  { to: "/employer/people", key: "people" as const, label: "People", icon: Users },
+  { to: "/employer/people/import", key: "bulkImport" as const, label: "Bulk import", icon: Upload },
+  { to: "/employer/assignments", key: "assignments" as const, label: "Assignments", icon: ListChecks },
+  { to: "/employer/reports", key: "reports" as const, label: "Reports", icon: BarChart3 },
+  { to: "/employer/settings", key: "settings" as const, label: "Settings", icon: Settings },
 ];
 
 function OrgSwitcher({ orgs, active, onSelect }: { orgs: OrgSummary[]; active: OrgSummary | null; onSelect: (id: string) => void }) {
   const navigate = useNavigate();
+  const tr = useUiStrings({
+    selectOrg: "Select organisation",
+    yourOrgs: "Your organisations",
+    newOrg: "New organisation",
+  });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" className="gap-2 max-w-[260px]">
           <Building2 className="h-4 w-4" />
-          <span className="truncate">{active?.name ?? "Select organisation"}</span>
+          <span className="truncate">{active?.name ?? tr.selectOrg}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-72 bg-popover">
-        <DropdownMenuLabel>Your organisations</DropdownMenuLabel>
+        <DropdownMenuLabel>{tr.yourOrgs}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {orgs.map((o) => (
           <DropdownMenuItem key={o.id} onSelect={() => onSelect(o.id)} className="cursor-pointer">
@@ -52,7 +58,7 @@ function OrgSwitcher({ orgs, active, onSelect }: { orgs: OrgSummary[]; active: O
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => navigate("/employer/onboarding")} className="cursor-pointer">
           <Plus className="h-4 w-4 mr-2" />
-          New organisation
+          {tr.newOrg}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -63,9 +69,24 @@ export default function EmployerLayout({ children, title }: Props) {
   const { user, signOut } = useAuth();
   const { orgs, activeOrg, setActive, loading } = useOrg();
   const navigate = useNavigate();
+  const tr = useUiStrings({
+    loadingWs: "Loading workspace…",
+    welcome: "Welcome to Employer Admin",
+    welcomeBlurb:
+      "Create an organisation to start managing your team's first-aid training, or paste a join link from your admin.",
+    createOrg: "Create organisation",
+    employer: "Employer",
+    signOut: "Sign out",
+    dashboard: "Dashboard",
+    people: "People",
+    bulkImport: "Bulk import",
+    assignments: "Assignments",
+    reports: "Reports",
+    settings: "Settings",
+  });
 
   if (loading) {
-    return <div className="p-12 text-center text-muted-foreground">Loading workspace…</div>;
+    return <div className="p-12 text-center text-muted-foreground">{tr.loadingWs}</div>;
   }
 
   if (!user) {
@@ -78,12 +99,10 @@ export default function EmployerLayout({ children, title }: Props) {
       <div className="min-h-screen flex items-center justify-center p-6 bg-muted/30">
         <div className="max-w-md w-full bg-card rounded-2xl shadow-sm p-8 text-center space-y-4">
           <Building2 className="h-12 w-12 mx-auto text-primary" />
-          <h1 className="text-2xl font-bold">Welcome to Employer Admin</h1>
-          <p className="text-muted-foreground text-sm">
-            Create an organisation to start managing your team's first-aid training, or paste a join link from your admin.
-          </p>
+          <h1 className="text-2xl font-bold">{tr.welcome}</h1>
+          <p className="text-muted-foreground text-sm">{tr.welcomeBlurb}</p>
           <Button className="w-full" onClick={() => navigate("/employer/onboarding")}>
-            <Plus className="h-4 w-4 mr-2" /> Create organisation
+            <Plus className="h-4 w-4 mr-2" /> {tr.createOrg}
           </Button>
         </div>
       </div>
@@ -97,11 +116,11 @@ export default function EmployerLayout({ children, title }: Props) {
           <div className="flex items-center gap-3">
             <button onClick={() => navigate("/")} className="font-bold text-primary">First Aid Angel</button>
             <span className="text-muted-foreground">/</span>
-            <span className="font-medium text-sm">Employer</span>
+            <span className="font-medium text-sm">{tr.employer}</span>
           </div>
           <div className="flex items-center gap-2">
             <OrgSwitcher orgs={orgs} active={activeOrg} onSelect={setActive} />
-            <Button variant="ghost" size="sm" onClick={() => signOut().then(() => navigate("/"))}>Sign out</Button>
+            <Button variant="ghost" size="sm" onClick={() => signOut().then(() => navigate("/"))}>{tr.signOut}</Button>
           </div>
         </div>
       </header>
@@ -120,7 +139,7 @@ export default function EmployerLayout({ children, title }: Props) {
               }
             >
               <n.icon className="h-4 w-4" />
-              <span>{n.label}</span>
+              <span>{tr[n.key]}</span>
             </NavLink>
           ))}
         </nav>

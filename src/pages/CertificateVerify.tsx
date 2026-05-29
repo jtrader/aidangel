@@ -6,9 +6,20 @@ import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
+import { useUiStrings } from "@/hooks/useUiStrings";
 
 export default function CertificateVerify() {
   const { number } = useParams<{ number: string }>();
+  const tr = useUiStrings({
+    valid: "Valid certificate",
+    issuedBy: "Issued by First Aid Angel",
+    number: "Number",
+    course: "Course",
+    learner: "Learner",
+    issued: "Issued",
+    notFound: "Certificate not found",
+    notFoundBlurb: "No certificate exists with this number.",
+  });
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -31,20 +42,20 @@ export default function CertificateVerify() {
           ) : result ? (
             <>
               <CheckCircle2 className="h-16 w-16 text-primary mx-auto mb-4" />
-              <h1 className="font-display text-2xl font-bold mb-2">Valid certificate</h1>
-              <p className="text-muted-foreground mb-4">Issued by First Aid Angel</p>
+              <h1 className="font-display text-2xl font-bold mb-2">{tr.valid}</h1>
+              <p className="text-muted-foreground mb-4">{tr.issuedBy}</p>
               <div className="text-left bg-muted rounded-lg p-4 space-y-2 text-sm">
-                <div><span className="text-muted-foreground">Number:</span> <span className="font-mono">{result.certificate_number}</span></div>
-                <div><span className="text-muted-foreground">Course:</span> {result.course_title}</div>
-                <div><span className="text-muted-foreground">Learner:</span> {result.learner_initial}***</div>
-                <div><span className="text-muted-foreground">Issued:</span> {new Date(result.issued_at).toLocaleDateString()}</div>
+                <div><span className="text-muted-foreground">{tr.number}:</span> <span className="font-mono">{result.certificate_number}</span></div>
+                <div><span className="text-muted-foreground">{tr.course}:</span> {result.course_title}</div>
+                <div><span className="text-muted-foreground">{tr.learner}:</span> {result.learner_initial}***</div>
+                <div><span className="text-muted-foreground">{tr.issued}:</span> {new Date(result.issued_at).toLocaleDateString()}</div>
               </div>
             </>
           ) : (
             <>
               <XCircle className="h-16 w-16 text-destructive mx-auto mb-4" />
-              <h1 className="font-display text-2xl font-bold mb-2">Certificate not found</h1>
-              <p className="text-muted-foreground">No certificate exists with this number.</p>
+              <h1 className="font-display text-2xl font-bold mb-2">{tr.notFound}</h1>
+              <p className="text-muted-foreground">{tr.notFoundBlurb}</p>
             </>
           )}
         </Card>
