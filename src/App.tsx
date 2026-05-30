@@ -85,6 +85,12 @@ import PersonalMarketing from "./pages/PersonalMarketing";
 import JoinCodeEntry from "./pages/JoinCodeEntry";
 import JoinOrg from "./pages/JoinOrg";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
+import CourseLanding from "./pages/CourseLanding";
+import BlogIndex from "./pages/BlogIndex";
+import BlogCategoryPage from "./pages/BlogCategory";
+import BlogPostPage from "./pages/BlogPost";
+import AdminBlog from "./pages/AdminBlog";
+import AdminBlogEditor from "./pages/AdminBlogEditor";
 import LessonRenderer from "./components/lesson/LessonRenderer";
 import { PaymentTestModeBanner } from "./components/PaymentTestModeBanner";
 import RequireProgramAccess from "./components/RequireProgramAccess";
@@ -167,11 +173,19 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/topics/:slug" element={<CourseDetail />} />
                 <Route path="/topics/:slug/lesson/:lessonSlug" element={<RequireAuth><CourseLesson /></RequireAuth>} />
                 <Route path="/topics/:slug/quiz" element={<RequireAuth><CourseQuiz /></RequireAuth>} />
+                {/* SEO course landing pages (/courses/<program-slug>-guide) — must precede legacy redirects */}
+                <Route path="/courses/:slugGuide" element={<CourseLanding />} />
                 {/* Legacy /courses redirects */}
                 <Route path="/courses" element={<Navigate to="/topics" replace />} />
-                <Route path="/courses/:slug" element={<RedirectCourseToTopic />} />
                 <Route path="/courses/:slug/lesson/:lessonSlug" element={<RedirectCourseToTopic suffix="lesson" />} />
                 <Route path="/courses/:slug/quiz" element={<RedirectCourseToTopic suffix="quiz" />} />
+
+                {/* Blog */}
+                <Route path="/blog" element={<BlogIndex />} />
+                <Route path="/blog/:category" element={<BlogCategoryPage />} />
+                <Route path="/blog/:category/:slug" element={<BlogPostPage />} />
+                <Route path="/admin/blog" element={<AdminBlog />} />
+                <Route path="/admin/blog/:slug" element={<AdminBlogEditor />} />
                 
                 <Route path="/programs" element={<Programs />} />
                 <Route path="/programs/:slug" element={<ProgramDetail />} />

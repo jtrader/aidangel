@@ -104,7 +104,7 @@ export default function AdminBlogEditor() {
       title: b.title, body_md: b.body_md,
       media_url: b.media_url, media_poster_url: b.media_poster_url, media_alt: b.media_alt,
       caption: b.caption, embed_html: b.embed_html,
-      cta_label: b.cta_label, cta_url: b.cta_url, data: b.data,
+      cta_label: b.cta_label, cta_url: b.cta_url, data: (b.data ?? {}) as any,
     }).eq("id", b.id);
     if (error) return toast.error(error.message);
     toast.success("Block saved");
