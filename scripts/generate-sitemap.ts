@@ -315,6 +315,75 @@ for (const b of workplacePaths) {
   );
 }
 
+// SEO course landing pages + blog
+const COURSE_LANDING_SLUGS = [
+  "emergency-response-essentials",
+  "parents-childcare-essentials",
+  "workplace-trades-essentials",
+  "outdoor-remote-essentials",
+  "aged-care-essentials",
+];
+for (const s of COURSE_LANDING_SLUGS) {
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}/courses/${s}-guide</loc>`,
+      `    <changefreq>weekly</changefreq>`,
+      `    <priority>0.9</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
+}
+
+const blogPaths: Array<{ path: string; changefreq: string; priority: string }> = [
+  { path: "/blog", changefreq: "weekly", priority: "0.8" },
+];
+
+async function fetchBlogPaths(): Promise<void> {
+  const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
+  const SUPABASE_KEY = process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    console.warn("[sitemap] Supabase env vars missing — skipping blog URLs");
+    return;
+  }
+  const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
+  try {
+    const cRes = await fetch(`${SUPABASE_URL}/rest/v1/blog_categories?select=id,slug`, { headers });
+    const cats = (await cRes.json()) as Array<{ id: string; slug: string }>;
+    const bySlug = new Map(cats.map((c) => [c.id, c.slug]));
+    for (const c of cats) {
+      blogPaths.push({ path: `/blog/${c.slug}`, changefreq: "weekly", priority: "0.7" });
+    }
+    const pRes = await fetch(
+      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,category_id&is_published=eq.true`,
+      { headers },
+    );
+    const posts = (await pRes.json()) as Array<{ slug: string; category_id: string }>;
+    for (const p of posts) {
+      const catSlug = bySlug.get(p.category_id);
+      if (!catSlug) continue;
+      blogPaths.push({ path: `/blog/${catSlug}/${p.slug}`, changefreq: "monthly", priority: "0.7" });
+    }
+    console.log(`[sitemap] Blog: ${cats.length} categories, ${posts.length} posts`);
+  } catch (e) {
+    console.warn("[sitemap] Blog fetch failed:", (e as Error).message);
+  }
+}
+
+await fetchBlogPaths();
+for (const b of blogPaths) {
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}${b.path}</loc>`,
+      `    <changefreq>${b.changefreq}</changefreq>`,
+      `    <priority>${b.priority}</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
+}
+
+
 
 
 const xml = [
