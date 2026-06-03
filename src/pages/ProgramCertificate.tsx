@@ -67,9 +67,26 @@ export default function ProgramCertificate() {
       if (!p) { setLoading(false); return; }
       setProgram(p);
 
+      // Check for existing free (credit-issued) program cert
       const { data: existing } = await supabase.from("program_certificates")
         .select("*").eq("user_id", user.id).eq("program_id", p.id).maybeSingle();
-      if (existing) setCert(existing);
+      if (existing) {
+        setCert(existing);
+      } else {
+        // Check for paid Shopify cert
+        const { data: paid } = await supabase.from("shopify_certificates")
+          .select("certificate_id, learner_name, issue_date")
+          .eq("user_id", user.id).eq("program_slug", p.slug)
+          .eq("status", "issued")
+          .order("created_at", { ascending: false }).limit(1).maybeSingle();
+        if (paid) {
+          setCert({
+            certificate_number: paid.certificate_id,
+            learner_name: paid.learner_name,
+            issued_at: paid.issue_date,
+          });
+        }
+      }
 
       const { data: orgs } = await supabase.from("organisations")
         .select("name,logo_url,primary_color").limit(1);
