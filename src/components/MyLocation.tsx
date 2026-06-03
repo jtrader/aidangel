@@ -515,7 +515,7 @@ export default function MyLocation() {
               <>
                 <p className="text-base text-foreground">{address.data}</p>
                 <p className="text-[11px] text-muted-foreground mt-2">
-                  Address is approximate — coordinates and what3words above are more precise.
+                  Address is approximate — coordinates and what3words above are more precise. Address lookups go through our server proxy; your coordinates are not logged.
                 </p>
               </>
             )}
