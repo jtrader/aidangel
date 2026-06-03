@@ -171,6 +171,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/admin/cms/:slug" element={<AdminCmsEditor />} />
                 <Route path="/cms-preview/:slug" element={<CmsPreview />} />
                 <Route path="/admin/donations" element={<AdminDonations />} />
+                <Route path="/admin/routes" element={<AdminRoutes />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />
                 <Route path="/admin/kb" element={<AdminKb />} />
                 <Route path="/admin/courses" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
