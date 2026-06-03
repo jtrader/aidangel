@@ -36,12 +36,18 @@ async function fetchW3W(lat: number, lng: number): Promise<string> {
 }
 
 async function reverseGeocode(lat: number, lng: number): Promise<string> {
-  const r = await fetch(
-    `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
-    { headers: { "Accept-Language": "en" } },
-  );
+  // Rule 4: reverse geocoding is server-side only — proxied via edge function
+  // which handles User-Agent, in-memory caching, and never logs coordinates.
+  const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/reverse-geocode?lat=${lat}&lng=${lng}`;
+  const r = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+      apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+    },
+  });
   if (!r.ok) throw new Error("Address lookup failed");
   const j = await r.json();
+  if (j?.error) throw new Error(j.error);
   if (!j?.display_name) throw new Error("No address found");
   return j.display_name as string;
 }
@@ -509,7 +515,7 @@ export default function MyLocation() {
               <>
                 <p className="text-base text-foreground">{address.data}</p>
                 <p className="text-[11px] text-muted-foreground mt-2">
-                  Address is approximate — coordinates and what3words above are more precise.
+                  Address is approximate — coordinates and what3words above are more precise. Address lookups go through our server proxy; your coordinates are not logged.
                 </p>
               </>
             )}
