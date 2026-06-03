@@ -2214,6 +2214,36 @@ export type Database = {
         }
         Relationships: []
       }
+      route_catalogue_sync_runs: {
+        Row: {
+          error: string | null
+          finished_at: string | null
+          id: string
+          started_at: string
+          status: string
+          synced_count: number
+          triggered_by: string | null
+        }
+        Insert: {
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          started_at?: string
+          status?: string
+          synced_count?: number
+          triggered_by?: string | null
+        }
+        Update: {
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          started_at?: string
+          status?: string
+          synced_count?: number
+          triggered_by?: string | null
+        }
+        Relationships: []
+      }
       route_clicks: {
         Row: {
           click_id: string

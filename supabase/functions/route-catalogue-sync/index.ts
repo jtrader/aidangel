@@ -44,15 +44,17 @@ function parseTags(tags: string[]) {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
-  try {
-    // Admin-only: require service role OR caller is admin user
-    const authHeader = req.headers.get("Authorization") ?? "";
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-    );
+  const supabase = createClient(
+    Deno.env.get("SUPABASE_URL")!,
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+  );
 
-    // Allow either service role secret or admin app role.
+  let runId: string | null = null;
+  let triggeredBy: string | null = null;
+
+  try {
+    const authHeader = req.headers.get("Authorization") ?? "";
+
     if (!authHeader.includes(Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!)) {
       const userClient = createClient(
         Deno.env.get("SUPABASE_URL")!,
@@ -63,7 +65,15 @@ Deno.serve(async (req) => {
       if (!user) return json({ error: "Unauthorized" }, 401);
       const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: user.id, _role: "admin" });
       if (!isAdmin) return json({ error: "Forbidden" }, 403);
+      triggeredBy = user.id;
     }
+
+    const { data: runRow } = await supabase
+      .from("route_catalogue_sync_runs")
+      .insert({ status: "running", triggered_by: triggeredBy })
+      .select("id")
+      .single();
+    runId = runRow?.id ?? null;
 
     let cursor: string | null = null;
     let synced = 0;
@@ -82,7 +92,11 @@ Deno.serve(async (req) => {
         },
       );
       const body = await res.json();
-      if (body.errors) return json({ error: "shopify_error", details: body.errors }, 502);
+      if (body.errors) {
+        const msg = JSON.stringify(body.errors);
+        if (runId) await supabase.from("route_catalogue_sync_runs").update({ status: "error", finished_at: new Date().toISOString(), error: msg, synced_count: synced }).eq("id", runId);
+        return json({ error: "shopify_error", details: body.errors }, 502);
+      }
 
       const edges = body.data?.products?.edges ?? [];
       for (const e of edges) {
@@ -122,7 +136,6 @@ Deno.serve(async (req) => {
       cursor = body.data?.products?.pageInfo?.hasNextPage ? body.data.products.pageInfo.endCursor : null;
     } while (cursor);
 
-    // Mark anything not seen as unavailable (soft delete)
     if (seen.length) {
       await supabase
         .from("route_catalogue")
@@ -130,9 +143,12 @@ Deno.serve(async (req) => {
         .not("route_slug", "in", `(${seen.map((s) => `"${s}"`).join(",")})`);
     }
 
+    if (runId) await supabase.from("route_catalogue_sync_runs").update({ status: "success", finished_at: new Date().toISOString(), synced_count: synced }).eq("id", runId);
     return json({ ok: true, synced, slugs: seen });
   } catch (err) {
     console.error(err);
+    const msg = err instanceof Error ? `${err.message}\n${err.stack ?? ""}` : String(err);
+    if (runId) await supabase.from("route_catalogue_sync_runs").update({ status: "error", finished_at: new Date().toISOString(), error: msg }).eq("id", runId);
     return json({ error: String(err) }, 500);
   }
 });
