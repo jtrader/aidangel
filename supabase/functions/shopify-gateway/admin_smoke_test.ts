@@ -3,7 +3,7 @@ Deno.test("admin token reaches Shopify", async () => {
   const domain = (Deno.env.get("SHOPIFY_STORE_DOMAIN") ?? "")
     .replace(/^https?:\/\//, "")
     .replace(/\/+$/, "");
-  const version = "2025-07";
+  const version = Deno.env.get("SHOPIFY_API_VERSION") ?? "";
   const token = Deno.env.get("SHOPIFY_ADMIN_ACCESS_TOKEN") ?? "";
 
   console.log("domain:", domain, "version:", version, "token len:", token.length);
