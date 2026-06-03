@@ -47,6 +47,10 @@ async function shopifyFetch(
   if (endpoint === "storefront") {
     headers["X-Shopify-Storefront-Access-Token"] = STOREFRONT_TOKEN;
   } else {
+    // App automation tokens (Shopify Dev Dashboard) use Bearer auth.
+    // Classic custom-app admin tokens (shpat_...) also accept this header
+    // alongside X-Shopify-Access-Token, so we send both for compatibility.
+    headers["Authorization"] = `Bearer ${ADMIN_TOKEN}`;
     headers["X-Shopify-Access-Token"] = ADMIN_TOKEN;
   }
 
