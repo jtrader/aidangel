@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Copy, MapPin, Phone, RefreshCw, Share2, AlertTriangle, Check } from "lucide-react";
+import { Copy, MapPin, Phone, RefreshCw, Share2, AlertTriangle, Check, Settings, ChevronRight } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 interface Coords { lat: number; lng: number; accuracy: number; }
+
+interface GeoErrorState {
+  code: number;
+  title: string;
+  message: string;
+  steps: string[];
+  actionLabel: string;
+}
 
 type LoadState<T> =
   | { status: "idle" }
@@ -58,9 +66,108 @@ function CopyButton({ value, label }: { value: string; label?: string }) {
   );
 }
 
+function ErrorCard({ error, onRetry }: { error: GeoErrorState; onRetry: () => void }) {
+  return (
+    <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/5 p-5">
+      <div className="flex items-start gap-3">
+        <div className="mt-0.5 shrink-0 rounded-full bg-primary/10 p-2">
+          <AlertTriangle className="h-5 w-5 text-primary" />
+        </div>
+        <div className="flex-1">
+          <h2 className="font-bold text-primary text-base">{error.title}</h2>
+          <p className="text-sm text-foreground mt-1">{error.message}</p>
+
+          <ol className="mt-3 space-y-2">
+            {error.steps.map((step, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                  {i + 1}
+                </span>
+                <span className="leading-snug">{step}</span>
+              </li>
+            ))}
+          </ol>
+
+          <button
+            type="button"
+            onClick={onRetry}
+            className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground shadow-sm hover:bg-primary/90 active:scale-[0.99] transition"
+          >
+            <RefreshCw className="h-4 w-4" />
+            {error.actionLabel}
+          </button>
+
+          <p className="mt-4 text-xs text-muted-foreground border-t border-border pt-3">
+            Still not working? Tell the{" "}
+            <a href="tel:000" className="text-primary font-semibold underline-offset-2 hover:underline">
+              000
+            </a>{" "}
+            operator your street address, nearest intersection, suburb, and any nearby landmarks.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function getErrorState(code: number): GeoErrorState {
+  switch (code) {
+    case 1: // PERMISSION_DENIED
+      return {
+        code,
+        title: "Location access is blocked",
+        message: "Your browser or device is not allowing this page to read your GPS location.",
+        steps: [
+          "Look for the location icon in your browser's address bar and allow permission.",
+          "On iPhone: Settings → Privacy & Security → Location Services → Safari → Allow.",
+          "On Android: Settings → Apps → Browser → Permissions → Location → Allow.",
+          "Reload this page and tap Get My Location again.",
+        ],
+        actionLabel: "Try again",
+      };
+    case 2: // POSITION_UNAVAILABLE
+      return {
+        code,
+        title: "GPS signal not available",
+        message: "Your device cannot determine its position right now. This often happens indoors or in areas with poor signal.",
+        steps: [
+          "Move outdoors or closer to a window.",
+          "Make sure Wi-Fi and mobile data are turned on (they help locate you faster).",
+          "Check that your device's Location/GPS setting is turned on in system settings.",
+          "Tap Try again below.",
+        ],
+        actionLabel: "Try again",
+      };
+    case 3: // TIMEOUT
+      return {
+        code,
+        title: "Location request timed out",
+        message: "It took too long to get a GPS fix. Your device may be struggling to connect to satellites.",
+        steps: [
+          "Move to an open area away from tall buildings or heavy tree cover.",
+          "Ensure mobile data or Wi-Fi is enabled to assist positioning.",
+          "Wait a few seconds, then tap Try again below.",
+        ],
+        actionLabel: "Try again",
+      };
+    default:
+      return {
+        code,
+        title: "Could not get your location",
+        message: "An unexpected error occurred while trying to read your position.",
+        steps: [
+          "Check that your browser supports location services.",
+          "Make sure Location/GPS is enabled in your device settings.",
+          "Refresh the page and try again.",
+        ],
+        actionLabel: "Try again",
+      };
+  }
+}
+
 export default function MyLocation() {
   const [coords, setCoords] = useState<Coords | null>(null);
-  const [geoError, setGeoError] = useState<string | null>(null);
+  const [geoError, setGeoError] = useState<GeoErrorState | null>(null);
   const [busy, setBusy] = useState(false);
   const [w3w, setW3w] = useState<LoadState<string>>({ status: "idle" });
   const [address, setAddress] = useState<LoadState<string>>({ status: "idle" });
@@ -83,7 +190,16 @@ export default function MyLocation() {
   const getLocation = useCallback(() => {
     setGeoError(null);
     if (!("geolocation" in navigator)) {
-      setGeoError("Your browser does not support location sharing. Open this page in Chrome or Safari.");
+      setGeoError({
+        code: -1,
+        title: "Location not supported",
+        message: "Your browser does not support location sharing.",
+        steps: [
+          "Open this page in a modern browser like Chrome, Safari, or Edge.",
+          "Make sure you are not using a private/incognito mode that blocks location.",
+        ],
+        actionLabel: "Retry",
+      });
       return;
     }
     setBusy(true);
@@ -102,14 +218,9 @@ export default function MyLocation() {
       },
       (err) => {
         setBusy(false);
-        const map: Record<number, string> = {
-          1: "Location access was denied. Enable location permissions in your browser settings, then tap Get My Location again.",
-          2: "Could not determine your location. Try moving outdoors or near a window, then tap again.",
-          3: "Location request timed out. Tap Get My Location again, or move to a clearer area.",
-        };
-        setGeoError(map[err.code] ?? "Could not get your location. Please try again.");
+        setGeoError(getErrorState(err.code));
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
     );
   }, [runW3W, runAddress]);
 
@@ -184,19 +295,7 @@ export default function MyLocation() {
         In Australia, call 000 for police, fire or ambulance.
       </p>
 
-      {geoError && (
-        <div className="mt-4 p-4 rounded-xl border border-primary/30 bg-primary/5 text-sm text-foreground">
-          <div className="flex items-start gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium text-primary">{geoError}</p>
-              <p className="text-muted-foreground mt-2">
-                If you cannot share your location automatically, tell the 000 operator: your street address, nearest intersection, suburb, and any nearby landmarks.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      {geoError && <ErrorCard error={geoError} onRetry={getLocation} />}
 
       {coords && (
         <div ref={resultsRef} className="mt-6 space-y-4">
@@ -340,3 +439,4 @@ export default function MyLocation() {
     </div>
   );
 }
+
