@@ -94,8 +94,17 @@ import AdminBlogEditor from "./pages/AdminBlogEditor";
 import LessonRenderer from "./components/lesson/LessonRenderer";
 import { PaymentTestModeBanner } from "./components/PaymentTestModeBanner";
 import RequireProgramAccess from "./components/RequireProgramAccess";
+import Shop from "./pages/Shop";
+import ProductDetail from "./pages/ProductDetail";
+import { useCartSync } from "./hooks/useCartSync";
 
 const queryClient = new QueryClient();
+
+function CartSyncMount() {
+  useCartSync();
+  return null;
+}
+
 
 // Validates :lang and either renders the page (with sync) or redirects to English equivalent.
 function LangRoute({ children, to }: { children: React.ReactNode; to: (slug?: string) => string }) {
@@ -123,12 +132,15 @@ const App = forwardRef(function App(_props, _ref) {
             <PaymentTestModeBanner />
             <InstallPrompt />
             <BrowserRouter>
+              <CartSyncMount />
               <Routes>
                 {/* English (default, no prefix) */}
                 <Route path="/" element={<Index />} />
                 <Route path="/kb" element={<KbIndex />} />
                 <Route path="/kb/:slug" element={<KbTopic />} />
                 <Route path="/style-guide" element={<StyleGuide />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/product/:handle" element={<ProductDetail />} />
                 <Route path="/angel-action" element={<AngelActionIndex />} />
                 <Route path="/:lang/angel-action" element={<AngelActionIndex />} />
                 <Route path="/symptoms" element={<SymptomFinder />} />
