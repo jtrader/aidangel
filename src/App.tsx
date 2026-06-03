@@ -52,6 +52,7 @@ import CourseLesson from "./pages/CourseLesson";
 import CourseQuiz from "./pages/CourseQuiz";
 
 import CertificateVerify from "./pages/CertificateVerify";
+import GoRedirect from "./pages/GoRedirect";
 import MyLearning from "./pages/MyLearning";
 import AdminCourses from "./pages/AdminCourses";
 import AdminVideos from "./pages/AdminVideos";
@@ -156,6 +157,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/aed/:country" element={<AedCountry />} />
                 <Route path="/aed/:country/:city" element={<AedCity />} />
                 <Route path="/agent" element={<AgentChat />} />
+                <Route path="/go/:slug" element={<GoRedirect />} />
                 <Route path="/unsubscribe" element={<Unsubscribe />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/:lang/about" element={<About />} />
