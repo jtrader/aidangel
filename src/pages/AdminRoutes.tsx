@@ -11,7 +11,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 import { toast } from "sonner";
-import { ExternalLink, RefreshCw, Loader2 } from "lucide-react";
+import { ExternalLink, RefreshCw, Loader2, CheckCircle2, XCircle, Clock } from "lucide-react";
 
 type Row = {
   id: string;
