@@ -70,7 +70,18 @@ function CopyButton({ value, label }: { value: string; label?: string }) {
   );
 }
 
-function ErrorCard({ error, onRetry }: { error: GeoErrorState; onRetry: () => void }) {
+function ErrorCard({
+  error,
+  onRetry,
+  retry,
+  onCancelRetry,
+}: {
+  error: GeoErrorState;
+  onRetry: () => void;
+  retry: { attempt: number; secondsLeft: number; total: number } | null;
+  onCancelRetry: () => void;
+}) {
+  const isAutoRetrying = retry !== null;
   return (
     <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/5 p-5">
       <div className="flex items-start gap-3">
@@ -92,13 +103,55 @@ function ErrorCard({ error, onRetry }: { error: GeoErrorState; onRetry: () => vo
             ))}
           </ol>
 
+          {isAutoRetrying && (
+            <div
+              role="status"
+              aria-live="polite"
+              className="mt-4 rounded-xl border border-primary/30 bg-background p-3"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <RefreshCw className="h-4 w-4 text-primary animate-spin" aria-hidden />
+                  Retrying in {retry.secondsLeft}s
+                  <span className="text-muted-foreground font-normal">
+                    (attempt {retry.attempt} of {retry.total})
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={onCancelRetry}
+                  className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1.5 rounded-md border border-border hover:bg-accent"
+                  aria-label="Cancel automatic retry"
+                >
+                  <X className="h-3.5 w-3.5" /> Stop
+                </button>
+              </div>
+              <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                <div
+                  className="h-full bg-primary transition-[width] duration-1000 ease-linear"
+                  style={{
+                    width: `${Math.max(
+                      0,
+                      Math.min(
+                        100,
+                        ((RETRY_DELAYS_SEC[retry.attempt - 1] - retry.secondsLeft) /
+                          Math.max(1, RETRY_DELAYS_SEC[retry.attempt - 1])) *
+                          100,
+                      ),
+                    )}%`,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
           <button
             type="button"
             onClick={onRetry}
             className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground shadow-sm hover:bg-primary/90 active:scale-[0.99] transition"
           >
             <RefreshCw className="h-4 w-4" />
-            {error.actionLabel}
+            {isAutoRetrying ? "Retry now" : error.actionLabel}
           </button>
 
           <p className="mt-4 text-xs text-muted-foreground border-t border-border pt-3">
