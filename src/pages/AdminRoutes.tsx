@@ -35,7 +35,7 @@ type ClickRow = {
   route_slug: string;
   source_page: string | null;
   country: string | null;
-  created_at: string;
+  timestamp: string | null;
 };
 
 function AdminRoutesInner() {
