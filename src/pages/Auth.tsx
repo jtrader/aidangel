@@ -127,6 +127,18 @@ export default function Auth() {
             <Label htmlFor="password">Password</Label>
             <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} minLength={8} maxLength={72} required />
           </div>
+          {mode === "signup" && (
+            <label className="flex items-start gap-2 text-sm text-muted-foreground cursor-pointer">
+              <Checkbox
+                checked={marketingOptIn}
+                onCheckedChange={(v) => setMarketingOptIn(v === true)}
+                className="mt-0.5"
+              />
+              <span>
+                Send me first aid tips, course updates, and discounts on official certifications. You can unsubscribe anytime.
+              </span>
+            </label>
+          )}
           <Button type="submit" disabled={busy} className="w-full">
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : mode === "signin" ? "Sign in" : "Create account"}
           </Button>
