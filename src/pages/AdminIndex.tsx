@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   LayoutTemplate,
   ExternalLink,
+  Newspaper,
 } from "lucide-react";
 
 const sections = [
@@ -20,6 +21,7 @@ const sections = [
     group: "Content (CMS)",
     items: [
       { to: "/admin/cms", title: "Pages & Blocks", desc: "Edit marketing pages and content blocks", icon: LayoutTemplate },
+      { to: "/admin/blog", title: "Blog", desc: "SEO articles & course landing content", icon: Newspaper },
     ],
   },
   {

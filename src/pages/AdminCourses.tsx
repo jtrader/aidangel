@@ -187,9 +187,16 @@ export default function AdminCourses() {
       <CoursesHeader />
       <main className="flex-1 container max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="font-display text-2xl font-bold">Topics</h1>
-          <Link to="/admin/videos" className="text-sm text-muted-foreground hover:text-primary">→ Manage videos</Link>
-          <Link to="/admin/programs" className="text-sm text-muted-foreground hover:text-primary">→ Manage programs</Link>
+          <div className="flex items-center gap-3">
+            <Link to="/admin" className="text-sm text-muted-foreground hover:text-primary inline-flex items-center gap-1">
+              <ArrowLeft className="h-3.5 w-3.5" /> Admin
+            </Link>
+            <h1 className="font-display text-2xl font-bold">Topics</h1>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link to="/admin/videos" className="text-sm text-muted-foreground hover:text-primary">→ Manage videos</Link>
+            <Link to="/admin/programs" className="text-sm text-muted-foreground hover:text-primary">→ Manage programs</Link>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-[320px_1fr] gap-6">

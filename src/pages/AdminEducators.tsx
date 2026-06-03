@@ -179,8 +179,8 @@ export default function AdminEducators() {
     <main className="min-h-screen bg-background">
       <Helmet><title>Admin · Educator moderation</title><meta name="robots" content="noindex" /></Helmet>
       <header className="border-b border-border px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4" /> Home
+        <Link to="/admin" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+          <ArrowLeft className="h-4 w-4" /> Admin
         </Link>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <span>{session.user.email}</span>

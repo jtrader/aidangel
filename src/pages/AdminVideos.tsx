@@ -313,9 +313,14 @@ export default function AdminVideos() {
     <div className="min-h-screen bg-background flex flex-col">
       <CoursesHeader />
       <main className="flex-1 container max-w-4xl mx-auto px-4 py-10">
-        <Link to="/admin/courses" className="text-sm text-muted-foreground hover:text-primary mb-4 inline-flex items-center gap-1">
-          <ArrowLeft className="h-3.5 w-3.5" /> Back to topics
-        </Link>
+        <div className="flex items-center gap-3 mb-4">
+          <Link to="/admin" className="text-sm text-muted-foreground hover:text-primary inline-flex items-center gap-1">
+            <ArrowLeft className="h-3.5 w-3.5" /> Admin
+          </Link>
+          <Link to="/admin/courses" className="text-sm text-muted-foreground hover:text-primary inline-flex items-center gap-1">
+            <ArrowLeft className="h-3.5 w-3.5" /> Topics
+          </Link>
+        </div>
         <div className="flex items-end justify-between mb-6 gap-4 flex-wrap">
           <div>
             <h1 className="font-display text-3xl font-bold">Course videos</h1>

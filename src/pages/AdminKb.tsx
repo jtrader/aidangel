@@ -159,8 +159,8 @@ export default function AdminKb() {
   return (
     <main className="min-h-screen bg-background p-4 max-w-3xl mx-auto">
       <Helmet><title>Admin · KB embeddings</title><meta name="robots" content="noindex" /></Helmet>
-      <Link to="/admin/educators" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
-        <ArrowLeft className="h-4 w-4" /> Back to admin
+      <Link to="/admin" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4">
+        <ArrowLeft className="h-4 w-4" /> Back to Admin
       </Link>
       <Card>
         <CardHeader>
