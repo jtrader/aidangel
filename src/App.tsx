@@ -58,6 +58,7 @@ import MyLearning from "./pages/MyLearning";
 import AdminCourses from "./pages/AdminCourses";
 import AdminVideos from "./pages/AdminVideos";
 import AdminPrograms from "./pages/AdminPrograms";
+import MyLocationPage from "./pages/MyLocationPage";
 import Programs from "./pages/Programs";
 import ProgramDetail from "./pages/ProgramDetail";
 import ProgramQuiz from "./pages/ProgramQuiz";
@@ -161,6 +162,8 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/go/:slug" element={<GoRedirect />} />
                 <Route path="/unsubscribe" element={<Unsubscribe />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/my-location" element={<MyLocationPage />} />
+                <Route path="/location" element={<Navigate to="/my-location" replace />} />
                 <Route path="/:lang/about" element={<About />} />
                 <Route path="/workplace" element={<WorkplaceIndex />} />
                 <Route path="/workplace/:slug" element={<WorkplaceVertical />} />
