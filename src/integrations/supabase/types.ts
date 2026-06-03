@@ -1947,6 +1947,8 @@ export type Database = {
           id: string
           is_published: boolean
           pass_mark: number
+          shopify_certificate_price: number | null
+          shopify_certificate_variant_id: string | null
           slug: string
           sort_order: number
           summary: string | null
@@ -1961,6 +1963,8 @@ export type Database = {
           id?: string
           is_published?: boolean
           pass_mark?: number
+          shopify_certificate_price?: number | null
+          shopify_certificate_variant_id?: string | null
           slug: string
           sort_order?: number
           summary?: string | null
@@ -1975,6 +1979,8 @@ export type Database = {
           id?: string
           is_published?: boolean
           pass_mark?: number
+          shopify_certificate_price?: number | null
+          shopify_certificate_variant_id?: string | null
           slug?: string
           sort_order?: number
           summary?: string | null

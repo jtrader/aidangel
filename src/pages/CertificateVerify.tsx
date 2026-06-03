@@ -25,10 +25,31 @@ export default function CertificateVerify() {
 
   useEffect(() => {
     if (!number) return;
-    supabase.rpc("verify_certificate", { _cert_number: number }).then(({ data }) => {
-      setResult(data && data.length ? data[0] : null);
+    (async () => {
+      // Try free LMS / program certs first
+      const { data: freeRes } = await supabase.rpc("verify_certificate", { _cert_number: number });
+      if (freeRes && freeRes.length) {
+        setResult({
+          certificate_number: freeRes[0].certificate_number,
+          course_title: freeRes[0].course_title,
+          learner_initial: freeRes[0].learner_initial,
+          issued_at: freeRes[0].issued_at,
+        });
+        setLoading(false);
+        return;
+      }
+      // Fall back to paid Shopify cert
+      const { data: paidRes } = await supabase.rpc("verify_shopify_certificate", { _certificate_id: number });
+      if (paidRes && paidRes.length) {
+        setResult({
+          certificate_number: paidRes[0].certificate_id,
+          course_title: paidRes[0].program_name,
+          learner_initial: paidRes[0].learner_initial,
+          issued_at: paidRes[0].issue_date,
+        });
+      }
       setLoading(false);
-    });
+    })();
   }, [number]);
 
   return (
