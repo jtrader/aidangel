@@ -121,6 +121,65 @@ function AdminRoutesInner() {
           </Button>
         </div>
 
+        <Card className="p-4 mb-6">
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <h2 className="font-display font-semibold flex items-center gap-2">
+              <Clock className="h-4 w-4" /> Shopify sync status
+            </h2>
+            {lastRun && (
+              <div className="flex items-center gap-2 text-sm">
+                {lastRun.status === "success" ? (
+                  <Badge className="bg-green-600 hover:bg-green-600"><CheckCircle2 className="h-3 w-3 mr-1" />Success</Badge>
+                ) : lastRun.status === "error" ? (
+                  <Badge variant="destructive"><XCircle className="h-3 w-3 mr-1" />Error</Badge>
+                ) : (
+                  <Badge variant="secondary"><Loader2 className="h-3 w-3 mr-1 animate-spin" />Running</Badge>
+                )}
+              </div>
+            )}
+          </div>
+          {!lastRun ? (
+            <p className="text-sm text-muted-foreground">No sync has been run yet. Click "Sync from Shopify" above.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+              <div>
+                <div className="text-xs text-muted-foreground uppercase">Last run</div>
+                <div>{new Date(lastRun.started_at).toLocaleString()}</div>
+                <div className="text-xs text-muted-foreground">duration {fmtDuration(lastRun.started_at, lastRun.finished_at)}</div>
+              </div>
+              <div>
+                <div className="text-xs text-muted-foreground uppercase">Items synced</div>
+                <div className="text-2xl font-semibold">{lastRun.synced_count}</div>
+              </div>
+              <div>
+                <div className="text-xs text-muted-foreground uppercase">Result</div>
+                <div className="capitalize">{lastRun.status}</div>
+              </div>
+            </div>
+          )}
+          {lastRun?.error && (
+            <pre className="mt-3 p-3 rounded bg-destructive/10 text-destructive text-xs whitespace-pre-wrap break-words max-h-40 overflow-auto">{lastRun.error}</pre>
+          )}
+          {runs.length > 1 && (
+            <details className="mt-3">
+              <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground">Show last {runs.length} runs</summary>
+              <div className="mt-2 space-y-1">
+                {runs.map((r) => (
+                  <div key={r.id} className="flex items-center gap-3 text-xs py-1 border-b border-border last:border-0">
+                    <span className="w-44 text-muted-foreground">{new Date(r.started_at).toLocaleString()}</span>
+                    <Badge variant={r.status === "success" ? "default" : r.status === "error" ? "destructive" : "secondary"} className="text-[10px]">
+                      {r.status}
+                    </Badge>
+                    <span className="text-muted-foreground">{r.synced_count} items</span>
+                    <span className="text-muted-foreground">{fmtDuration(r.started_at, r.finished_at)}</span>
+                    {r.error && <span className="text-destructive truncate flex-1">{r.error.split("\n")[0]}</span>}
+                  </div>
+                ))}
+              </div>
+            </details>
+          )}
+        </Card>
+
         <div className="grid grid-cols-3 gap-4 mb-6">
           <Card className="p-4"><div className="text-2xl font-bold">{stats.total}</div><div className="text-xs text-muted-foreground uppercase">Total routes</div></Card>
           <Card className="p-4"><div className="text-2xl font-bold text-green-600">{stats.available}</div><div className="text-xs text-muted-foreground uppercase">Available</div></Card>
