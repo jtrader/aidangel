@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Copy, MapPin, Phone, RefreshCw, Share2, AlertTriangle, Check, Settings, ChevronRight } from "lucide-react";
+import { Copy, MapPin, Phone, RefreshCw, Share2, AlertTriangle, Check, Settings, ChevronRight, X } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+
+const MAX_AUTO_RETRIES = 3;
+// Exponential backoff: 2s, 4s, 8s
+const RETRY_DELAYS_SEC = [2, 4, 8];
 
 interface Coords { lat: number; lng: number; accuracy: number; }
 
