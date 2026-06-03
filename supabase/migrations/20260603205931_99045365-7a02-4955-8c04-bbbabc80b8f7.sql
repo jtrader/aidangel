@@ -1,0 +1,2 @@
+CREATE POLICY "route_clicks_admin_read" ON public.route_clicks FOR SELECT TO authenticated USING (public.has_role(auth.uid(), 'admin'::public.app_role));
+CREATE POLICY "route_catalogue_admin_all" ON public.route_catalogue FOR ALL TO authenticated USING (public.has_role(auth.uid(), 'admin'::public.app_role)) WITH CHECK (public.has_role(auth.uid(), 'admin'::public.app_role));
