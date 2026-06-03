@@ -58,6 +58,7 @@ import MyLearning from "./pages/MyLearning";
 import AdminCourses from "./pages/AdminCourses";
 import AdminVideos from "./pages/AdminVideos";
 import AdminPrograms from "./pages/AdminPrograms";
+import MyLocationPage from "./pages/MyLocationPage";
 import Programs from "./pages/Programs";
 import ProgramDetail from "./pages/ProgramDetail";
 import ProgramQuiz from "./pages/ProgramQuiz";
