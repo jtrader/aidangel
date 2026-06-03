@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Copy, MapPin, Phone, RefreshCw, Share2, AlertTriangle, Check } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
 interface Coords { lat: number; lng: number; accuracy: number; }
