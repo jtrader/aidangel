@@ -386,6 +386,48 @@ for (const b of blogPaths) {
 
 
 
+// Shopify products — fetch handles from the Storefront API so /product/:handle
+// pages are discoverable. Hardcoded creds live in src/lib/shopify.ts.
+const SHOPIFY_STOREFRONT_URL =
+  "https://ty3mn0-c3.myshopify.com/api/2025-07/graphql.json";
+const SHOPIFY_STOREFRONT_TOKEN = "475483ac2299304310e03f0fcc13fafc";
+async function fetchProductPaths(): Promise<string[]> {
+  try {
+    const res = await fetch(SHOPIFY_STOREFRONT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN,
+      },
+      body: JSON.stringify({
+        query: `{ products(first: 100) { edges { node { handle } } } }`,
+      }),
+    });
+    if (!res.ok) return [];
+    const json = (await res.json()) as {
+      data?: { products?: { edges: Array<{ node: { handle: string } }> } };
+    };
+    const handles = json.data?.products?.edges.map((e) => e.node.handle) ?? [];
+    console.log(`[sitemap] Shopify: ${handles.length} products`);
+    return handles;
+  } catch (e) {
+    console.warn("[sitemap] Shopify fetch failed:", (e as Error).message);
+    return [];
+  }
+}
+const productHandles = await fetchProductPaths();
+for (const h of productHandles) {
+  urls.push(
+    [
+      `  <url>`,
+      `    <loc>${BASE_URL}/product/${h}</loc>`,
+      `    <changefreq>weekly</changefreq>`,
+      `    <priority>0.6</priority>`,
+      `  </url>`,
+    ].join("\n"),
+  );
+}
+
 const xml = [
   `<?xml version="1.0" encoding="UTF-8"?>`,
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
