@@ -99,41 +99,52 @@ export async function generateCertificatePdf(opts: {
   pdf.setTextColor(30, 30, 30);
   pdf.text("Certificate of Completion", W / 2, 215, { align: "center" });
 
-  // Awarded to
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(14);
-  pdf.setTextColor(100, 100, 100);
-  pdf.text("This certifies that", W / 2, 255, { align: "center" });
-
-  // Name
+  // ---- Recipient field ----
   pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(36);
+  pdf.setFontSize(9);
+  pdf.setTextColor(140, 140, 140);
+  pdf.text("RECIPIENT", W / 2, 252, { align: "center" });
+
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(34);
   pdf.setTextColor(brand[0], brand[1], brand[2]);
-  pdf.text(learnerName, W / 2, 305, { align: "center" });
+  pdf.text(learnerName, W / 2, 290, { align: "center" });
 
-  // Decorative line under name
   pdf.setDrawColor(brand[0], brand[1], brand[2]);
-  pdf.setLineWidth(1.5);
-  const lineY = 325;
-  pdf.line(W / 2 - 200, lineY, W / 2 + 200, lineY);
+  pdf.setLineWidth(1.2);
+  pdf.line(W / 2 - 220, 305, W / 2 + 220, 305);
 
-  // Course
-  pdf.setFont("helvetica", "normal");
-  pdf.setFontSize(14);
-  pdf.setTextColor(100, 100, 100);
-  pdf.text("has successfully completed the online course", W / 2, 360, { align: "center" });
+  // ---- Course field ----
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(9);
+  pdf.setTextColor(140, 140, 140);
+  pdf.text("COURSE", W / 2, 335, { align: "center" });
 
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(22);
   pdf.setTextColor(30, 30, 30);
-  pdf.text(courseTitle, W / 2, 400, { align: "center" });
+  pdf.text(courseTitle, W / 2, 365, { align: "center" });
+
+  pdf.setDrawColor(200, 200, 200);
+  pdf.setLineWidth(0.8);
+  pdf.line(W / 2 - 220, 380, W / 2 + 220, 380);
+
+  // ---- Completion date field ----
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(9);
+  pdf.setTextColor(140, 140, 140);
+  pdf.text("COMPLETION DATE", W / 2, 408, { align: "center" });
+
+  pdf.setFont("helvetica", "bold");
+  pdf.setFontSize(16);
+  pdf.setTextColor(30, 30, 30);
+  pdf.text(dateStr, W / 2, 432, { align: "center" });
 
   // Footer
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(11);
   pdf.setTextColor(80, 80, 80);
-  pdf.text(`Date issued: ${dateStr}`, W / 2 - 200, H - 90, { align: "left" });
-  pdf.text(`Certificate No: ${certificateNumber}`, W / 2 + 200, H - 90, { align: "right" });
+  pdf.text(`Certificate No: ${certificateNumber}`, W / 2, H - 90, { align: "center" });
 
   pdf.setFontSize(9);
   pdf.setTextColor(140, 140, 140);
