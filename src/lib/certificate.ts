@@ -1,4 +1,5 @@
 import jsPDF from "jspdf";
+import faaLogoUrl from "@/assets/aidangel-logo.png";
 
 function hexToRgb(hex?: string | null): [number, number, number] | null {
   if (!hex) return null;
@@ -60,7 +61,7 @@ export async function generateCertificatePdf(opts: {
   pdf.setLineWidth(1);
   pdf.rect(40, 40, W - 80, H - 80);
 
-  // Org logo (top-left) + name (top-right)
+  // Org logo (top-left) + name (top-right) when an org is provided
   if (org?.logoUrl) {
     const img = await loadImageAsDataUrl(org.logoUrl);
     if (img) {
@@ -78,14 +79,19 @@ export async function generateCertificatePdf(opts: {
     pdf.text(`Issued for ${org.name}`, W - 64, 88, { align: "right" });
   }
 
+  // First Aid Angel logo (top-center)
+  const faaLogo = await loadImageAsDataUrl(faaLogoUrl);
+  if (faaLogo) {
+    const logoH = 64;
+    const logoW = logoH * (faaLogo.w / faaLogo.h);
+    pdf.addImage(faaLogo.dataUrl, faaLogo.format, W / 2 - logoW / 2, 70, logoW, logoH);
+  }
+
   // Header
   pdf.setTextColor(brand[0], brand[1], brand[2]);
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(14);
-  pdf.text("FIRST AID ANGEL", W / 2, 140, { align: "center" });
-  pdf.setFontSize(10);
-  pdf.setTextColor(120, 120, 120);
-  pdf.text("Love Key Emergency & Recovery Network", W / 2, 158, { align: "center" });
+  pdf.text("FIRST AID ANGEL", W / 2, 156, { align: "center" });
 
   // Title
   pdf.setFont("helvetica", "bold");
