@@ -85,3 +85,58 @@ export function detectLocaleFromBrowser(): string | null {
   }
   return null;
 }
+
+// =============================================================
+// [SHARED] Language normalisation — copy unchanged to:
+//   Guardian Guide · Crisis Compass · AidAngel · LoveKey Link
+//
+// Added: language normalisation map for cross-site handoffs.
+// Canonical codes are the shortest unambiguous BCP 47 form.
+// x-yolngu is the agreed network standard for Yolŋu Matha.
+// =============================================================
+
+export const LANGUAGE_CODE_MAP: Record<string, string> = {
+  'en': 'en', 'en-AU': 'en', 'en-GB': 'en',
+  'en-US': 'en', 'en-NZ': 'en', 'en-IE': 'en', 'en-SG': 'en',
+  'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh', 'zh-SG': 'zh',
+  'yue': 'yue', 'yue-HK': 'yue', 'zh-HK': 'yue',
+  'ar': 'ar', 'el': 'el', 'it': 'it', 'pa': 'pa',
+  'vi': 'vi', 'hi': 'hi', 'es': 'es', 'tl': 'tl',
+  'aer': 'aer', 'x-arrernte': 'aer',
+  'pjt': 'pjt', 'x-pitjantjatjara': 'pjt',
+  'wbp': 'wbp', 'rop': 'rop', 'tcs': 'tcs',
+  'x-yolngu': 'x-yolngu', 'yolngu': 'x-yolngu', 'x-yol': 'x-yolngu',
+}
+
+export function normaliseLanguageCode(
+  raw: string | null | undefined
+): string | null {
+  if (!raw) return null
+  return LANGUAGE_CODE_MAP[raw] ?? raw
+}
+
+export function buildHandoffUrl(
+  baseUrl: string,
+  countryCode: string,
+  rawLanguageCode: string,
+  path: string
+): string {
+  const lang = normaliseLanguageCode(rawLanguageCode) ?? 'en'
+  const cc = countryCode.toLowerCase()
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  return `${baseUrl}/${cc}/${lang}/${cleanPath}`
+}
+
+export const INDIGENOUS_AUSTRALIAN_CODES = new Set([
+  'aer', 'pjt', 'wbp', 'rop', 'tcs', 'x-yolngu',
+])
+
+export function isIndigenousAustralianLanguage(
+  code: string | null | undefined
+): boolean {
+  if (!code) return false
+  return INDIGENOUS_AUSTRALIAN_CODES.has(normaliseLanguageCode(code) ?? '')
+}
+
+// [SHARED] END — language normalisation
+// =============================================================
