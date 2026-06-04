@@ -11114,71 +11114,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://firstaidangel.org/topics/recovery-drsabcd</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/anaphylaxis-allergies</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/aed-use</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/choking</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/severe-bleeding</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/asthma</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/dehydration</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/cold-emergencies</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/bites-and-stings</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/stroke-heart-attack</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/head-injuries-seizures</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/heat-emergencies</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/topics/dental-injury</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://firstaidangel.org/topics/diabetes</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11240,6 +11175,71 @@
   </url>
   <url>
     <loc>https://firstaidangel.org/topics/fainting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/recovery-drsabcd</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/anaphylaxis-allergies</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/dental-injury</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/asthma</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/aed-use</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/choking</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/severe-bleeding</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/dehydration</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/cold-emergencies</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/bites-and-stings</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/stroke-heart-attack</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/head-injuries-seizures</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://firstaidangel.org/topics/heat-emergencies</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
