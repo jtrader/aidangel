@@ -186,7 +186,7 @@ export default function LearnCity() {
         </section>
       </main>
 
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 }

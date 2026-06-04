@@ -200,7 +200,7 @@ export default function LearnSubmit() {
         </form>
       </main>
 
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 }

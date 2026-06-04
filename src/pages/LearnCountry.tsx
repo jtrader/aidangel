@@ -453,7 +453,7 @@ export default function LearnCountry() {
         </section>
       </main>
 
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 }

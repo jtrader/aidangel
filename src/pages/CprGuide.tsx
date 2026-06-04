@@ -624,7 +624,7 @@ export default function CprGuide() {
         </aside>
       </main>
       <EmergencyCallButton />
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 }

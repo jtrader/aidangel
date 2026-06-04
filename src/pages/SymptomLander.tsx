@@ -268,7 +268,7 @@ const SymptomLander = () => {
         </article>
       </main>
 
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 };

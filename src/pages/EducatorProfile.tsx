@@ -414,7 +414,7 @@ export default function EducatorProfile() {
         )}
       </main>
 
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 }

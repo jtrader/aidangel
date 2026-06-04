@@ -78,7 +78,7 @@ export default function LearnIndex() {
         </div>
       </main>
 
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 }

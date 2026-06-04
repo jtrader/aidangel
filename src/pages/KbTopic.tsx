@@ -529,7 +529,7 @@ const KbTopic = () => {
       </main>
 
       <EmergencyCallButton />
-      <NetworkFooter currentApp="First Aid Angel" />
+      <NetworkFooter />
     </div>
   );
 };
