@@ -1,7 +1,7 @@
 import { SeoHead } from "@/components/SeoHead";
 import HamburgerMenu from "@/components/HamburgerMenu";
 import NetworkFooter from "@/components/NetworkFooter";
-import MyLocation from "@/components/MyLocation";
+import { MyLocationPanel } from "@/components/shared";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 

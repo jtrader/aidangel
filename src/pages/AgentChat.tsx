@@ -3,7 +3,7 @@ import { Loader2, Sparkles, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { SeoHead } from "@/components/SeoHead";
-import EmergencyBanner from "@/components/EmergencyBanner";
+import { EmergencyBanner } from "@/components/shared";
 import ChatMessage from "@/components/ChatMessage";
 import ChatDisclaimer from "@/components/ChatDisclaimer";
 import NetworkFooter from "@/components/NetworkFooter";
