@@ -112,13 +112,16 @@ export function findTopicBySection(name: string): TopicMeta | undefined {
   if (exact) return exact;
   const byTitle = enTopics.find((t) => t.title.toLowerCase() === n);
   if (byTitle) return byTitle;
-  const sub = enTopics.find(
+  // Prefer section matches over title matches so generic words like "external"
+  // don't incorrectly resolve to unrelated topics whose titles happen to contain them.
+  const bySectionSub = enTopics.find(
     (t) =>
       n.includes(t.section.toLowerCase()) ||
-      t.section.toLowerCase().includes(n) ||
-      t.title.toLowerCase().includes(n),
+      t.section.toLowerCase().includes(n),
   );
-  if (sub) return sub;
+  if (bySectionSub) return bySectionSub;
+  const byTitleSub = enTopics.find((t) => t.title.toLowerCase().includes(n));
+  if (byTitleSub) return byTitleSub;
   return enTopics.find((t) =>
     t.keywords.some((k) => n.includes(k.toLowerCase())),
   );
