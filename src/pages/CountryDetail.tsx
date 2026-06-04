@@ -115,15 +115,24 @@ export default function CountryDetail() {
     .map((c) => UI_LANGUAGES.find((l) => l.code === c))
     .filter(Boolean) as typeof UI_LANGUAGES;
 
-  // Group emergency contacts by service_type, dedupe identical numbers.
-  const groupedContacts = useMemo(() => {
+  // Split contacts: primary (life-threatening) vs everything else.
+  const primaryContact = useMemo(
+    () =>
+      contacts.find((c) => c.service_type === "primary") ??
+      contacts.find((c) => c.service_type === "ambulance") ??
+      null,
+    [contacts],
+  );
+
+  const secondaryContacts = useMemo(() => {
     const map = new Map<string, EmergencyContact[]>();
     for (const c of contacts) {
+      if (primaryContact && c.id === primaryContact.id) continue;
       if (!map.has(c.service_type)) map.set(c.service_type, []);
       map.get(c.service_type)!.push(c);
     }
     return Array.from(map.entries());
-  }, [contacts]);
+  }, [contacts, primaryContact]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
