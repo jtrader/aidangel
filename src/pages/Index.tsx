@@ -178,7 +178,7 @@ const Index = () => {
 
 
       {/* Main content */}
-      <main ref={scrollRef} className="flex-1 px-4 py-6">
+      <main ref={scrollRef} className="flex-1 px-4 py-6 overflow-y-auto min-h-0 scroll-smooth">
         <div className="max-w-3xl mx-auto space-y-6">
           {isEmpty ? (
             <CmsPageRenderer
