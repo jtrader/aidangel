@@ -524,6 +524,7 @@ const KbTopic = () => {
               ))}
             </p>
           </aside>
+          <KBHandoffCard topic={topic.slug} lang={language} />
         </article>
       </main>
 
