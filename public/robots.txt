@@ -15,6 +15,7 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 Disallow: /agent
+Disallow: /go/
 Disallow: /unsubscribe
 Disallow: /style-guide
 

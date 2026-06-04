@@ -65,6 +65,28 @@ export default function ProductDetail() {
       <Helmet>
         <title>{product.title} | First Aid Angel Shop</title>
         <meta name="description" content={product.description.slice(0, 160)} />
+        <link rel="canonical" href={`https://firstaidangel.org/product/${product.handle}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.title,
+            description: product.description.slice(0, 5000),
+            image: product.images.edges.map((e) => e.node.url),
+            sku: product.variants.edges[0]?.node.id,
+            brand: { "@type": "Brand", name: "First Aid Angel" },
+            url: `https://firstaidangel.org/product/${product.handle}`,
+            offers: product.variants.edges.map((v) => ({
+              "@type": "Offer",
+              price: v.node.price.amount,
+              priceCurrency: v.node.price.currencyCode,
+              availability: v.node.availableForSale
+                ? "https://schema.org/InStock"
+                : "https://schema.org/OutOfStock",
+              url: `https://firstaidangel.org/product/${product.handle}`,
+            })),
+          })}
+        </script>
       </Helmet>
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-10">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
