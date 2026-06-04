@@ -472,3 +472,49 @@ export default function CountryDetail() {
     </div>
   );
 }
+
+function CopyButton({
+  value,
+  variant = "default",
+  fullWidth = false,
+}: {
+  value: string;
+  variant?: "default" | "onPrimary";
+  fullWidth?: boolean;
+}) {
+  const [copied, setCopied] = useState(false);
+  const onCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* ignore */
+    }
+  }, [value]);
+
+  const base =
+    "inline-flex items-center justify-center gap-1.5 rounded-lg text-xs font-semibold px-3 py-2 transition-colors";
+  const styles =
+    variant === "onPrimary"
+      ? "bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/25"
+      : "bg-muted text-muted-foreground hover:bg-muted/70 hover:text-foreground";
+  return (
+    <button
+      type="button"
+      onClick={onCopy}
+      aria-label={copied ? "Copied" : `Copy ${value}`}
+      className={`${base} ${styles} ${fullWidth ? "w-full" : ""}`}
+    >
+      {copied ? (
+        <>
+          <Check className="h-3.5 w-3.5" /> Copied
+        </>
+      ) : (
+        <>
+          <Copy className="h-3.5 w-3.5" /> Copy
+        </>
+      )}
+    </button>
+  );
+}
