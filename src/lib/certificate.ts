@@ -61,7 +61,7 @@ export async function generateCertificatePdf(opts: {
   pdf.setLineWidth(1);
   pdf.rect(40, 40, W - 80, H - 80);
 
-  // Org logo (top-left) when an org is provided
+  // Org logo (top-left) + name (top-right) when an org is provided
   if (org?.logoUrl) {
     const img = await loadImageAsDataUrl(org.logoUrl);
     if (img) {
@@ -71,6 +71,12 @@ export async function generateCertificatePdf(opts: {
       const w = Math.min(maxH * ratio, 140);
       pdf.addImage(img.dataUrl, img.format, 64, 64, w, h);
     }
+  }
+  if (org?.name) {
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(10);
+    pdf.setTextColor(80, 80, 80);
+    pdf.text(`Issued for ${org.name}`, W - 64, 88, { align: "right" });
   }
 
   // First Aid Angel logo (top-center)
