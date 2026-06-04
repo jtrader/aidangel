@@ -14,6 +14,7 @@ import ShopMenu from "@/components/ShopMenu";
 import LearnMenu from "@/components/LearnMenu";
 import CountrySelector from "@/components/CountrySelector";
 import LanguageSelector from "@/components/LanguageSelector";
+import { HelpNetworkHandoff } from "@/components/shared/HelpNetworkHandoff";
 
 type NetworkLink = {
   href: string;
