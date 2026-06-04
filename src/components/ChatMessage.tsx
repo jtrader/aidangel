@@ -94,7 +94,7 @@ const ChatMessage = ({ message, onAction }: ChatMessageProps) => {
             >
               {linkAfaCitations(
                 message.content
-                  .replace(/\[\[(?:STEP(?::\d+\/\d+)?(?:_END)?|TRIAGE|URGENT)\]\]/g, "")
+                  .replace(/\[\[(?:STEP(?::\d+\/\d+)?(?:_END)?|URGENT)\]\]/g, "")
                   .trim()
                   .replace(/\b000\b/g, `[${emergencyNumber}](tel:${emergencyNumber})`)
                   .replace(/\bDRSABCD\b/g, "[DRSABCD](#drsabcd)"),
