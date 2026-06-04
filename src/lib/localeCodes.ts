@@ -287,14 +287,17 @@ export function normaliseLanguageCode(
 
 export function buildHandoffUrl(
   baseUrl: string,
-  countryCode: string,
+  countryCode: string | null,
   rawLanguageCode: string,
   path: string
 ): string {
   const lang = normaliseLanguageCode(rawLanguageCode) ?? 'en'
-  const cc = countryCode.toLowerCase()
   const cleanPath = path.startsWith('/') ? path.slice(1) : path
-  return `${baseUrl}/${cc}/${lang}/${cleanPath}`
+  const segments = [baseUrl]
+  if (countryCode) segments.push(countryCode.toLowerCase())
+  segments.push(lang)
+  const base = segments.join('/')
+  return cleanPath ? `${base}/${cleanPath}` : `${base}/`
 }
 
 export const INDIGENOUS_AUSTRALIAN_CODES = new Set([
