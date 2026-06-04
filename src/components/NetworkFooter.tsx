@@ -16,19 +16,6 @@ import CountrySelector from "@/components/CountrySelector";
 import LanguageSelector from "@/components/LanguageSelector";
 import { HelpNetworkHandoff } from "@/components/shared/HelpNetworkHandoff";
 
-type NetworkLink = {
-  href: string;
-  label: string;
-  description: string;
-};
-
-const NETWORK_LINKS: NetworkLink[] = [
-  { href: "https://firstaidangel.lovekeyring.org", label: "First Aid Angel", description: "quick first aid guidance" },
-  { href: "https://aidangel.lovekeyring.org", label: "Aid Angel", description: "financial support navigator" },
-  { href: "https://guardianguide.lovekeyring.org", label: "Guardian Guide", description: "mental health support finder" },
-  { href: "https://crisiscompass.lovekeyring.org", label: "Crisis Compass", description: "navigate emergencies" },
-  { href: "https://lovekeyring.org", label: "Love Key Hub", description: "all our companion apps" },
-];
 
 const STATIC_STRINGS = [
   "Give",
@@ -38,11 +25,7 @@ const STATIC_STRINGS = [
   "© 2026 Love Key Web Application",
 ];
 
-interface NetworkFooterProps {
-  currentApp?: string;
-}
-
-export default function NetworkFooter({ currentApp = "First Aid Angel" }: NetworkFooterProps) {
+export default function NetworkFooter() {
   const { language } = useLanguage();
   const [tr, setTr] = useState({
     donate: "Give",
@@ -50,7 +33,6 @@ export default function NetworkFooter({ currentApp = "First Aid Angel" }: Networ
     browseKb: "📖 Browse the First Aid Knowledge Base",
     network: "Emergency and Recovery Network",
     copyright: "© 2026 Love Key Web Application",
-    descriptions: NETWORK_LINKS.map((l) => l.description),
   });
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [installVisible, setInstallVisible] = useState(false);
@@ -80,16 +62,11 @@ export default function NetworkFooter({ currentApp = "First Aid Angel" }: Networ
         browseKb: "📖 Browse the First Aid Knowledge Base",
         network: "Emergency and Recovery Network",
         copyright: "© 2026 Love Key Web Application",
-        descriptions: NETWORK_LINKS.map((l) => l.description),
       });
       return;
     }
     let cancelled = false;
-    const descs = NETWORK_LINKS.map((l) => l.description);
-    Promise.all([
-      translateStrings(language, STATIC_STRINGS),
-      translateStrings(language, descs),
-    ]).then(([s, d]) => {
+    translateStrings(language, STATIC_STRINGS).then((s) => {
       if (cancelled) return;
       setTr({
         donate: s[0],
@@ -97,7 +74,6 @@ export default function NetworkFooter({ currentApp = "First Aid Angel" }: Networ
         browseKb: s[2],
         network: s[3],
         copyright: s[4],
-        descriptions: d,
       });
     });
     return () => {
@@ -133,33 +109,6 @@ export default function NetworkFooter({ currentApp = "First Aid Angel" }: Networ
           <a href={kbHref} className="text-xs font-semibold text-primary hover:underline">
             {tr.browseKb}
           </a>
-        </div>
-        <div className="w-full pt-2">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-foreground mb-2 text-center">
-            {tr.network}
-          </h2>
-          <ul className="flex flex-col items-center gap-1 text-xs">
-            {NETWORK_LINKS.map((link, i) =>
-              link.label === currentApp ? (
-                <li key={link.href}>
-                  <strong className="font-bold text-foreground">
-                    {link.label} — {tr.descriptions[i]}
-                  </strong>
-                </li>
-              ) : (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener"
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {link.label} — {tr.descriptions[i]}
-                  </a>
-                </li>
-              ),
-            )}
-          </ul>
         </div>
         <div className="w-full pt-3">
           <HelpNetworkHandoff />
