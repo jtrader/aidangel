@@ -58,6 +58,8 @@ import MyLearning from "./pages/MyLearning";
 import AdminCourses from "./pages/AdminCourses";
 import AdminVideos from "./pages/AdminVideos";
 import AdminPrograms from "./pages/AdminPrograms";
+import AdminLearners from "./pages/AdminLearners";
+import AdminGraduates from "./pages/AdminGraduates";
 import MyLocationPage from "./pages/MyLocationPage";
 import Programs from "./pages/Programs";
 import ProgramDetail from "./pages/ProgramDetail";
@@ -181,6 +183,8 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/admin/topics" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
                 <Route path="/admin/videos" element={<RequireAuth adminOnly><AdminVideos /></RequireAuth>} />
                 <Route path="/admin/programs" element={<RequireAuth adminOnly><AdminPrograms /></RequireAuth>} />
+                <Route path="/admin/learners" element={<RequireAuth adminOnly><AdminLearners /></RequireAuth>} />
+                <Route path="/admin/graduates" element={<RequireAuth adminOnly><AdminGraduates /></RequireAuth>} />
 
                 {/* Learning / LMS */}
                 <Route path="/auth" element={<Auth />} />

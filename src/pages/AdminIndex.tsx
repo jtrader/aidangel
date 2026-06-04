@@ -14,6 +14,8 @@ import {
   LayoutTemplate,
   ExternalLink,
   Newspaper,
+  UserCheck,
+  Award,
 } from "lucide-react";
 
 const sections = [
@@ -33,6 +35,8 @@ const sections = [
       { to: "/admin/videos", title: "Videos", desc: "Lesson and program videos", icon: Video },
       { to: "/admin/kb", title: "Knowledge Base", desc: "First aid KB articles", icon: FileText },
       { to: "/admin/educators", title: "Educators", desc: "Educator directory listings", icon: Users },
+      { to: "/admin/learners", title: "Learners", desc: "Course & program enrollments", icon: UserCheck },
+      { to: "/admin/graduates", title: "Graduates", desc: "Issued certificates", icon: Award },
     ],
   },
   {
