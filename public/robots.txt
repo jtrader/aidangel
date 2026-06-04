@@ -12,5 +12,10 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /agent
+Disallow: /unsubscribe
+Disallow: /style-guide
 
 Sitemap: https://firstaidangel.org/sitemap.xml
