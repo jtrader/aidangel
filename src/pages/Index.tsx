@@ -243,7 +243,7 @@ const Index = () => {
                   const streaming = isLast && isLoading;
                   const stepMatch = msg.role === "assistant" ? msg.content.match(/\[\[STEP(?::(\d+)\/(\d+))?\]\]/) : null;
                   const ended = msg.role === "assistant" && /\[\[STEP_END\]\]/.test(msg.content);
-                  const showWalkNav = !!stepMatch && !ended && !streaming;
+                  const showWalkNav = !!stepMatch && !ended && !streaming && isLast;
                   const sx = stepMatch?.[1] ? parseInt(stepMatch[1], 10) : null;
                   const sy = stepMatch?.[2] ? parseInt(stepMatch[2], 10) : null;
                   const sp = sx && sy ? Math.min(100, Math.round((sx / sy) * 100)) : null;
