@@ -59,7 +59,6 @@
   "sourcesDisclaimer": "Always defer to local emergency services and current guidelines",
   "footerNetwork": "Part of the Love Key Emergency and Recovery Network",
   "footerCallEmergency": "In an emergency, call 000",
-
   "coursesPageTitle": "First Aid Topics",
   "coursesPageSubtitle": "Self-paced video and reading lessons. Pass the quiz, download your branded PDF certificate. Online theory only — not a substitute for accredited in-person training.",
   "coursesEmpty": "Courses are coming soon. Check back shortly.",
@@ -72,7 +71,6 @@
   "courseTakeFinalQuiz": "Take final quiz",
   "courseLessonsHeading": "Lessons",
   "courseNotFound": "Course not found.",
-
   "lessonNotFound": "Lesson not found.",
   "lessonOfTotal": "Lesson {n} of {total}",
   "lessonPrevious": "Previous",
@@ -80,7 +78,6 @@
   "lessonMarkCompleteNext": "Mark complete & next",
   "lessonNextLesson": "Next lesson",
   "lessonSourcesDisclaimer": "Always defer to local emergency services and current guidelines.",
-
   "quizFinalTitle": "Final Quiz",
   "quizScoreToPass": "Score {percent}% or higher to earn your certificate.",
   "quizAnswerAll": "Please answer every question.",
@@ -93,17 +90,14 @@
   "quizReviewYourAnswers": "Review your answers",
   "quizBackToCourse": "Back to course",
   "quizNoneAvailable": "No quiz available yet.",
-
   "myLearningTitle": "My learning",
   "myLearningEmpty": "You haven't enrolled in any courses yet.",
   "myLearningBrowse": "Browse courses",
   "myLearningInProgress": "In progress",
   "myLearningCertificates": "Certificates",
   "myLearningLessonsCount": "{done} / {total} lessons",
-
   "notFoundTitle": "Page not found",
   "notFoundReturn": "Return to Home",
-
   "learnTitle": "Learn First Aid",
   "learnSubtitle": "In-person courses from St John Ambulance, Red Cross and trusted local educators — plus online training in your language.",
   "learnCoursesNearYou": "Courses near you",
@@ -115,5 +109,29 @@
   "learnFindBySymptom": "find by symptom",
   "learnKnowCourse": "Know a great course?",
   "learnHelpGrow": "Help us grow the directory in your country and language.",
-  "learnSubmitCourse": "Submit a course"
+  "learnSubmitCourse": "Submit a course",
+  "helpNetworkHeading": "HELP Network",
+  "helpNetworkCrisisCompassDesc": "Emergency guidance for active crises",
+  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkAidAngelDesc": "Recovery support after disaster",
+  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkGuardianGuideDesc": "Mental health and emotional support",
+  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkLoveKeyDesc": "Connect with the full HELP Network",
+  "helpNetworkLoveKeyStage": "Coordinate",
+  "kbHandoffGuardianGuideHeading": "Supporting mental health after a crisis",
+  "kbHandoffGuardianGuideBody": "Guardian Guide connects you with trusted mental health and emotional support services.",
+  "kbHandoffGuardianGuideCta": "Find support",
+  "kbHandoffCrisisCompassHeading": "Prepare for emergencies",
+  "kbHandoffCrisisCompassBody": "Crisis Compass helps you navigate active emergencies with official guidance.",
+  "kbHandoffCrisisCompassCta": "Get guidance",
+  "kbHandoffAidAngelHeading": "Recovering after a disaster",
+  "kbHandoffAidAngelBody": "Aid Angel helps you find financial, housing, and recovery support after a crisis.",
+  "kbHandoffAidAngelCta": "Find recovery support",
+  "kbHandoffFirstAidAngelHeading": "First aid when you need it",
+  "kbHandoffFirstAidAngelBody": "First Aid Angel gives you step-by-step first aid guidance for emergencies.",
+  "kbHandoffFirstAidAngelCta": "Get first aid help",
+  "kbHandoffLoveKeyHeading": "Explore the HELP Network",
+  "kbHandoffLoveKeyBody": "Connect with the full LoveKey HELP Network.",
+  "kbHandoffLoveKeyCta": "Learn more"
 }
