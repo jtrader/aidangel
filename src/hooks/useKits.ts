@@ -35,11 +35,24 @@ function titleToHandle(t: string): string {
 // Cache Shopify product master data per zone for the session.
 const shopifyCache = new Map<KitZone, Promise<Map<string, ShopifyProduct["node"]>>>();
 
+// Zone → Shopify smart collection handle (created via
+// scripts/shopify-create-kit-zone-collections.ts). Curating membership in
+// Shopify admin (collection rules) is now the source of truth for which kits
+// appear per region — replaces the previous `tag:faa-affiliate-kit AND tag:zone-*`
+// filter.
+const ZONE_COLLECTION_HANDLE: Record<KitZone, string> = {
+  AU: "kits-au",
+  UK_IE: "kits-uk-ie",
+  NORTH_AM: "kits-north-am",
+  EU_MENA: "kits-eu-mena",
+};
+
 function fetchShopifyMastersForZone(zone: KitZone) {
   let p = shopifyCache.get(zone);
   if (!p) {
     p = (async () => {
-      const query = `tag:faa-affiliate-kit AND tag:zone-${zone}`;
+      const handle = ZONE_COLLECTION_HANDLE[zone];
+      const query = `collection:${handle}`;
       const res = await storefrontApiRequest<{ products: { edges: ShopifyProduct[] } }>(
         PRODUCTS_QUERY,
         { first: 50, query },
