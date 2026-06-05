@@ -10,6 +10,8 @@ export default function GoRedirect() {
   useEffect(() => {
     if (!slug) return;
     const src = params.get("src") ?? (typeof document !== "undefined" ? document.referrer : "");
+    const zone = params.get("zone") ?? "";
+    const handle = params.get("handle") ?? "";
     let sid = "";
     try {
       sid = sessionStorage.getItem("faa_sid") || "";
@@ -22,6 +24,8 @@ export default function GoRedirect() {
     const url = new URL(`${FUNCTIONS_BASE}/go-redirect/${encodeURIComponent(slug)}`);
     if (src) url.searchParams.set("src", src);
     if (sid) url.searchParams.set("sid", sid);
+    if (zone) url.searchParams.set("zone", zone);
+    if (handle) url.searchParams.set("handle", handle);
     window.location.replace(url.toString());
   }, [slug, params]);
 
