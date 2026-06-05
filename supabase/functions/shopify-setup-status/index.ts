@@ -90,22 +90,41 @@ const Q_CERT_PRODUCTS = `{
     }
   }
 }`;
-const Q_ROUTE_PRODUCTS = `{
-  products(first: 50, query: "product_type:\\"Product Route\\"") {
-    edges {
-      node {
-        id title
-        metafields(identifiers: [
-          { namespace: "faa", key: "redirect_slug" },
-          { namespace: "faa", key: "destination_url" },
-          { namespace: "faa", key: "availability_status" },
-          { namespace: "faa", key: "country" }
-        ]) { key value }
+function qRouteProducts(after: string | null) {
+  const cursor = after ? `, after: "${after}"` : "";
+  return `{
+    products(first: 50, query: "product_type:\\"Product Route\\""${cursor}) {
+      edges {
+        node {
+          id title
+          metafields(identifiers: [
+            { namespace: "faa", key: "redirect_slug" },
+            { namespace: "faa", key: "destination_url" },
+            { namespace: "faa", key: "availability_status" },
+            { namespace: "faa", key: "country" }
+          ]) { key value }
+        }
       }
+      pageInfo { hasNextPage endCursor }
     }
-    pageInfo { hasNextPage endCursor }
+  }`;
+}
+
+async function fetchAllRouteProducts(maxPages = 20): Promise<any[]> {
+  const all: any[] = [];
+  let after: string | null = null;
+  for (let i = 0; i < maxPages; i++) {
+    const data = await adminGraphQL(qRouteProducts(after));
+    const edges = data.products.edges ?? [];
+    for (const e of edges) all.push(e.node);
+    const pi = data.products.pageInfo;
+    if (!pi?.hasNextPage) return all;
+    after = pi.endCursor;
   }
-}`;
+  console.warn(`fetchAllRouteProducts: hit maxPages=${maxPages} cap`);
+  return all;
+}
+
 const Q_DISCLOSURE = `{
   metaobjects(type: "disclosure_block", first: 5) {
     edges { node { id handle type fields { key value } } }
