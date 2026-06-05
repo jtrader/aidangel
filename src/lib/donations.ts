@@ -1,11 +1,12 @@
 // Curated donation directory for First Aid Angel.
-// Three major first-aid / humanitarian NGOs, per country.
+// Two major first-aid / humanitarian NGOs, per country.
 // `null` means the NGO has no dedicated national fundraising presence in that
 // country — we fall back to the international site (see `donationUrl`).
-// Countries are included if AT LEAST ONE of the three NGOs has a national
+// Countries are included if AT LEAST ONE of the NGOs has a national
 // fundraising presence there.
+// (Red Cross profiles were removed from the site.)
 
-export type NgoId = "redcross" | "msf" | "stjohn";
+export type NgoId = "msf" | "stjohn";
 
 export type NgoMeta = {
   id: NgoId;
@@ -15,11 +16,6 @@ export type NgoMeta = {
 };
 
 export const NGOS: Record<NgoId, NgoMeta> = {
-    id: "redcross",
-    name: "Red Cross / Red Crescent",
-    short: "Red Cross",
-    international: "https://www.icrc.org/en/donate",
-  },
   msf: {
     id: "msf",
     name: "Médecins Sans Frontières (Doctors Without Borders)",
@@ -33,6 +29,7 @@ export const NGOS: Record<NgoId, NgoMeta> = {
     international: "https://www.orderofstjohn.org/donate/",
   },
 };
+
 
 export type Country = {
   code: string; // ISO 3166-1 alpha-2
