@@ -62,6 +62,8 @@ Deno.serve(async (req) => {
       country: route.country ?? countryHeader,
       source_page: sourcePage,
       session_id: sessionId,
+      zone,
+      shopify_handle: shopifyHandle,
     });
 
     return new Response(null, {
