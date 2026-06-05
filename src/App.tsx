@@ -104,6 +104,7 @@ import RequireProgramAccess from "./components/RequireProgramAccess";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import { useCartSync } from "./hooks/useCartSync";
+import { useRSPAdapter } from "./hooks/useRSPAdapter";
 
 const queryClient = new QueryClient();
 
