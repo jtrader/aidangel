@@ -26,6 +26,7 @@ import NotFound from "./pages/NotFound";
 import AdminDonations from "./pages/AdminDonations";
 import AdminRoutes from "./pages/AdminRoutes";
 import AdminIndex from "./pages/AdminIndex";
+import AdminShopifySetupStatus from "./pages/AdminShopifySetupStatus";
 import AdminCms from "./pages/AdminCms";
 import AdminCmsEditor from "./pages/AdminCmsEditor";
 import CmsPreview from "./pages/CmsPreview";
@@ -188,6 +189,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/cms-preview/:slug" element={<CmsPreview />} />
                 <Route path="/admin/donations" element={<AdminDonations />} />
                 <Route path="/admin/routes" element={<AdminRoutes />} />
+                <Route path="/admin/shopify-setup-status" element={<AdminShopifySetupStatus />} />
                 <Route path="/admin/educators" element={<AdminEducators />} />
                 <Route path="/admin/kb" element={<AdminKb />} />
                 <Route path="/admin/courses" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
