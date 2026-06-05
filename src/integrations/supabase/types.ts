@@ -2582,12 +2582,14 @@ export type Database = {
           confidence: string | null
           country: string | null
           cta_label: string | null
+          currency: string | null
           description: string | null
           destination_url: string | null
           id: string
           image_url: string | null
           last_checked_at: string | null
           partner_entity: string | null
+          price: number | null
           referral_code: string | null
           related_program: string | null
           route_slug: string
@@ -2603,12 +2605,14 @@ export type Database = {
           confidence?: string | null
           country?: string | null
           cta_label?: string | null
+          currency?: string | null
           description?: string | null
           destination_url?: string | null
           id: string
           image_url?: string | null
           last_checked_at?: string | null
           partner_entity?: string | null
+          price?: number | null
           referral_code?: string | null
           related_program?: string | null
           route_slug: string
@@ -2624,12 +2628,14 @@ export type Database = {
           confidence?: string | null
           country?: string | null
           cta_label?: string | null
+          currency?: string | null
           description?: string | null
           destination_url?: string | null
           id?: string
           image_url?: string | null
           last_checked_at?: string | null
           partner_entity?: string | null
+          price?: number | null
           referral_code?: string | null
           related_program?: string | null
           route_slug?: string
