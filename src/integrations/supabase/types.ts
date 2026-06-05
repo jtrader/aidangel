@@ -2755,6 +2755,57 @@ export type Database = {
           },
         ]
       }
+      rsp_signals: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          help_stage: string
+          id: string
+          location_country: string | null
+          location_language: string | null
+          raw_event_decoupled_at: string | null
+          sensitivity_tier: number
+          session_id: string
+          site: string
+          source_event_type: string
+          suppression_active: boolean
+          theme: string | null
+          urgency: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          help_stage: string
+          id?: string
+          location_country?: string | null
+          location_language?: string | null
+          raw_event_decoupled_at?: string | null
+          sensitivity_tier: number
+          session_id: string
+          site: string
+          source_event_type: string
+          suppression_active?: boolean
+          theme?: string | null
+          urgency?: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          help_stage?: string
+          id?: string
+          location_country?: string | null
+          location_language?: string | null
+          raw_event_decoupled_at?: string | null
+          sensitivity_tier?: number
+          session_id?: string
+          site?: string
+          source_event_type?: string
+          suppression_active?: boolean
+          theme?: string | null
+          urgency?: string
+        }
+        Relationships: []
+      }
       shopify_certificate_jobs: {
         Row: {
           certificate_id: string | null
