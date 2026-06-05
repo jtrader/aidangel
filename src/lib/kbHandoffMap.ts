@@ -4,8 +4,9 @@
 // site. Slugs MUST match the kebab-case form used by the KB router
 // (`/{lang}/kb/{slug}`). Topics not in this map render no handoff card.
 //
-// The map will be extended in future prompts as content is reviewed —
-// do not add topics here without an accompanying ticket.
+// Copy is sourced from the i18n catalog via translation keys so all visible
+// strings flow through the t() system. Brand names ("Guardian Guide",
+// "Crisis Compass", etc.) remain in the English source values.
 import type { SisterSite } from "./localeCodes";
 
 export const KB_HANDOFF_MAP: Record<string, SisterSite> = {
@@ -23,33 +24,34 @@ export const KB_HANDOFF_MAP: Record<string, SisterSite> = {
   // (none currently — leave empty, add when recovery topics are added)
 };
 
-export const KB_HANDOFF_COPY: Record<
+/** i18n key triplet per sister site. Consumed by KBHandoffCard via t(). */
+export const KB_HANDOFF_COPY_KEYS: Record<
   SisterSite,
   { heading: string; body: string; cta: string }
 > = {
   guardianguide: {
-    heading: "Supporting mental health after a crisis",
-    body: "Guardian Guide connects you with trusted mental health and emotional support services.",
-    cta: "Find support",
+    heading: "kbHandoffGuardianGuideHeading",
+    body: "kbHandoffGuardianGuideBody",
+    cta: "kbHandoffGuardianGuideCta",
   },
   crisiscompass: {
-    heading: "Prepare for emergencies",
-    body: "Crisis Compass helps you navigate active emergencies with official guidance.",
-    cta: "Get guidance",
+    heading: "kbHandoffCrisisCompassHeading",
+    body: "kbHandoffCrisisCompassBody",
+    cta: "kbHandoffCrisisCompassCta",
   },
   aidangel: {
-    heading: "Recovering after a disaster",
-    body: "Aid Angel helps you find financial, housing, and recovery support after a crisis.",
-    cta: "Find recovery support",
+    heading: "kbHandoffAidAngelHeading",
+    body: "kbHandoffAidAngelBody",
+    cta: "kbHandoffAidAngelCta",
   },
   firstaidangel: {
-    heading: "First aid when you need it",
-    body: "First Aid Angel gives you step-by-step first aid guidance for emergencies.",
-    cta: "Get first aid help",
+    heading: "kbHandoffFirstAidAngelHeading",
+    body: "kbHandoffFirstAidAngelBody",
+    cta: "kbHandoffFirstAidAngelCta",
   },
   lovekey: {
-    heading: "Explore the HELP Network",
-    body: "Connect with the full LoveKey HELP Network.",
-    cta: "Learn more",
+    heading: "kbHandoffLoveKeyHeading",
+    body: "kbHandoffLoveKeyBody",
+    cta: "kbHandoffLoveKeyCta",
   },
 };
