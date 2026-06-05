@@ -307,10 +307,8 @@ export default function AdminDonations() {
                 <SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All vendors</SelectItem>
-                  <SelectItem value="redcross">Red Cross</SelectItem>
                   <SelectItem value="msf">Doctors Without Borders</SelectItem>
                   <SelectItem value="stjohn">St John Ambulance</SelectItem>
-                  <SelectItem value="national">National shop</SelectItem>
                 </SelectContent>
               </Select>
             </div>
