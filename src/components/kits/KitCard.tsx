@@ -1,11 +1,25 @@
 import { ExternalLink } from "lucide-react";
-import { formatPrice } from "@/lib/kitZones";
+import { formatPrice, type KitZone } from "@/lib/kitZones";
 import type { Kit } from "@/hooks/useKits";
 
-export function KitCard({ kit, shipsFromLabel }: { kit: Kit; shipsFromLabel?: string }) {
-  const href = `/go/${encodeURIComponent(kit.route_slug)}?src=${encodeURIComponent(
+export function KitCard({
+  kit,
+  zone,
+  shipsFromLabel,
+}: {
+  kit: Kit;
+  zone?: KitZone;
+  shipsFromLabel?: string;
+}) {
+  const params = new URLSearchParams();
+  params.set(
+    "src",
     typeof window !== "undefined" ? window.location.pathname : "",
-  )}`;
+  );
+  if (zone) params.set("zone", zone);
+  if (kit.shopify_handle) params.set("handle", kit.shopify_handle);
+  const href = `/go/${encodeURIComponent(kit.route_slug)}?${params.toString()}`;
+
   return (
     <article className="flex flex-col bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
       <a href={href} target="_blank" rel="noopener sponsored" className="block aspect-square bg-muted overflow-hidden">

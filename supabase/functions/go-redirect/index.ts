@@ -18,6 +18,8 @@ Deno.serve(async (req) => {
     const slug = (url.searchParams.get("slug") || slugFromPath || "").toLowerCase();
     const sourcePage = url.searchParams.get("src") ?? null;
     const sessionId = url.searchParams.get("sid") ?? null;
+    const zone = url.searchParams.get("zone") ?? null;
+    const shopifyHandle = url.searchParams.get("handle") ?? null;
     const countryHeader = req.headers.get("cf-ipcountry") ?? req.headers.get("x-vercel-ip-country") ?? null;
 
     if (!slug || slug === "go-redirect") {
@@ -60,6 +62,8 @@ Deno.serve(async (req) => {
       country: route.country ?? countryHeader,
       source_page: sourcePage,
       session_id: sessionId,
+      zone,
+      shopify_handle: shopifyHandle,
     });
 
     return new Response(null, {

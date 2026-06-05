@@ -26,7 +26,7 @@ export function KitGrid({
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {kits.map((kit) => (
-        <KitCard key={kit.id} kit={kit} shipsFromLabel={ZONE_SHIPS_FROM[zone]} />
+        <KitCard key={kit.id} kit={kit} zone={zone} shipsFromLabel={ZONE_SHIPS_FROM[zone]} />
       ))}
     </div>
   );

@@ -2687,8 +2687,10 @@ export type Database = {
           partner_slug: string | null
           route_slug: string
           session_id: string | null
+          shopify_handle: string | null
           source_page: string | null
           timestamp: string | null
+          zone: string | null
         }
         Insert: {
           click_id: string
@@ -2698,8 +2700,10 @@ export type Database = {
           partner_slug?: string | null
           route_slug: string
           session_id?: string | null
+          shopify_handle?: string | null
           source_page?: string | null
           timestamp?: string | null
+          zone?: string | null
         }
         Update: {
           click_id?: string
@@ -2709,8 +2713,10 @@ export type Database = {
           partner_slug?: string | null
           route_slug?: string
           session_id?: string | null
+          shopify_handle?: string | null
           source_page?: string | null
           timestamp?: string | null
+          zone?: string | null
         }
         Relationships: []
       }
