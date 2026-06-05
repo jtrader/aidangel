@@ -1,35 +1,29 @@
 ## Goal
 
-For the 13 curated images previously skipped (no handle/SKU match), attach them to Shopify products whose **title/handle matches the image name minus the country prefix**. Duplicates are allowed — one image may be attached to multiple products across countries.
+Fetch the current retail price for each **St John Ambulance** product listed in `products-2.md` (44 entries across AU, UK, US, CA, IE, DE, FR, NL, SE, AE, BE). Output a single deliverable summarising id, country, URL, price, and currency.
 
-## Matching logic
+## Approach
 
-For each image file `{country}-{rest}.{ext}` (e.g. `de-stjohn-home-kit.jpg`):
-1. Strip the country prefix (`au-`, `uk-`, `us-`, `ca-`, `ie-`, `de-`, `fr-`, `nl-`, `se-`, `ae-`, `be-`) → base name `stjohn-home-kit`.
-2. Search Shopify for products where `handle` contains the base name, OR `title` matches the base name (humanised: `St John Home Kit`).
-3. Attach the image to **every matched product**, regardless of country — duplicates are intentional.
+1. Extract the 44 `*-stjohn-*` entries (id + sourceUrl) from `/mnt/user-uploads/products-2.md`.
+2. For each URL, fetch the rendered page and extract the price:
+   - **Primary tool**: Firecrawl scrape with `formats: [{ type: 'json', prompt: 'Extract the current retail price as { price: number, currency: ISO-4217 string }' }]`. Firecrawl handles JS rendering, anti-bot, and structured extraction reliably across the ~10 different storefronts.
+   - **Fallback**: if Firecrawl is unavailable, use `code--fetch_website` (markdown) and regex the price + infer currency from the country prefix.
+3. Run requests in parallel (concurrency ~5) to keep runtime reasonable.
+4. Some sites (e.g. sja.org.uk, redcross.org, amazon.com.au) may block or require login; failures are recorded as `price: null, note: "<reason>"`.
 
-## Attach mode
+## Deliverable
 
-- Add as a new image (append), so existing primary images from the earlier run are preserved.
-- Note: `shopify--update_product` with `images` **replaces all** images. To append, we must re-send the existing image URLs plus the new local file. The script will:
-  1. Fetch the current product (to get existing image URLs).
-  2. Call `update_product` with `images: [...existing as {file_path: url}, {file_path: new_local, alt: title}]`.
+`/mnt/documents/stjohn-prices.md` — a markdown table:
 
-## Steps
+| ID | Country | Price | Currency | URL |
+|---|---|---|---|---|
 
-1. Re-stage the 13 unmatched images from `.tmp-shopify-images/`.
-2. For each, compute base name and search Shopify (`handle:*{base}*` then title fallback).
-3. For each matched product, fetch current images, then call `update_product` appending the new image.
-4. Write `/mnt/documents/product-image-injection-report-v2.txt` listing per-image: matched products + attach status.
+Plus a CSV mirror at `/mnt/documents/stjohn-prices.csv` for spreadsheet use.
 
-## Confirmations
+## Prereq
 
-- OK to attach the same image to multiple products (e.g. `stjohn-home-kit.jpg` → AU, UK, US, CA, DE, FR... home kit products)?
-- OK to **append** (preserve existing primaries from run 1), not replace?
-- If a base name still has zero matches across the store, skip and log.
+Firecrawl connector must be linked. If not, I'll prompt to connect it before running, or fall back to `code--fetch_website` (lower reliability on JS-rendered storefronts).
 
-## Deliverables
+## Out of scope
 
-- Up to 13 × N image attachments across matching products.
-- `product-image-injection-report-v2.txt` artifact.
+Non-St-John brands (Red Cross, J&J, etc.) in the same document — skipped per the request.
