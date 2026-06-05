@@ -70,6 +70,7 @@ import OfflineBanner from "./components/OfflineBanner";
 import InstallPrompt from "./components/InstallPrompt";
 import Partners from "./pages/Partners";
 import ShopPartners from "./pages/ShopPartners";
+import ShopKits from "./pages/ShopKits";
 import About from "./pages/About";
 import Availability from "./pages/Availability";
 import CountryDetail from "./pages/CountryDetail";
@@ -149,6 +150,7 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/kb/:slug" element={<KbTopic />} />
                 <Route path="/style-guide" element={<StyleGuide />} />
                 <Route path="/shop" element={<Shop />} />
+                <Route path="/shop/kits" element={<ShopKits />} />
                 <Route path="/product/:handle" element={<ProductDetail />} />
                 <Route path="/angel-action" element={<AngelActionIndex />} />
                 <Route path="/:lang/angel-action" element={<AngelActionIndex />} />
