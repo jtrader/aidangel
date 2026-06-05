@@ -84,16 +84,119 @@ async function tryAdminApi(): Promise<boolean> {
 }
 
 // ---------------------------------------------------------------------------
-// Mode 2: Shopify CLI (`shopify app function` / `shopify api`)
+// Mode 2: Shopify CLI session reuse
+//
+// Modern Shopify CLI (3.x) doesn't expose an arbitrary `api graphql` command.
+// But after `shopify auth login` (or any `shopify theme` command that
+// authenticates against the store) the CLI caches an OAuth offline access
+// token on disk. We locate that token and use it ourselves with `fetch`.
+//
+// Token locations searched (first hit wins):
+//   $SHOPIFY_CONFIG_HOME/identity.json
+//   $XDG_CONFIG_HOME/shopify/identity.json
+//   ~/.config/shopify/identity.json
+//   ~/.config/shopify/identity-prod.json   (older CLI)
+//   ~/Library/Application Support/shopify/identity.json   (macOS)
 // ---------------------------------------------------------------------------
+import { existsSync, readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
+
 function shopifyCliAvailable(): boolean {
-  const res = spawnSync("shopify", ["version"], { encoding: "utf8" });
-  return res.status === 0;
+  for (const bin of ["shopify", "npx"]) {
+    const args = bin === "npx" ? ["@shopify/cli@latest", "version"] : ["version"];
+    const res = spawnSync(bin, args, { encoding: "utf8" });
+    if (res.status === 0) return true;
+  }
+  return false;
+}
+
+function runShopify(args: string[]): { code: number; stdout: string; stderr: string } {
+  // Prefer global `shopify`, fall back to `npx @shopify/cli@latest`.
+  let res = spawnSync("shopify", args, { encoding: "utf8" });
+  if (res.error || res.status === null) {
+    res = spawnSync("npx", ["-y", "@shopify/cli@latest", ...args], { encoding: "utf8" });
+  }
+  return { code: res.status ?? 1, stdout: res.stdout || "", stderr: res.stderr || "" };
+}
+
+function findCliToken(domain: string): string | null {
+  const candidates = [
+    process.env.SHOPIFY_CONFIG_HOME && join(process.env.SHOPIFY_CONFIG_HOME, "identity.json"),
+    process.env.XDG_CONFIG_HOME && join(process.env.XDG_CONFIG_HOME, "shopify", "identity.json"),
+    join(homedir(), ".config", "shopify", "identity.json"),
+    join(homedir(), ".config", "shopify", "identity-prod.json"),
+    join(homedir(), "Library", "Application Support", "shopify", "identity.json"),
+  ].filter(Boolean) as string[];
+
+  for (const path of candidates) {
+    if (!existsSync(path)) continue;
+    try {
+      const json = JSON.parse(readFileSync(path, "utf8"));
+      // Layouts vary across CLI versions. Try the common shapes.
+      const stores =
+        json?.applicationTokens?.[domain] ||
+        json?.exchanges?.[domain] ||
+        json?.stores?.[domain] ||
+        json?.[domain];
+      const token =
+        stores?.accessToken ||
+        stores?.access_token ||
+        json?.identity?.accessToken ||
+        json?.accessToken;
+      if (typeof token === "string" && token.length > 10) return token;
+    } catch {
+      /* ignore parse errors, try next */
+    }
+  }
+  return null;
+}
+
+async function ensureCliSession(domain: string): Promise<string | null> {
+  // 1. Already cached?
+  let token = findCliToken(domain);
+  if (token) return token;
+
+  // 2. Trigger interactive login by calling a harmless authenticated command.
+  console.log(`→ No cached CLI session for ${domain}. Launching \`shopify auth login\`…`);
+  const login = spawnSync("shopify", ["auth", "login", "--store", domain], { stdio: "inherit" });
+  if ((login.status ?? 1) !== 0) {
+    spawnSync("npx", ["-y", "@shopify/cli@latest", "auth", "login", "--store", domain], { stdio: "inherit" });
+  }
+
+  // 3. Some CLI versions only write the token after a real command runs.
+  if (!findCliToken(domain)) {
+    console.log(`→ Priming session with \`shopify theme list --store ${domain}\`…`);
+    runShopify(["theme", "list", "--store", domain]);
+  }
+
+  token = findCliToken(domain);
+  if (!token) {
+    console.log("→ Could not locate CLI access token after login. Falling back.");
+    return null;
+  }
+  return token;
+}
+
+async function runMutation(domain: string, token: string, def: MetafieldDef) {
+  const url = `https://${domain}/admin/api/${ADMIN_API_VERSION}/graphql.json`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": token,
+    },
+    body: JSON.stringify({
+      query: MUTATION,
+      variables: { definition: { ...def, ownerType: "PRODUCT" } },
+    }),
+  });
+  return res.json() as Promise<any>;
 }
 
 async function tryShopifyCli(): Promise<boolean> {
   if (!shopifyCliAvailable()) {
-    console.log("→ Shopify CLI not on PATH. Install: npm i -g @shopify/cli @shopify/theme");
+    console.log("→ Shopify CLI not on PATH. Install: npm i -g @shopify/cli");
     return false;
   }
 
@@ -103,37 +206,42 @@ async function tryShopifyCli(): Promise<boolean> {
     return false;
   }
 
+  const token = await ensureCliSession(domain);
+  if (!token) return false;
+
   let hadError = false;
   for (const def of METAFIELD_DEFINITIONS) {
     const label = `${def.namespace}.${def.key}`;
-    const variables = JSON.stringify({
-      definition: { ...def, ownerType: "PRODUCT" },
-    });
-
-    const res = spawnSync(
-      "shopify",
-      [
-        "api", "graphql",
-        "--store", domain,
-        "--api-version", ADMIN_API_VERSION,
-        "--body", JSON.stringify({ query: MUTATION, variables: JSON.parse(variables) }),
-      ],
-      { encoding: "utf8" },
-    );
-
-    if (res.status !== 0) {
-      console.log(`ERROR    ${label}: ${res.stderr.trim() || "cli failure"}`);
-      hadError = true;
-      continue;
-    }
-
-    const out = (res.stdout || "").trim();
-    if (/createdDefinition/.test(out) && !/"createdDefinition":\s*null/.test(out)) {
-      console.log(`CREATED  ${label}`);
-    } else if (/TAKEN|ALREADY_EXISTS|already/i.test(out)) {
-      console.log(`SKIPPED  ${label} (already exists)`);
-    } else {
-      console.log(`ERROR    ${label}: ${out.slice(0, 200)}`);
+    try {
+      const body = await runMutation(domain, token, def);
+      if (body.errors) {
+        const msg = JSON.stringify(body.errors);
+        // CLI session tokens are scoped to the app that created them.
+        // If we get an auth error, bail out — fallback will handle the rest.
+        if (/401|unauthorized|access denied/i.test(msg)) {
+          console.log(`→ CLI session token rejected: ${msg}`);
+          return false;
+        }
+        console.log(`ERROR    ${label}: ${msg}`);
+        hadError = true;
+        continue;
+      }
+      const result = body.data?.metafieldDefinitionCreate;
+      const userErrors: Array<{ code?: string; message: string }> = result?.userErrors ?? [];
+      if (result?.createdDefinition) {
+        console.log(`CREATED  ${label}`);
+      } else if (
+        userErrors.some(
+          (e) => e.code === "TAKEN" || e.code === "ALREADY_EXISTS" || /taken|already/i.test(e.message),
+        )
+      ) {
+        console.log(`SKIPPED  ${label} (already exists)`);
+      } else {
+        console.log(`ERROR    ${label}: ${userErrors.map((e) => e.message).join("; ") || "unknown"}`);
+        hadError = true;
+      }
+    } catch (err) {
+      console.log(`ERROR    ${label}: ${err instanceof Error ? err.message : String(err)}`);
       hadError = true;
     }
   }
