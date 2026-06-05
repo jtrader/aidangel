@@ -294,6 +294,16 @@ export function buildHandoffUrl(
 ): string {
   const lang = normaliseLanguageCode(rawLanguageCode) ?? 'en'
   const cleanPath = path.startsWith('/') ? path.slice(1) : path
+
+  // AidAngel uses query-style locale handoff (no /cc/lang/ path prefix).
+  if (baseUrl === TARGETS.aidangel) {
+    const entry = cleanPath || 'assessment'
+    const params = new URLSearchParams()
+    if (countryCode) params.set('locale', countryCode.toLowerCase())
+    params.set('lang', lang)
+    return `${baseUrl}/${entry}?${params.toString()}`
+  }
+
   const segments = [baseUrl]
   if (countryCode) segments.push(countryCode.toLowerCase())
   segments.push(lang)
