@@ -90,22 +90,41 @@ const Q_CERT_PRODUCTS = `{
     }
   }
 }`;
-const Q_ROUTE_PRODUCTS = `{
-  products(first: 50, query: "product_type:\\"Product Route\\"") {
-    edges {
-      node {
-        id title
-        metafields(identifiers: [
-          { namespace: "faa", key: "redirect_slug" },
-          { namespace: "faa", key: "destination_url" },
-          { namespace: "faa", key: "availability_status" },
-          { namespace: "faa", key: "country" }
-        ]) { key value }
+function qRouteProducts(after: string | null) {
+  const cursor = after ? `, after: "${after}"` : "";
+  return `{
+    products(first: 50, query: "product_type:\\"Product Route\\""${cursor}) {
+      edges {
+        node {
+          id title
+          metafields(identifiers: [
+            { namespace: "faa", key: "redirect_slug" },
+            { namespace: "faa", key: "destination_url" },
+            { namespace: "faa", key: "availability_status" },
+            { namespace: "faa", key: "country" }
+          ]) { key value }
+        }
       }
+      pageInfo { hasNextPage endCursor }
     }
-    pageInfo { hasNextPage endCursor }
+  }`;
+}
+
+async function fetchAllRouteProducts(maxPages = 20): Promise<any[]> {
+  const all: any[] = [];
+  let after: string | null = null;
+  for (let i = 0; i < maxPages; i++) {
+    const data = await adminGraphQL(qRouteProducts(after));
+    const edges = data.products.edges ?? [];
+    for (const e of edges) all.push(e.node);
+    const pi = data.products.pageInfo;
+    if (!pi?.hasNextPage) return all;
+    after = pi.endCursor;
   }
-}`;
+  console.warn(`fetchAllRouteProducts: hit maxPages=${maxPages} cap`);
+  return all;
+}
+
 const Q_DISCLOSURE = `{
   metaobjects(type: "disclosure_block", first: 5) {
     edges { node { id handle type fields { key value } } }
@@ -135,12 +154,12 @@ Deno.serve(async (req) => {
       return json({ error: "Shopify Admin API not configured" }, 500);
     }
 
-    const [mfFaa, mfCustom, collections, certs, routes, disclosure] = await Promise.all([
+    const [mfFaa, mfCustom, collections, certs, routeNodes, disclosure] = await Promise.all([
       adminGraphQL(Q_METAFIELDS_FAA),
       adminGraphQL(Q_METAFIELDS_CUSTOM).catch(() => ({ metafieldDefinitions: { edges: [] } })),
       adminGraphQL(Q_COLLECTIONS),
       adminGraphQL(Q_CERT_PRODUCTS),
-      adminGraphQL(Q_ROUTE_PRODUCTS),
+      fetchAllRouteProducts(),
       adminGraphQL(Q_DISCLOSURE),
     ]);
 
@@ -197,8 +216,7 @@ Deno.serve(async (req) => {
       rows: certRows, duplicates,
     };
 
-    // --- Section 4: route cards ---
-    const routeNodes = routes.products.edges.map((e: any) => e.node);
+    // --- Section 4: route cards (paginated across all pages) ---
     const byCountry: Record<string, number> = {};
     const byStatus: Record<string, number> = {};
     const missingFields: Array<{ title: string; missing: string[] }> = [];
@@ -224,7 +242,7 @@ Deno.serve(async (req) => {
       total: totalRoutes,
       expected: EXPECTED_ROUTE_TOTAL,
       byCountry, byStatus, missingFields,
-      hasNextPage: routes.products.pageInfo?.hasNextPage ?? false,
+      hasNextPage: false,
     };
 
     // --- Section 5: disclosure metaobject ---

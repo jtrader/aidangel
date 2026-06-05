@@ -242,11 +242,6 @@ export default function AdminShopifySetupStatus() {
                     ))}
                   </div>
                 </div>
-                {report.sections.routes.hasNextPage && (
-                  <div className="mt-4 p-2 rounded bg-amber-50 border border-amber-200 text-amber-700 text-xs">
-                    More than 50 route cards exist — pagination not yet implemented in this check.
-                  </div>
-                )}
                 {report.sections.routes.missingFields.length > 0 && (
                   <div className="mt-4">
                     <div className="text-xs font-semibold mb-2 text-destructive">Cards missing required metafields</div>
