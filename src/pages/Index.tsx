@@ -331,7 +331,7 @@ const Index = () => {
                     className="flex gap-3 justify-start animate-fade-in"
                     role="status"
                     aria-live="polite"
-                    aria-label={status === "guiding" ? "First Aid Angel is guiding you" : "First Aid Angel is thinking"}
+                    aria-label={status === "guiding" ? t("chatGuiding") : t("chatThinking")}
                   >
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                       <Loader2 className="h-4 w-4 text-primary-foreground animate-spin" />
@@ -343,7 +343,7 @@ const Index = () => {
                         <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                       </div>
                       <span className="text-xs text-muted-foreground font-medium">
-                        {status === "guiding" ? "Guiding you…" : "Thinking…"}
+                        {status === "guiding" ? t("chatGuiding") : t("chatThinking")}
                       </span>
                     </div>
                   </div>
@@ -352,21 +352,21 @@ const Index = () => {
 
               {!isLoading && messages[messages.length - 1]?.role === "assistant" && !inWalkthrough && (
                 <div className="text-center space-y-2 animate-fade-in">
-                  <p className="text-sm font-medium text-muted-foreground">Am I helping?</p>
+                  <p className="text-sm font-medium text-muted-foreground">{t("walkAmIHelping")}</p>
                   <div className="flex items-center justify-center gap-2">
                     <button
                       type="button"
                       onClick={() => send("Yes, that's helpful — keep going.")}
                       className="px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-colors"
                     >
-                      Yes
+                      {t("walkYes")}
                     </button>
                     <button
                       type="button"
                       onClick={() => send("Not quite — can you try a different approach?")}
                       className="px-4 py-1.5 rounded-full border border-border text-foreground text-xs font-semibold hover:bg-muted transition-colors"
                     >
-                      No
+                      {t("walkNo")}
                     </button>
                   </div>
                 </div>
