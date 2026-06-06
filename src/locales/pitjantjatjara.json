@@ -209,5 +209,7 @@
   "shopDialogTagline": "Trusted first aid kits & training packs, shipped near you.",
   "shopDialogOpenStore": "Open full store",
   "shopDialogBrowseKits": "Browse kits",
-  "shopDialogClose": "Close"
+  "shopDialogClose": "Close",
+  "helpNetworkFirstAidAngelDesc": "Quick first aid guidance and support",
+  "helpNetworkFirstAidAngelStage": "PREPARE"
 }

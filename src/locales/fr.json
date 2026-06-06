@@ -113,13 +113,13 @@
   "quizFinalTitle": "Quiz final",
   "learnKnowCourse": "Connaissez-vous un bon cours ?",
   "helpNetworkHeading": "Réseau HELP",
-  "helpNetworkCrisisCompassDesc": "Conseils d'urgence lors de crises actives",
-  "helpNetworkCrisisCompassStage": "Réagir",
-  "helpNetworkAidAngelDesc": "Soutien au rétablissement après une catastrophe",
+  "helpNetworkCrisisCompassDesc": "Guide d'urgence pour les crises actives",
+  "helpNetworkCrisisCompassStage": "Répondre",
+  "helpNetworkAidAngelDesc": "Soutien à la récupération après une catastrophe",
   "helpNetworkAidAngelStage": "Rétablir",
-  "helpNetworkGuardianGuideDesc": "Soutien émotionnel et santé mentale",
+  "helpNetworkGuardianGuideDesc": "Soutien en santé mentale et émotionnel",
   "helpNetworkGuardianGuideStage": "Guérir",
-  "helpNetworkLoveKeyDesc": "Se connecter à l'ensemble du réseau HELP",
+  "helpNetworkLoveKeyDesc": "Connectez-vous à l'intégralité du réseau HELP",
   "helpNetworkLoveKeyStage": "Coordonner",
   "kbHandoffGuardianGuideHeading": "Soutenir la santé mentale après une crise",
   "kbHandoffGuardianGuideBody": "Guardian Guide vous met en relation avec des services de confiance en santé mentale et soutien émotionnel.",
@@ -209,5 +209,7 @@
   "shopDialogBrowseKits": "Parcourir les trousses",
   "shopDialogClose": "Fermer",
   "shopDialogTitle": "Boutique First Aid Angel",
-  "shopDialogOpenStore": "Ouvrir la boutique complète"
+  "shopDialogOpenStore": "Ouvrir la boutique complète",
+  "helpNetworkFirstAidAngelDesc": "Conseils et assistance rapide en premiers secours",
+  "helpNetworkFirstAidAngelStage": "PRÉPARER"
 }

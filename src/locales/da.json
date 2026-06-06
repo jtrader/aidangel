@@ -113,13 +113,13 @@
   "learnFindBySymptom": "find efter symptom",
   "learnOtherwise": "Ellers",
   "helpNetworkHeading": "HELP Network",
-  "helpNetworkCrisisCompassDesc": "Nødvejledning til igangværende kriser",
+  "helpNetworkCrisisCompassDesc": "Nødvejledning til aktive kriser",
   "helpNetworkCrisisCompassStage": "Reager",
-  "helpNetworkAidAngelDesc": "Støtte til genopretning efter katastrofe",
-  "helpNetworkAidAngelStage": "Genopretning",
+  "helpNetworkAidAngelDesc": "Genopretningsstøtte efter katastrofe",
+  "helpNetworkAidAngelStage": "Genopret",
   "helpNetworkGuardianGuideDesc": "Mental sundhed og følelsesmæssig støtte",
-  "helpNetworkGuardianGuideStage": "Heal \n",
-  "helpNetworkLoveKeyDesc": "Forbind med hele HELP Network",
+  "helpNetworkGuardianGuideStage": "Helbred",
+  "helpNetworkLoveKeyDesc": "Forbind med hele HELP-netværket",
   "helpNetworkLoveKeyStage": "Koordiner",
   "kbHandoffGuardianGuideHeading": "Støtte til mental sundhed efter en krise",
   "kbHandoffGuardianGuideBody": "Guardian Guide forbinder dig med betroede tjenester inden for mental sundhed og følelsesmæssig støtte.",
@@ -209,5 +209,7 @@
   "shopDialogBrowseKits": "Gennemse sæt",
   "shopDialogOpenStore": "Åbn hele butikken",
   "shopDialogClose": "Luk",
-  "shopDialogTitle": "First Aid Angel Shop"
+  "shopDialogTitle": "First Aid Angel Shop",
+  "helpNetworkFirstAidAngelDesc": "Hurtig førstehjælpsvejledning og -support",
+  "helpNetworkFirstAidAngelStage": "FORBERED"
 }

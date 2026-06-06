@@ -113,14 +113,14 @@
   "notFoundReturn": "Vissza a kezdőlapra",
   "lessonNotFound": "A lecke nem található.",
   "helpNetworkHeading": "HELP Hálózat",
-  "helpNetworkCrisisCompassDesc": "Sürgősségi útmutatás aktív krízishelyzetekben",
+  "helpNetworkCrisisCompassDesc": "Vészhelyzeti útmutatás aktív krízisek esetén",
   "helpNetworkCrisisCompassStage": "Reagálás",
   "helpNetworkAidAngelDesc": "Helyreállítási támogatás katasztrófa után",
-  "helpNetworkAidAngelStage": "Helyreállítás",
-  "helpNetworkGuardianGuideDesc": "Mentális egészség és érzelmi támogatás",
+  "helpNetworkAidAngelStage": "Felépülés",
+  "helpNetworkGuardianGuideDesc": "Mentális egészségügyi és érzelmi támogatás",
   "helpNetworkGuardianGuideStage": "Gyógyulás",
-  "helpNetworkLoveKeyDesc": "Kapcsolódás a teljes HELP Hálózathoz",
-  "helpNetworkLoveKeyStage": "Koordináció",
+  "helpNetworkLoveKeyDesc": "Kapcsolódás a teljes HELP hálózathoz",
+  "helpNetworkLoveKeyStage": "Koordinálás",
   "kbHandoffGuardianGuideHeading": "Mentális egészség támogatása krízis után",
   "kbHandoffGuardianGuideBody": "A Guardian Guide megbízható mentális egészségügyi és érzelmi támogató szolgáltatásokkal köti össze Önt.",
   "kbHandoffGuardianGuideCta": "Támogatás keresése",
@@ -209,5 +209,7 @@
   "shopDialogOpenStore": "Teljes áruház megnyitása",
   "shopDialogBrowseKits": "Készletek böngészése",
   "shopDialogClose": "Bezárás",
-  "shopDialogTagline": "Megbízható elsősegélycsomagok és oktatókészletek közvetlenül Önhöz szállítva."
+  "shopDialogTagline": "Megbízható elsősegélycsomagok és oktatókészletek közvetlenül Önhöz szállítva.",
+  "helpNetworkFirstAidAngelDesc": "Gyors elsősegélynyújtási útmutatás és támogatás",
+  "helpNetworkFirstAidAngelStage": "FELKÉSZÜLÉS"
 }

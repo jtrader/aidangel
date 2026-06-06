@@ -114,13 +114,13 @@
   "courseLessonsLabel": "lekcije",
   "helpNetworkHeading": "HELP Network",
   "helpNetworkCrisisCompassDesc": "Hitne smjernice za aktivne krize",
-  "helpNetworkCrisisCompassStage": "Odgovor na krizu",
-  "helpNetworkAidAngelDesc": "Podrška oporavku nakon katastrofe",
-  "helpNetworkAidAngelStage": "Oporavak",
-  "helpNetworkGuardianGuideDesc": "Mentalno zdravlje i emocionalna podrška",
-  "helpNetworkGuardianGuideStage": "Iscjeljenje",
+  "helpNetworkCrisisCompassStage": "Odgovorite",
+  "helpNetworkAidAngelDesc": "Podrška za oporavak nakon katastrofe",
+  "helpNetworkAidAngelStage": "Oporavi",
+  "helpNetworkGuardianGuideDesc": "Podrška za mentalno zdravlje i emocionalnu podršku",
+  "helpNetworkGuardianGuideStage": "Izliječite",
   "helpNetworkLoveKeyDesc": "Povežite se s cijelom HELP mrežom",
-  "helpNetworkLoveKeyStage": "Koordinacija",
+  "helpNetworkLoveKeyStage": "Koordinirajte",
   "kbHandoffGuardianGuideHeading": "Podrška mentalnom zdravlju nakon krize",
   "kbHandoffGuardianGuideBody": "Guardian Guide vas povezuje s pouzdanim službama za mentalno zdravlje i emocionalnu podršku.",
   "kbHandoffGuardianGuideCta": "Pronađite podršku",
@@ -209,5 +209,7 @@
   "shopDialogBrowseKits": "Pregledaj komplete",
   "shopDialogClose": "Zatvori",
   "shopDialogTagline": "Pouzdani kompleti prve pomoći i paketi za obuku, isporučeni u vašu blizinu.",
-  "shopDialogTitle": "First Aid Angel trgovina"
+  "shopDialogTitle": "First Aid Angel trgovina",
+  "helpNetworkFirstAidAngelDesc": "Brze smjernice i podrška za prvu pomoć",
+  "helpNetworkFirstAidAngelStage": "PREPARE"
 }

@@ -114,13 +114,13 @@
   "learnCoursesNearYou": "Cursuri în apropiere",
   "helpNetworkHeading": "Rețeaua HELP",
   "helpNetworkCrisisCompassDesc": "Îndrumare de urgență pentru crize active",
-  "helpNetworkCrisisCompassStage": "Răspuns",
-  "helpNetworkAidAngelDesc": "Suport pentru recuperare după dezastru",
-  "helpNetworkAidAngelStage": "Recuperare",
-  "helpNetworkGuardianGuideDesc": "Sănătate mintală și suport emoțional",
-  "helpNetworkGuardianGuideStage": "Vindecare",
+  "helpNetworkCrisisCompassStage": "Răspunde",
+  "helpNetworkAidAngelDesc": "Suport de recuperare după dezastre",
+  "helpNetworkAidAngelStage": "Recuperează-te",
+  "helpNetworkGuardianGuideDesc": "Suport pentru sănătate mintală și emoțională",
+  "helpNetworkGuardianGuideStage": "Vindecă",
   "helpNetworkLoveKeyDesc": "Conectează-te cu întreaga rețea HELP",
-  "helpNetworkLoveKeyStage": "Coordonare",
+  "helpNetworkLoveKeyStage": "Coordonează",
   "kbHandoffGuardianGuideHeading": "Susținerea sănătății mintale după o criză",
   "kbHandoffGuardianGuideBody": "Guardian Guide te conectează cu servicii de încredere pentru sănătate mintală și suport emoțional.",
   "kbHandoffGuardianGuideCta": "Găsește suport",
@@ -209,5 +209,7 @@
   "shopDialogTagline": "Truse de prim ajutor și pachete de instruire de încredere, livrate aproape de tine.",
   "shopDialogClose": "Închide",
   "shopDialogOpenStore": "Deschide magazinul complet",
-  "shopDialogBrowseKits": "Răsfoiește kituri"
+  "shopDialogBrowseKits": "Răsfoiește kituri",
+  "helpNetworkFirstAidAngelDesc": "Îndrumare și suport rapid de prim ajutor",
+  "helpNetworkFirstAidAngelStage": "PREGĂTIRE"
 }

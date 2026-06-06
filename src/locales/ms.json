@@ -119,8 +119,8 @@
   "helpNetworkAidAngelStage": "Pulih",
   "helpNetworkGuardianGuideDesc": "Sokongan kesihatan mental dan emosi",
   "helpNetworkGuardianGuideStage": "Sembuh",
-  "helpNetworkLoveKeyDesc": "Berhubung dengan rangkaian HELP yang lengkap",
-  "helpNetworkLoveKeyStage": "Penyelarasan",
+  "helpNetworkLoveKeyDesc": "Berhubung dengan rangkaian HELP Network penuh",
+  "helpNetworkLoveKeyStage": "Selaras",
   "kbHandoffGuardianGuideHeading": "Menyokong kesihatan mental selepas krisis",
   "kbHandoffGuardianGuideBody": "Guardian Guide menghubungkan anda dengan perkhidmatan sokongan kesihatan mental dan emosi yang dipercayai.",
   "kbHandoffGuardianGuideCta": "Cari sokongan",
@@ -209,5 +209,7 @@
   "shopDialogClose": "Tutup",
   "shopDialogBrowseKits": "Semak imbas kit",
   "shopDialogOpenStore": "Buka kedai penuh",
-  "shopDialogTitle": "Kedai First Aid Angel"
+  "shopDialogTitle": "Kedai First Aid Angel",
+  "helpNetworkFirstAidAngelDesc": "Panduan dan sokongan pertolongan cemas segera",
+  "helpNetworkFirstAidAngelStage": "SEDIA"
 }

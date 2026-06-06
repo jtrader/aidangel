@@ -114,13 +114,13 @@
   "notFoundReturn": "Kembali ke Beranda",
   "helpNetworkHeading": "HELP Network",
   "helpNetworkCrisisCompassDesc": "Panduan darurat untuk krisis aktif",
-  "helpNetworkCrisisCompassStage": "Tanggapi",
+  "helpNetworkCrisisCompassStage": "Merenspon",
   "helpNetworkAidAngelDesc": "Dukungan pemulihan setelah bencana",
-  "helpNetworkAidAngelStage": "Pulihkan",
-  "helpNetworkGuardianGuideDesc": "Kesehatan mental dan dukungan emosional",
-  "helpNetworkGuardianGuideStage": "Sembuhkan",
-  "helpNetworkLoveKeyDesc": "Terhubung dengan HELP Network selengkapnya",
-  "helpNetworkLoveKeyStage": "Koordinasikan",
+  "helpNetworkAidAngelStage": "Memulihkan",
+  "helpNetworkGuardianGuideDesc": "Dukungan kesehatan mental dan emosional",
+  "helpNetworkGuardianGuideStage": "Menyembuhkan",
+  "helpNetworkLoveKeyDesc": "Terhubung dengan Jaringan HELP sepenuhnya",
+  "helpNetworkLoveKeyStage": "Mengkoordinasi",
   "kbHandoffGuardianGuideHeading": "Mendukung kesehatan mental setelah krisis",
   "kbHandoffGuardianGuideBody": "Guardian Guide menghubungkan Anda dengan layanan kesehatan mental dan dukungan emosional yang terpercaya.",
   "kbHandoffGuardianGuideCta": "Temukan dukungan",
@@ -209,5 +209,7 @@
   "shopDialogTitle": "First Aid Angel Shop",
   "shopDialogTagline": "Kotak P3K & paket pelatihan tepercaya, dikirim ke dekat Anda.",
   "shopDialogClose": "Tutup",
-  "shopDialogBrowseKits": "Telusuri kotak P3K"
+  "shopDialogBrowseKits": "Telusuri kotak P3K",
+  "helpNetworkFirstAidAngelDesc": "Panduan dan dukungan pertolongan pertama yang cepat",
+  "helpNetworkFirstAidAngelStage": "PERSIAPAN"
 }

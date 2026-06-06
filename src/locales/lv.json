@@ -113,13 +113,13 @@
   "courseSignInToStart": "Pierakstieties, lai sāktu",
   "coursesPageSubtitle": "Paškontrolēti video un lasīšanas nodarbības. Nokārtojiet testu, lejupielādējiet savu PDF sertifikātu. Tikai tiešsaistes teorija — neaizstāj akreditētas klātienes apmācības.",
   "helpNetworkHeading": "HELP tīkls",
-  "helpNetworkCrisisCompassDesc": "Ārkārtas vadlīnijas aktīvu krīžu gadījumā",
+  "helpNetworkCrisisCompassDesc": "Palīdzība krīzes situācijās",
   "helpNetworkCrisisCompassStage": "Reaģēt",
-  "helpNetworkAidAngelDesc": "Atbalsts atkopšanai pēc katastrofas",
-  "helpNetworkAidAngelStage": "Atkopties",
+  "helpNetworkAidAngelDesc": "Atbalsts pēc katastrofām",
+  "helpNetworkAidAngelStage": "Atgūties",
   "helpNetworkGuardianGuideDesc": "Garīgās veselības un emocionālais atbalsts",
-  "helpNetworkGuardianGuideStage": "DziedētBase",
-  "helpNetworkLoveKeyDesc": "Sazinieties ar pilno HELP tīklu",
+  "helpNetworkGuardianGuideStage": "Dziedēt",
+  "helpNetworkLoveKeyDesc": "Sazināties ar visu HELP tīklu",
   "helpNetworkLoveKeyStage": "Koordinēt",
   "kbHandoffGuardianGuideHeading": "Garīgās veselības atbalsts pēc krīzes",
   "kbHandoffGuardianGuideBody": "Guardian Guide savieno jūs ar uzticamiem garīgās veselības un emocionālā atbalsta pakalpojumiem.",
@@ -209,5 +209,7 @@
   "shopDialogTitle": "First Aid Angel veikals",
   "shopDialogOpenStore": "Atvērt pilnu veikalu",
   "shopDialogBrowseKits": "Pārlūkot komplektus",
-  "shopDialogTagline": "Uzticami pirmās palīdzības komplekti un mācību pakas ar piegādi Jums tuvākajā vietā."
+  "shopDialogTagline": "Uzticami pirmās palīdzības komplekti un mācību pakas ar piegādi Jums tuvākajā vietā.",
+  "helpNetworkFirstAidAngelDesc": "Ātra pirmās palīdzības sniegšana un atbalsts",
+  "helpNetworkFirstAidAngelStage": "SAGATAVOTIES"
 }

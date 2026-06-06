@@ -113,13 +113,13 @@
   "learnHelpGrow": "帮助我们在您的国家/地区以您的语言扩展名录。",
   "learnSubmitCourse": "提交课程信息",
   "helpNetworkHeading": "HELP 网络 (HELP Network)",
-  "helpNetworkCrisisCompassDesc": "针对活动中危机的紧急指南",
+  "helpNetworkCrisisCompassDesc": "主动危机应急指导",
   "helpNetworkCrisisCompassStage": "响应",
   "helpNetworkAidAngelDesc": "灾后恢复支持",
   "helpNetworkAidAngelStage": "恢复",
   "helpNetworkGuardianGuideDesc": "心理健康和情感支持",
   "helpNetworkGuardianGuideStage": "治愈",
-  "helpNetworkLoveKeyDesc": "连接完整的 HELP 网络",
+  "helpNetworkLoveKeyDesc": "连接完整的HELP网络",
   "helpNetworkLoveKeyStage": "协调",
   "kbHandoffGuardianGuideHeading": "危机后的心理健康支持职能",
   "kbHandoffGuardianGuideBody": "Guardian Guide 为您对接值得信赖的心理健康和情感支持服务。",
@@ -209,5 +209,7 @@
   "shopDialogBrowseKits": "浏览急救包",
   "shopDialogClose": "关闭",
   "shopDialogOpenStore": "打开完整商城",
-  "shopDialogTitle": "First Aid Angel 商店"
+  "shopDialogTitle": "First Aid Angel 商店",
+  "helpNetworkFirstAidAngelDesc": "快速急救指导和支持",
+  "helpNetworkFirstAidAngelStage": "准备"
 }

@@ -115,9 +115,9 @@
   "helpNetworkHeading": "Mạng lưới HELP",
   "helpNetworkCrisisCompassDesc": "Hướng dẫn khẩn cấp cho các cuộc khủng hoảng đang diễn ra",
   "helpNetworkCrisisCompassStage": "Ứng phó",
-  "helpNetworkAidAngelDesc": "Hỗ trợ phục hồi sau thảm họa",
+  "helpNetworkAidAngelDesc": "Hỗ trợ phục hồi sau thiên tai",
   "helpNetworkAidAngelStage": "Phục hồi",
-  "helpNetworkGuardianGuideDesc": "Hỗ trợ tâm thần và cảm xúc",
+  "helpNetworkGuardianGuideDesc": "Hỗ trợ sức khỏe tinh thần và cảm xúc",
   "helpNetworkGuardianGuideStage": "Chữa lành",
   "helpNetworkLoveKeyDesc": "Kết nối với toàn bộ Mạng lưới HELP",
   "helpNetworkLoveKeyStage": "Điều phối",
@@ -209,5 +209,7 @@
   "shopDialogClose": "Đóng",
   "shopDialogOpenStore": "Mở toàn bộ cửa hàng",
   "shopDialogBrowseKits": "Duyệt qua các bộ dụng cụ",
-  "shopDialogTagline": "Bộ sơ cứu và gói đào tạo đáng tin cậy, được vận chuyển đến gần bạn."
+  "shopDialogTagline": "Bộ sơ cứu và gói đào tạo đáng tin cậy, được vận chuyển đến gần bạn.",
+  "helpNetworkFirstAidAngelDesc": "Hướng dẫn và hỗ trợ sơ cứu nhanh chóng",
+  "helpNetworkFirstAidAngelStage": "CHUẨN BỊ"
 }

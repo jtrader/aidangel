@@ -113,13 +113,13 @@
   "coursesPageSubtitle": "Lezioni video e testuali da seguire autonomamente. Supera il quiz e scarica il tuo certificato PDF personalizzato. Solo teoria online — non sostituisce la formazione accreditata in presenza.",
   "quizGotXofYNeed": "Hai risposto correttamente a {correct} su {total}. Ti serve il {pct}% per passare.",
   "helpNetworkHeading": "HELP Network",
-  "helpNetworkCrisisCompassDesc": "Guida d'emergenza per crisi attive",
+  "helpNetworkCrisisCompassDesc": "Guida di emergenza per crisi attive",
   "helpNetworkCrisisCompassStage": "Rispondere",
-  "helpNetworkAidAngelDesc": "Supporto per il recupero dopo un disastro",
-  "helpNetworkAidAngelStage": "Recuperare",
-  "helpNetworkGuardianGuideDesc": "Salute mentale e supporto emotivo",
+  "helpNetworkAidAngelDesc": "Supporto per il recupero post-disastro",
+  "helpNetworkAidAngelStage": "Riprendere",
+  "helpNetworkGuardianGuideDesc": "Supporto per la salute mentale ed emotiva",
   "helpNetworkGuardianGuideStage": "Guarire",
-  "helpNetworkLoveKeyDesc": "Connettiti con l’intera rete HELP Network",
+  "helpNetworkLoveKeyDesc": "Connettiti con l'intera rete HELP",
   "helpNetworkLoveKeyStage": "Coordinare",
   "kbHandoffGuardianGuideHeading": "Supporto alla salute mentale dopo una crisi",
   "kbHandoffGuardianGuideBody": "Guardian Guide ti mette in contatto con servizi fidati di salute mentale e supporto emotivo.",
@@ -209,5 +209,7 @@
   "shopDialogTagline": "Kit di pronto soccorso e pacchetti di formazione affidabili, spediti vicino a te.",
   "shopDialogClose": "Chiudi",
   "shopDialogOpenStore": "Apri lo store completo",
-  "shopDialogBrowseKits": "Sfoglia i kit"
+  "shopDialogBrowseKits": "Sfoglia i kit",
+  "helpNetworkFirstAidAngelDesc": "Guida e supporto rapido di primo soccorso",
+  "helpNetworkFirstAidAngelStage": "PREPARARE"
 }

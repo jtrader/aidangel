@@ -113,13 +113,13 @@
   "lessonMarkCompleteNext": "Merkitse suoritetuksi ja jatka",
   "lessonPrevious": "Edellinen",
   "helpNetworkHeading": "HELP Network",
-  "helpNetworkCrisisCompassDesc": "Hätäopastus aktiivisiin kriiseihin",
-  "helpNetworkCrisisCompassStage": "Toimi",
-  "helpNetworkAidAngelDesc": "Toipumistuki katastrofin jälkeen",
+  "helpNetworkCrisisCompassDesc": "Hätäohjeistus aktiivisiin kriiseihin",
+  "helpNetworkCrisisCompassStage": "Vastaa",
+  "helpNetworkAidAngelDesc": "Palautumistukea katastrofin jälkeen",
   "helpNetworkAidAngelStage": "Toivu",
   "helpNetworkGuardianGuideDesc": "Mielenterveys ja emotionaalinen tuki",
   "helpNetworkGuardianGuideStage": "Parane",
-  "helpNetworkLoveKeyDesc": "Yhdistä koko HELP-verkostoon",
+  "helpNetworkLoveKeyDesc": "Yhdistä koko HELP-verkkoon",
   "helpNetworkLoveKeyStage": "Koordinoi",
   "kbHandoffGuardianGuideHeading": "Mielenterveyden tukeminen kriisin jälkeen",
   "kbHandoffGuardianGuideBody": "Guardian Guide yhdistää sinut luotettaviin mielenterveys- ja emotionaalisen tuen palveluihin.",
@@ -209,5 +209,7 @@
   "shopDialogOpenStore": "Avaa koko kauppa",
   "shopDialogBrowseKits": "Selaa pakkauksia",
   "shopDialogTitle": "First Aid Angel Shop",
-  "shopDialogTagline": "Luotettavat ensiapulaukut ja harjoituspaketit lähelläsi."
+  "shopDialogTagline": "Luotettavat ensiapulaukut ja harjoituspaketit lähelläsi.",
+  "helpNetworkFirstAidAngelDesc": "Nopea ensiapuohjeistus ja tuki",
+  "helpNetworkFirstAidAngelStage": "VALMISTELE"
 }

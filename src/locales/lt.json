@@ -113,13 +113,13 @@
   "learnCoursesNearYou": "Kursai šalia jūsų",
   "lessonCompleteStartQuiz": "Baigti ir pradėti testą",
   "helpNetworkHeading": "HELP tinklas",
-  "helpNetworkCrisisCompassDesc": "Skubios gairės aktyvių krizių metu",
+  "helpNetworkCrisisCompassDesc": "Pagalba aktyvių krizių metu",
   "helpNetworkCrisisCompassStage": "Reaguoti",
-  "helpNetworkAidAngelDesc": "Parama atsigaunant po nelaimės",
+  "helpNetworkAidAngelDesc": "Palaikymas po nelaimės",
   "helpNetworkAidAngelStage": "Atsigauti",
-  "helpNetworkGuardianGuideDesc": "Psichikos sveikata ir emocinė parama",
-  "helpNetworkGuardianGuideStage": "Sveikti",
-  "helpNetworkLoveKeyDesc": "Prisijunkite prie viso HELP tinklo",
+  "helpNetworkGuardianGuideDesc": "Psichinės sveikatos ir emocinė pagalba",
+  "helpNetworkGuardianGuideStage": "Gyti",
+  "helpNetworkLoveKeyDesc": "Prisijungkite prie viso HELP tinklo",
   "helpNetworkLoveKeyStage": "Koordinuoti",
   "kbHandoffGuardianGuideHeading": "Psichikos sveikatos palaikymas po krizės",
   "kbHandoffGuardianGuideBody": "„Guardian Guide“ sujungia jus su patikimomis psichikos sveikatos ir emocinės paramos tarnybomis.",
@@ -209,5 +209,7 @@
   "shopDialogTitle": "„First Aid Angel“ parduotuvė",
   "shopDialogClose": "Uždaryti",
   "shopDialogBrowseKits": "Naršyti rinkinius",
-  "shopDialogOpenStore": "Atidaryti pilną parduotuvę"
+  "shopDialogOpenStore": "Atidaryti pilną parduotuvę",
+  "helpNetworkFirstAidAngelDesc": "Greita pirmoji pagalba ir palaikymas",
+  "helpNetworkFirstAidAngelStage": "PASIRUOŠTI"
 }

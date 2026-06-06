@@ -114,13 +114,13 @@
   "myLearningCertificates": "Sertifikalar",
   "helpNetworkHeading": "HELP Ağı",
   "helpNetworkCrisisCompassDesc": "Aktif krizler için acil durum rehberliği",
-  "helpNetworkCrisisCompassStage": "Müdahale (Respond)",
-  "helpNetworkAidAngelDesc": "Afet sonrası toparlanma desteği",
-  "helpNetworkAidAngelStage": "İyileşme (Recover)",
-  "helpNetworkGuardianGuideDesc": "Ruh sağlığı ve duygusal destek",
-  "helpNetworkGuardianGuideStage": "İyileşme (Heal)",
+  "helpNetworkCrisisCompassStage": "Müdahale",
+  "helpNetworkAidAngelDesc": "Afet sonrası kurtarma desteği",
+  "helpNetworkAidAngelStage": "İyileşme",
+  "helpNetworkGuardianGuideDesc": "Zihinsel sağlık ve duygusal destek",
+  "helpNetworkGuardianGuideStage": "Şifa",
   "helpNetworkLoveKeyDesc": "Tüm HELP Ağı ile bağlantı kurun",
-  "helpNetworkLoveKeyStage": "Koordinasyon (Coordinate)",
+  "helpNetworkLoveKeyStage": "Koordinasyon",
   "kbHandoffGuardianGuideHeading": "Kriz sonrası ruh sağlığını desteklemek",
   "kbHandoffGuardianGuideBody": "Guardian Guide, sizi güvenilir ruh sağlığı ve duygusal destek hizmetleriyle buluşturur.",
   "kbHandoffGuardianGuideCta": "Destek bulun",
@@ -209,5 +209,7 @@
   "shopDialogOpenStore": "Mağazanın tamamını aç",
   "shopDialogClose": "Kapat",
   "shopDialogBrowseKits": "Kitlere göz at",
-  "shopDialogTagline": "Güvenilir ilk yardım kitleri ve eğitim paketleri, yakınınızda kargolanır."
+  "shopDialogTagline": "Güvenilir ilk yardım kitleri ve eğitim paketleri, yakınınızda kargolanır.",
+  "helpNetworkFirstAidAngelDesc": "Hızlı ilk yardım rehberliği ve desteği",
+  "helpNetworkFirstAidAngelStage": "HAZIRLIK"
 }

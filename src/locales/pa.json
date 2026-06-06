@@ -114,13 +114,13 @@
   "learnSubmitCourse": "ਕੋਰਸ ਜਮ੍ਹਾਂ ਕਰੋ",
   "helpNetworkHeading": "HELP ਨੈੱਟਵਰਕ",
   "helpNetworkCrisisCompassDesc": "ਸਰਗਰਮ ਸੰਕਟਾਂ ਲਈ ਐਮਰਜੈਂਸੀ ਮਾਰਗਦਰਸ਼ਨ",
-  "helpNetworkCrisisCompassStage": "ਜਵਾਬੀ ਕਾਰਵਾਈ (Respond)",
-  "helpNetworkAidAngelDesc": "ਆਫ਼ਤ ਤੋਂ ਬਾਅਦ ਮੁੜ-ਬਹਾਲੀ ਲਈ ਸਹਾਇਤਾ",
-  "helpNetworkAidAngelStage": "ਮੁੜ-ਬਹਾਲੀ (Recover)",
+  "helpNetworkCrisisCompassStage": "ਜਵਾਬ",
+  "helpNetworkAidAngelDesc": "ਆਫ਼ਤ ਤੋਂ ਬਾਅਦ ਰਿਕਵਰੀ ਸਹਾਇਤਾ",
+  "helpNetworkAidAngelStage": "ਠੀਕ",
   "helpNetworkGuardianGuideDesc": "ਮਾਨਸਿਕ ਸਿਹਤ ਅਤੇ ਭਾਵਨਾਤਮਕ ਸਹਾਇਤਾ",
-  "helpNetworkGuardianGuideStage": "ਇਲਾਜ (Heal)",
+  "helpNetworkGuardianGuideStage": "ਚੰਗਾ",
   "helpNetworkLoveKeyDesc": "ਪੂਰੇ HELP ਨੈੱਟਵਰਕ ਨਾਲ ਜੁੜੋ",
-  "helpNetworkLoveKeyStage": "ਤਾਲਮੇਲ (Coordinate)",
+  "helpNetworkLoveKeyStage": "ਤਾਲਮੇਲ",
   "kbHandoffGuardianGuideHeading": "ਸੰਕਟ ਤੋਂ ਬਾਅਦ ਮਾਨਸਿਕ ਸਿਹਤ ਦਾ ਸਮਰਥਨ ਕਰਨਾ",
   "kbHandoffGuardianGuideBody": "Guardian Guide ਤੁਹਾਨੂੰ ਭਰੋਸੇਯੋਗ ਮਾਨਸਿਕ ਸਿਹਤ ਅਤੇ ਭਾਵਨਾਤਮਕ ਸਹਾਇਤਾ ਸੇਵਾਵਾਂ ਨਾਲ ਜੋੜਦਾ ਹੈ।",
   "kbHandoffGuardianGuideCta": "ਸਹਾਇਤਾ ਲੱਭੋ",
@@ -209,5 +209,7 @@
   "shopDialogBrowseKits": "ਕਿੱਟਾਂ ਵੇਖੋ (Browse kits)",
   "shopDialogOpenStore": "ਪੂਰਾ ਸਟੋਰ ਖੋਲ੍ਹੋ",
   "shopDialogTagline": "ਭਰੋਸੇਮੰਦ ਫਸਟ ਏਡ ਕਿੱਟਾਂ ਅਤੇ ਸਿਖਲਾਈ ਪੈਕ, ਤੁਹਾਡੇ ਨੇੜੇ ਭੇਜੇ ਗਏ।",
-  "shopDialogTitle": "First Aid Angel Shop"
+  "shopDialogTitle": "First Aid Angel Shop",
+  "helpNetworkFirstAidAngelDesc": "ਤੇਜ਼ੀ ਨਾਲ ਮੁੱਢਲੀ ਸਹਾਇਤਾ ਮਾਰਗਦਰਸ਼ਨ ਅਤੇ ਸਹਾਇਤਾ",
+  "helpNetworkFirstAidAngelStage": "ਤਿਆਰ"
 }

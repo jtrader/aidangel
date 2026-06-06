@@ -113,14 +113,14 @@
   "quizGotXofY": "Имате {correct} от {total} верни отговора. Вашият сертификат е готов.",
   "learnNeedHelpNow": "Нуждаете ли се от помощ сега?",
   "helpNetworkHeading": "Мрежа HELP Network",
-  "helpNetworkCrisisCompassDesc": "Насоки за спешни случаи по време на активна криза",
-  "helpNetworkCrisisCompassStage": "Реагиране",
+  "helpNetworkCrisisCompassDesc": "Спешни насоки за активни кризи",
+  "helpNetworkCrisisCompassStage": "Отговор",
   "helpNetworkAidAngelDesc": "Подкрепа за възстановяване след бедствие",
   "helpNetworkAidAngelStage": "Възстановяване",
   "helpNetworkGuardianGuideDesc": "Психично здраве и емоционална подкрепа",
-  "helpNetworkGuardianGuideStage": "Изцеление",
-  "helpNetworkLoveKeyDesc": "Свържете се с цялата мрежа HELP Network",
-  "helpNetworkLoveKeyStage": "Координация",
+  "helpNetworkGuardianGuideStage": "Излекуване",
+  "helpNetworkLoveKeyDesc": "Свържете се с пълната мрежа на HELP",
+  "helpNetworkLoveKeyStage": "Координиране",
   "kbHandoffGuardianGuideHeading": "Подкрепа за психичното здраве след криза",
   "kbHandoffGuardianGuideBody": "Guardian Guide ви свързва с доверени служби за психично здраве и емоционална подкрепа.",
   "kbHandoffGuardianGuideCta": "Намерете подкрепа",
@@ -209,5 +209,7 @@
   "shopDialogBrowseKits": "Разгледай комплекти",
   "shopDialogOpenStore": "Отвори целия магазин",
   "shopDialogTagline": "Доверени комплекти за първа помощ и обучителни пакети, доставени до вас.",
-  "shopDialogClose": "Затвори"
+  "shopDialogClose": "Затвори",
+  "helpNetworkFirstAidAngelDesc": "Бързи насоки и подкрепа за първа помощ",
+  "helpNetworkFirstAidAngelStage": "ПОДГОТОВКА"
 }

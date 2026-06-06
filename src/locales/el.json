@@ -113,13 +113,13 @@
   "courseNotFound": "Το μάθημα δεν βρέθηκε.",
   "myLearningCertificates": "Πιστοποιητικά",
   "helpNetworkHeading": "Δίκτυο HELP",
-  "helpNetworkCrisisCompassDesc": "Έκτακτη καθοδήγηση για ενεργές κρίσεις",
-  "helpNetworkCrisisCompassStage": "Ανταπόκριση",
+  "helpNetworkCrisisCompassDesc": "Καθοδήγηση έκτακτης ανάγκης για ενεργές κρίσεις",
+  "helpNetworkCrisisCompassStage": "Αντιμετώπιση",
   "helpNetworkAidAngelDesc": "Υποστήριξη αποκατάστασης μετά από καταστροφή",
-  "helpNetworkAidAngelStage": "Αποκατάσταση",
+  "helpNetworkAidAngelStage": "Ανάκαμψη",
   "helpNetworkGuardianGuideDesc": "Ψυχική υγεία και συναισθηματική υποστήριξη",
   "helpNetworkGuardianGuideStage": "Θεραπεία",
-  "helpNetworkLoveKeyDesc": "Σύνδεση με το πλήρες Δίκτυο HELP",
+  "helpNetworkLoveKeyDesc": "Συνδεθείτε με το πλήρες δίκτυο HELP",
   "helpNetworkLoveKeyStage": "Συντονισμός",
   "kbHandoffGuardianGuideHeading": "Υποστήριξη ψυχικής υγείας μετά από μια κρίση",
   "kbHandoffGuardianGuideBody": "Ο Guardian Guide σάς συνδέει με αξιόπιστες υπηρεσίες ψυχικής υγείας και συναισθηματικής υποστήριξης.",
@@ -209,5 +209,7 @@
   "shopDialogTitle": "First Aid Angel Shop",
   "shopDialogClose": "Κλείσιμο",
   "shopDialogOpenStore": "Άνοιγμα πλήρους καταστήματος",
-  "shopDialogTagline": "Αξιόπιστα κιτ πρώτων βοηθειών & πακέτα εκπαίδευσης, με αποστολή κοντά σας."
+  "shopDialogTagline": "Αξιόπιστα κιτ πρώτων βοηθειών & πακέτα εκπαίδευσης, με αποστολή κοντά σας.",
+  "helpNetworkFirstAidAngelDesc": "Γρήγορη καθοδήγηση και υποστήριξη πρώτων βοηθειών",
+  "helpNetworkFirstAidAngelStage": "ΠΡΟΕΤΟΙΜΑΣΟΥ"
 }

@@ -113,13 +113,13 @@
   "quizGotXofYNeed": "U heeft {correct} van de {total} goed. U heeft {pct}% nodig om te slagen.",
   "myLearningCertificates": "Certificaten",
   "helpNetworkHeading": "HELP Netwerk",
-  "helpNetworkCrisisCompassDesc": "Noodbegeleiding bij actieve crises",
+  "helpNetworkCrisisCompassDesc": "Noodbegeleiding voor actieve crises",
   "helpNetworkCrisisCompassStage": "Reageren",
-  "helpNetworkAidAngelDesc": "Ondersteuning bij herstel na een ramp",
+  "helpNetworkAidAngelDesc": "Herstelondersteuning na een ramp",
   "helpNetworkAidAngelStage": "Herstellen",
-  "helpNetworkGuardianGuideDesc": "Geestelijke gezondheidszorg en emotionele steun",
-  "helpNetworkGuardianGuideStage": "Helen",
-  "helpNetworkLoveKeyDesc": "Maak verbinding met het volledige HELP Netwerk",
+  "helpNetworkGuardianGuideDesc": "Mentale gezondheid en emotionele ondersteuning",
+  "helpNetworkGuardianGuideStage": "Genezen",
+  "helpNetworkLoveKeyDesc": "Maak verbinding met het volledige HELP Network",
   "helpNetworkLoveKeyStage": "Coördineren",
   "kbHandoffGuardianGuideHeading": "Ondersteuning van de geestelijke gezondheid na een crisis",
   "kbHandoffGuardianGuideBody": "Guardian Guide verbindt u met vertrouwde diensten voor geestelijke gezondheidszorg en emotionele steun.",
@@ -209,5 +209,7 @@
   "shopDialogBrowseKits": "Blader door sets",
   "shopDialogTitle": "First Aid Angel Shop",
   "shopDialogOpenStore": "Volledige winkel openen",
-  "shopDialogTagline": "Betrouwbare EHBO-koffers & trainingspakketten, bij u in de buurt bezorgd."
+  "shopDialogTagline": "Betrouwbare EHBO-koffers & trainingspakketten, bij u in de buurt bezorgd.",
+  "helpNetworkFirstAidAngelDesc": "Snelle EHBO-richtlijnen en ondersteuning",
+  "helpNetworkFirstAidAngelStage": "BEREID JE VOOR"
 }

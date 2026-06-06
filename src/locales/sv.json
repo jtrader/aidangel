@@ -113,12 +113,12 @@
   "coursesEmpty": "Kurser kommer snart. Kontrollera igen inom kort.",
   "courseAllCourses": "Alla ämnen",
   "helpNetworkHeading": "HELP Network",
-  "helpNetworkCrisisCompassDesc": "Nödsituationsvägledning för pågående kriser",
-  "helpNetworkCrisisCompassStage": "Agera",
+  "helpNetworkCrisisCompassDesc": "Nödfallsvägledning för aktiva kriser",
+  "helpNetworkCrisisCompassStage": "Reagera",
   "helpNetworkAidAngelDesc": "Återhämtningsstöd efter katastrof",
   "helpNetworkAidAngelStage": "Återhämta",
-  "helpNetworkGuardianGuideDesc": "Psykisk hälsa och emotionellt stöd",
-  "helpNetworkGuardianGuideStage": "Läkning",
+  "helpNetworkGuardianGuideDesc": "Mental hälsa och emotionellt stöd",
+  "helpNetworkGuardianGuideStage": "Läka",
   "helpNetworkLoveKeyDesc": "Anslut till hela HELP Network",
   "helpNetworkLoveKeyStage": "Koordinera",
   "kbHandoffGuardianGuideHeading": "Stöd för psykisk hälsa efter en kris",
@@ -209,5 +209,7 @@
   "shopDialogTitle": "First Aid Angel Shop",
   "shopDialogBrowseKits": "Bläddra bland kit",
   "shopDialogOpenStore": "Öppna hela butiken",
-  "shopDialogClose": "Stäng"
+  "shopDialogClose": "Stäng",
+  "helpNetworkFirstAidAngelDesc": "Snabb vägledning och stöd för första hjälpen",
+  "helpNetworkFirstAidAngelStage": "FÖRBEREDA"
 }
