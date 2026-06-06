@@ -16,7 +16,7 @@ import KbCourseHandoff from "@/components/kb/KbCourseHandoff";
 import KbProgramHandoff from "@/components/kb/KbProgramHandoff";
 import KbKitRecommendation from "@/components/kb/KbKitRecommendation";
 import KBHandoffCard from "@/components/kb/KBHandoffCard";
-import { KB_TO_COURSE } from "@/lib/kbCourseMap";
+import { KB_COURSE_MAP as KB_TO_COURSE } from "@/lib/kbCourseMap";
 import { supabase } from "@/integrations/supabase/client";
 
 
