@@ -202,5 +202,10 @@
   "drsBlurbAirway": "Open & clear the airway",
   "drsBlurbBreathing": "Look, listen, feel",
   "drsBlurbCpr": "30 compressions : 2 breaths",
-  "drsBlurbDefib": "Attach AED & follow prompts"
+  "drsBlurbDefib": "Attach AED & follow prompts",
+  "shopDialogTitle": "First Aid Angel Shop",
+  "shopDialogTagline": "Trusted first aid kits & training packs, shipped near you.",
+  "shopDialogOpenStore": "Open full store",
+  "shopDialogBrowseKits": "Browse kits",
+  "shopDialogClose": "Close"
 }
