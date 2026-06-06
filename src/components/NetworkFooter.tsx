@@ -5,7 +5,8 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 import { useEffect, useState, useCallback } from "react";
-import { Heart, Download } from "lucide-react";
+import { Download } from "lucide-react";
+import rspLogo from "@/assets/rsp_logo.png.asset.json";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
 import { localizedPath } from "@/lib/i18n";
