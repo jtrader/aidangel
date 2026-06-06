@@ -140,9 +140,9 @@ export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps
             <button
               type="button"
               aria-label={tr.close}
-              className="absolute top-3 right-3 inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              className="absolute top-3 right-3 inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
-              <X className="h-6 w-6" aria-hidden="true" />
+              <X className="h-7 w-7" aria-hidden="true" />
             </button>
           </DrawerClose>
         </DrawerContent>
@@ -164,9 +164,9 @@ export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps
           <button
             type="button"
             aria-label={tr.close}
-            className="absolute top-3 right-3 inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="absolute top-3 right-3 inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
-            <X className="h-6 w-6" aria-hidden="true" />
+            <X className="h-7 w-7" aria-hidden="true" />
           </button>
         </DialogClose>
       </DialogContent>
