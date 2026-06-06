@@ -121,6 +121,8 @@
   "helpNetworkGuardianGuideStage": "Heal",
   "helpNetworkLoveKeyDesc": "Connect with the HELP Network",
   "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyNfcQrDesc": "With one tap or scan, a Love Key ring connects you, REACH",
+  "helpNetworkLoveKeyNfcQrStage": "NFC QR",
   "kbHandoffGuardianGuideHeading": "Supporting mental health after a crisis",
   "kbHandoffGuardianGuideBody": "Guardian Guide connects you with trusted mental health and emotional support services.",
   "kbHandoffGuardianGuideCta": "Find support",
