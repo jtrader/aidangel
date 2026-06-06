@@ -24,13 +24,20 @@ export function useShopifyCheckout() {
       );
       if (error) throw new Error(error.message);
       if (!data?.checkoutUrl) throw new Error("No checkout URL returned");
-      // Navigate away — do not reset loading on success
-      window.location.href = data.checkoutUrl;
+      // Open in a new tab so the user keeps their place in the marketing /
+      // learning flow — matches the post-completion cert-checkout behaviour.
+      const win = window.open(data.checkoutUrl, "_blank", "noopener,noreferrer");
+      if (!win) {
+        // Popup blocked → fall back to same-tab navigation so checkout still works.
+        window.location.href = data.checkoutUrl;
+        return;
+      }
+      setLoading(false);
     } catch (e) {
       const message = e instanceof Error ? e.message : "Checkout failed";
       console.error("Shopify checkout error:", e);
       toast.error(message);
-      setLoading(false); // only reset loading on error
+      setLoading(false);
     }
   };
 
