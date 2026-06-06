@@ -5,8 +5,9 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 import { useEffect, useState, useCallback } from "react";
-import { Download } from "lucide-react";
+import { Download, X } from "lucide-react";
 import rspLogo from "@/assets/rsp_logo.png.asset.json";
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translateStrings } from "@/lib/uiTranslate";
 import { localizedPath } from "@/lib/i18n";
@@ -120,23 +121,53 @@ export default function NetworkFooter() {
           <span aria-hidden>·</span>
           <a href="/medical-disclaimer" className="hover:text-foreground hover:underline transition-colors">Medical Disclaimer</a>
         </nav>
-        <a
-          href="https://lovekeylink.com/rsp"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center gap-3 mt-2 hover:opacity-90 transition-opacity"
-        >
-          <img
-            src={rspLogo.url}
-            alt="Respectful Synchronised Protocol"
-            className="h-16 w-16 rounded-full object-cover shadow-[0_0_24px_rgba(220,38,38,0.65)] ring-1 ring-primary/40"
-            loading="lazy"
-          />
+        <div className="flex flex-col items-center gap-3 mt-2">
+          <Dialog>
+            <DialogTrigger asChild>
+              <button
+                type="button"
+                aria-label="View Respectful Synchronised Protocol logo"
+                className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 hover:opacity-90 transition-opacity"
+              >
+                <img
+                  src={rspLogo.url}
+                  alt="Respectful Synchronised Protocol"
+                  className="h-16 w-16 rounded-full object-cover shadow-[0_0_24px_rgba(220,38,38,0.65)] ring-1 ring-primary/40"
+                  loading="lazy"
+                />
+              </button>
+            </DialogTrigger>
+            <DialogContent
+              className="w-[calc(100vw-2rem)] max-w-md sm:max-w-lg flex flex-col items-center overflow-hidden rounded-2xl bg-card border border-border shadow-xl ring-1 ring-border/50 p-5 sm:p-6 motion-reduce:animate-none [&>button.right-4.top-4]:hidden"
+            >
+              <img
+                src={rspLogo.url}
+                alt="Respectful Synchronised Protocol"
+                className="w-full h-auto max-h-[70vh] rounded-2xl object-contain shadow-[0_0_48px_rgba(220,38,38,0.5)] ring-1 ring-primary/40"
+              />
+              <DialogClose asChild>
+                <button
+                  type="button"
+                  aria-label="Close"
+                  className="absolute top-3 right-3 inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                >
+                  <X className="h-7 w-7" aria-hidden="true" />
+                </button>
+              </DialogClose>
+            </DialogContent>
+          </Dialog>
           <p className="text-[11px] text-center">
-            <span className="text-primary underline">LoveKey RSP-aligned</span>
+            <a
+              href="https://lovekeylink.com/rsp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline hover:opacity-90 transition-opacity"
+            >
+              LoveKey RSP-aligned
+            </a>
             <span className="text-muted-foreground"> — Ethical, privacy-conscious help routing under the Respectful Synchronised Protocol.</span>
           </p>
-        </a>
+        </div>
         <p className="text-[11px] text-muted-foreground text-center">
           © 2026 LoveKey. All rights reserved.
         </p>
