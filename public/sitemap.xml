@@ -9874,6 +9874,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://firstaidangel.org/store</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://firstaidangel.org/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
@@ -11967,40 +11972,5 @@
     <loc>https://firstaidangel.org/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/product/faa-certificate-credit-individual</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/product/faa-certificate-credit-household-3-certificates</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/product/faa-certificate-credit-household-5-seats</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/product/faa-certificate-credits-family-5-seats-copy</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/product/faa-corporate-certificate-credits-team-25</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/product/faa-corporate-certificate-credits-team-50</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://firstaidangel.org/product/faa-corporate-certificate-credits-workplace-unlimited</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
   </url>
 </urlset>
