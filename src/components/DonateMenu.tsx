@@ -154,7 +154,7 @@ export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{Trigger}</DialogTrigger>
       <DialogContent
-        className="w-[calc(100vw-2rem)] max-w-md sm:max-w-lg max-h-[88vh] flex flex-col overflow-hidden rounded-2xl bg-card border border-border shadow-xl ring-1 ring-border/50 p-5 sm:p-6 motion-reduce:animate-none [&>button.absolute]:hidden"
+        className="w-[calc(100vw-2rem)] max-w-md sm:max-w-lg max-h-[88vh] flex flex-col overflow-hidden rounded-2xl bg-card border border-border shadow-xl ring-1 ring-border/50 p-5 sm:p-6 motion-reduce:animate-none [&>button.right-4.top-4]:hidden"
         lang={language}
       >
         <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
