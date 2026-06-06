@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
@@ -7,10 +7,10 @@ const FUNCTIONS_BASE = `https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supa
 export default function GoRedirect() {
   const { slug } = useParams<{ slug: string }>();
   const [params] = useSearchParams();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!slug) return;
+
     const src = params.get("src") ?? (typeof document !== "undefined" ? document.referrer : "");
     const zone = params.get("zone") ?? "";
     const handle = params.get("handle") ?? "";
@@ -29,45 +29,11 @@ export default function GoRedirect() {
     if (zone) url.searchParams.set("zone", zone);
     if (handle) url.searchParams.set("handle", handle);
 
-    let didNavigate = false;
-
-    const timer = setTimeout(() => {
-      if (didNavigate) return;
-      // fallback: directly navigate to the public partner path if edge fn is cold
-      window.location.replace(`/go/${encodeURIComponent(slug)}?src=${encodeURIComponent(src)}&sid=${encodeURIComponent(sid)}${zone ? `&zone=${encodeURIComponent(zone)}` : ""}${handle ? `&handle=${encodeURIComponent(handle)}` : ""}`);
-    }, 3000);
-
-    // try to fetch the edge function and follow redirect if available
-    fetch(url.toString(), { method: "GET", redirect: "follow" })
-      .then((res) => {
-        // If the function returns a 3xx redirect, the browser should follow it; if it returns a 200 with a JSON url, handle it.
-        if (res.redirected) {
-          didNavigate = true;
-          // navigation already occurred
-        } else if (res.status === 200) {
-          return res.text();
-        }
-        return null;
-      })
-      .then((txt) => {
-        if (!txt) return;
-        try {
-          const payload = JSON.parse(txt);
-          if (payload?.url) {
-            didNavigate = true;
-            window.location.replace(payload.url);
-          }
-        } catch {
-          // ignore
-        }
-      })
-      .catch(() => {
-        // ignore network errors — timer will fallback
-      })
-      .finally(() => {
-        clearTimeout(timer);
-        setLoading(false);
-      });
+    // Let the browser perform the 302 as a real top-level navigation.
+    // Using fetch() with redirect:"follow" would resolve cross-origin in the
+    // background without navigating the page, and any SPA fallback to /go/<slug>
+    // would just re-mount this component in a loop.
+    window.location.replace(url.toString());
   }, [slug, params]);
 
   return (
