@@ -25,6 +25,7 @@ export default function Auth() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [marketingOptIn, setMarketingOptIn] = useState(true);
+  const [privacyAccepted, setPrivacyAccepted] = useState(true);
   const [busy, setBusy] = useState(false);
   const [params] = useSearchParams();
   const redirect = params.get("redirect") || "/my-learning";
@@ -46,12 +47,17 @@ export default function Auth() {
     setBusy(true);
     try {
       if (mode === "signup") {
+        if (!privacyAccepted) {
+          toast.error("Please accept the Privacy Policy to create an account.");
+          setBusy(false);
+          return;
+        }
         const { data: signUpData, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             emailRedirectTo: `${window.location.origin}${redirect}`,
-            data: { full_name: name, marketing_opt_in: marketingOptIn },
+            data: { full_name: name, marketing_opt_in: marketingOptIn, privacy_accepted: true, privacy_accepted_at: new Date().toISOString() },
           },
         });
         if (error) throw error;
@@ -128,16 +134,32 @@ export default function Auth() {
             <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} minLength={8} maxLength={72} required />
           </div>
           {mode === "signup" && (
-            <label className="flex items-start gap-2 text-sm text-muted-foreground cursor-pointer">
-              <Checkbox
-                checked={marketingOptIn}
-                onCheckedChange={(v) => setMarketingOptIn(v === true)}
-                className="mt-0.5"
-              />
-              <span>
-                Send me first aid tips, course updates, and discounts on official certifications. You can unsubscribe anytime.
-              </span>
-            </label>
+            <div className="space-y-3">
+              <label className="flex items-start gap-2 text-sm text-muted-foreground cursor-pointer">
+                <Checkbox
+                  checked={privacyAccepted}
+                  onCheckedChange={(v) => setPrivacyAccepted(v === true)}
+                  className="mt-0.5"
+                />
+                <span>
+                  I have read and agree to the{" "}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+                    Privacy Policy
+                  </a>
+                  . Required to create an account.
+                </span>
+              </label>
+              <label className="flex items-start gap-2 text-sm text-muted-foreground cursor-pointer">
+                <Checkbox
+                  checked={marketingOptIn}
+                  onCheckedChange={(v) => setMarketingOptIn(v === true)}
+                  className="mt-0.5"
+                />
+                <span>
+                  Send me first aid tips, course updates, and discounts on official certifications. You can unsubscribe anytime.
+                </span>
+              </label>
+            </div>
           )}
           <Button type="submit" disabled={busy} className="w-full">
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : mode === "signin" ? "Sign in" : "Create account"}

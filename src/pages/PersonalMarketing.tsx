@@ -21,6 +21,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
 import { useShopifyCheckout } from "@/hooks/useShopifyCheckout";
+import EnrolAuthDialog from "@/components/EnrolAuthDialog";
 import { useNavigate } from "react-router-dom";
 import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
@@ -111,12 +112,15 @@ export default function PersonalMarketing() {
   const navigate = useNavigate();
   const startHref = user ? "/programs" : "/auth?redirect=/programs";
   const { openCheckout, loading: checkoutLoading } = useShopifyCheckout();
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [pendingPriceId, setPendingPriceId] = useState<string | null>(null);
   const [topics, setTopics] = useState<TopicCard[]>([]);
   const [courses, setCourses] = useState<CourseCard[]>([]);
 
   const handleBuy = (priceId: string) => {
     if (!user) {
-      navigate(`/auth?redirect=/personal`);
+      setPendingPriceId(priceId);
+      setAuthDialogOpen(true);
       return;
     }
     openCheckout({
@@ -125,6 +129,12 @@ export default function PersonalMarketing() {
       customData: { userId: user.id },
       successUrl: `${window.location.origin}/checkout/success`,
     });
+  };
+  const onAuthSuccess = () => {
+    if (pendingPriceId) {
+      openCheckout({ priceId: pendingPriceId });
+      setPendingPriceId(null);
+    }
   };
 
 
@@ -476,6 +486,14 @@ export default function PersonalMarketing() {
         }
       />
       <NetworkFooter />
++
++      <EnrolAuthDialog
++        open={authDialogOpen}
++        onOpenChange={setAuthDialogOpen}
++        onSuccess={onAuthSuccess}
++        variant="purchase-personal"
++      />
++
     </div>
   );
 }

@@ -61,6 +61,9 @@ import AdminVideos from "./pages/AdminVideos";
 import AdminPrograms from "./pages/AdminPrograms";
 import AdminLearners from "./pages/AdminLearners";
 import AdminGraduates from "./pages/AdminGraduates";
+import AdminUsers from "./pages/AdminUsers";
+import AdminCredits from "./pages/AdminCredits";
+import AdminOrganisations from "./pages/AdminOrganisations";
 import MyLocationPage from "./pages/MyLocationPage";
 import Programs from "./pages/Programs";
 import ProgramDetail from "./pages/ProgramDetail";
@@ -192,6 +195,9 @@ const App = forwardRef(function App(_props, _ref) {
                 <Route path="/admin/kb" element={<AdminKb />} />
                 <Route path="/admin/courses" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
                 <Route path="/admin/topics" element={<RequireAuth adminOnly><AdminCourses /></RequireAuth>} />
+                <Route path="/admin/users" element={<RequireAuth adminOnly><AdminUsers /></RequireAuth>} />
+                <Route path="/admin/credits" element={<RequireAuth adminOnly><AdminCredits /></RequireAuth>} />
+                <Route path="/admin/organisations" element={<RequireAuth adminOnly><AdminOrganisations /></RequireAuth>} />
                 <Route path="/admin/videos" element={<RequireAuth adminOnly><AdminVideos /></RequireAuth>} />
                 <Route path="/admin/programs" element={<RequireAuth adminOnly><AdminPrograms /></RequireAuth>} />
                 <Route path="/admin/learners" element={<RequireAuth adminOnly><AdminLearners /></RequireAuth>} />

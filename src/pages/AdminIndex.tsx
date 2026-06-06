@@ -17,6 +17,8 @@ import {
   UserCheck,
   Award,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const sections = [
   {
@@ -46,9 +48,41 @@ const sections = [
       { to: "/admin/routes", title: "Route Catalogue", desc: "Partner courses & products from Shopify", icon: ExternalLink },
     ],
   },
+  {
+    group: "Platform",
+    items: [
+      { to: "/admin/users", title: "Users", desc: "Registered accounts & Shopify sync", icon: Users },
+      { to: "/admin/credits", title: "Credits", desc: "Certificate credit balances", icon: Award },
+      { to: "/admin/organisations", title: "Organisations", desc: "Organisation accounts and seats", icon: ExternalLink },
+    ],
+  },
 ];
 
 export default function AdminIndex() {
+  const [stats, setStats] = useState({ users: 0, credits: 0, enrolments: 0 });
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const { data: sessionData } = await supabase.auth.getSession();
+        const session = (sessionData as any)?.session ?? null;
+        if (!session?.access_token) return;
+        const res = await fetch('/functions/v1/admin-stats', {
+          method: 'GET',
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        });
+        if (!res.ok) return;
+        const body = await res.json();
+        if (!mounted) return;
+        setStats({ users: body.users ?? 0, credits: body.credits ?? 0, enrolments: body.enrolments ?? 0 });
+      } catch (e) {
+        // ignore — keep zeros
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
+
   return (
     <RequireAuth adminOnly>
       <div className="min-h-screen bg-background">
@@ -60,6 +94,21 @@ export default function AdminIndex() {
               <h1 className="text-3xl font-display font-bold">Admin Dashboard</h1>
               <p className="text-muted-foreground text-sm">Manage all areas of First Aid Angel.</p>
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <Card className="p-4">
+              <div className="text-sm text-muted-foreground">Users</div>
+              <div className="mt-2 text-2xl font-semibold">{stats.users.toLocaleString()}</div>
+            </Card>
+            <Card className="p-4">
+              <div className="text-sm text-muted-foreground">Credits (total)</div>
+              <div className="mt-2 text-2xl font-semibold">{stats.credits.toLocaleString()}</div>
+            </Card>
+            <Card className="p-4">
+              <div className="text-sm text-muted-foreground">Enrolments</div>
+              <div className="mt-2 text-2xl font-semibold">{stats.enrolments.toLocaleString()}</div>
+            </Card>
           </div>
 
           {sections.map((section) => (

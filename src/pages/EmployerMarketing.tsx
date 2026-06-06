@@ -11,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
 import { useShopifyCheckout } from "@/hooks/useShopifyCheckout";
+import EnrolAuthDialog from "@/components/EnrolAuthDialog";
 import { useNavigate } from "react-router-dom";
 import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
@@ -34,7 +35,7 @@ const TIERS = [
 ];
 
 const FEATURES = [
-  { icon: Upload, title: "All courses free for your team", body: "Every learner gets free access to the full St John Australian First Aid 5th Edition library. You only pay for CPD certificates when staff complete and need proof." },
+  { icon: Upload, title: "All courses free for your team", body: "Every learner gets free access to the full St John Australian First Aid 5th Edition library. You only pay for CPD-certified certificate credits when staff complete and need proof." },
   { icon: BarChart3, title: "Live compliance tracking", body: "See who's done, who's overdue, and who needs a nudge. Export CSV/PDF for audits anytime." },
   { icon: ShieldCheck, title: "CPD certificate credits in bulk", body: "Buy credit packs and assign one CPD-certified branded certificate to each learner who passes — at a much better rate than the individual AU$29 price." },
 ];
@@ -46,13 +47,22 @@ export default function EmployerMarketing() {
   const { openCheckout, loading: checkoutLoading } = useShopifyCheckout();
   const [courses, setCourses] = useState<CourseCard[]>([]);
   const [starterQty, setStarterQty] = useState<1 | 2 | 3 | 5 | 10>(5);
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [pendingPriceId, setPendingPriceId] = useState<string | null>(null);
 
   const handleBuy = (priceId: string) => {
     if (!user) {
-      navigate(`/auth?redirect=/employer`);
+      setPendingPriceId(priceId);
+      setAuthDialogOpen(true);
       return;
     }
     openCheckout({ priceId });
+  };
+  const onAuthSuccess = () => {
+    if (pendingPriceId) {
+      openCheckout({ priceId: pendingPriceId });
+      setPendingPriceId(null);
+    }
   };
 
 
@@ -312,6 +322,12 @@ export default function EmployerMarketing() {
       />
       <NetworkFooter />
 
+      <EnrolAuthDialog
+        open={authDialogOpen}
+        onOpenChange={setAuthDialogOpen}
+        onSuccess={onAuthSuccess}
+        variant="purchase-employer"
+      />
     </div>
   );
 }
