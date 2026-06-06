@@ -104,7 +104,7 @@ export function KitCarousel({
           No kits available for this region yet.
         </p>
       ) : (
-        <Carousel opts={{ align: "start", loop: false }} setApi={setApi} className="w-full">
+        <Carousel opts={{ align: "start", loop: true }} setApi={setApi} className="w-full">
           <CarouselContent className="-ml-3">
             {kits.map((kit) => (
               <CarouselItem key={kit.id} className={itemBasis}>
