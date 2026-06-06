@@ -64,9 +64,10 @@ export function HelpNetworkHandoff({ immediateDanger = false }: HelpNetworkHando
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {NETWORK_SITES.map((site) => {
           const isFirstAidAngel = site.key === "firstaidangel";
-          const href = isFirstAidAngel
-            ? "/"
+          const rawHref = isFirstAidAngel
+            ? "https://firstaidangel.org"
             : buildHandoffUrl(TARGETS[site.key], null, language, "");
+          const href = language === "en" ? rawHref.replace(/\/en\/$/, "/") : rawHref;
           return (
             <li key={site.key}>
               <a
