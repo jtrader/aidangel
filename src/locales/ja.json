@@ -112,14 +112,14 @@
   "myLearningBrowse": "コースを探す",
   "courseSignInToStart": "サインインして開始",
   "coursesCertOnComplete": "修了時に証明書を発行",
-  "helpNetworkHeading": "HELP ネットワーク",
+  "helpNetworkHeading": "Love Key HELP ネットワーク",
   "helpNetworkCrisisCompassDesc": "緊急事態発生時のガイダンス",
   "helpNetworkCrisisCompassStage": "対応",
   "helpNetworkAidAngelDesc": "災害後の復旧サポート",
   "helpNetworkAidAngelStage": "回復",
   "helpNetworkGuardianGuideDesc": "メンタルヘルスと心のサポート",
   "helpNetworkGuardianGuideStage": "癒し",
-  "helpNetworkLoveKeyDesc": "HELPネットワーク全体とつながる",
+  "helpNetworkLoveKeyDesc": "HELP ネットワークに接続する",
   "helpNetworkLoveKeyStage": "調整",
   "kbHandoffGuardianGuideHeading": "危機後のメンタルヘルス・サポート",
   "kbHandoffGuardianGuideBody": "Guardian Guide は、信頼できるメンタルヘルスおよび感情的サポートサービスを紹介します。",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel は、緊急時の応急処置をステップバイステップで案内します。",
   "kbHandoffFirstAidAngelCta": "応急処置の助けを得る",
   "kbHandoffLoveKeyHeading": "HELP ネットワークを探索する",
-  "kbHandoffLoveKeyBody": "Love Key HELP ネットワーク全体とつながります。",
+  "kbHandoffLoveKeyBody": "Love Key HELP ネットワークに接続します。",
   "kbHandoffLoveKeyCta": "詳細を見る",
   "navDonationPartners": "寄付パートナー",
   "menuFooter": "First Aid Angel — セントジョン・オーストラリア応急処置 第5版",
@@ -211,5 +211,5 @@
   "shopDialogClose": "閉じる",
   "shopDialogBrowseKits": "キットを見る",
   "helpNetworkFirstAidAngelDesc": "応急処置の迅速なガイダンスとサポート",
-  "helpNetworkFirstAidAngelStage": "準備"
+  "helpNetworkFirstAidAngelStage": "PREPARE（準備）"
 }

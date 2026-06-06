@@ -112,14 +112,14 @@
   "learnKnowCourse": "هل تعرف دورة تدريبية جيدة؟",
   "learnHelpGrow": "ساعدنا في تنمية الدليل في بلدك وبلغتك.",
   "learnSubmitCourse": "تقديم دورة تدريبية",
-  "helpNetworkHeading": "شبكة HELP Network",
+  "helpNetworkHeading": "شبكة Love Key HELP Network",
   "helpNetworkCrisisCompassDesc": "توجيهات طارئة للأزمات النشطة",
   "helpNetworkCrisisCompassStage": "استجب",
   "helpNetworkAidAngelDesc": "دعم التعافي بعد الكارثة",
   "helpNetworkAidAngelStage": "تعافى",
   "helpNetworkGuardianGuideDesc": "الصحة النفسية والدعم العاطفي",
   "helpNetworkGuardianGuideStage": "اشفَ",
-  "helpNetworkLoveKeyDesc": "تواصل مع شبكة HELP بالكامل",
+  "helpNetworkLoveKeyDesc": "تواصل مع شبكة HELP Network",
   "helpNetworkLoveKeyStage": "نسّق",
   "kbHandoffGuardianGuideHeading": "دعم الصحة النفسية بعد الأزمة",
   "kbHandoffGuardianGuideBody": "يربطك Guardian Guide بخدمات موثوقة للصحة النفسية والدعم العاطفي.",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "يوفر لك First Aid Angel إرشادات خطوة بخطوة للإسعافات الأولية في حالات الطوارئ.",
   "kbHandoffFirstAidAngelCta": "احصل على مساعدة في الإسعافات الأولية",
   "kbHandoffLoveKeyHeading": "استكشف شبكة HELP Network",
-  "kbHandoffLoveKeyBody": "تواصل مع شبكة Love Key HELP الكاملة.",
+  "kbHandoffLoveKeyBody": "التواصل مع شبكة Love Key HELP Network.",
   "kbHandoffLoveKeyCta": "تعرف على المزيد",
   "homePillAedFinderAria": "البحث عن أقرب جهاز AED (جهاز إزالة رجفان القلب)",
   "mhfaBodyExtra": "إن العثور على الدعم المناسب - المعالج المناسب، أو خط المساعدة، أو مجموعة الأقران، أو برنامج مساعدة الموظفين (EAP) في مكان العمل - هو نصف المعركة. نحن لا نحتفظ بقائمة لأرقام الأزمات هنا لأنها تتغير وتختلف من شخص لآخر.",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "فتح المتجر الكامل",
   "shopDialogTitle": "متجر First Aid Angel Shop",
   "helpNetworkFirstAidAngelDesc": "إرشادات ودعم سريع للإسعافات الأولية",
-  "helpNetworkFirstAidAngelStage": "تأهب"
+  "helpNetworkFirstAidAngelStage": "PREPARE"
 }

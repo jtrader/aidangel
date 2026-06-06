@@ -7,7 +7,7 @@
   "appSubtitle": "آپ کا ابتدائی طبی امداد کا معاون  (First Aid Assistant)",
   "welcomeHeading": "میں آپ کی کیا مدد کر سکتا ہوں؟",
   "welcomeDescription": "مجھ سے کسی بھی ابتدائی طبی امداد کی صورتحال کے بارے میں پوچھیں۔ میں 'دی سینٹ جان آف گاڈ فرسٹ ایڈ مینول' کی بنیاد پر قدم بہ قدم رہنمائی فراہم کروں گا۔",
-  "inputPlaceholder": "اپنی ابتدائی طبی امداد کی صورتحال کی وضاحت کریں...",
+  "inputPlaceholder": "ابتدائی طبی امداد کی صورتحال بیان کریں...",
   "disclaimer": "یہ پیشہ ورانہ طبی مشورے کا متبادل نہیں ہے۔ ہنگامی صورتحال میں ہمیشہ Triple Zero (000) پر کال کریں۔",
   "cpr": "سی پی آر (CPR)",
   "choking": "دم گھٹنا (حلق میں کچھ پھنسنا)",
@@ -112,7 +112,7 @@
   "myLearningLessonsCount": "{done} / {total} اسباق مکمل",
   "learnEmergencyCountry": "(آسٹریلیا)۔",
   "learnEmergencyPrefix": "ہنگامی صورتحال میں کال کریں: 000",
-  "helpNetworkHeading": "HELP نیٹ ورک",
+  "helpNetworkHeading": "Love Key HELP نیٹ ورک",
   "helpNetworkCrisisCompassDesc": "فعال بحرانوں کے لیے ہنگامی رہنمائی",
   "helpNetworkCrisisCompassStage": "جواب دیں",
   "helpNetworkAidAngelDesc": "آفت کے بعد بحالی میں معاونت",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel آپ کو ہنگامی حالات کے لیے قدم بہ قدم فرسٹ ایڈ کی رہنمائی فراہم کرتا ہے۔",
   "kbHandoffFirstAidAngelCta": "فرسٹ ایڈ کی مدد حاصل کریں",
   "kbHandoffLoveKeyHeading": "HELP نیٹ ورک کو دریافت کریں",
-  "kbHandoffLoveKeyBody": "مکمل Love Key HELP نیٹ ورک کے ساتھ جڑیں۔",
+  "kbHandoffLoveKeyBody": "Love Key HELP نیٹ ورک کے ساتھ جڑیں۔",
   "kbHandoffLoveKeyCta": "مزید جانیں",
   "mhfaHeadingWith": "ذہنی صحت بھی فرسٹ ایڈ کا حصہ ہے — {context} کے لیے",
   "navAngelActionPdfs": "Angel Action PDFs",
@@ -210,6 +210,6 @@
   "shopDialogOpenStore": "مکمل سٹور کھولیں",
   "shopDialogTitle": "First Aid Angel Shop",
   "shopDialogTagline": "قابلِ اعتماد ابتدائی طبی امداد کی کٹس اور ٹریننگ پیکس، آپ کے قریبی پتے پر ڈیلیور کیے جاتے ہیں۔",
-  "helpNetworkFirstAidAngelDesc": "فوری ابتدائی طبی امداد کی رہنمائی اور معاونت",
-  "helpNetworkFirstAidAngelStage": "تیاری"
+  "helpNetworkFirstAidAngelDesc": "ابتدائی طبی امداد کی فوری رہنمائی اور تعاون",
+  "helpNetworkFirstAidAngelStage": "PREPARE (تیاری)"
 }

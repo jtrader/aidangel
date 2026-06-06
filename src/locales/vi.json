@@ -7,7 +7,7 @@
   "appSubtitle": "Trợ lý Sơ cứu của bạn",
   "welcomeHeading": "Tôi có thể giúp gì cho bạn?",
   "welcomeDescription": "Hãy hỏi tôi về bất kỳ tình huống sơ cứu nào. Tôi sẽ hướng dẫn từng bước dựa trên Cẩm nang Sơ cứu St John of God.",
-  "inputPlaceholder": "Mô tả tình huống sơ cứu của bạn...",
+  "inputPlaceholder": "Mô tả một tình huống sơ cứu...",
   "disclaimer": "Không thay thế cho lời khuyên y tế chuyên môn. Luôn gọi 000 trong trường hợp khẩn cấp.",
   "cpr": "Hồi sức tim phổi (CPR)",
   "choking": "Hóc dị vật",
@@ -112,7 +112,7 @@
   "learnKnowCourse": "Bạn biết một khóa học tốt?",
   "learnHelpGrow": "Hãy giúp chúng tôi phát triển danh mục tại quốc gia và ngôn ngữ của bạn.",
   "learnSubmitCourse": "Gửi thông tin khóa học",
-  "helpNetworkHeading": "Mạng lưới HELP",
+  "helpNetworkHeading": "Mạng lưới HELP Love Key",
   "helpNetworkCrisisCompassDesc": "Hướng dẫn khẩn cấp cho các cuộc khủng hoảng đang diễn ra",
   "helpNetworkCrisisCompassStage": "Ứng phó",
   "helpNetworkAidAngelDesc": "Hỗ trợ phục hồi sau thiên tai",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel cung cấp cho bạn hướng dẫn sơ cứu từng bước cho các trường hợp khẩn cấp.",
   "kbHandoffFirstAidAngelCta": "Nhận trợ giúp sơ cứu",
   "kbHandoffLoveKeyHeading": "Khám phá Mạng lưới HELP",
-  "kbHandoffLoveKeyBody": "Kết nối với toàn bộ Mạng lưới Love Key HELP.",
+  "kbHandoffLoveKeyBody": "Kết nối với Mạng lưới HELP Love Key.",
   "kbHandoffLoveKeyCta": "Tìm hiểu thêm",
   "learnMenuShort": "Học tập",
   "learnMenuAriaLabel": "Học sơ cứu — {location}",
@@ -211,5 +211,5 @@
   "shopDialogBrowseKits": "Duyệt qua các bộ dụng cụ",
   "shopDialogTagline": "Bộ sơ cứu và gói đào tạo đáng tin cậy, được vận chuyển đến gần bạn.",
   "helpNetworkFirstAidAngelDesc": "Hướng dẫn và hỗ trợ sơ cứu nhanh chóng",
-  "helpNetworkFirstAidAngelStage": "CHUẨN BỊ"
+  "helpNetworkFirstAidAngelStage": "PREPARE"
 }

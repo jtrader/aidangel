@@ -5,7 +5,7 @@
   "appSubtitle": "Your First Aid Assistant",
   "welcomeHeading": "How can I help?",
   "welcomeDescription": "Ask me about any first aid situation. I'll provide step-by-step guidance based on The St John of God First Aid Manual.",
-  "inputPlaceholder": "Describe your first aid situation...",
+  "inputPlaceholder": "Describe a first aid situation...",
   "disclaimer": "Not a substitute for professional medical advice. Always call 000 in emergencies.",
   "cpr": "CPR",
   "choking": "Choking",

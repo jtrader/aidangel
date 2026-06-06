@@ -7,7 +7,7 @@
   "appSubtitle": "ਤੁਹਾਡਾ ਮੁਢਲੀ ਸਹਾਇਤਾ ਸਹਾਇਕ (First Aid Assistant)",
   "welcomeHeading": "ਮੈਂ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ?",
   "welcomeDescription": "ਮੈਨੂੰ ਕਿਸੇ ਵੀ ਫਸਟ ਏਡ ਸਥਿਤੀ ਬਾਰੇ ਪੁੱਛੋ। ਮੈਂ The St John of God First Aid Manual ਦੇ ਅਧਾਰ 'ਤੇ ਕਦਮ-ਦਰ-ਕਦਮ ਮਾਰਗਦਰਸ਼ਨ ਪ੍ਰਦਾਨ ਕਰਾਂਗਾ।",
-  "inputPlaceholder": "ਆਪਣੀ ਫਸਟ ਏਡ ਸਥਿਤੀ ਬਾਰੇ ਦੱਸੋ...",
+  "inputPlaceholder": "ਮੁੱਢਲੀ ਸਹਾਇਤਾ (first aid) ਵਾਲੀ ਸਥਿਤੀ ਦਾ ਵਰਣਨ ਕਰੋ...",
   "disclaimer": "ਪੇਸ਼ੇਵਰ ਡਾਕਟਰੀ ਸਲਾਹ ਦਾ ਬਦਲ ਨਹੀਂ ਹੈ। ਐਮਰਜੈਂਸੀ ਵਿੱਚ ਹਮੇਸ਼ਾ 000 'ਤੇ ਕਾਲ ਕਰੋ।",
   "cpr": "ਸੀਪੀਆਰ (CPR)",
   "choking": "ਦਮ ਘੁੱਟਣਾ (Choking)",
@@ -112,7 +112,7 @@
   "learnKnowCourse": "ਕਿਸੇ ਵਧੀਆ ਕੋਰਸ ਬਾਰੇ ਜਾਣਦੇ ਹੋ?",
   "learnHelpGrow": "ਆਪਣੇ ਦੇਸ਼ ਅਤੇ ਭਾਸ਼ਾ ਵਿੱਚ ਡਾਇਰੈਕਟਰੀ ਵਧਾਉਣ ਵਿੱਚ ਸਾਡੀ ਮਦਦ ਕਰੋ।",
   "learnSubmitCourse": "ਕੋਰਸ ਜਮ੍ਹਾਂ ਕਰੋ",
-  "helpNetworkHeading": "HELP ਨੈੱਟਵਰਕ",
+  "helpNetworkHeading": "Love Key HELP ਨੈੱਟਵਰਕ",
   "helpNetworkCrisisCompassDesc": "ਸਰਗਰਮ ਸੰਕਟਾਂ ਲਈ ਐਮਰਜੈਂਸੀ ਮਾਰਗਦਰਸ਼ਨ",
   "helpNetworkCrisisCompassStage": "ਜਵਾਬ",
   "helpNetworkAidAngelDesc": "ਆਫ਼ਤ ਤੋਂ ਬਾਅਦ ਰਿਕਵਰੀ ਸਹਾਇਤਾ",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel ਤੁਹਾਨੂੰ ਐਮਰਜੈਂਸੀ ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਮੁੱਢਲੀ ਸਹਾਇਤਾ ਮਾਰਗਦਰਸ਼ਨ ਦਿੰਦਾ ਹੈ।",
   "kbHandoffFirstAidAngelCta": "ਮੁੱਢਲੀ ਸਹਾਇਤਾ ਲਈ ਮਦਦ ਪ੍ਰਾਪਤ ਕਰੋ",
   "kbHandoffLoveKeyHeading": "HELP ਨੈੱਟਵਰਕ ਦੀ ਪੜਚੋਲ ਕਰੋ",
-  "kbHandoffLoveKeyBody": "ਪੂਰੇ Love Key HELP ਨੈੱਟਵਰਕ ਨਾਲ ਜੁੜੋ।",
+  "kbHandoffLoveKeyBody": "Love Key HELP ਨੈੱਟਵਰਕ ਨਾਲ ਜੁੜੋ।",
   "kbHandoffLoveKeyCta": "ਹੋਰ ਜਾਣੋ",
   "menuTitle": "ਮੀਨੂ (Menu)",
   "chatThinking": "ਸੋਚ ਰਿਹਾ ਹੈ…",
@@ -210,6 +210,6 @@
   "shopDialogOpenStore": "ਪੂਰਾ ਸਟੋਰ ਖੋਲ੍ਹੋ",
   "shopDialogTagline": "ਭਰੋਸੇਮੰਦ ਫਸਟ ਏਡ ਕਿੱਟਾਂ ਅਤੇ ਸਿਖਲਾਈ ਪੈਕ, ਤੁਹਾਡੇ ਨੇੜੇ ਭੇਜੇ ਗਏ।",
   "shopDialogTitle": "First Aid Angel Shop",
-  "helpNetworkFirstAidAngelDesc": "ਤੇਜ਼ੀ ਨਾਲ ਮੁੱਢਲੀ ਸਹਾਇਤਾ ਮਾਰਗਦਰਸ਼ਨ ਅਤੇ ਸਹਾਇਤਾ",
-  "helpNetworkFirstAidAngelStage": "ਤਿਆਰ"
+  "helpNetworkFirstAidAngelDesc": "ਮੁੱਢਲੀ ਸਹਾਇਤਾ ਲਈ ਤੁਰੰਤ ਮਾਰਗਦਰਸ਼ਨ ਅਤੇ ਸਹਾਇਤਾ",
+  "helpNetworkFirstAidAngelStage": "PREPARE (ਤਿਆਰੀ)"
 }

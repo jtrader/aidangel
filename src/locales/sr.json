@@ -112,7 +112,7 @@
   "quizPassedHeading": "Položeno — {score}%",
   "courseViewCert": "Vidi sertifikat",
   "coursesEmpty": "Kursevi će biti dostupni uskoro. Proverite ponovo kasnije.",
-  "helpNetworkHeading": "HELP mreža",
+  "helpNetworkHeading": "Love Key HELP mreža",
   "helpNetworkCrisisCompassDesc": "Hitna uputstva za aktivne krize",
   "helpNetworkCrisisCompassStage": "Odgovori",
   "helpNetworkAidAngelDesc": "Podrška za oporavak nakon katastrofe",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel vam pruža uputstva korak-po-korak za prvu pomoć u hitnim situacijama.",
   "kbHandoffFirstAidAngelCta": "Potraži prvu pomoć",
   "kbHandoffLoveKeyHeading": "Istražite HELP mrežu",
-  "kbHandoffLoveKeyBody": "Povežite se sa kompletnom Love Key HELP mrežom.",
+  "kbHandoffLoveKeyBody": "Povežite se sa Love Key HELP mrežom.",
   "kbHandoffLoveKeyCta": "Saznaj više drugde",
   "homePillSymptomFinderAria": "Pronađi prvu pomoć prema simptomu",
   "walkNext": "Dalje →",
@@ -210,6 +210,6 @@
   "shopDialogBrowseKits": "Pretražite komplete",
   "shopDialogClose": "Zatvori",
   "shopDialogTagline": "Poverljivi kompleti prve pomoći i setovi za obuku, isporučeni na vašu adresu.",
-  "helpNetworkFirstAidAngelDesc": "Brza prva pomoć i podrška",
-  "helpNetworkFirstAidAngelStage": "PRIPREMI SE"
+  "helpNetworkFirstAidAngelDesc": "Brza uputstva i podrška za prvu pomoć",
+  "helpNetworkFirstAidAngelStage": "PRIPREMA"
 }

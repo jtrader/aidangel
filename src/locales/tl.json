@@ -7,7 +7,7 @@
   "appSubtitle": "Ang Iyong Katulong sa First Aid",
   "welcomeHeading": "Paano ako makakatulong?",
   "welcomeDescription": "Itanong sa akin ang tungkol sa anumang sitwasyong pang-first aid. Magbibigay ako ng sunud-sunod na gabay base sa St John of God First Aid Manual.",
-  "inputPlaceholder": "Ilarawan ang iyong sitwasyong pang-first aid...",
+  "inputPlaceholder": "Ilarawan ang isang sitwasyong pang-first aid...",
   "disclaimer": "Hindi kapalit para sa propesyonal na payong medikal. Laging tumawag sa 000 sa mga emergency.",
   "cpr": "CPR",
   "choking": "Nabulunan",
@@ -112,7 +112,7 @@
   "myLearningBrowse": "Mag-browse ng mga kurso",
   "courseSignInToStart": "Mag-sign in para magsimula",
   "coursesCertOnComplete": "Sertipiko pagkatapos makumpleto",
-  "helpNetworkHeading": "HELP Network",
+  "helpNetworkHeading": "Love Key HELP Network",
   "helpNetworkCrisisCompassDesc": "Patnubay sa emerhensiya para sa mga aktibong krisis",
   "helpNetworkCrisisCompassStage": "Tumugon",
   "helpNetworkAidAngelDesc": "Suporta sa pagbangon pagkatapos ng sakuna",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "Ang First Aid Angel ay nagbibigay sa iyo ng sunud-sunod na gabay sa first aid para sa mga emerhensiya.",
   "kbHandoffFirstAidAngelCta": "Kumuha ng tulong sa first aid",
   "kbHandoffLoveKeyHeading": "I-explore ang HELP Network",
-  "kbHandoffLoveKeyBody": "Kumonekta sa buong Love Key HELP Network.",
+  "kbHandoffLoveKeyBody": "Kumonekta sa Love Key HELP Network.",
   "kbHandoffLoveKeyCta": "Alamin ang higit pa",
   "walkNext": "Susunod →",
   "walkStepOf": "Hakbang {n} ng {total}",
@@ -210,6 +210,6 @@
   "shopDialogClose": "Isara",
   "shopDialogBrowseKits": "Mag-browse ng mga kit",
   "shopDialogOpenStore": "Buksan ang buong store",
-  "helpNetworkFirstAidAngelDesc": "Mabilis na patnubay at suporta sa first aid",
-  "helpNetworkFirstAidAngelStage": "MAGHANDA"
+  "helpNetworkFirstAidAngelDesc": "Mabilis na gabay at suporta sa first aid",
+  "helpNetworkFirstAidAngelStage": "PAGHAHANDA (PREPARE)"
 }

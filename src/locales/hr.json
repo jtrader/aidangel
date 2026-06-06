@@ -112,7 +112,7 @@
   "quizGotXofY": "Točno ste odgovorili na {correct} od {total} pitanja. Vaš certifikat je spreman.",
   "quizGetCertificate": "Preuzmi certifikat",
   "courseLessonsLabel": "lekcije",
-  "helpNetworkHeading": "HELP Network",
+  "helpNetworkHeading": "Love Key HELP mreža",
   "helpNetworkCrisisCompassDesc": "Hitne smjernice za aktivne krize",
   "helpNetworkCrisisCompassStage": "Odgovorite",
   "helpNetworkAidAngelDesc": "Podrška za oporavak nakon katastrofe",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel pruža vam korak-po-korak upute prve pomoći u hitnim slučajevima.",
   "kbHandoffFirstAidAngelCta": "Dobijte pomoć prve pomoći",
   "kbHandoffLoveKeyHeading": "Istražite HELP Network",
-  "kbHandoffLoveKeyBody": "Povežite se s cijelom Love Key HELP mrežom.",
+  "kbHandoffLoveKeyBody": "Povežite se s Love Key HELP mrežom.",
   "kbHandoffLoveKeyCta": "Saznajte više",
   "homePillAedFinderAria": "Pronađite najbliži AED",
   "navWorkplaceFirstAid": "Prva pomoć na radnom mjestu",
@@ -210,6 +210,6 @@
   "shopDialogClose": "Zatvori",
   "shopDialogTagline": "Pouzdani kompleti prve pomoći i paketi za obuku, isporučeni u vašu blizinu.",
   "shopDialogTitle": "First Aid Angel trgovina",
-  "helpNetworkFirstAidAngelDesc": "Brze smjernice i podrška za prvu pomoć",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelDesc": "Brze upute i podrška za prvu pomoć",
+  "helpNetworkFirstAidAngelStage": "PRIPREMA"
 }

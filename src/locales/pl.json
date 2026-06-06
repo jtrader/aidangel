@@ -7,7 +7,7 @@
   "appSubtitle": "Twój asystent pierwszej pomocy",
   "welcomeHeading": "Jak mogę pomóc?",
   "welcomeDescription": "Zapytaj mnie o dowolną sytuację wymagającą pierwszej pomocy. Przedstawię instrukcje krok po kroku na podstawie podręcznika St John of God First Aid Manual.",
-  "inputPlaceholder": "Opisz sytuację pierwszej pomocy...",
+  "inputPlaceholder": "Opisz sytuację wymagającą pierwszej pomocy...",
   "disclaimer": "To nie zastępuje profesjonalnej porady medycznej. W nagłych wypadkach zawsze dzwoń pod numer 000.",
   "cpr": "RKO (Resuscytacja)",
   "choking": "Zadławienie",
@@ -112,7 +112,7 @@
   "myLearningLessonsCount": "Lekcje: {done} / {total}",
   "myLearningBrowse": "Przeglądaj kursy",
   "courseProgressLabel": "Twój postęp",
-  "helpNetworkHeading": "Sieć HELP (HELP Network)",
+  "helpNetworkHeading": "Sieć Love Key HELP Network",
   "helpNetworkCrisisCompassDesc": "Wskazówki awaryjne dotyczące aktywnych kryzysów",
   "helpNetworkCrisisCompassStage": "Reaguj",
   "helpNetworkAidAngelDesc": "Wsparcie w zakresie odbudowy po katastrofie",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel zapewnia instrukcje pierwszej pomocy krok po kroku w nagłych wypadkach.",
   "kbHandoffFirstAidAngelCta": "Uzyskaj pomoc przedmedyczną",
   "kbHandoffLoveKeyHeading": "Poznaj sieć HELP Network",
-  "kbHandoffLoveKeyBody": "Połącz się z pełną siecią Love Key HELP Network.",
+  "kbHandoffLoveKeyBody": "Połącz się z siecią Love Key HELP Network.",
   "kbHandoffLoveKeyCta": "Dowiedz się więcej",
   "walkStop": "Stop",
   "learnMenuFull": "Naucz się pierwszej pomocy",
@@ -210,6 +210,6 @@
   "shopDialogTitle": "Sklep First Aid Angel",
   "shopDialogBrowseKits": "Przeglądaj zestawy",
   "shopDialogOpenStore": "Otwórz pełny sklep",
-  "helpNetworkFirstAidAngelDesc": "Szybka pomoc i wsparcie w zakresie pierwszej pomocy",
-  "helpNetworkFirstAidAngelStage": "PRZYGOTUJ"
+  "helpNetworkFirstAidAngelDesc": "Szybkie wytyczne i wsparcie w zakresie pierwszej pomocy",
+  "helpNetworkFirstAidAngelStage": "PREPARE"
 }

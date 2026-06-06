@@ -7,7 +7,7 @@
   "appSubtitle": "Din första hjälpen-assistent",
   "welcomeHeading": "Hur kan jag hjälpa till?",
   "welcomeDescription": "Fråga mig om valfri första hjälpen-situation. Jag ger steg-för-steg-vägledning baserad på The St John of God First Aid Manual.",
-  "inputPlaceholder": "Beskriv din första hjälpen-situation...",
+  "inputPlaceholder": "Beskriv en första hjälpen-situation...",
   "disclaimer": "Inte en ersättning för professionell medicinsk rådgivning. Ring alltid 000 vid nödsituationer.",
   "cpr": "HLR",
   "choking": "Sättning i halsen",
@@ -112,7 +112,7 @@
   "learnFindBySymptom": "sök efter symtom",
   "coursesEmpty": "Kurser kommer snart. Kontrollera igen inom kort.",
   "courseAllCourses": "Alla ämnen",
-  "helpNetworkHeading": "HELP Network",
+  "helpNetworkHeading": "Love Key HELP Network",
   "helpNetworkCrisisCompassDesc": "Nödfallsvägledning för aktiva kriser",
   "helpNetworkCrisisCompassStage": "Reagera",
   "helpNetworkAidAngelDesc": "Återhämtningsstöd efter katastrof",
@@ -134,7 +134,7 @@
   "kbHandoffFirstAidAngelBody": "First Aid Angel ger dig steg-för-steg-vägledning i första hjälpen för nödsituationer.",
   "kbHandoffFirstAidAngelCta": "Få hjälp med första hjälpen",
   "kbHandoffLoveKeyHeading": "Utforska HELP Network",
-  "kbHandoffLoveKeyBody": "Anslut till hela Love Key HELP Network.",
+  "kbHandoffLoveKeyBody": "Anslut till Love Key HELP Network.",
   "kbHandoffLoveKeyCta": "Läs mer",
   "navSymptomFinder": "Symtomväljare",
   "homePillAedFinder": "Hitta hjärtstartare (AED)",
@@ -210,6 +210,6 @@
   "shopDialogBrowseKits": "Bläddra bland kit",
   "shopDialogOpenStore": "Öppna hela butiken",
   "shopDialogClose": "Stäng",
-  "helpNetworkFirstAidAngelDesc": "Snabb vägledning och stöd för första hjälpen",
-  "helpNetworkFirstAidAngelStage": "FÖRBEREDA"
+  "helpNetworkFirstAidAngelDesc": "Snabb första hjälpen-vägledning och stöd",
+  "helpNetworkFirstAidAngelStage": "FÖRBERED"
 }
