@@ -30,7 +30,7 @@ verify_jwt = true
 verify_jwt = true
 
 [functions.first-aid-chat]
-verify_jwt = true
+verify_jwt = false
 
 # Admin / internal functions (JWT required)
 [functions.admin-credits]
