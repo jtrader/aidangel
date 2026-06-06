@@ -135,9 +135,9 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
             <button
               type="button"
               aria-label={t("shopDialogClose")}
-              className="absolute top-3 right-3 inline-flex items-center justify-center w-11 h-11 rounded-full text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              className="absolute top-3 right-3 inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
             >
-              <X className="h-5 w-5" aria-hidden="true" />
+              <X className="h-7 w-7" aria-hidden="true" />
             </button>
           </DrawerClose>
         </DrawerContent>
@@ -170,9 +170,9 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
           <button
             type="button"
             aria-label={t("shopDialogClose")}
-            className="absolute top-3 right-3 inline-flex items-center justify-center w-11 h-11 rounded-full text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="absolute top-3 right-3 inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
-            <X className="h-5 w-5" aria-hidden="true" />
+            <X className="h-7 w-7" aria-hidden="true" />
           </button>
         </DialogClose>
       </DialogContent>
