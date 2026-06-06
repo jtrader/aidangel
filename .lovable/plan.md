@@ -1,82 +1,75 @@
 ## Goal
-Turn the 34 St-John rows in `stjohn-prices.csv` + the 28 images in `product-images.zip` into a tracked, country-aware affiliate kit catalogue on firstaidangel.org.
 
-## 1. Data model — reuse `route_catalogue`
-The existing `route_catalogue` table already has every column we need (`country`, `image_url`, `destination_url`, `vendor`, `referral_code`, `utm_*`). No new table needed.
+Make LMS content (topic titles/summaries/descriptions, lesson bodies, quiz questions/choices/explanations) display in the user's selected language, with English as the fallback. UI chrome is already localized — this plan covers the **content** stored in `courses`, `lessons`, and `quiz_questions`.
 
-One row per CSV entry, keyed by `id` from the CSV:
-- `route_slug` = `kits/stjohn/{id}`
-- `vendor = "St John Ambulance"`, `route_type = "kit"`, `partner_entity = "stjohn"`
-- `title` = `resolved_product`, `destination_url` = `resolved_url`
-- `country` = CSV country
-- `utm_campaign = "faa-kits"`, `utm_content = {id}`
-- Price/currency stored in two new columns added by migration: `price numeric`, `currency text` (kept on this table so we don't need a second store).
+## Current state
 
-## 2. Images → Shopify product backing
-Per the user's note ("using shopify as a backend"), each unique `resolved_product` becomes (or matches) one Shopify product so images live in Shopify CDN and we get one canonical price source.
+- 28 published topics, ~all lessons and quiz questions are English-only.
+- `course_translations`, `lesson_translations`, `quiz_question_translations` tables exist with correct shape and RLS (public-read for published courses, admin-write) — all currently empty.
+- No reader code uses the `*_translations` tables yet.
+- `.translation-manifest/db.json` doesn't exist — first run will be a full bootstrap.
 
-Approach:
-- Group CSV rows by `resolved_product` (≈14 unique kits).
-- For each group, find or create a Shopify product (vendor `St John Ambulance`, tag `faa:affiliate-kit`, status `draft` so it doesn't appear in our own checkout).
-- Upload the matching image from `product-images.zip` to that product (pick the highest-quality file per group; for groups with only AU images use the AU image, etc.).
-- Store the Shopify CDN `image_url` on every `route_catalogue` row in the group.
-- Shopify variant `price` stays at the GBP/AUD source value; the route_catalogue row also stores price+currency for direct rendering without an extra Shopify call per card.
+## Scope
 
-## 3. Zones (4) — `src/lib/kitZones.ts`
-```
-AU         → AU
-UK_IE      → GB, IE
-NORTH_AM   → US, CA
-EU_MENA    → DE, FR, NL, SE, BE, AE
-```
-Visitor's country (from existing `useCountry`) maps to a zone; cards shown = all CSV rows whose country is in that zone, deduped by `resolved_product` (prefer exact country match, fall back to first row).
+**42 target languages** (skip 5 indigenous: arrernte, kriol, pitjantjatjara, tsi, yolngu — English fallback only, per project policy):
+`ar bg bn cs da de el es et fi fr he hr hu id is it ja ko lt lv ms ne nl no pa pl pt ro si sk sl sr sv th tl tr uk ur vi yue zh`
 
-## 4. Affiliate redirect — `/go/stjohn/:id`
-New React route `src/pages/GoRedirect.tsx`:
-1. Look up `route_catalogue` by `route_slug = kits/stjohn/{id}`.
-2. Fire `insert into route_clicks` via existing edge function pattern (re-use `give_clicks` style; new edge function `log-route-click` so RLS `no_client` stays intact).
-3. Build outbound URL: `destination_url` + `?utm_source=firstaidangel&utm_medium=affiliate&utm_campaign=faa-kits&utm_content={id}&country={visitorCountry}`.
-4. `window.location.replace(outbound)` after click logged (fire-and-forget; 300 ms max wait).
+**Fields translated:**
+- courses: `title`, `summary`, `description`
+- lessons: `title`, `body` (markdown preserved)
+- quiz_questions: `question`, `choices` (JSON array), `explanation`
 
-Sitemap excluded; `robots.txt` already disallows `/go/`.
+## Steps
 
-## 5. Pricing display
-- Card shows the source currency as it will be charged at checkout (e.g. "£10.50", "A$54.95"). No FX conversion in v1 — avoids stale rates and matches what the partner actually charges.
-- Small "ships from UK · GBP" / "ships from AU · AUD" subtext per card so EU/MENA visitors aren't surprised.
+### 1. Backfill translations (one-off bootstrap)
 
-## 6. UI surfaces
-- **`/shop`** — new "Recommended first aid kits in {country}" section above existing partner cards; up to 6 cards from the visitor's zone.
-- **`/shop/kits`** — new page, full grid of all zone kits with country dropdown to switch zones; SEO `title`/`description` per zone.
-- **KB embed** — new `<KbKitRecommendation theme="…" />` shown after the "Prevention" section of matching KB articles. Mapping (theme → kit-name keyword):
-  - `burns` → "Burn"
-  - `workplace-first-aid` → "Workplace"
-  - `bleeding` / `cpr` / `drsabcd` / `choking` / `anaphylaxis` → zone's "Universal" or "Home" kit
-  - `remote-first-aid` → "Field Hip Pouch" (AU) / "Universal Plus" (others)
-  - default: hide
+Use the bundled `update-translations` skill:
+- Run `scripts/update_db.py` against the live DB. It exports rows via `psql`, diffs against `.translation-manifest/db.json` (missing → treat all as changed), batches each language to Lovable AI Gateway (`google/gemini-3-flash-preview`) with the medical-safety system prompt (preserves `000`, drug names, dosages, markdown, placeholders), and emits one idempotent UPSERT SQL file per language in `/tmp/sql-update/`.
+- Apply each `/tmp/sql-update/{lang}.sql` via `supabase--insert` (42 tool calls, one per language). Each row is `INSERT … ON CONFLICT (id, lang) DO UPDATE`.
+- Commit the new `.translation-manifest/db.json` so future content edits only re-translate the diff.
 
-All three use one shared `<KitCard>` component (`src/components/kits/KitCard.tsx`).
+### 2. Wire the reader pages
 
-## 7. Files to add / change
-**New**
-- `supabase/migrations/<ts>_route_catalogue_kits.sql` — add `price numeric`, `currency text`; seed 34 rows.
-- `supabase/functions/log-route-click/index.ts` — server-side insert into `route_clicks`.
-- `scripts/upload-kit-images-to-shopify.ts` — one-off; groups CSV, creates/updates Shopify draft products, writes the resolved CDN URL back into a generated `src/data/kitImageMap.json`.
-- `src/lib/kitZones.ts`, `src/data/kits.ts` (loads route_catalogue rows), `src/components/kits/KitCard.tsx`, `src/components/kits/KitGrid.tsx`, `src/components/kits/KbKitRecommendation.tsx`, `src/pages/GoRedirect.tsx`, `src/pages/ShopKits.tsx`.
+Add a tiny helper `src/lib/lmsI18n.ts` exporting `pickTranslated<T>(row, translations, fields)` that returns the row with `fields` overwritten from the matching `lang` row when present, falling back to English.
 
-**Edited**
-- `src/App.tsx` — register `/go/stjohn/:id` and `/shop/kits`.
-- `src/pages/ShopPartners.tsx` — inject `<KitGrid zone={…} limit={6} />`.
-- `src/components/kb/KbArticle.tsx` (or equivalent renderer) — render `<KbKitRecommendation />` for mapped themes.
-- `scripts/generate-sitemap.ts` — add `/shop/kits`.
+Update each reader to fetch the active language's translation row in parallel with the base row and merge:
 
-## 8. Out of scope (v1)
-- Live FX conversion / currency switching.
-- Shipping-cost estimates.
-- Red Cross / Amazon catalogue rows (separate CSVs).
-- Rotating affiliate IDs per partner — `utm_content={id}` is the only tracker until SJA gives us a real affiliate ID.
+- **`src/pages/Courses.tsx`** — topic catalog grid (title + summary). Join with `course_translations` filtered by `lang = currentLang`.
+- **`src/pages/CourseDetail.tsx`** — topic page (title, summary, description). Same join.
+- **`src/pages/CourseLesson.tsx`** — lesson page (title, body markdown). Join with `lesson_translations`.
+- **`src/pages/CourseQuiz.tsx`** — quiz (question, choices, explanation). Join with `quiz_question_translations`.
+- **`src/components/TopicsSidebar.tsx`** and **`src/components/TopicCover.tsx`** — display titles. Same pattern.
+- **`src/components/kb/KbCourseHandoff.tsx`** — topic title preview. Same pattern.
+- **`src/pages/MyLearning.tsx`** — enrolled-topic cards. Same pattern.
+
+Reader queries stay scoped to `lang = currentLang` (single round-trip per page); when the translation row is missing the English base row is shown as-is.
+
+**Out of scope for the reader pass:**
+- Admin LMS pages (`AdminCourses`, `AdminLearners`, `AdminGraduates`, `AdminVideos`, `AdminPrograms`) — admins edit the English source, so they keep showing English.
+- Employer reporting pages — internal English-only by design.
+
+### 3. Keep translations fresh
+
+Document the workflow in `README.md`: whenever a course/lesson/quiz row is edited in admin, re-run `scripts/update_db.py`; only changed fields are re-translated and pushed via `supabase--insert`. No webhook automation in v1.
+
+### 4. QA
+
+- Switch language to `de`, `ja`, `ar` on `/topics`, open one topic, one lesson, and one quiz — confirm content is translated, falls back gracefully if a row is missing, and markdown/placeholders render correctly.
+- Confirm `ar` lays out RTL on lesson body.
+- Re-run `bun run build` and `tsc --noEmit` — must stay clean.
 
 ## Technical notes
-- Shopify products created as `status: draft` + tag `faa:affiliate-kit` so they don't appear in `fetchProducts()` storefront calls (filter by `-tag:faa:affiliate-kit` in the existing query).
-- Click logging uses an edge function (not direct insert) because `route_clicks` has `no_client` RLS.
-- Image upload via `shopify--update_product`'s `images[]` field (file_path = local path after unzip to `/tmp/`).
-- Visitor country comes from existing `useCountry()` hook — no new geo logic.
+
+- **Active language source**: `useLanguage()` from `src/contexts/LanguageContext.tsx` (already used across reader pages).
+- **Locale code mapping**: project uses BCP-47-ish codes that match the translation table `lang` column (e.g. `de`, `zh`, `yue`, `pt-BR` if present). Verify before run; add a small alias map only if mismatched codes surface.
+- **Cost guard**: bootstrap is ~28 topics × 3 fields + lessons + quiz, × 42 langs. Run with the script's built-in batching/parallelism, no extra loops needed.
+- **No schema changes** — tables, indexes, grants, and RLS are all already in place.
+- **No edge function** required for v1; translation runs are operator-initiated.
+
+## Deliverables
+
+- Populated `course_translations`, `lesson_translations`, `quiz_question_translations` for 42 languages.
+- New `src/lib/lmsI18n.ts` helper.
+- Updated reader pages/components listed above.
+- New `.translation-manifest/db.json` checked in.
+- README note describing the re-run workflow after content edits.
