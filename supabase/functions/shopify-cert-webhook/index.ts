@@ -34,6 +34,65 @@ function genCertId(): string {
   return `FAA-${hex.slice(0, 4)}-${hex.slice(4, 8)}-${hex.slice(8, 12)}`;
 }
 
+async function handleCreditPackOrder(
+  payload: any,
+  attrs: Record<string, string>,
+  supabase: ReturnType<typeof createClient>,
+): Promise<string | null> {
+  const userId = attrs["_user_id"];
+  const priceId = attrs["_price_id"];
+  const credits = parseInt(attrs["_credits"] ?? "0", 10);
+  const unlimited = attrs["_unlimited"] === "true";
+  const orderId = String(payload?.id ?? "");
+
+  if (!userId || !priceId) return "Missing credit pack attributes";
+
+  // Idempotency — has this order already been processed?
+  const { data: existing } = await supabase
+    .from("shopify_credit_orders")
+    .select("id")
+    .eq("shopify_order_id", orderId)
+    .maybeSingle();
+  if (existing) return null; // already processed
+
+  // Read current credits
+  const { data: current } = await supabase
+    .from("certificate_credits")
+    .select("balance, unlimited")
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  const nextBalance = unlimited
+    ? (current?.balance ?? 0)
+    : (current?.balance ?? 0) + credits;
+  const nextUnlimited = (current?.unlimited ?? false) || unlimited;
+
+  // Upsert credits — certificate_credits PK is user_id
+  await supabase.from("certificate_credits").upsert(
+    {
+      user_id: userId,
+      balance: nextBalance,
+      unlimited: nextUnlimited,
+      environment: "live",
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: "user_id" },
+  );
+
+  // Record the order for idempotency
+  await supabase.from("shopify_credit_orders").insert({
+    shopify_order_id: orderId,
+    user_id: userId,
+    price_id: priceId,
+    credits_granted: credits,
+    unlimited,
+    created_at: new Date().toISOString(),
+  });
+
+  console.log("Granted credits", { userId, priceId, credits, unlimited, orderId });
+  return null;
+}
+
 Deno.serve(async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
 
@@ -80,12 +139,27 @@ Deno.serve(async (req) => {
     return new Response("Ignored topic", { status: 200 });
   }
 
-  // Extract cart attributes (Shopify maps them into note_attributes on the order)
+  // Extract note_attributes into a flat map
   const attrs: Record<string, string> = {};
   for (const a of (payload?.note_attributes ?? [])) {
     if (a?.name) attrs[a.name] = String(a.value ?? "");
   }
 
+  const isCreditPack = !!attrs["_price_id"];
+  const isCertPurchase = !!attrs["_eligibility_token"];
+
+  if (isCreditPack) {
+    const err = await handleCreditPackOrder(payload, attrs, supabase);
+    await finish(err ?? undefined);
+    return new Response("ok", { status: 200 });
+  }
+
+  if (!isCertPurchase) {
+    await finish("No recognised attributes");
+    return new Response("ok", { status: 200 });
+  }
+
+  // ── Existing certificate issuance logic continues below, unchanged ──
   const token = attrs["_eligibility_token"];
   const userId = attrs["_user_id"];
   const programSlug = attrs["_program_slug"];

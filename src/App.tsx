@@ -101,7 +101,6 @@ import BlogPostPage from "./pages/BlogPost";
 import AdminBlog from "./pages/AdminBlog";
 import AdminBlogEditor from "./pages/AdminBlogEditor";
 import LessonRenderer from "./components/lesson/LessonRenderer";
-import { PaymentTestModeBanner } from "./components/PaymentTestModeBanner";
 import RequireProgramAccess from "./components/RequireProgramAccess";
 import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
@@ -140,7 +139,6 @@ const App = forwardRef(function App(_props, _ref) {
             <Toaster />
             <Sonner />
             <OfflineBanner />
-            <PaymentTestModeBanner />
             <InstallPrompt />
             <BrowserRouter>
               <CartSyncMount />

@@ -20,7 +20,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
-import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
+import { useShopifyCheckout } from "@/hooks/useShopifyCheckout";
 import { useNavigate } from "react-router-dom";
 import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
@@ -110,7 +110,7 @@ export default function PersonalMarketing() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const startHref = user ? "/programs" : "/auth?redirect=/programs";
-  const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
+  const { openCheckout, loading: checkoutLoading } = useShopifyCheckout();
   const [topics, setTopics] = useState<TopicCard[]>([]);
   const [courses, setCourses] = useState<CourseCard[]>([]);
 

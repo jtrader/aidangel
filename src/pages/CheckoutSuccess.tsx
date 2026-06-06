@@ -11,7 +11,7 @@ export default function CheckoutSuccess() {
   const tr = useUiStrings({
     heading: "You're all set!",
     blurb:
-      "Thanks for subscribing to First Aid Angel. Your access is being activated — a confirmation email is on its way.",
+      "Your purchase is confirmed. Certificate credits will appear in your account within a few minutes — refresh My Learning if they don't show up straight away.",
     goToLearning: "Go to my learning",
     browseTopics: "Browse topics",
   });
@@ -20,7 +20,7 @@ export default function CheckoutSuccess() {
       <SeoHead
         lang="en"
         basePath="/checkout/success"
-        title="Payment successful | First Aid Angel"
+        title="Purchase confirmed | First Aid Angel"
         description="Your First Aid Angel subscription is active."
       />
       <CoursesHeader />

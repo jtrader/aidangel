@@ -10,7 +10,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { optimizeSupabaseImage } from "@/lib/imageOptimization";
-import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
+import { useShopifyCheckout } from "@/hooks/useShopifyCheckout";
 import { useNavigate } from "react-router-dom";
 import { CmsPageRenderer } from "@/components/CmsPageRenderer";
 
@@ -23,13 +23,13 @@ type CourseCard = {
 };
 
 const TIERS = [
-  { name: "Starter Pack", priceId: "employer_starter_seat_annual", perSeat: true, price: "AU$29", unit: "/ credit", seats: "Per-credit pricing (1–10)", popular: false,
+  { name: "Starter Pack", priceId: "employer_starter_seat_annual", price: "AU$29", unit: "/ credit", seats: "Per-credit pricing (1–10)", popular: false,
     features: ["Bulk CSV import of your team", "Assign courses to anyone", "Compliance dashboard", "CPD-certified certificate per credit"] },
-  { name: "Team 25", priceId: "employer_team_25_annual", perSeat: false, price: "AU$625", unit: "flat / year", seats: "25 certificate credits ($25 ea)", popular: true,
+  { name: "Team 25", priceId: "employer_team_25_annual", price: "AU$625", unit: "flat / year", seats: "25 certificate credits ($25 ea)", popular: true,
     features: ["Everything in Starter", "25 CPD-certified branded certificates", "Manager roles", "CSV / PDF reports"] },
-  { name: "Team 50", priceId: "employer_team_50_annual", perSeat: false, price: "AU$1,250", unit: "flat / year", seats: "50 certificate credits ($25 ea)", popular: false,
+  { name: "Team 50", priceId: "employer_team_50_annual", price: "AU$1,250", unit: "flat / year", seats: "50 certificate credits ($25 ea)", popular: false,
     features: ["Everything in Team 25", "Priority support", "Audit log access"] },
-  { name: "Workplace Unlimited", priceId: "employer_workplace_annual", perSeat: false, price: "AU$1,500", unit: "/ year", seats: "Unlimited certificate credits", popular: false,
+  { name: "Workplace Unlimited", priceId: "employer_workplace_annual", price: "AU$1,500", unit: "/ year", seats: "Unlimited certificate credits", popular: false,
     features: ["Everything in Team 50", "Unlimited CPD certificates for your team", "SAML SSO (Okta, Azure AD)", "Custom join code"] },
 ];
 
@@ -43,29 +43,16 @@ const FEATURES = [
 export default function EmployerMarketing() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { openCheckout, loading: checkoutLoading } = usePaddleCheckout();
+  const { openCheckout, loading: checkoutLoading } = useShopifyCheckout();
   const [courses, setCourses] = useState<CourseCard[]>([]);
+  const [starterQty, setStarterQty] = useState<1 | 2 | 3 | 5 | 10>(5);
 
-  const handleBuy = (tier: (typeof TIERS)[number]) => {
+  const handleBuy = (priceId: string) => {
     if (!user) {
       navigate(`/auth?redirect=/employer`);
       return;
     }
-    let quantity = 1;
-    if (tier.perSeat) {
-      const input = window.prompt("How many certificate credits? (1–10)", "5");
-      if (!input) return;
-      const n = Math.max(1, Math.min(10, parseInt(input, 10) || 0));
-      if (!n) return;
-      quantity = n;
-    }
-    openCheckout({
-      priceId: tier.priceId,
-      quantity,
-      customerEmail: user.email ?? undefined,
-      customData: { userId: user.id },
-      successUrl: `${window.location.origin}/checkout/success`,
-    });
+    openCheckout({ priceId });
   };
 
 
@@ -261,17 +248,49 @@ export default function EmployerMarketing() {
                     </li>
                   ))}
                 </ul>
-                <Button
-                  className="w-full"
-                  variant={t.popular ? "default" : "outline"}
-                  disabled={checkoutLoading}
-                  onClick={() => handleBuy(t)}
-                >
-                  {checkoutLoading ? "Loading…" : t.perSeat ? "Buy credits" : "Get pack"}
-                </Button>
-              </Card>
-            ))}
-          </div>
+                {t.priceId === "employer_starter_seat_annual" ? (
+                  <div className="space-y-3">
+                    {/* Fixed-option credit selector */}
+                    <div className="flex gap-1.5 flex-wrap">
+                      {([1, 2, 3, 5, 10] as const).map((n) => (
+                        <button
+                          key={n}
+                          type="button"
+                          onClick={() => setStarterQty(n)}
+                          className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                            starterQty === n
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-background text-foreground border-border hover:border-primary"
+                          }`}
+                        >
+                          {n} {n === 1 ? "credit" : "credits"}
+                        </button>
+                      ))}
+                    </div>
+                    <Button
+                      className="w-full"
+                      variant="outline"
+                      disabled={checkoutLoading}
+                      onClick={() => handleBuy(`employer_starter_${starterQty}`)}
+                    >
+                      {checkoutLoading
+                        ? "Loading…"
+                        : `Buy ${starterQty} credit${starterQty === 1 ? "" : "s"}`}
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    className="w-full"
+                    variant={t.popular ? "default" : "outline"}
+                    disabled={checkoutLoading}
+                    onClick={() => handleBuy(t.priceId)}
+                  >
+                    {checkoutLoading ? "Loading…" : "Get pack"}
+                  </Button>
+                )}
+               </Card>
+             ))}
+           </div>
           <p className="text-center text-xs text-muted-foreground mt-6">
             Need unlimited certificates or enterprise SSO? <a href="mailto:hello@firstaidangel.org" className="underline text-primary">Get in touch</a>.
           </p>
