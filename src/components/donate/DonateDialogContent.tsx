@@ -1,18 +1,52 @@
 // Donate dialogue body: amount presets + custom, frequency toggle.
-// Hardcoded to St John Ambulance (appeal.stjohnvic.com.au).
-// Country switcher remains to localize currency presets.
+// Destination is the nearest St John Ambulance donation site based on
+// the site-wide country selector. Falls back to the international
+// (UK) St John site for countries without a national St John presence.
 
 import { useEffect, useState } from "react";
-import { Check, Globe, HandHeart, ExternalLink } from "lucide-react";
+import { HandHeart, ExternalLink } from "lucide-react";
 import stJohnIcon from "@/assets/stjohn-icon.png";
-import { COUNTRIES, CountryCode, type Country } from "@/lib/donations";
+import { CountryCode, type Country } from "@/lib/donations";
 import { currencyFor, type Frequency } from "@/lib/donationAmount";
 import { trackGiveClick } from "@/lib/giveAnalytics";
 import { cn } from "@/lib/utils";
 
-const ST_JOHN_BASE = "https://appeal.stjohnvic.com.au";
-const ST_JOHN_DONATE_URL = `${ST_JOHN_BASE}/donate`;
 const ST_JOHN_NAME = "St John Ambulance";
+
+interface StJohnSite {
+  /** Country code(s) this site serves as the national site. */
+  base: string;
+  donatePath: string;
+  /** Display host. */
+  host: string;
+  /** Region label shown under the name. */
+  region: string;
+  /** True if the site uses Raisely params (amount, frequency=MONTHLY|ONE_OFF). */
+  raisely: boolean;
+}
+
+// Map ISO country codes to the nearest applicable St John Ambulance site.
+// Australia → Victoria appeal (Raisely); UK/Ireland/Commonwealth → sja.org.uk;
+// NZ → stjohn.org.nz; Canada → sja.ca; others → UK as international hub.
+const ST_JOHN_BY_COUNTRY: Record<string, StJohnSite> = {
+  AU: { base: "https://appeal.stjohnvic.com.au", donatePath: "/donate", host: "appeal.stjohnvic.com.au", region: "Australia", raisely: true },
+  NZ: { base: "https://www.stjohn.org.nz", donatePath: "/donate", host: "stjohn.org.nz", region: "New Zealand", raisely: false },
+  CA: { base: "https://www.sja.ca", donatePath: "/en-ca/about-us/donate", host: "sja.ca", region: "Canada", raisely: false },
+  IE: { base: "https://www.stjohn.ie", donatePath: "/donate", host: "stjohn.ie", region: "Ireland", raisely: false },
+  GB: { base: "https://www.sja.org.uk", donatePath: "/donate", host: "sja.org.uk", region: "United Kingdom", raisely: false },
+};
+
+const ST_JOHN_INTERNATIONAL: StJohnSite = {
+  base: "https://www.sja.org.uk",
+  donatePath: "/donate",
+  host: "sja.org.uk",
+  region: "International",
+  raisely: false,
+};
+
+function siteForCountry(code: string): StJohnSite {
+  return ST_JOHN_BY_COUNTRY[code] ?? ST_JOHN_INTERNATIONAL;
+}
 
 interface DonateDialogContentProps {
   country: Country;
@@ -27,16 +61,19 @@ interface DonateDialogContentProps {
     once: string;
     monthly: string;
     donateCta: string;
-    changeCountry: string;
-    showing: string;
   };
 }
 
-function buildStJohnUrl(amount: number, frequency: Frequency) {
-  // Raisely-powered campaign: /donate accepts ?amount=<dollars>&frequency=MONTHLY|ONE_OFF
-  const url = new URL(ST_JOHN_DONATE_URL);
+function buildDonateUrl(site: StJohnSite, amount: number, frequency: Frequency) {
+  const url = new URL(site.base + site.donatePath);
   if (amount > 0) url.searchParams.set("amount", String(amount));
-  url.searchParams.set("frequency", frequency === "monthly" ? "MONTHLY" : "ONE_OFF");
+  if (site.raisely) {
+    // Raisely-powered sites (e.g. appeal.stjohnvic.com.au) expect uppercase enums.
+    url.searchParams.set("frequency", frequency === "monthly" ? "MONTHLY" : "ONE_OFF");
+  } else {
+    // Generic hint — harmless on sites that ignore it.
+    url.searchParams.set("frequency", frequency === "monthly" ? "monthly" : "single");
+  }
   url.searchParams.set("utm_source", "firstaidangel");
   url.searchParams.set("utm_medium", "donate_dialog");
   url.searchParams.set("utm_campaign", "give");
@@ -45,18 +82,17 @@ function buildStJohnUrl(amount: number, frequency: Frequency) {
 
 export function DonateDialogContent({
   country,
-  onCountryChange,
   language,
   variant = "header",
   labels,
 }: DonateDialogContentProps) {
   const currency = currencyFor(country);
+  const site = siteForCountry(country.code);
 
   const [amount, setAmount] = useState<number>(currency.presets[1] ?? currency.presets[0]);
   const [customMode, setCustomMode] = useState(false);
   const [customValue, setCustomValue] = useState<string>("");
   const [frequency, setFrequency] = useState<Frequency>("once");
-  const [showCountryPicker, setShowCountryPicker] = useState(false);
 
   const currencyKey = currency.code;
   useEffect(() => {
@@ -68,7 +104,8 @@ export function DonateDialogContent({
 
   const finalAmount = customMode ? Math.max(1, Math.floor(Number(customValue) || 0)) : amount;
   const canDonate = finalAmount > 0;
-  const href = buildStJohnUrl(finalAmount, frequency);
+  const href = buildDonateUrl(site, finalAmount, frequency);
+  const isNational = !!ST_JOHN_BY_COUNTRY[country.code];
 
   const handleDonate = () => {
     trackGiveClick({
@@ -76,7 +113,7 @@ export function DonateDialogContent({
       countryCode: country.code,
       countryName: country.name,
       destinationUrl: href,
-      isNational: country.code === "AU",
+      isNational,
       language,
       variant,
     });
@@ -97,7 +134,7 @@ export function DonateDialogContent({
         </p>
       </div>
 
-      {/* St John card */}
+      {/* St John card — dynamic per country */}
       <div className="flex items-center gap-3 p-3 rounded-xl border-2 border-primary/30 bg-primary/5">
         <img
           src={stJohnIcon}
@@ -109,10 +146,11 @@ export function DonateDialogContent({
         />
         <div className="flex-1 min-w-0">
           <div className="text-sm font-semibold text-foreground truncate">
-            {ST_JOHN_NAME}
+            {ST_JOHN_NAME}{" "}
+            <span className="font-normal text-muted-foreground">· {site.region}</span>
           </div>
           <div className="text-[11px] text-muted-foreground truncate">
-            appeal.stjohnvic.com.au
+            {site.host}
           </div>
         </div>
       </div>
@@ -217,50 +255,8 @@ export function DonateDialogContent({
         <ExternalLink className="h-4 w-4 opacity-80" aria-hidden="true" />
       </a>
       <p className="text-[11px] text-center text-muted-foreground -mt-2">
-        {ST_JOHN_NAME} · appeal.stjohnvic.com.au
+        {ST_JOHN_NAME} · {site.host}
       </p>
-
-      {/* Country switcher (currency localization) */}
-      <div className="border-t border-border pt-3">
-        <button
-          type="button"
-          onClick={() => setShowCountryPicker((v) => !v)}
-          className="w-full flex items-center justify-between text-xs text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <span className="inline-flex items-center gap-1.5 min-w-0">
-            <Globe className="h-3.5 w-3.5 flex-shrink-0" />
-            <span className="truncate">
-              {labels.showing}{" "}
-              <span className="font-semibold text-foreground">
-                {country.flag} {country.name}
-              </span>
-            </span>
-          </span>
-          <span className="underline flex-shrink-0 ml-2">{labels.changeCountry}</span>
-        </button>
-        {showCountryPicker && (
-          <div className="mt-3 max-h-56 overflow-y-auto rounded-xl border border-border bg-background">
-            {COUNTRIES.map((c) => (
-              <button
-                key={c.code}
-                type="button"
-                onClick={() => {
-                  onCountryChange(c.code as CountryCode);
-                  setShowCountryPicker(false);
-                }}
-                className={cn(
-                  "w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted transition-colors",
-                  c.code === country.code && "bg-muted/60"
-                )}
-              >
-                <span className="text-base">{c.flag}</span>
-                <span className="flex-1 text-left">{c.name}</span>
-                {c.code === country.code && <Check className="h-3.5 w-3.5 text-primary" />}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
     </div>
   );
 }
