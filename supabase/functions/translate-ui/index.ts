@@ -55,7 +55,7 @@ serve(async (req) => {
       });
     }
 
-    const { language, texts } = await req.json();
+    const { language, texts, surface } = await req.json();
     if (!language || !Array.isArray(texts) || texts.length === 0) {
       return new Response(
         JSON.stringify({ error: "language and non-empty texts[] required" }),
@@ -85,7 +85,7 @@ serve(async (req) => {
 
     const langName = LANG_NAMES[language] || language;
 
-    const system = `You translate short UI strings (chip labels, suggested prompts, category names) for an Australian first aid app into ${langName}.
+    const genericSystem = `You translate short UI strings (chip labels, suggested prompts, category names) for an Australian first aid app into ${langName}.
 
 Rules:
 - Translate each string naturally, concisely, and in a calm friendly tone suitable for a first aid helper.
@@ -94,6 +94,46 @@ Rules:
 - Do NOT add explanations or notes.
 - Return JSON only in this exact shape: {"translations": ["...", "..."]}.
 - The translations array MUST be the same length and order as the input texts array.`;
+
+    const NAV_PRESERVE = [
+      "First Aid Angel", "AED", "CPR", "DRSABCD", "000", "Triple Zero",
+      "LoveKey", "LoveKey HELP Network", "HELP Network",
+      "St John", "St John Ambulance", "Red Cross",
+      "Crisis Compass", "Guardian Guide", "Aid Angel", "EpiPen", "AFA5",
+    ];
+
+    const navSystem = `You translate short navigation and menu labels for First Aid Angel, an Australian first aid web app, into ${langName}.
+
+Voice & register:
+- Calm, clear, friendly, action-oriented.
+- Match the register native users expect from top-tier mobile app navigation in ${langName} (how Google, Apple, or major health apps label their nav in that language).
+- Prefer the conventional nav word over a literal translation. Example: "Home" → 首页 (not 家).
+
+Length discipline:
+- Keep every label as short as the English source. Aim for ≤ 2 words and ≤ 18 characters whenever the language allows.
+- Never expand a single-word label into a phrase.
+
+Preserve EXACTLY (do not translate, transliterate, or reorder):
+${NAV_PRESERVE.map((t) => `- ${t}`).join("\n")}
+- Phone numbers and emergency numbers (especially 000).
+- Numbers, dates, URLs, email addresses.
+- Emoji and any leading/trailing icons.
+- Placeholder tokens like {name}, {count}, {score}, %s, %{var}.
+- HTML tags and markdown syntax.
+- Trailing arrows, ellipses (…), em-dashes (—).
+
+Capitalization:
+- Follow standard nav casing for the target language. Sentence case for de/fr/es/it/pt/nl. Title case only where natural. CJK / Arabic / Hebrew: no case concept.
+
+Strict rules:
+- No explanations, no parenthetical English glosses, no transliterations in brackets.
+- No quotation marks added around the label.
+- If you cannot produce a safe natural translation, return the English source unchanged.
+
+Output JSON only, exactly: {"translations": ["...", "..."]}
+Same length and order as input. Empty or untranslatable items echo the English source.`;
+
+    const system = surface === "nav" ? navSystem : genericSystem;
 
     const user = JSON.stringify({ texts });
 
