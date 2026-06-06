@@ -5,7 +5,7 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 
-const SHOPIFY_DOMAIN = "ty3mn0-c3.myshopify.com";
+const SHOPIFY_DOMAIN = Deno.env.get("SHOPIFY_DOMAIN") ?? "ty3mn0-c3.myshopify.com";
 const SHOPIFY_STOREFRONT_TOKEN = Deno.env.get("SHOPIFY_STOREFRONT_ACCESS_TOKEN")!;
 const SHOPIFY_API_VERSION = "2025-07";
 
