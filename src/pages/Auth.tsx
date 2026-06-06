@@ -91,14 +91,15 @@ export default function Auth() {
     }
   };
 
-  const google = async () => {
+  const oauth = async (provider: "google" | "apple") => {
     setBusy(true);
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}${redirect}` });
+    const result = await lovable.auth.signInWithOAuth(provider, { redirect_uri: `${window.location.origin}${redirect}` });
     if (result.error) {
-      toast.error(result.error.message ?? "Google sign-in failed");
+      toast.error(result.error.message ?? `${provider === "google" ? "Google" : "Apple"} sign-in failed`);
       setBusy(false);
       return;
     }
+    try { localStorage.setItem(RETURNING_FLAG, "1"); } catch {}
     if (result.redirected) return;
     navigate(redirect, { replace: true });
   };
