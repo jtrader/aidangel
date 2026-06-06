@@ -9,8 +9,8 @@ import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import { toast } from "sonner";
 import { generateCertificatePdf } from "@/lib/certificate";
-import { usePaddleCheckout } from "@/hooks/usePaddleCheckout";
-import { getPaddleEnvironment } from "@/lib/paddle";
+const getPaddleEnvironment = (): "sandbox" | "production" =>
+  (import.meta.env.VITE_PADDLE_ENVIRONMENT as "sandbox" | "production") ?? "sandbox";
 import { useUiStrings } from "@/hooks/useUiStrings";
 
 export default function ProgramCertificate() {
