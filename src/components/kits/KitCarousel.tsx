@@ -18,13 +18,24 @@ interface KitCarouselProps {
   zone?: KitZone;
   limit?: number;
   heading?: string;
+  /** When true, renders for a constrained surface (dialog/drawer): smaller
+   *  vertical rhythm, no "See all" rail, items basis tuned for narrow widths,
+   *  and arrows tucked inside the carousel so they don't overlap the dialog edge. */
+  compact?: boolean;
 }
 
 /**
  * Horizontally scrollable carousel of affiliate first-aid kits for the
  * visitor's region. Drops onto /shop above the in-house product grid.
  */
-export function KitCarousel({ countryCode, zone, limit = 12, heading, autoplay = false }: KitCarouselProps & { autoplay?: boolean }) {
+export function KitCarousel({
+  countryCode,
+  zone,
+  limit = 12,
+  heading,
+  autoplay = false,
+  compact = false,
+}: KitCarouselProps & { autoplay?: boolean }) {
   const { country } = useCountry();
   const code = countryCode ?? country.code;
   const resolvedZone = useMemo<KitZone>(() => zone ?? zoneForCountry(code), [zone, code]);
@@ -47,23 +58,41 @@ export function KitCarousel({ countryCode, zone, limit = 12, heading, autoplay =
     };
   }, [autoplay, api]);
 
+  // Compact mode tightens per-item width so the "peek" of the next card
+  // sits well inside narrow dialog widths and never feels clipped.
+  const itemBasis = compact
+    ? "pl-3 basis-[88%] xs:basis-4/5 sm:basis-1/2 md:basis-1/3"
+    : "pl-3 basis-3/4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4";
+
   return (
-    <section aria-labelledby="kit-carousel-heading" className="mb-10">
-      <div className="flex items-end justify-between gap-3 mb-4">
-        <div>
-          <h2 id="kit-carousel-heading" className="text-xl sm:text-2xl font-bold text-foreground">
+    <section
+      aria-labelledby="kit-carousel-heading"
+      className={compact ? "mb-0" : "mb-10"}
+    >
+      <div className={`flex items-end justify-between gap-3 ${compact ? "mb-3" : "mb-4"}`}>
+        <div className="min-w-0">
+          <h2
+            id="kit-carousel-heading"
+            className={
+              compact
+                ? "text-base sm:text-lg font-semibold text-foreground truncate"
+                : "text-xl sm:text-2xl font-bold text-foreground"
+            }
+          >
             {heading ?? `First aid kits for ${ZONE_LABEL[resolvedZone]}`}
           </h2>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5 truncate">
             {ZONE_SHIPS_FROM[resolvedZone]}
           </p>
         </div>
-        <Link
-          to="/shop/kits"
-          className="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline shrink-0"
-        >
-          See all kits <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
+        {!compact && (
+          <Link
+            to="/shop/kits"
+            className="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline shrink-0"
+          >
+            See all kits <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        )}
       </div>
 
       {loading ? (
@@ -78,24 +107,29 @@ export function KitCarousel({ countryCode, zone, limit = 12, heading, autoplay =
         <Carousel opts={{ align: "start", loop: false }} setApi={setApi} className="w-full">
           <CarouselContent className="-ml-3">
             {kits.map((kit) => (
-              <CarouselItem
-                key={kit.id}
-                className="pl-3 basis-3/4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-              >
+              <CarouselItem key={kit.id} className={itemBasis}>
                 <KitCard kit={kit} zone={resolvedZone} shipsFromLabel={ZONE_SHIPS_FROM[resolvedZone]} />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex -left-3" />
-          <CarouselNext className="hidden sm:flex -right-3" />
+          {/* In compact mode, tuck arrows just inside the carousel so they
+              never overlap the dialog rounded edge. */}
+          <CarouselPrevious
+            className={compact ? "hidden sm:flex left-1" : "hidden sm:flex -left-3"}
+          />
+          <CarouselNext
+            className={compact ? "hidden sm:flex right-1" : "hidden sm:flex -right-3"}
+          />
         </Carousel>
       )}
 
-      <div className="sm:hidden mt-4 text-center">
-        <Link to="/shop/kits" className="inline-flex items-center gap-1 text-sm font-medium text-primary">
-          See all kits <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
-      </div>
+      {!compact && (
+        <div className="sm:hidden mt-4 text-center">
+          <Link to="/shop/kits" className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+            See all kits <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      )}
     </section>
   );
 }
