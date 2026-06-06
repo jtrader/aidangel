@@ -114,13 +114,13 @@
   "myLearningCertificates": "Certificaten",
   "helpNetworkHeading": "HELP Netwerk",
   "helpNetworkCrisisCompassDesc": "Noodbegeleiding voor actieve crises",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reageren",
   "helpNetworkAidAngelDesc": "Herstelondersteuning na een ramp",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Herstellen",
   "helpNetworkGuardianGuideDesc": "Mentale gezondheid en emotionele ondersteuning",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Genezen",
   "helpNetworkLoveKeyDesc": "Maak verbinding met het volledige HELP Network",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Coördineren",
   "kbHandoffGuardianGuideHeading": "Ondersteuning van de geestelijke gezondheid na een crisis",
   "kbHandoffGuardianGuideBody": "Guardian Guide verbindt u met vertrouwde diensten voor geestelijke gezondheidszorg en emotionele steun.",
   "kbHandoffGuardianGuideCta": "Vind ondersteuning",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Volledige winkel openen",
   "shopDialogTagline": "Betrouwbare EHBO-koffers & trainingspakketten, bij u in de buurt bezorgd.",
   "helpNetworkFirstAidAngelDesc": "Snelle EHBO-richtlijnen en ondersteuning",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "BEREID JE VOOR"
 }

@@ -114,13 +114,13 @@
   "learnNeedHelpNow": "Нуждаете ли се от помощ сега?",
   "helpNetworkHeading": "Мрежа HELP Network",
   "helpNetworkCrisisCompassDesc": "Спешни насоки за активни кризи",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Отговор",
   "helpNetworkAidAngelDesc": "Подкрепа за възстановяване след бедствие",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Възстановяване",
   "helpNetworkGuardianGuideDesc": "Психично здраве и емоционална подкрепа",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Излекуване",
   "helpNetworkLoveKeyDesc": "Свържете се с пълната мрежа на HELP",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Координиране",
   "kbHandoffGuardianGuideHeading": "Подкрепа за психичното здраве след криза",
   "kbHandoffGuardianGuideBody": "Guardian Guide ви свързва с доверени служби за психично здраве и емоционална подкрепа.",
   "kbHandoffGuardianGuideCta": "Намерете подкрепа",
@@ -211,5 +211,5 @@
   "shopDialogTagline": "Доверени комплекти за първа помощ и обучителни пакети, доставени до вас.",
   "shopDialogClose": "Затвори",
   "helpNetworkFirstAidAngelDesc": "Бързи насоки и подкрепа за първа помощ",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "ПОДГОТОВКА"
 }

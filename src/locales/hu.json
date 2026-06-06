@@ -114,13 +114,13 @@
   "lessonNotFound": "A lecke nem található.",
   "helpNetworkHeading": "HELP Hálózat",
   "helpNetworkCrisisCompassDesc": "Vészhelyzeti útmutatás aktív krízisek esetén",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reagálás",
   "helpNetworkAidAngelDesc": "Helyreállítási támogatás katasztrófa után",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Felépülés",
   "helpNetworkGuardianGuideDesc": "Mentális egészségügyi és érzelmi támogatás",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Gyógyulás",
   "helpNetworkLoveKeyDesc": "Kapcsolódás a teljes HELP hálózathoz",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordinálás",
   "kbHandoffGuardianGuideHeading": "Mentális egészség támogatása krízis után",
   "kbHandoffGuardianGuideBody": "A Guardian Guide megbízható mentális egészségügyi és érzelmi támogató szolgáltatásokkal köti össze Önt.",
   "kbHandoffGuardianGuideCta": "Támogatás keresése",
@@ -211,5 +211,5 @@
   "shopDialogClose": "Bezárás",
   "shopDialogTagline": "Megbízható elsősegélycsomagok és oktatókészletek közvetlenül Önhöz szállítva.",
   "helpNetworkFirstAidAngelDesc": "Gyors elsősegélynyújtási útmutatás és támogatás",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "FELKÉSZÜLÉS"
 }

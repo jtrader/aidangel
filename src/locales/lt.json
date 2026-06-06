@@ -114,13 +114,13 @@
   "lessonCompleteStartQuiz": "Baigti ir pradėti testą",
   "helpNetworkHeading": "HELP tinklas",
   "helpNetworkCrisisCompassDesc": "Pagalba aktyvių krizių metu",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reaguoti",
   "helpNetworkAidAngelDesc": "Palaikymas po nelaimės",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Atsigauti",
   "helpNetworkGuardianGuideDesc": "Psichinės sveikatos ir emocinė pagalba",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Gyti",
   "helpNetworkLoveKeyDesc": "Prisijungkite prie viso HELP tinklo",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordinuoti",
   "kbHandoffGuardianGuideHeading": "Psichikos sveikatos palaikymas po krizės",
   "kbHandoffGuardianGuideBody": "„Guardian Guide“ sujungia jus su patikimomis psichikos sveikatos ir emocinės paramos tarnybomis.",
   "kbHandoffGuardianGuideCta": "Rasti paramą",
@@ -211,5 +211,5 @@
   "shopDialogBrowseKits": "Naršyti rinkinius",
   "shopDialogOpenStore": "Atidaryti pilną parduotuvę",
   "helpNetworkFirstAidAngelDesc": "Greita pirmoji pagalba ir palaikymas",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "PASIRUOŠTI"
 }

@@ -114,13 +114,13 @@
   "lessonNextLesson": "บทเรียนถัดไป",
   "helpNetworkHeading": "HELP Network",
   "helpNetworkCrisisCompassDesc": "คำแนะนำฉุกเฉินสำหรับภาวะวิกฤตที่กำลังดำเนินอยู่",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "ตอบสนอง",
   "helpNetworkAidAngelDesc": "การสนับสนุนการฟื้นตัวหลังภัยพิบัติ",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "ฟื้นฟู",
   "helpNetworkGuardianGuideDesc": "การสนับสนุนด้านสุขภาพจิตและอารมณ์",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "เยียวยา",
   "helpNetworkLoveKeyDesc": "เชื่อมต่อกับ HELP Network อย่างเต็มรูปแบบ",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "ประสานงาน",
   "kbHandoffGuardianGuideHeading": "การสนับสนุนสุขภาพจิตหลังวิกฤตการณ์",
   "kbHandoffGuardianGuideBody": "Guardian Guide เชื่อมต่อคุณกับบริการสนับสนุนด้านสุขภาพจิตและอารมณ์ที่เชื่อถือได้",
   "kbHandoffGuardianGuideCta": "ค้นหาการสนับสนุน",
@@ -211,5 +211,5 @@
   "shopDialogBrowseKits": "เลือกดูชุดปฐมพยาบาล",
   "shopDialogOpenStore": "เปิดร้านค้าเต็มรูปแบบ",
   "helpNetworkFirstAidAngelDesc": "คำแนะนำและการสนับสนุนการปฐมพยาบาลเบื้องต้นอย่างรวดเร็ว",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "เตรียมพร้อม"
 }

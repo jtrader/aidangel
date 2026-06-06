@@ -114,13 +114,13 @@
   "learnSubmitCourse": "تقديم دورة تدريبية",
   "helpNetworkHeading": "شبكة HELP Network",
   "helpNetworkCrisisCompassDesc": "توجيهات طارئة للأزمات النشطة",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "استجب",
   "helpNetworkAidAngelDesc": "دعم التعافي بعد الكارثة",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "تعافى",
   "helpNetworkGuardianGuideDesc": "الصحة النفسية والدعم العاطفي",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "اشفَ",
   "helpNetworkLoveKeyDesc": "تواصل مع شبكة HELP بالكامل",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "نسّق",
   "kbHandoffGuardianGuideHeading": "دعم الصحة النفسية بعد الأزمة",
   "kbHandoffGuardianGuideBody": "يربطك Guardian Guide بخدمات موثوقة للصحة النفسية والدعم العاطفي.",
   "kbHandoffGuardianGuideCta": "البحث عن دعم",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "فتح المتجر الكامل",
   "shopDialogTitle": "متجر First Aid Angel Shop",
   "helpNetworkFirstAidAngelDesc": "إرشادات ودعم سريع للإسعافات الأولية",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "تأهب"
 }

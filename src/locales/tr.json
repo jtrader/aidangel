@@ -114,13 +114,13 @@
   "myLearningCertificates": "Sertifikalar",
   "helpNetworkHeading": "HELP Ağı",
   "helpNetworkCrisisCompassDesc": "Aktif krizler için acil durum rehberliği",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Müdahale",
   "helpNetworkAidAngelDesc": "Afet sonrası kurtarma desteği",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "İyileşme",
   "helpNetworkGuardianGuideDesc": "Zihinsel sağlık ve duygusal destek",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Şifa",
   "helpNetworkLoveKeyDesc": "Tüm HELP Ağı ile bağlantı kurun",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordinasyon",
   "kbHandoffGuardianGuideHeading": "Kriz sonrası ruh sağlığını desteklemek",
   "kbHandoffGuardianGuideBody": "Guardian Guide, sizi güvenilir ruh sağlığı ve duygusal destek hizmetleriyle buluşturur.",
   "kbHandoffGuardianGuideCta": "Destek bulun",
@@ -211,5 +211,5 @@
   "shopDialogBrowseKits": "Kitlere göz at",
   "shopDialogTagline": "Güvenilir ilk yardım kitleri ve eğitim paketleri, yakınınızda kargolanır.",
   "helpNetworkFirstAidAngelDesc": "Hızlı ilk yardım rehberliği ve desteği",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "HAZIRLIK"
 }

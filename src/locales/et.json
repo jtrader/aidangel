@@ -114,13 +114,13 @@
   "quizBackToCourse": "Tagasi kursuse juurde",
   "helpNetworkHeading": "HELP võrgustik",
   "helpNetworkCrisisCompassDesc": "Erakorralised juhised aktiivsete kriiside jaoks",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reageeri",
   "helpNetworkAidAngelDesc": "Taastumise tugi pärast katastroofi",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Taastu",
   "helpNetworkGuardianGuideDesc": "Vaimse tervise ja emotsionaalne tugi",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Parane",
   "helpNetworkLoveKeyDesc": "Ühenda kogu HELP võrgustikuga",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordineeri",
   "kbHandoffGuardianGuideHeading": "Vaimse tervise toetamine pärast kriisi",
   "kbHandoffGuardianGuideBody": "Guardian Guide ühendab teid usaldusväärsete vaimse tervise ja emotsionaalse toe teenustega.",
   "kbHandoffGuardianGuideCta": "Leia tuge",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Ava täispikk pood",
   "shopDialogTitle": "First Aid Angel pood",
   "helpNetworkFirstAidAngelDesc": "Kiire esmaabi juhendamine ja toetus",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "VALMISTU"
 }

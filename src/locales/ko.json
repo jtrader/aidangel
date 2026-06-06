@@ -114,13 +114,13 @@
   "learnEmergencyPrefix": "응급 상황 시 전화번호:",
   "helpNetworkHeading": "HELP 네트워크",
   "helpNetworkCrisisCompassDesc": "진행 중인 위기에 대한 긴급 지침",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "대응",
   "helpNetworkAidAngelDesc": "재난 후 복구 지원",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "회복",
   "helpNetworkGuardianGuideDesc": "정신 건강 및 정서적 지원",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "치유",
   "helpNetworkLoveKeyDesc": "전체 HELP 네트워크와 연결",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "조율",
   "kbHandoffGuardianGuideHeading": "위기 이후의 정신 건강 지원",
   "kbHandoffGuardianGuideBody": "Guardian Guide는 신뢰할 수 있는 정신 건강 및 정서적 지원 서비스와 연결해 드립니다.",
   "kbHandoffGuardianGuideCta": "지원 찾기",
@@ -211,5 +211,5 @@
   "shopDialogClose": "닫기",
   "shopDialogOpenStore": "전체 상점 열기",
   "helpNetworkFirstAidAngelDesc": "신속한 응급처치 지침 및 지원",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "준비"
 }

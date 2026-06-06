@@ -114,13 +114,13 @@
   "notFoundReturn": "Kembali ke Beranda",
   "helpNetworkHeading": "HELP Network",
   "helpNetworkCrisisCompassDesc": "Panduan darurat untuk krisis aktif",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Merenspon",
   "helpNetworkAidAngelDesc": "Dukungan pemulihan setelah bencana",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Memulihkan",
   "helpNetworkGuardianGuideDesc": "Dukungan kesehatan mental dan emosional",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Menyembuhkan",
   "helpNetworkLoveKeyDesc": "Terhubung dengan Jaringan HELP sepenuhnya",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Mengkoordinasi",
   "kbHandoffGuardianGuideHeading": "Mendukung kesehatan mental setelah krisis",
   "kbHandoffGuardianGuideBody": "Guardian Guide menghubungkan Anda dengan layanan kesehatan mental dan dukungan emosional yang terpercaya.",
   "kbHandoffGuardianGuideCta": "Temukan dukungan",
@@ -211,5 +211,5 @@
   "shopDialogClose": "Tutup",
   "shopDialogBrowseKits": "Telusuri kotak P3K",
   "helpNetworkFirstAidAngelDesc": "Panduan dan dukungan pertolongan pertama yang cepat",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "PERSIAPAN"
 }

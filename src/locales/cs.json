@@ -114,13 +114,13 @@
   "coursesPageSubtitle": "Video lekce a čtení, kterými procházíte vlastním tempem. Složte kvíz a stáhněte si značkový PDF certifikát. Pouze online teorie — nenahrazuje akreditovaný prezenční výcvik.",
   "helpNetworkHeading": "Síť HELP Network",
   "helpNetworkCrisisCompassDesc": "Nouzové pokyny pro aktivní krize",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reagovat",
   "helpNetworkAidAngelDesc": "Podpora obnovy po katastrofě",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Obnovit",
   "helpNetworkGuardianGuideDesc": "Duševní zdraví a emoční podpora",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Uzdravit",
   "helpNetworkLoveKeyDesc": "Spojte se s celou sítí HELP Network",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordinovat",
   "kbHandoffGuardianGuideHeading": "Podpora duševního zdraví po krizi",
   "kbHandoffGuardianGuideBody": "Guardian Guide vás spojí s důvěryhodnými službami v oblasti duševního zdraví a emocionální podpory.",
   "kbHandoffGuardianGuideCta": "Najít podporu",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Otevřít celý obchod",
   "shopDialogBrowseKits": "Prohlédnout sady",
   "helpNetworkFirstAidAngelDesc": "Rychlá první pomoc a podpora",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "PŘIPRAVIT"
 }

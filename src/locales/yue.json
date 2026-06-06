@@ -114,13 +114,13 @@
   "learnSubmitCourse": "提交課程資訊",
   "helpNetworkHeading": "HELP 網絡 (HELP Network)",
   "helpNetworkCrisisCompassDesc": "危機發生時的緊急指引",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "回應",
   "helpNetworkAidAngelDesc": "災後復原支援",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "復原",
   "helpNetworkGuardianGuideDesc": "精神健康及情緒支援",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "痊癒",
   "helpNetworkLoveKeyDesc": "連結完整的HELP網絡",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "協調",
   "kbHandoffGuardianGuideHeading": "危機後的心理健康支援服務",
   "kbHandoffGuardianGuideBody": "Guardian Guide 為您連接可靠的心理健康與情緒支援服務。",
   "kbHandoffGuardianGuideCta": "尋找支援服務",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "開啟完整商店",
   "shopDialogClose": "關閉",
   "helpNetworkFirstAidAngelDesc": "即時急救指引及支援",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "準備"
 }

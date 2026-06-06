@@ -114,7 +114,7 @@
   "quizReviewLessons": "Semak semula pelajaran",
   "helpNetworkHeading": "Rangkaian HELP",
   "helpNetworkCrisisCompassDesc": "Panduan kecemasan untuk krisis aktif",
-  "helpNetworkCrisisCompassStage": "Tindak Balas",
+  "helpNetworkCrisisCompassStage": "Bertindak",
   "helpNetworkAidAngelDesc": "Sokongan pemulihan selepas bencana",
   "helpNetworkAidAngelStage": "Pulih",
   "helpNetworkGuardianGuideDesc": "Sokongan kesihatan mental dan emosi",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Buka kedai penuh",
   "shopDialogTitle": "Kedai First Aid Angel",
   "helpNetworkFirstAidAngelDesc": "Panduan dan sokongan pertolongan cemas segera",
-  "helpNetworkFirstAidAngelStage": "PERSEDIAAN"
+  "helpNetworkFirstAidAngelStage": "SEDIA"
 }

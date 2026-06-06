@@ -114,13 +114,13 @@
   "coursesCertOnComplete": "修了時に証明書を発行",
   "helpNetworkHeading": "HELP ネットワーク",
   "helpNetworkCrisisCompassDesc": "緊急事態発生時のガイダンス",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "対応",
   "helpNetworkAidAngelDesc": "災害後の復旧サポート",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "回復",
   "helpNetworkGuardianGuideDesc": "メンタルヘルスと心のサポート",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "癒し",
   "helpNetworkLoveKeyDesc": "HELPネットワーク全体とつながる",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "調整",
   "kbHandoffGuardianGuideHeading": "危機後のメンタルヘルス・サポート",
   "kbHandoffGuardianGuideBody": "Guardian Guide は、信頼できるメンタルヘルスおよび感情的サポートサービスを紹介します。",
   "kbHandoffGuardianGuideCta": "サポートを探す",
@@ -211,5 +211,5 @@
   "shopDialogClose": "閉じる",
   "shopDialogBrowseKits": "キットを見る",
   "helpNetworkFirstAidAngelDesc": "応急処置の迅速なガイダンスとサポート",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "準備"
 }

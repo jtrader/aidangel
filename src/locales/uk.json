@@ -114,13 +114,13 @@
   "quizAnswerAll": "Будь ласка, дайте відповідь на всі запитання.",
   "helpNetworkHeading": "Мережа HELP Network",
   "helpNetworkCrisisCompassDesc": "Екстрена допомога під час активних криз",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Реагувати",
   "helpNetworkAidAngelDesc": "Підтримка відновлення після катастрофи",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Відновити",
   "helpNetworkGuardianGuideDesc": "Психічне здоровʼя та емоційна підтримка",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Зцілити",
   "helpNetworkLoveKeyDesc": "Зʼєднайтеся з усією мережою HELP",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Координувати",
   "kbHandoffGuardianGuideHeading": "Підтримка психічного здоров’я після кризи Space",
   "kbHandoffGuardianGuideBody": "Guardian Guide з’єднує вас із перевіреними службами психічного здоров’я та емоційної підтримки.",
   "kbHandoffGuardianGuideCta": "Знайти підтримку",
@@ -211,5 +211,5 @@
   "shopDialogTagline": "Надійні аптечки та навчальні набори з доставкою до вас.",
   "shopDialogTitle": "Магазин First Aid Angel",
   "helpNetworkFirstAidAngelDesc": "Швидкі поради та підтримка з першої допомоги",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "ПІДГОТУЙТЕСЯ"
 }

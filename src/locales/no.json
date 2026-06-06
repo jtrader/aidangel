@@ -114,13 +114,13 @@
   "quizScoreToPass": "Oppnå {percent}% eller høyere for å få sertifikat.",
   "helpNetworkHeading": "HELP Network",
   "helpNetworkCrisisCompassDesc": "Nødveiledning for aktive kriser",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reager",
   "helpNetworkAidAngelDesc": "Gjenopprettingsstøtte etter katastrofe",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Gjenopprett",
   "helpNetworkGuardianGuideDesc": "Mental helse og emosjonell støtte",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Leges",
   "helpNetworkLoveKeyDesc": "Koble til hele HELP-nettverket",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordiner",
   "kbHandoffGuardianGuideHeading": "Støtte til psykisk helse etter en krise",
   "kbHandoffGuardianGuideBody": "Guardian Guide kobler deg til pålitelige tjenester for psykisk helse og emosjonell støtte.",
   "kbHandoffGuardianGuideCta": "Finn støtte",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Åpne hele nettbutikken",
   "shopDialogBrowseKits": "Se utstyrspakker",
   "helpNetworkFirstAidAngelDesc": "Rask førstehjelpsveiledning og støtte",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "FORBERED"
 }

@@ -114,13 +114,13 @@
   "learnBrowseByCountry": "דפדוף לפי מדינה",
   "helpNetworkHeading": "רשת HELP",
   "helpNetworkCrisisCompassDesc": "הכוונה לשעת חירום למשברים פעילים",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "הגב",
   "helpNetworkAidAngelDesc": "תמיכה בהתאוששות לאחר אסון",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "התאושש",
   "helpNetworkGuardianGuideDesc": "תמיכה נפשית ורגשית",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "התרפא",
   "helpNetworkLoveKeyDesc": "התחבר לרשת ה-HELP המלאה",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "תאם",
   "kbHandoffGuardianGuideHeading": "תמיכה בבריאות הנפש לאחר משבר",
   "kbHandoffGuardianGuideBody": "Guardian Guide מחבר אותך לשירותי תמיכה רגשית ובריאות הנפש מהימנים.",
   "kbHandoffGuardianGuideCta": "מצא תמיכה",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "פתיחת החנות המלאה",
   "shopDialogBrowseKits": "עיון בערכות",
   "helpNetworkFirstAidAngelDesc": "הדרכה ותמיכה מהירה בעזרה ראשונה",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "היכון"
 }

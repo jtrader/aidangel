@@ -114,13 +114,13 @@
   "learnOtherwise": "Oder",
   "helpNetworkHeading": "HELP-Netzwerk",
   "helpNetworkCrisisCompassDesc": "Notfallanleitung für aktive Krisen",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reagieren",
   "helpNetworkAidAngelDesc": "Wiederherstellungsunterstützung nach einer Katastrophe",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Erholen",
   "helpNetworkGuardianGuideDesc": "Psychische Gesundheit und emotionale Unterstützung",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Heilen",
   "helpNetworkLoveKeyDesc": "Verbinden Sie sich mit dem vollständigen HELP Network",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordinieren",
   "kbHandoffGuardianGuideHeading": "Mentale Gesundheit nach einer Krise unterstützen",
   "kbHandoffGuardianGuideBody": "Guardian Guide verbindet Sie mit vertrauenswürdigen Diensten für mentale Gesundheit und emotionale Unterstützung.",
   "kbHandoffGuardianGuideCta": "Unterstützung finden",
@@ -211,5 +211,5 @@
   "shopDialogTagline": "Bewährte Erste-Hilfe-Sets & Trainingspakete, direkt zu Ihnen geliefert.",
   "shopDialogTitle": "First Aid Angel Shop",
   "helpNetworkFirstAidAngelDesc": "Schnelle Erste-Hilfe-Anleitung und -Unterstützung",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "VORBEREITEN"
 }

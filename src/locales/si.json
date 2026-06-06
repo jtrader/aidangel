@@ -114,13 +114,13 @@
   "courseSignInToStart": "ආරම්භ කිරීමට පුරනය වන්න (Sign in)",
   "helpNetworkHeading": "HELP ජාලය (HELP Network)",
   "helpNetworkCrisisCompassDesc": "ක්‍රියාකාරී අර්බුද සඳහා හදිසි මගපෙන්වීම",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "ප්‍රතිචාර දක්වන්න",
   "helpNetworkAidAngelDesc": "ව්‍යසනයෙන් පසු සුවය ලැබීමට සහාය",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "ප්‍රකෘතිමත් වන්න",
   "helpNetworkGuardianGuideDesc": "මානසික සෞඛ්‍ය සහ චිත්තවේගීය සහාය",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "සුවපත් වන්න",
   "helpNetworkLoveKeyDesc": "සම්පූර්ණ HELP ජාලය සමඟ සම්බන්ධ වන්න",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "සම්බන්ධීකරණය කරන්න",
   "kbHandoffGuardianGuideHeading": "අර්බුදයකින් පසු මානසික සෞඛ්‍යය සඳහා සහාය වීම",
   "kbHandoffGuardianGuideBody": "Guardian Guide ඔබව විශ්වාසදායක මානසික සෞඛ්‍ය සහ චිත්තවේගීය සහාය සේවා සමඟ සම්බන්ධ කරයි.",
   "kbHandoffGuardianGuideCta": "සහාය සොයන්න",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "සම්පූර්ණ වෙළඳසැල වෙත පිවිසෙන්න",
   "shopDialogBrowseKits": "කට්ටල පිරික්සන්න (Browse kits)",
   "helpNetworkFirstAidAngelDesc": "කඩිනම් ප්‍රථමාධාර මගපෙන්වීම සහ සහාය",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "සූදානම් වන්න"
 }

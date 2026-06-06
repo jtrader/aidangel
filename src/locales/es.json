@@ -114,13 +114,13 @@
   "quizPassedHeading": "Aprobado — {score}%",
   "helpNetworkHeading": "Red HELP",
   "helpNetworkCrisisCompassDesc": "Orientación de emergencia para crisis activas",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Responder",
   "helpNetworkAidAngelDesc": "Apoyo a la recuperación después de un desastre",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Recuperar",
   "helpNetworkGuardianGuideDesc": "Apoyo emocional y de salud mental",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Sanar",
   "helpNetworkLoveKeyDesc": "Conéctate con la red completa de HELP",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Coordinar",
   "kbHandoffGuardianGuideHeading": "Apoyo a la salud mental tras una crisis",
   "kbHandoffGuardianGuideBody": "Guardian Guide le conecta con servicios confiables de apoyo emocional y salud mental.",
   "kbHandoffGuardianGuideCta": "Buscar apoyo",
@@ -211,5 +211,5 @@
   "shopDialogTagline": "Botiquines de primeros auxilios y packs de formación de confianza, enviados cerca de usted.",
   "shopDialogTitle": "Tienda de First Aid Angel",
   "helpNetworkFirstAidAngelDesc": "Orientación y apoyo rápidos en primeros auxilios",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "PREPARAR"
 }

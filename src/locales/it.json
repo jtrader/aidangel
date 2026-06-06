@@ -114,13 +114,13 @@
   "quizGotXofYNeed": "Hai risposto correttamente a {correct} su {total}. Ti serve il {pct}% per passare.",
   "helpNetworkHeading": "HELP Network",
   "helpNetworkCrisisCompassDesc": "Guida di emergenza per crisi attive",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Rispondere",
   "helpNetworkAidAngelDesc": "Supporto per il recupero post-disastro",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Riprendere",
   "helpNetworkGuardianGuideDesc": "Supporto per la salute mentale ed emotiva",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Guarire",
   "helpNetworkLoveKeyDesc": "Connettiti con l'intera rete HELP",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Coordinare",
   "kbHandoffGuardianGuideHeading": "Supporto alla salute mentale dopo una crisi",
   "kbHandoffGuardianGuideBody": "Guardian Guide ti mette in contatto con servizi fidati di salute mentale e supporto emotivo.",
   "kbHandoffGuardianGuideCta": "Trova supporto",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Apri lo store completo",
   "shopDialogBrowseKits": "Sfoglia i kit",
   "helpNetworkFirstAidAngelDesc": "Guida e supporto rapido di primo soccorso",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "PREPARARE"
 }

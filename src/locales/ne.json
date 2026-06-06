@@ -114,13 +114,13 @@
   "quizReviewYourAnswers": "आफ्ना उत्तरहरूको समीक्षा गर्नुहोस्",
   "helpNetworkHeading": "HELP नेटवर्क",
   "helpNetworkCrisisCompassDesc": "सक्रिय संकटका लागि आपतकालीन मार्गदर्शन",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "प्रतिक्रिया दिनुहोस्",
   "helpNetworkAidAngelDesc": "विपद्पछि पुनर्लाभ समर्थन",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "पुन: प्राप्ति गर्नुहोस्",
   "helpNetworkGuardianGuideDesc": "मानसिक स्वास्थ्य र भावनात्मक समर्थन",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "निको पार्नुहोस्",
   "helpNetworkLoveKeyDesc": "पूर्ण HELP नेटवर्कसँग जोड्नुहोस्",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "समन्वय गर्नुहोस्",
   "kbHandoffGuardianGuideHeading": "संकट पछि मानसिक स्वास्थ्यलाई सहयोग गर्दै",
   "kbHandoffGuardianGuideBody": "Guardian Guide ले तपाईंलाई विश्वसनीय मानसिक स्वास्थ्य र भावनात्मक सहयोग सेवाहरूसँग जोड्दछ।",
   "kbHandoffGuardianGuideCta": "सहयोग खोज्नुहोस्",
@@ -211,5 +211,5 @@
   "shopDialogTitle": "First Aid Angel पसल",
   "shopDialogClose": "बन्द गर्नुहोस्",
   "helpNetworkFirstAidAngelDesc": "द्रुत प्राथमिक उपचार मार्गदर्शन र समर्थन",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "तयारी गर्नुहोस्"
 }

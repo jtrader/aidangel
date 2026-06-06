@@ -114,13 +114,13 @@
   "quizGotXofY": "Þú svaraðir {correct} af {total} rétt. Skírteinið þitt er tilbúið.",
   "helpNetworkHeading": "HELP tengslanetið",
   "helpNetworkCrisisCompassDesc": "Neyðarleiðbeiningar fyrir virkar kreppur",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Svara",
   "helpNetworkAidAngelDesc": "Bata stuðningur eftir hamfarir",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Jafna",
   "helpNetworkGuardianGuideDesc": "Geðheilbrigði og tilfinningalegur stuðningur",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Gróa",
   "helpNetworkLoveKeyDesc": "Tengstu öllu HELP Network",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Samræma",
   "kbHandoffGuardianGuideHeading": "Stuðningur við geðheilsu eftir áföll",
   "kbHandoffGuardianGuideBody": "Guardian Guide tengir þig við áreiðanlega þjónustu á sviði geðheilsu og tilfinningalegs stuðnings.",
   "kbHandoffGuardianGuideCta": "Finna stuðning",
@@ -211,5 +211,5 @@
   "shopDialogTitle": "First Aid Angel verslunin",
   "shopDialogTagline": "Traust sjúkrakassa- og þjálfunarsett, send til þín.",
   "helpNetworkFirstAidAngelDesc": "Skjót leiðbeiningar og stuðningur við skyndihjálp",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "UNDIRBÚA"
 }

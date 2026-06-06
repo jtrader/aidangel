@@ -114,13 +114,13 @@
   "learnCoursesNearYou": "Cursuri în apropiere",
   "helpNetworkHeading": "Rețeaua HELP",
   "helpNetworkCrisisCompassDesc": "Îndrumare de urgență pentru crize active",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Răspunde",
   "helpNetworkAidAngelDesc": "Suport de recuperare după dezastre",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Recuperează-te",
   "helpNetworkGuardianGuideDesc": "Suport pentru sănătate mintală și emoțională",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Vindecă",
   "helpNetworkLoveKeyDesc": "Conectează-te cu întreaga rețea HELP",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Coordonează",
   "kbHandoffGuardianGuideHeading": "Susținerea sănătății mintale după o criză",
   "kbHandoffGuardianGuideBody": "Guardian Guide te conectează cu servicii de încredere pentru sănătate mintală și suport emoțional.",
   "kbHandoffGuardianGuideCta": "Găsește suport",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Deschide magazinul complet",
   "shopDialogBrowseKits": "Răsfoiește kituri",
   "helpNetworkFirstAidAngelDesc": "Îndrumare și suport rapid de prim ajutor",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "PREGĂTIRE"
 }

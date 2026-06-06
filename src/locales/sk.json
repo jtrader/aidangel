@@ -114,13 +114,13 @@
   "quizReviewYourAnswers": "Skontrolovať odpovede",
   "helpNetworkHeading": "Sieť HELP Network",
   "helpNetworkCrisisCompassDesc": "Núdzové usmernenie pre aktívne krízy",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Reagovať",
   "helpNetworkAidAngelDesc": "Podpora obnovy po katastrofe",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Zotaviť sa",
   "helpNetworkGuardianGuideDesc": "Duševné zdravie a emocionálna podpora",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Uzdraviť",
   "helpNetworkLoveKeyDesc": "Spojte sa s celou sieťou HELP Network",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Koordinovať",
   "kbHandoffGuardianGuideHeading": "Podpora duševného zdravia po kríze",
   "kbHandoffGuardianGuideBody": "Guardian Guide vás spojí s dôveryhodnými službami v oblasti duševného zdravia a emocionálnej podpory.",
   "kbHandoffGuardianGuideCta": "Nájsť podporu",
@@ -211,5 +211,5 @@
   "shopDialogTagline": "Dôveryhodné lekárničky a školiace balíčky, doručené priamo k vám.",
   "shopDialogClose": "Zavrieť",
   "helpNetworkFirstAidAngelDesc": "Rýchle pokyny a podpora prvej pomoci",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "PRÍPRAVA"
 }

@@ -114,13 +114,13 @@
   "myLearningCertificates": "Πιστοποιητικά",
   "helpNetworkHeading": "Δίκτυο HELP",
   "helpNetworkCrisisCompassDesc": "Καθοδήγηση έκτακτης ανάγκης για ενεργές κρίσεις",
-  "helpNetworkCrisisCompassStage": "Respond",
+  "helpNetworkCrisisCompassStage": "Αντιμετώπιση",
   "helpNetworkAidAngelDesc": "Υποστήριξη αποκατάστασης μετά από καταστροφή",
-  "helpNetworkAidAngelStage": "Recover",
+  "helpNetworkAidAngelStage": "Ανάκαμψη",
   "helpNetworkGuardianGuideDesc": "Ψυχική υγεία και συναισθηματική υποστήριξη",
-  "helpNetworkGuardianGuideStage": "Heal",
+  "helpNetworkGuardianGuideStage": "Θεραπεία",
   "helpNetworkLoveKeyDesc": "Συνδεθείτε με το πλήρες δίκτυο HELP",
-  "helpNetworkLoveKeyStage": "Coordinate",
+  "helpNetworkLoveKeyStage": "Συντονισμός",
   "kbHandoffGuardianGuideHeading": "Υποστήριξη ψυχικής υγείας μετά από μια κρίση",
   "kbHandoffGuardianGuideBody": "Ο Guardian Guide σάς συνδέει με αξιόπιστες υπηρεσίες ψυχικής υγείας και συναισθηματικής υποστήριξης.",
   "kbHandoffGuardianGuideCta": "Βρείτε υποστήριξη",
@@ -211,5 +211,5 @@
   "shopDialogOpenStore": "Άνοιγμα πλήρους καταστήματος",
   "shopDialogTagline": "Αξιόπιστα κιτ πρώτων βοηθειών & πακέτα εκπαίδευσης, με αποστολή κοντά σας.",
   "helpNetworkFirstAidAngelDesc": "Γρήγορη καθοδήγηση και υποστήριξη πρώτων βοηθειών",
-  "helpNetworkFirstAidAngelStage": "PREPARE"
+  "helpNetworkFirstAidAngelStage": "ΠΡΟΕΤΟΙΜΑΣΟΥ"
 }
