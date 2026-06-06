@@ -127,12 +127,12 @@ export default function NetworkFooter() {
               <button
                 type="button"
                 aria-label="View Respectful Synchronised Protocol logo"
-                className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 hover:opacity-90 transition-opacity"
+                className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 hover:opacity-90 transition-opacity"
               >
                 <img
                   src={rspLogo.url}
                   alt="Respectful Synchronised Protocol"
-                  className="h-16 w-16 rounded-full object-cover ring-1 ring-primary/40"
+                  className="h-16 w-auto object-contain"
                   loading="lazy"
                 />
               </button>
