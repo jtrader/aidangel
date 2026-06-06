@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ShieldAlert,
@@ -11,79 +11,83 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { translateStrings } from "@/lib/uiTranslate";
+import { useLanguage, type TranslationKey } from "@/contexts/LanguageContext";
 
-const steps = [
+type Step = {
+  letter: string;
+  stepKey: string;
+  labelKey: TranslationKey;
+  shortLabelKey: TranslationKey;
+  blurbKey: TranslationKey;
+  icon: typeof ShieldAlert;
+  prompt: string;
+};
+
+const steps: Step[] = [
   {
     letter: "D",
     stepKey: "D",
-    label: "Danger",
-    shortLabel: "Danger",
-    blurb: "Check the scene is safe",
+    labelKey: "drsLabelDanger",
+    shortLabelKey: "drsLabelDanger",
+    blurbKey: "drsBlurbDanger",
     icon: ShieldAlert,
     prompt: "Explain the Danger step in DRSABCD",
   },
   {
     letter: "R",
     stepKey: "R",
-    label: "Response",
-    shortLabel: "Response",
-    blurb: "Talk & touch — any reply?",
+    labelKey: "drsLabelResponse",
+    shortLabelKey: "drsLabelResponse",
+    blurbKey: "drsBlurbResponse",
     icon: MessageCircle,
     prompt: "Explain the Response step in DRSABCD",
   },
   {
     letter: "S",
     stepKey: "S",
-    label: "Send for help",
-    shortLabel: "Send",
-    blurb: "Call 000 right away",
+    labelKey: "drsLabelSend",
+    shortLabelKey: "drsShortSend",
+    blurbKey: "drsBlurbSend",
     icon: Phone,
     prompt: "Explain the Send for help step in DRSABCD",
   },
   {
     letter: "A",
     stepKey: "A",
-    label: "Airway",
-    shortLabel: "Airway",
-    blurb: "Open & clear the airway",
+    labelKey: "drsLabelAirway",
+    shortLabelKey: "drsLabelAirway",
+    blurbKey: "drsBlurbAirway",
     icon: Wind,
     prompt: "Explain the Airway step in DRSABCD",
   },
   {
     letter: "B",
     stepKey: "B",
-    label: "Breathing",
-    shortLabel: "Breathing",
-    blurb: "Look, listen, feel",
+    labelKey: "drsLabelBreathing",
+    shortLabelKey: "drsLabelBreathing",
+    blurbKey: "drsBlurbBreathing",
     icon: Activity,
     prompt: "Explain the Breathing step in DRSABCD",
   },
   {
     letter: "C",
     stepKey: "C",
-    label: "CPR",
-    shortLabel: "CPR",
-    blurb: "30 compressions : 2 breaths",
+    labelKey: "drsLabelCpr",
+    shortLabelKey: "drsLabelCpr",
+    blurbKey: "drsBlurbCpr",
     icon: HeartPulse,
     prompt: "Explain the CPR step in DRSABCD",
   },
   {
     letter: "D",
     stepKey: "AED",
-    label: "Defibrillator",
-    shortLabel: "Defib",
-    blurb: "Attach AED & follow prompts",
+    labelKey: "drsLabelDefib",
+    shortLabelKey: "drsShortDefib",
+    blurbKey: "drsBlurbDefib",
     icon: Zap,
     prompt: "Explain the Defibrillator step in DRSABCD",
   },
 ];
-
-const HEADER_TITLE = "DRSABCD Action Plan";
-const HEADER_SUB = "Tap any letter for a guided walk-through";
-const CTA_LABEL = "Start full walk-through";
-const CTA_PROMPT = "Start the DRSABCD walk-through now — one step at a time.";
 
 interface DRSABCDPanelProps {
   onSelect: (prompt: string) => void;
@@ -91,54 +95,7 @@ interface DRSABCDPanelProps {
 
 const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
   const [expanded, setExpanded] = useState(true);
-  const { language } = useLanguage();
-
-  const [tr, setTr] = useState({
-    title: HEADER_TITLE,
-    sub: HEADER_SUB,
-    cta: CTA_LABEL,
-    labels: steps.map((s) => s.label),
-    shortLabels: steps.map((s) => s.shortLabel),
-    blurbs: steps.map((s) => s.blurb),
-  });
-
-  useEffect(() => {
-    if (language === "en") {
-      setTr({
-        title: HEADER_TITLE,
-        sub: HEADER_SUB,
-        cta: CTA_LABEL,
-        labels: steps.map((s) => s.label),
-        shortLabels: steps.map((s) => s.shortLabel),
-        blurbs: steps.map((s) => s.blurb),
-      });
-      return;
-    }
-    let cancelled = false;
-    const labels = steps.map((s) => s.label);
-    const shortLabels = steps.map((s) => s.shortLabel);
-    const blurbs = steps.map((s) => s.blurb);
-    const chrome = [HEADER_TITLE, HEADER_SUB, CTA_LABEL];
-    Promise.all([
-      translateStrings(language, labels),
-      translateStrings(language, shortLabels),
-      translateStrings(language, blurbs),
-      translateStrings(language, chrome),
-    ]).then(([tLabels, tShort, tBlurbs, tChrome]) => {
-      if (cancelled) return;
-      setTr({
-        title: tChrome[0] ?? HEADER_TITLE,
-        sub: tChrome[1] ?? HEADER_SUB,
-        cta: tChrome[2] ?? CTA_LABEL,
-        labels: tLabels,
-        shortLabels: tShort,
-        blurbs: tBlurbs,
-      });
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [language]);
+  const { language, t } = useLanguage();
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -158,13 +115,13 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
                 className="block font-display font-bold text-sm text-foreground leading-tight"
                 lang={language}
               >
-                {tr.title}
+                {t("drsTitle")}
               </span>
               <span
                 className="block text-[11px] text-muted-foreground"
                 lang={language}
               >
-                {tr.sub}
+                {t("drsSubtitle")}
               </span>
             </span>
           </span>
@@ -181,11 +138,12 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
             <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
               {steps.map((step, i) => {
                 const Icon = step.icon;
+                const label = t(step.labelKey);
                 return (
                   <Link
                     key={i}
                     to={`/cpr?step=${step.stepKey}`}
-                    aria-label={`${step.letter} – ${tr.labels[i]} — open Live CPR Guide`}
+                    aria-label={`${step.letter} – ${label}`}
                     className="group flex flex-col items-center gap-1 p-1.5 sm:p-2 rounded-xl hover:bg-accent transition-colors"
                   >
                     <span className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-destructive to-destructive/80 text-destructive-foreground flex items-center justify-center font-display font-bold text-base sm:text-lg shadow-sm group-hover:scale-105 group-active:scale-95 transition-transform">
@@ -196,7 +154,7 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
                       className="text-[10px] sm:text-[11px] font-semibold text-foreground leading-tight text-center"
                       lang={language}
                     >
-                      {tr.shortLabels[i]}
+                      {t(step.shortLabelKey)}
                     </span>
                   </Link>
                 );
@@ -221,13 +179,13 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
                         className="block text-sm font-semibold text-foreground leading-tight"
                         lang={language}
                       >
-                        {tr.labels[i]}
+                        {t(step.labelKey)}
                       </span>
                       <span
                         className="block text-xs text-muted-foreground leading-tight"
                         lang={language}
                       >
-                        {tr.blurbs[i]}
+                        {t(step.blurbKey)}
                       </span>
                     </span>
                     <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
@@ -243,7 +201,7 @@ const DRSABCDPanel = ({ onSelect }: DRSABCDPanelProps) => {
               lang={language}
             >
               <HeartPulse className="h-4 w-4" />
-              {tr.cta}
+              {t("drsCta")}
             </Link>
           </div>
         )}
