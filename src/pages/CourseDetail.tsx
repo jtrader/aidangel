@@ -37,14 +37,17 @@ export default function CourseDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
     (async () => {
       const { data: c } = await supabase.from("courses").select("*").eq("slug", slug).eq("is_published", true).maybeSingle();
       if (!c) { setLoading(false); return; }
       setCourse(c);
       const { data: ls } = await supabase.from("lessons").select("id,slug,title,duration_minutes,sort_order").eq("course_id", c.id).order("sort_order");
       setLessons(ls ?? []);
+      let enr: { id: string } | null = null;
       if (user) {
-        const { data: enr } = await supabase.from("course_enrollments").select("id").eq("user_id", user.id).eq("course_id", c.id).maybeSingle();
+        const { data } = await supabase.from("course_enrollments").select("id").eq("user_id", user.id).eq("course_id", c.id).maybeSingle();
+        enr = data;
         setEnrolled(!!enr);
         const { data: prog } = await supabase.from("lesson_progress").select("lesson_id").eq("user_id", user.id).eq("course_id", c.id);
         setCompletedIds(new Set((prog ?? []).map(p => p.lesson_id)));
@@ -73,7 +76,9 @@ export default function CourseDetail() {
         }
       }
     })();
+    return () => { cancelled = true; };
   }, [slug, user]);
+
 
   const enroll = async () => {
     if (!user) { navigate(`/auth?redirect=/topics/${slug}`); return; }
