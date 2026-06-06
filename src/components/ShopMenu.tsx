@@ -165,10 +165,10 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
           </button>
         </DrawerTrigger>
         <DrawerContent
-          className="max-h-[85vh] bg-card border-border focus:outline-none motion-reduce:transition-none"
+          className="max-h-[90vh] bg-card border-border focus:outline-none motion-reduce:transition-none overflow-hidden"
           lang={language}
         >
-          <DrawerHeader className="px-4 pb-2 text-left">
+          <DrawerHeader className="px-4 pb-2 pr-14 text-left">
             <DrawerTitle className="font-display text-lg text-foreground">
               {title}
             </DrawerTitle>
@@ -176,7 +176,9 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
               {tagline}
             </DrawerDescription>
           </DrawerHeader>
-          <div className="px-4 pb-6 overflow-y-auto">{Body}</div>
+          <div className="px-4 pb-[max(env(safe-area-inset-bottom),1.25rem)] overflow-y-auto overflow-x-hidden">
+            {Body}
+          </div>
           <DrawerClose asChild>
             <button
               type="button"
@@ -206,10 +208,10 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
         </button>
       </DialogTrigger>
       <DialogContent
-        className="w-full max-w-xl lg:max-w-3xl rounded-2xl bg-card border border-border shadow-xl ring-1 ring-border/50 p-6 lg:p-8 motion-reduce:animate-none"
+        className="w-[calc(100vw-2rem)] max-w-xl lg:max-w-2xl max-h-[85vh] flex flex-col overflow-hidden rounded-2xl bg-card border border-border shadow-xl ring-1 ring-border/50 p-5 sm:p-6 lg:p-8 motion-reduce:animate-none"
         lang={language}
       >
-        <DialogHeader>
+        <DialogHeader className="pr-10 shrink-0">
           <DialogTitle className="font-display text-lg lg:text-xl text-foreground">
             {title}
           </DialogTitle>
@@ -217,7 +219,9 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
             {tagline}
           </DialogDescription>
         </DialogHeader>
-        <div className="mt-4">{Body}</div>
+        <div className="mt-4 flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+          {Body}
+        </div>
         <DialogClose asChild>
           <button
             type="button"
