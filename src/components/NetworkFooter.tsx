@@ -120,7 +120,12 @@ export default function NetworkFooter() {
           <span aria-hidden>·</span>
           <a href="/medical-disclaimer" className="hover:text-foreground hover:underline transition-colors">Medical Disclaimer</a>
         </nav>
-        <div className="flex flex-col items-center gap-3 mt-2">
+        <a
+          href="https://lovekeylink.com/rsp"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center gap-3 mt-2 hover:opacity-90 transition-opacity"
+        >
           <img
             src={rspLogo.url}
             alt="Respectful Synchronised Protocol"
@@ -130,7 +135,7 @@ export default function NetworkFooter() {
           <p className="text-[11px] text-muted-foreground text-center whitespace-pre-line">
             {"© 2026 LoveKey. All rights reserved.\n\nLoveKey RSP-aligned — Ethical, privacy-conscious help routing under the Respectful Synchronised Protocol."}
           </p>
-        </div>
+        </a>
       </div>
     </footer>
   );
