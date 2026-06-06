@@ -46,7 +46,7 @@ const NETWORK_SITES: NetworkSite[] = [
   },
   {
     key: "lovekey",
-    label: "LoveKey",
+    label: "Love Key",
     descKey: "helpNetworkLoveKeyDesc",
     stageKey: "helpNetworkLoveKeyStage",
   },
