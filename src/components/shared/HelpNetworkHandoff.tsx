@@ -67,7 +67,7 @@ export function HelpNetworkHandoff({ immediateDanger = false }: HelpNetworkHando
           const rawHref = isFirstAidAngel
             ? "https://firstaidangel.org"
             : buildHandoffUrl(TARGETS[site.key], null, language, "");
-          const href = language === "en" ? rawHref.replace(/\/en\/$/, "/") : rawHref;
+          const href = rawHref.replace(/\/en\/$/, "/");
           return (
             <li key={site.key}>
               <a
