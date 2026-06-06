@@ -34,7 +34,7 @@ const STATIC = [
   "Give",
   "Donate",
   "Make a donation",
-  "100% of your gift goes to the charity you choose.",
+  "100% of your gift goes to St John Ambulance.",
   "Choose an amount",
   "Other amount",
   "One-time",
