@@ -77,8 +77,8 @@ export function HelpNetworkHandoff({ immediateDanger = false }: HelpNetworkHando
             <li key={site.key}>
               <a
                 href={href}
-                target={isFirstAidAngel ? undefined : "_blank"}
-                rel={isFirstAidAngel ? undefined : "noopener noreferrer"}
+                target={targetBlank}
+                rel={relNoopener}
                 className={[
                   "block rounded-md border px-3 py-2 transition-colors",
                   isFirstAidAngel
