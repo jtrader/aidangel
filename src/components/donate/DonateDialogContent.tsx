@@ -33,10 +33,10 @@ interface DonateDialogContentProps {
 }
 
 function buildStJohnUrl(amount: number, frequency: Frequency) {
-  const url = new URL(ST_JOHN_URL);
+  // Raisely-powered campaign: /donate accepts ?amount=<dollars>&frequency=MONTHLY|ONE_OFF
+  const url = new URL(ST_JOHN_DONATE_URL);
   if (amount > 0) url.searchParams.set("amount", String(amount));
-  url.searchParams.set("frequency", frequency);
-  if (frequency === "monthly") url.searchParams.set("recurring", "true");
+  url.searchParams.set("frequency", frequency === "monthly" ? "MONTHLY" : "ONE_OFF");
   url.searchParams.set("utm_source", "firstaidangel");
   url.searchParams.set("utm_medium", "donate_dialog");
   url.searchParams.set("utm_campaign", "give");
