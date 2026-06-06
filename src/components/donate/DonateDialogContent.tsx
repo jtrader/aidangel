@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const ST_JOHN_NAME = "St John Ambulance";
 
-interface StJohnSite {
+export interface StJohnSite {
   /** Country code(s) this site serves as the national site. */
   base: string;
   donatePath: string;
@@ -28,7 +28,7 @@ interface StJohnSite {
 // Map ISO country codes to the nearest applicable St John Ambulance site.
 // Australia → Victoria appeal (Raisely); UK/Ireland/Commonwealth → sja.org.uk;
 // NZ → stjohn.org.nz; Canada → sja.ca; others → UK as international hub.
-const ST_JOHN_BY_COUNTRY: Record<string, StJohnSite> = {
+export const ST_JOHN_BY_COUNTRY: Record<string, StJohnSite> = {
   AU: { base: "https://appeal.stjohnvic.com.au", donatePath: "/donate", host: "appeal.stjohnvic.com.au", region: "Australia", raisely: true },
   NZ: { base: "https://www.stjohn.org.nz", donatePath: "/donate", host: "stjohn.org.nz", region: "New Zealand", raisely: false },
   CA: { base: "https://www.sja.ca", donatePath: "/en-ca/about-us/donate", host: "sja.ca", region: "Canada", raisely: false },
@@ -36,7 +36,7 @@ const ST_JOHN_BY_COUNTRY: Record<string, StJohnSite> = {
   GB: { base: "https://www.sja.org.uk", donatePath: "/donate", host: "sja.org.uk", region: "United Kingdom", raisely: false },
 };
 
-const ST_JOHN_INTERNATIONAL: StJohnSite = {
+export const ST_JOHN_INTERNATIONAL: StJohnSite = {
   base: "https://www.sja.org.uk",
   donatePath: "/donate",
   host: "sja.org.uk",
@@ -44,7 +44,7 @@ const ST_JOHN_INTERNATIONAL: StJohnSite = {
   raisely: false,
 };
 
-function siteForCountry(code: string): StJohnSite {
+export function siteForCountry(code: string): StJohnSite {
   return ST_JOHN_BY_COUNTRY[code] ?? ST_JOHN_INTERNATIONAL;
 }
 
@@ -64,7 +64,7 @@ interface DonateDialogContentProps {
   };
 }
 
-function buildDonateUrl(site: StJohnSite, amount: number, frequency: Frequency) {
+export function buildDonateUrl(site: StJohnSite, amount: number, frequency: Frequency) {
   const url = new URL(site.base + site.donatePath);
   if (amount > 0) url.searchParams.set("amount", String(amount));
   if (site.raisely) {
