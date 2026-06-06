@@ -132,7 +132,7 @@ export default function NetworkFooter() {
                 <img
                   src={rspLogo.url}
                   alt="Respectful Synchronised Protocol"
-                  className="h-16 w-16 rounded-full object-cover shadow-[0_0_24px_rgba(220,38,38,0.65)] ring-1 ring-primary/40"
+                  className="h-16 w-16 rounded-full object-cover ring-1 ring-primary/40"
                   loading="lazy"
                 />
               </button>
