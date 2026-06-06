@@ -21,6 +21,12 @@ type NetworkSite = {
 
 const NETWORK_SITES: NetworkSite[] = [
   {
+    key: "firstaidangel",
+    label: "First Aid Angel",
+    descKey: "helpNetworkFirstAidAngelDesc",
+    stageKey: "helpNetworkFirstAidAngelStage",
+  },
+  {
     key: "crisiscompass",
     label: "Crisis Compass",
     descKey: "helpNetworkCrisisCompassDesc",
@@ -53,18 +59,26 @@ export function HelpNetworkHandoff({ immediateDanger = false }: HelpNetworkHando
   return (
     <nav aria-label="HELP Network" className="w-full">
       <h2 className="text-xs font-semibold uppercase tracking-wide text-foreground mb-2 text-center">
-        {t("helpNetworkHeading" as any)}
+        Love Key HELP Network
       </h2>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {NETWORK_SITES.map((site) => {
-          const href = buildHandoffUrl(TARGETS[site.key], null, language, "");
+          const isFirstAidAngel = site.key === "firstaidangel";
+          const href = isFirstAidAngel
+            ? "/"
+            : buildHandoffUrl(TARGETS[site.key], null, language, "");
           return (
             <li key={site.key}>
               <a
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block rounded-md border border-border bg-background px-3 py-2 hover:bg-accent hover:border-primary/40 transition-colors"
+                target={isFirstAidAngel ? undefined : "_blank"}
+                rel={isFirstAidAngel ? undefined : "noopener noreferrer"}
+                className={[
+                  "block rounded-md border px-3 py-2 transition-colors",
+                  isFirstAidAngel
+                    ? "bg-background border-primary/50 shadow-[0_0_12px_rgba(220,38,38,0.35)] hover:bg-red-50 dark:hover:bg-red-950/20"
+                    : "bg-background border-border hover:bg-accent hover:border-primary/40",
+                ].join(" ")}
               >
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="text-sm font-semibold text-foreground">{site.label}</span>
