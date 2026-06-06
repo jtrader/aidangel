@@ -58,7 +58,7 @@ export function HelpNetworkHandoff({ immediateDanger = false }: HelpNetworkHando
 
   return (
     <nav aria-label="HELP Network" className="w-full">
-      <h2 className="text-xs font-semibold uppercase tracking-wide text-foreground mb-2 text-center">
+      <h2 className="text-xs font-semibold tracking-wide text-foreground mb-2 text-center">
         Love Key HELP Network
       </h2>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
