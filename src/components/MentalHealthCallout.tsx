@@ -1,10 +1,16 @@
 import { HeartHandshake, ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useCountry } from "@/hooks/useCountry";
+import { emergencyNumberForCountry } from "@/lib/donations";
 
 interface Props {
   /** Optional industry context, e.g. "construction workers" */
   context?: string;
   variant?: "default" | "compact";
 }
+
+const interpolate = (s: string, vars: Record<string, string>) =>
+  s.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? `{${k}}`);
 
 /**
  * Mental Health First Aid callout — emphasises MHFA's importance and
@@ -15,9 +21,17 @@ interface Props {
  * guardianguide.org where they can be curated and kept current.
  */
 export default function MentalHealthCallout({ context, variant = "default" }: Props) {
+  const { t } = useLanguage();
+  const { code } = useCountry();
+  const number = emergencyNumberForCountry(code);
+
   const heading = context
-    ? `Mental health is first aid too — for ${context}`
-    : "Mental health is first aid too";
+    ? interpolate(t("mhfaHeadingWith"), { context })
+    : t("mhfaHeading");
+
+  // {number} → tel link
+  const lifeDangerTemplate = t("mhfaLifeDanger");
+  const ldParts = lifeDangerTemplate.split("{number}");
 
   return (
     <aside
@@ -35,19 +49,9 @@ export default function MentalHealthCallout({ context, variant = "default" }: Pr
           >
             {heading}
           </h3>
-          <p className="text-sm text-muted-foreground mt-2">
-            Psychological injury is now one of the largest categories of workplace harm in
-            Australia. Panic attacks, burnout, suicidal thoughts, grief after a critical
-            incident — these need a first aider as much as a sprain or a burn. Use the{" "}
-            <strong className="text-foreground">ALGEE</strong> action plan: Approach, Listen,
-            Give support, Encourage professional help, Encourage other supports.
-          </p>
+          <p className="text-sm text-muted-foreground mt-2">{t("mhfaBody")}</p>
           {variant === "default" && (
-            <p className="text-sm text-muted-foreground mt-3">
-              Finding the <em>right</em> support — the right therapist, helpline, peer group
-              or workplace EAP — is half the battle. We don't keep a list of crisis numbers
-              here because they change and they're different for every person.
-            </p>
+            <p className="text-sm text-muted-foreground mt-3">{t("mhfaBodyExtra")}</p>
           )}
           <a
             href="https://guardianguide.org"
@@ -55,16 +59,15 @@ export default function MentalHealthCallout({ context, variant = "default" }: Pr
             rel="noopener noreferrer"
             className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
-            Find the right mental health support at GuardianGuide.org
+            {t("mhfaCta")}
             <ArrowUpRight className="h-4 w-4" />
           </a>
           <p className="text-xs text-muted-foreground mt-2">
-            GuardianGuide is our sister site for curating mental health resources matched to
-            your situation. If life is in immediate danger, call{" "}
-            <a href="tel:000" className="text-primary font-semibold hover:underline">
-              000
+            {ldParts[0]}
+            <a href={`tel:${number}`} className="text-primary font-semibold hover:underline">
+              {number}
             </a>
-            .
+            {ldParts[1] ?? ""}
           </p>
         </div>
       </div>
