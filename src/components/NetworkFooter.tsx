@@ -105,11 +105,6 @@ export default function NetworkFooter() {
             </button>
           )}
         </div>
-        <div className="pb-2">
-          <a href={kbHref} className="text-xs font-semibold text-primary hover:underline">
-            {tr.browseKb}
-          </a>
-        </div>
         <div className="w-full pt-3">
           <HelpNetworkHandoff />
         </div>
