@@ -20,5 +20,5 @@ interface ShopDialogContentProps {
 export function ShopDialogContent({ autoplay = true }: ShopDialogContentProps) {
   // TODO(marketing): const variant = useAudienceVariant("shop_dialog");
   // switch on variant.kind to render different surfaces.
-  return <KitCarousel limit={6} autoplay={autoplay} />;
+  return <KitCarousel limit={6} autoplay={autoplay} compact />;
 }
