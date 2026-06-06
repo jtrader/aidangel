@@ -71,57 +71,72 @@ function fetchShopifyMastersForZone(zone: KitZone) {
 export function useKitsForZone(zone: KitZone, opts?: { limit?: number; preferCountry?: string }) {
   const [kits, setKits] = useState<Kit[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setError(null);
     const countries = countriesInZone(zone);
 
-    Promise.all([
-      supabase
-        .from("route_catalogue")
-        .select(
-          "id, route_slug, title, description, image_url, destination_url, country, price, currency",
-        )
-        .eq("partner_entity", "stjohn")
-        .eq("route_type", "kit")
-        .eq("availability_status", "available")
-        .in("country", countries),
-      fetchShopifyMastersForZone(zone),
-    ]).then(([{ data }, shopifyMap]) => {
-      if (cancelled || !data) return;
+    (async () => {
+      try {
+        const [routesRes, shopifyMap] = await Promise.all([
+          supabase
+            .from("route_catalogue")
+            .select(
+              "id, route_slug, title, description, image_url, destination_url, country, price, currency",
+            )
+            // Exclude rows explicitly marked unavailable; allow null/unknown to surface.
+            .neq("availability_status", "unavailable")
+            .in("country", countries),
+          fetchShopifyMastersForZone(zone),
+        ]);
 
-      // Dedupe by Shopify handle — prefer exact country match, then any.
-      const byHandle = new Map<string, Kit>();
-      const preferred = opts?.preferCountry?.toUpperCase();
-      for (const row of data as Kit[]) {
-        const handle = titleToHandle(row.title);
-        const shop = shopifyMap.get(handle);
-        // Merge: Shopify owns title/image/description; route_catalogue owns price + affiliate URL.
-        const merged: Kit = {
-          ...row,
-          title: shop?.title ?? row.title,
-          description: shop?.description ?? row.description,
-          image_url: shop?.images?.edges?.[0]?.node?.url ?? row.image_url,
-          shopify_handle: shop?.handle ?? null,
-        };
-        const existing = byHandle.get(handle);
-        if (!existing) {
-          byHandle.set(handle, merged);
-        } else if (preferred && row.country === preferred && existing.country !== preferred) {
-          byHandle.set(handle, merged);
+        if (cancelled) return;
+        const data = (routesRes as any)?.data as Kit[] | null;
+        if (!data) {
+          setKits([]);
+          setLoading(false);
+          return;
         }
+
+        // Dedupe by Shopify handle — prefer exact country match, then any.
+        const byHandle = new Map<string, Kit>();
+        const preferred = opts?.preferCountry?.toUpperCase();
+        for (const row of data as Kit[]) {
+          const handle = titleToHandle(row.title);
+          const shop = (await shopifyMap)?.get(handle);
+          // Merge: Shopify owns title/image/description; route_catalogue owns price + affiliate URL.
+          const merged: Kit = {
+            ...row,
+            title: shop?.title ?? row.title,
+            description: shop?.description ?? row.description,
+            image_url: shop?.images?.edges?.[0]?.node?.url ?? row.image_url,
+            shopify_handle: shop?.handle ?? null,
+          };
+          const existing = byHandle.get(handle);
+          if (!existing) {
+            byHandle.set(handle, merged);
+          } else if (preferred && row.country === preferred && existing.country !== preferred) {
+            byHandle.set(handle, merged);
+          }
+        }
+        let result = Array.from(byHandle.values()).sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
+        if (opts?.limit) result = result.slice(0, opts.limit);
+        setKits(result);
+      } catch (e: any) {
+        setError(e?.message ?? String(e));
+        setKits([]);
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-      let result = Array.from(byHandle.values()).sort((a, b) => (a.price ?? 0) - (b.price ?? 0));
-      if (opts?.limit) result = result.slice(0, opts.limit);
-      setKits(result);
-      setLoading(false);
-    });
+    })();
 
     return () => {
       cancelled = true;
     };
   }, [zone, opts?.limit, opts?.preferCountry]);
 
-  return { kits, loading };
+  return { kits, loading, error };
 }

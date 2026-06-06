@@ -1,9 +1,10 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "firstaidangel",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "check-env": "node scripts/check-env.ts",
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",

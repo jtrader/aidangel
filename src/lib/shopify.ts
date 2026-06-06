@@ -3,8 +3,10 @@
 import { toast } from "sonner";
 
 export const SHOPIFY_API_VERSION = "2025-07";
-export const SHOPIFY_STORE_PERMANENT_DOMAIN = "ty3mn0-c3.myshopify.com";
-export const SHOPIFY_STOREFRONT_TOKEN = "475483ac2299304310e03f0fcc13fafc";
+export const SHOPIFY_STORE_PERMANENT_DOMAIN = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string;
+if (!SHOPIFY_STORE_PERMANENT_DOMAIN) throw new Error("VITE_SHOPIFY_STORE_DOMAIN environment variable is required");
+export const SHOPIFY_STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN as string;
+if (!SHOPIFY_STOREFRONT_TOKEN) throw new Error("VITE_SHOPIFY_STOREFRONT_TOKEN environment variable is required");
 export const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
 
 export interface ShopifyImage {

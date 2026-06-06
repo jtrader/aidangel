@@ -18,6 +18,7 @@ import HamburgerMenu from "@/components/HamburgerMenu";
 import KBHandoffCard from "@/components/kb/KBHandoffCard";
 import KbCourseHandoff from "@/components/kb/KbCourseHandoff";
 import KbProgramHandoff from "@/components/kb/KbProgramHandoff";
+import KbKitRecommendation from "@/components/kb/KbKitRecommendation";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
@@ -426,6 +427,8 @@ const KbTopic = () => {
           </div>
 
           <AngelActionDownload slug={topicEn.slug} title={translated.title} />
+
+          <KbKitRecommendation />
 
           <KbCourseHandoff kbSlug={topicEn.slug} lang={language} />
           <KbProgramHandoff kbSlug={topicEn.slug} lang={language} />

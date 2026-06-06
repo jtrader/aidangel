@@ -71,3 +71,27 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Required environment variables
+
+This project requires the following environment variables to be set in development and deployment:
+
+- `VITE_SHOPIFY_STOREFRONT_TOKEN` — Shopify Storefront access token (read-only).
+- `VITE_SHOPIFY_STORE_DOMAIN` — the permanent store domain (e.g. `ty3mn0-c3.myshopify.com`).
+
+See `.env.example` for an example.
+
+## CI / Deployment
+
+Make sure the following environment variables are set in CI and in your deployment platform:
+
+- `VITE_SHOPIFY_STOREFRONT_TOKEN`
+- `VITE_SHOPIFY_STORE_DOMAIN`
+
+You can validate env vars locally with:
+
+```sh
+npm run check-env
+```
+
+The `check-env` script exits non-zero when required env vars are missing and prints friendly instructions.

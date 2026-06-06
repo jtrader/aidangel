@@ -388,9 +388,8 @@ for (const b of blogPaths) {
 
 // Shopify products — fetch handles from the Storefront API so /product/:handle
 // pages are discoverable. Hardcoded creds live in src/lib/shopify.ts.
-const SHOPIFY_STOREFRONT_URL =
-  "https://ty3mn0-c3.myshopify.com/api/2025-07/graphql.json";
-const SHOPIFY_STOREFRONT_TOKEN = "475483ac2299304310e03f0fcc13fafc";
+const SHOPIFY_STOREFRONT_URL = process.env.SHOPIFY_STOREFRONT_URL ?? "https://ty3mn0-c3.myshopify.com/api/2025-07/graphql.json";
+const SHOPIFY_STOREFRONT_TOKEN = process.env.SHOPIFY_STOREFRONT_TOKEN ?? (() => { throw new Error('SHOPIFY_STOREFRONT_TOKEN env var is required for scripts/generate-sitemap'); })();
 async function fetchProductPaths(): Promise<string[]> {
   try {
     const res = await fetch(SHOPIFY_STOREFRONT_URL, {
