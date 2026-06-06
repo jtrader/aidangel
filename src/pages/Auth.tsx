@@ -122,9 +122,14 @@ export default function Auth() {
           {mode === "signin" ? "Sign in to continue your courses." : "Track progress and earn certificates."}
         </p>
 
-        <Button type="button" variant="outline" onClick={google} disabled={busy} className="w-full mb-4">
-          Continue with Google
-        </Button>
+        <div className="space-y-2 mb-4">
+          <Button type="button" variant="outline" onClick={() => oauth("google")} disabled={busy} className="w-full">
+            Continue with Google
+          </Button>
+          <Button type="button" variant="outline" onClick={() => oauth("apple")} disabled={busy} className="w-full">
+            Continue with Apple
+          </Button>
+        </div>
         <div className="relative my-4">
           <div className="absolute inset-0 flex items-center"><span className="w-full border-t" /></div>
           <span className="relative bg-card px-2 text-xs text-muted-foreground mx-auto block w-fit">or</span>
