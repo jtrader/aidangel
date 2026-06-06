@@ -1,75 +1,32 @@
-## Goal
+# Translation prompt for menu & nav items
 
-Make LMS content (topic titles/summaries/descriptions, lesson bodies, quiz questions/choices/explanations) display in the user's selected language, with English as the fallback. UI chrome is already localized — this plan covers the **content** stored in `courses`, `lessons`, and `quiz_questions`.
+Add a reusable system prompt that the AI gateway can use whenever it translates header/menu/nav UI strings (DonateMenu, ShopMenu, LearnMenu, LanguageSelector, mobile drawer, footer nav, AED Finder button, etc.) into any of the 48 supported locales.
 
-## Current state
+## Where it lives
 
-- 28 published topics, ~all lessons and quiz questions are English-only.
-- `course_translations`, `lesson_translations`, `quiz_question_translations` tables exist with correct shape and RLS (public-read for published courses, admin-write) — all currently empty.
-- No reader code uses the `*_translations` tables yet.
-- `.translation-manifest/db.json` doesn't exist — first run will be a full bootstrap.
+New file: `src/lib/prompts/navTranslationPrompt.ts`
 
-## Scope
+Exports:
+- `NAV_TRANSLATION_SYSTEM_PROMPT(langName: string): string` — full system prompt, language-name interpolated.
+- `NAV_PRESERVE_TERMS: string[]` — brand / non-translatable tokens reused elsewhere.
 
-**42 target languages** (skip 5 indigenous: arrernte, kriol, pitjantjatjara, tsi, yolngu — English fallback only, per project policy):
-`ar bg bn cs da de el es et fi fr he hr hu id is it ja ko lt lv ms ne nl no pa pl pt ro si sk sl sr sv th tl tr uk ur vi yue zh`
+## What the prompt enforces
 
-**Fields translated:**
-- courses: `title`, `summary`, `description`
-- lessons: `title`, `body` (markdown preserved)
-- quiz_questions: `question`, `choices` (JSON array), `explanation`
+1. **Role & tone** — "You translate short navigation and menu labels for First Aid Angel, an Australian first aid web app, into {langName}. Calm, clear, friendly, action-oriented. Match the register of native mobile app navigation in {langName}."
+2. **Length discipline** — Keep each label as short as the English source (ideally ≤ 2 words / ≤ 18 characters). Prefer the conventional nav word used by major apps in that language over a literal translation (e.g. "Home" → 首页, not 家).
+3. **Preserve verbatim** (`NAV_PRESERVE_TERMS`):
+   `First Aid Angel`, `AED`, `CPR`, `DRSABCD`, `000`, `Triple Zero`, `LoveKey`, `HELP Network`, `St John`, `Red Cross`, brand product names, emoji, and any `{placeholder}` tokens.
+4. **Emergency numbers** — never translate or localize `000`; keep as `tel:000` anchor text untouched.
+5. **Capitalization** — follow the target language's standard nav casing (Title Case for English-like scripts; sentence case for de/fr/es; no case for CJK/Arabic).
+6. **Formatting** — preserve leading icons, trailing arrows, ellipses, em-dashes, and any HTML/markdown.
+7. **No additions** — no explanations, no parentheticals, no transliterations in brackets.
+8. **Output shape** — strict JSON: `{"translations": ["...", "..."]}`, same length and order as the input `texts` array. Blank or untranslatable items echo the English source.
 
-## Steps
+## Wiring (optional, same change)
 
-### 1. Backfill translations (one-off bootstrap)
+Update `supabase/functions/translate-ui/index.ts` to accept a `surface: "nav" | "generic"` field on the request body. When `surface === "nav"`, swap in `NAV_TRANSLATION_SYSTEM_PROMPT(langName)` instead of the current generic system prompt; otherwise behavior is unchanged. `useUiStrings` callers used by header/menu components pass `surface: "nav"`; everything else stays on the generic prompt.
 
-Use the bundled `update-translations` skill:
-- Run `scripts/update_db.py` against the live DB. It exports rows via `psql`, diffs against `.translation-manifest/db.json` (missing → treat all as changed), batches each language to Lovable AI Gateway (`google/gemini-3-flash-preview`) with the medical-safety system prompt (preserves `000`, drug names, dosages, markdown, placeholders), and emits one idempotent UPSERT SQL file per language in `/tmp/sql-update/`.
-- Apply each `/tmp/sql-update/{lang}.sql` via `supabase--insert` (42 tool calls, one per language). Each row is `INSERT … ON CONFLICT (id, lang) DO UPDATE`.
-- Commit the new `.translation-manifest/db.json` so future content edits only re-translate the diff.
+## Out of scope
 
-### 2. Wire the reader pages
-
-Add a tiny helper `src/lib/lmsI18n.ts` exporting `pickTranslated<T>(row, translations, fields)` that returns the row with `fields` overwritten from the matching `lang` row when present, falling back to English.
-
-Update each reader to fetch the active language's translation row in parallel with the base row and merge:
-
-- **`src/pages/Courses.tsx`** — topic catalog grid (title + summary). Join with `course_translations` filtered by `lang = currentLang`.
-- **`src/pages/CourseDetail.tsx`** — topic page (title, summary, description). Same join.
-- **`src/pages/CourseLesson.tsx`** — lesson page (title, body markdown). Join with `lesson_translations`.
-- **`src/pages/CourseQuiz.tsx`** — quiz (question, choices, explanation). Join with `quiz_question_translations`.
-- **`src/components/TopicsSidebar.tsx`** and **`src/components/TopicCover.tsx`** — display titles. Same pattern.
-- **`src/components/kb/KbCourseHandoff.tsx`** — topic title preview. Same pattern.
-- **`src/pages/MyLearning.tsx`** — enrolled-topic cards. Same pattern.
-
-Reader queries stay scoped to `lang = currentLang` (single round-trip per page); when the translation row is missing the English base row is shown as-is.
-
-**Out of scope for the reader pass:**
-- Admin LMS pages (`AdminCourses`, `AdminLearners`, `AdminGraduates`, `AdminVideos`, `AdminPrograms`) — admins edit the English source, so they keep showing English.
-- Employer reporting pages — internal English-only by design.
-
-### 3. Keep translations fresh
-
-Document the workflow in `README.md`: whenever a course/lesson/quiz row is edited in admin, re-run `scripts/update_db.py`; only changed fields are re-translated and pushed via `supabase--insert`. No webhook automation in v1.
-
-### 4. QA
-
-- Switch language to `de`, `ja`, `ar` on `/topics`, open one topic, one lesson, and one quiz — confirm content is translated, falls back gracefully if a row is missing, and markdown/placeholders render correctly.
-- Confirm `ar` lays out RTL on lesson body.
-- Re-run `bun run build` and `tsc --noEmit` — must stay clean.
-
-## Technical notes
-
-- **Active language source**: `useLanguage()` from `src/contexts/LanguageContext.tsx` (already used across reader pages).
-- **Locale code mapping**: project uses BCP-47-ish codes that match the translation table `lang` column (e.g. `de`, `zh`, `yue`, `pt-BR` if present). Verify before run; add a small alias map only if mismatched codes surface.
-- **Cost guard**: bootstrap is ~28 topics × 3 fields + lessons + quiz, × 42 langs. Run with the script's built-in batching/parallelism, no extra loops needed.
-- **No schema changes** — tables, indexes, grants, and RLS are all already in place.
-- **No edge function** required for v1; translation runs are operator-initiated.
-
-## Deliverables
-
-- Populated `course_translations`, `lesson_translations`, `quiz_question_translations` for 42 languages.
-- New `src/lib/lmsI18n.ts` helper.
-- Updated reader pages/components listed above.
-- New `.translation-manifest/db.json` checked in.
-- README note describing the re-run workflow after content edits.
+- No locale JSON edits, no DB translation backfill, no new languages.
+- LMS topic translations (separate plan already in `.lovable/plan.md`).
