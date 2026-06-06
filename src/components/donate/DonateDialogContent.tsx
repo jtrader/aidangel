@@ -1,7 +1,7 @@
 // Donate dialogue body: amount presets + custom, frequency toggle, NGO picker,
 // country switcher. Deep-links to the selected NGO with amount/frequency hints.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Check, Globe, HandHeart, ExternalLink } from "lucide-react";
 import { Favicon } from "@/components/Favicon";
 import {
