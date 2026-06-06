@@ -40,7 +40,7 @@ export default function CourseLesson() {
       // Merge course translations when available
       let mergedCourse = c;
       if (language !== "en") {
-        const { data: ct } = await supabase.from("course_translations").select("title").eq("course_id", c.id).eq("language", language).maybeSingle();
+        const { data: ct } = await supabase.from("course_translations").select("title").eq("course_id", c.id).eq("lang", language).maybeSingle();
         if (ct) mergedCourse = pickTranslated(c, ct, ["title"]);
       }
       setCourse(mergedCourse);

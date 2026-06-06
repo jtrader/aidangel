@@ -46,8 +46,8 @@ export default function CourseDetail() {
       // If translations exist for this language, merge them into the course row
       let mergedCourse = c;
       if (language !== "en") {
-        const { data: ct } = await supabase.from("course_translations").select("*").eq("course_id", c.id).eq("language", language).maybeSingle();
-        if (ct) mergedCourse = pickTranslated(c, ct, ["title", "summary", "description", "cover_url", "video_url", "video_source_name", "video_source_website", "video_source_youtube"]);
+        const { data: ct } = await supabase.from("course_translations").select("title,summary,description").eq("course_id", c.id).eq("lang", language).maybeSingle();
+        if (ct) mergedCourse = pickTranslated(c, ct, ["title", "summary", "description"]);
       }
 
       if (cancelled) return;

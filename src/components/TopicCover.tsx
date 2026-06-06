@@ -79,22 +79,6 @@ export default function TopicCover({ slug, title, className }: Props) {
         .eq("slug", courseSlug)
         .maybeSingle();
       const url = data?.cover_url ?? null;
-
-      // If non-English, prefer translated cover_url when present
-      if (language && language !== "en" && data?.id) {
-        const { data: ct } = await supabase
-          .from("course_translations")
-          .select("cover_url")
-          .eq("course_id", data.id)
-          .eq("lang", language)
-          .maybeSingle();
-        if (ct?.cover_url) {
-          coverCache.set(courseSlug, ct.cover_url);
-          if (!cancelled) setCoverUrl(ct.cover_url);
-          return;
-        }
-      }
-
       coverCache.set(courseSlug, url);
       if (!cancelled) setCoverUrl(url);
     })();
