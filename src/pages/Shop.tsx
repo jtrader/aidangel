@@ -8,13 +8,9 @@ import { ArrowLeft, Loader2 } from "lucide-react";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { CartDrawer } from "@/components/shop/CartDrawer";
-import { ShopDialogContent } from "@/components/shop/ShopDialogContent";
-import { useCountry } from "@/hooks/useCountry";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { KitCarousel } from "@/components/kits/KitCarousel";
 
 export default function Shop() {
-  const { country } = useCountry();
-  const { language } = useLanguage();
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -47,17 +43,8 @@ export default function Shop() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <section
-          aria-label="Featured first aid kits"
-          className="mb-10 rounded-2xl bg-card border border-border shadow-sm ring-1 ring-border/50 p-5 sm:p-6 lg:p-8"
-        >
-          <ShopDialogContent
-            surface="shop_dialog"
-            country={country}
-            language={language}
-            autoplay
-          />
-        </section>
+        <KitCarousel />
+
 
         <section aria-labelledby="store-heading">
           <h2 id="store-heading" className="text-xl sm:text-2xl font-bold text-foreground mb-4">
