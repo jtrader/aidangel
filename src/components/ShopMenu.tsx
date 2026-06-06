@@ -37,45 +37,6 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
   const [prefetched, setPrefetched] = useState(false);
 
   const label = t("navShop");
-  const title = t("shopDialogTitle");
-  const tagline = t("shopDialogTagline");
-
-  const triggerClasses =
-    variant === "header"
-      ? "inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors"
-      : "inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors";
-
-  const fireOpenAnalytics = () => {
-    try {
-      trackShopClick({
-        ngoId: "faa-store",
-        countryCode: country?.code ?? "",
-        countryName: country?.name ?? "",
-        destinationUrl: "/store",
-        isNational: false,
-        language: language ?? "en",
-        variant: variant === "header" ? "header" : "footer",
-      });
-    } catch {
-      /* noop */
-    }
-  };
-
-  const fireCtaAnalytics = (kind: "primary" | "secondary") => {
-    try {
-      trackShopClick({
-        ngoId: "faa-store",
-        countryCode: country?.code ?? "",
-        countryName: country?.name ?? "",
-        destinationUrl: kind === "primary" ? "/store" : "/shop/kits",
-        isNational: false,
-        language: language ?? "en",
-        variant: kind === "primary" ? "dialog_cta_primary" : "dialog_cta_secondary",
-      });
-    } catch {
-      /* noop */
-    }
-  };
 
   // Prefetch products + cart drawer on first open for snappy UX.
   useEffect(() => {
@@ -148,15 +109,7 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
           className="max-h-[90vh] bg-card border-border focus:outline-none motion-reduce:transition-none overflow-hidden"
           lang={language}
         >
-          <DrawerHeader className="px-4 pb-2 pr-14 text-left">
-            <DrawerTitle className="font-display text-lg text-foreground">
-              {title}
-            </DrawerTitle>
-            <DrawerDescription className="text-sm text-muted-foreground">
-              {tagline}
-            </DrawerDescription>
-          </DrawerHeader>
-          <div className="px-4 pb-[max(env(safe-area-inset-bottom),1.25rem)] overflow-y-auto overflow-x-hidden">
+          <div className="px-4 pt-4 pb-[max(env(safe-area-inset-bottom),1.25rem)] overflow-y-auto overflow-x-hidden">
             {Body}
           </div>
           <DrawerClose asChild>
@@ -191,15 +144,7 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
         className="w-[calc(100vw-2rem)] max-w-xl lg:max-w-2xl max-h-[85vh] flex flex-col overflow-hidden rounded-2xl bg-card border border-border shadow-xl ring-1 ring-border/50 p-5 sm:p-6 lg:p-8 motion-reduce:animate-none"
         lang={language}
       >
-        <DialogHeader className="pr-10 shrink-0">
-          <DialogTitle className="font-display text-lg lg:text-xl text-foreground">
-            {title}
-          </DialogTitle>
-          <DialogDescription className="text-sm text-muted-foreground">
-            {tagline}
-          </DialogDescription>
-        </DialogHeader>
-        <div className="mt-4 flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
           {Body}
         </div>
         <DialogClose asChild>
