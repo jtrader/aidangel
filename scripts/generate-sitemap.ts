@@ -390,11 +390,18 @@ for (const b of blogPaths) {
 
 // Shopify products — fetch handles from the Storefront API so /product/:handle
 // pages are discoverable. Hardcoded creds live in src/lib/shopify.ts.
-const SHOPIFY_STOREFRONT_URL = process.env.VITE_SHOPIFY_STORE_DOMAIN ?? "https://ty3mn0-c3.myshopify.com/api/2025-07/graphql.json";
-const SHOPIFY_STOREFRONT_TOKEN = process.env.VITE_SHOPIFY_STOREFRONT_TOKEN ?? (() => { throw new Error('VITE_SHOPIFY_STOREFRONT_TOKEN env var is required for scripts/generate-sitemap'); })();
+const SHOPIFY_STORE_DOMAIN = process.env.VITE_SHOPIFY_STORE_DOMAIN;
+const SHOPIFY_STOREFRONT_TOKEN = process.env.VITE_SHOPIFY_STOREFRONT_TOKEN;
 async function fetchProductPaths(): Promise<string[]> {
+  if (!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_TOKEN) {
+    console.warn("[sitemap] Shopify env vars missing — skipping product URLs");
+    return [];
+  }
+  const url = SHOPIFY_STORE_DOMAIN.startsWith("http")
+    ? SHOPIFY_STORE_DOMAIN
+    : `https://${SHOPIFY_STORE_DOMAIN}/api/2025-07/graphql.json`;
   try {
-    const res = await fetch(SHOPIFY_STOREFRONT_URL, {
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

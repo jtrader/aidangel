@@ -486,14 +486,14 @@ export default function PersonalMarketing() {
         }
       />
       <NetworkFooter />
-+
-+      <EnrolAuthDialog
-+        open={authDialogOpen}
-+        onOpenChange={setAuthDialogOpen}
-+        onSuccess={onAuthSuccess}
-+        variant="purchase-personal"
-+      />
-+
+
+      <EnrolAuthDialog
+        open={authDialogOpen}
+        onOpenChange={setAuthDialogOpen}
+        onSuccess={onAuthSuccess}
+        variant="purchase-personal"
+      />
+
     </div>
   );
 }
