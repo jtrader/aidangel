@@ -10,9 +10,10 @@ import CoursesHeader from "@/components/CoursesHeader";
 import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { pickTranslated } from "@/lib/lmsI18n";
 
 export default function MyLearning() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useAuth();
   const [rows, setRows] = useState<any[]>([]);
   const certs: any[] = [];
@@ -28,6 +29,18 @@ export default function MyLearning() {
         .select("course_id, started_at, course:courses(id,slug,title,cover_url,duration_minutes,level)")
         .eq("user_id", user.id).order("started_at", { ascending: false });
       const courseIds = (enrolls ?? []).map((e: any) => e.course_id);
+
+      // If not English, load course translations and merge title/cover_url
+      let translationMap: Map<string, any> | null = null;
+      if (language !== "en" && courseIds.length > 0) {
+        const { data: trs } = await supabase
+          .from("course_translations")
+          .select("course_id,title,cover_url")
+          .in("course_id", courseIds)
+          .eq("lang", language);
+        translationMap = new Map((trs ?? []).map((tr: any) => [tr.course_id, tr]));
+      }
+
       let progressByCourse: Record<string, number> = {};
       let lessonsByCourse: Record<string, number> = {};
       if (courseIds.length) {
@@ -36,11 +49,20 @@ export default function MyLearning() {
         const { data: ls } = await supabase.from("lessons").select("course_id").in("course_id", courseIds);
         for (const l of ls ?? []) lessonsByCourse[l.course_id] = (lessonsByCourse[l.course_id] ?? 0) + 1;
       }
-      setRows((enrolls ?? []).map((e: any) => ({
-        ...e,
-        completed: progressByCourse[e.course_id] ?? 0,
-        total: lessonsByCourse[e.course_id] ?? 0,
-      })));
+      setRows((enrolls ?? []).map((e: any) => {
+        const merged = { ...e };
+        if (translationMap) {
+          const ct = translationMap.get(e.course_id);
+          if (ct && merged.course) {
+            merged.course = pickTranslated(merged.course, ct, ["title", "cover_url"]);
+          }
+        }
+        return {
+          ...merged,
+          completed: progressByCourse[e.course_id] ?? 0,
+          total: lessonsByCourse[e.course_id] ?? 0,
+        };
+      }));
 
       const { data: pEnrolls } = await supabase
         .from("program_enrollments")

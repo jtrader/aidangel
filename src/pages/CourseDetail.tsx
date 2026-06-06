@@ -14,6 +14,7 @@ import CourseVideoPlayer from "@/components/CourseVideoPlayer";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { pickTranslated } from "@/lib/lmsI18n";
 
 type Course = any;
 type Lesson = { id: string; slug: string; title: string; duration_minutes: number; sort_order: number };
@@ -41,9 +42,29 @@ export default function CourseDetail() {
     (async () => {
       const { data: c } = await supabase.from("courses").select("*").eq("slug", slug).eq("is_published", true).maybeSingle();
       if (!c) { setLoading(false); return; }
-      setCourse(c);
+
+      // If translations exist for this language, merge them into the course row
+      let mergedCourse = c;
+      if (language !== "en") {
+        const { data: ct } = await supabase.from("course_translations").select("*").eq("course_id", c.id).eq("language", language).maybeSingle();
+        if (ct) mergedCourse = pickTranslated(c, ct, ["title", "summary", "description", "cover_url", "video_url", "video_source_name", "video_source_website", "video_source_youtube"]);
+      }
+
+      if (cancelled) return;
+      setCourse(mergedCourse);
+
       const { data: ls } = await supabase.from("lessons").select("id,slug,title,duration_minutes,sort_order").eq("course_id", c.id).order("sort_order");
-      setLessons(ls ?? []);
+      let lessonsRows = ls ?? [];
+
+      // Merge lesson translations when available
+      if (language !== "en" && lessonsRows.length > 0) {
+        const ids = lessonsRows.map(l => l.id);
+        const { data: ltrs } = await supabase.from("lesson_translations").select("lesson_id,title,body").in("lesson_id", ids).eq("lang", language);
+        const byId = new Map((ltrs ?? []).map((lt: any) => [lt.lesson_id, lt]));
+        lessonsRows = lessonsRows.map((r: any) => pickTranslated(r, byId.get(r.id) ?? null, ["title", "body"]));
+      }
+
+      setLessons(lessonsRows);
       let enr: { id: string } | null = null;
       if (user) {
         const { data } = await supabase.from("course_enrollments").select("id").eq("user_id", user.id).eq("course_id", c.id).maybeSingle();
@@ -57,6 +78,7 @@ export default function CourseDetail() {
         setVideoCompleted(!!vp?.completed);
       }
       setLoading(false);
+
       // Deep-link from KB: auto-enrol and jump straight to first lesson
       if (fromKb && !cancelled) {
         const isEnrolled = !!enr;
@@ -77,7 +99,7 @@ export default function CourseDetail() {
       }
     })();
     return () => { cancelled = true; };
-  }, [slug, user]);
+  }, [slug, user, language]);
 
 
   const enroll = async () => {

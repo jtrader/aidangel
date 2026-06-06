@@ -10,6 +10,7 @@ import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import EmergencyCallButton from "@/components/EmergencyCallButton";
+import { pickTranslated } from "@/lib/lmsI18n";
 
 type Course = {
   id: string; slug: string; title: string; summary: string | null;
@@ -17,15 +18,41 @@ type Course = {
 };
 
 export default function Courses() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.from("courses").select("id,slug,title,summary,cover_url,level,duration_minutes")
-      .eq("is_published", true).order("sort_order", { ascending: true })
-      .then(({ data }) => { setCourses(data ?? []); setLoading(false); });
-  }, []);
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      const { data } = await supabase.from("courses").select("id,slug,title,summary,cover_url,level,duration_minutes")
+        .eq("is_published", true).order("sort_order", { ascending: true });
+
+      if (cancelled) return;
+
+      const rows = data ?? [];
+
+      // If not English, try to fetch translations in a single query and merge
+      if (language !== "en" && rows.length > 0) {
+        const ids = rows.map(r => r.id);
+        const { data: trs } = await supabase
+          .from("course_translations")
+          .select("course_id,title,summary,cover_url")
+          .in("course_id", ids)
+          .eq("lang", language);
+
+        const byId = new Map((trs ?? []).map((t: any) => [t.course_id, t]));
+        const merged = rows.map((r) => pickTranslated(r, byId.get(r.id) ?? null, ["title", "summary", "cover_url"]));
+        setCourses(merged);
+      } else {
+        setCourses(rows);
+      }
+
+      setLoading(false);
+    })();
+    return () => { cancelled = true; };
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">

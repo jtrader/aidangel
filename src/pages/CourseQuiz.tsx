@@ -13,13 +13,14 @@ import NetworkFooter from "@/components/NetworkFooter";
 import { SeoHead } from "@/components/SeoHead";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { pickTranslated } from "@/lib/lmsI18n";
 
 type Q = { id: string; question: string; choices: string[]; correct_index: number; explanation: string | null };
 
 export default function CourseQuiz() {
   const { slug } = useParams();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const [course, setCourse] = useState<any>(null);
   const [questions, setQuestions] = useState<Q[]>([]);
@@ -35,14 +36,38 @@ export default function CourseQuiz() {
       if (!c) return;
       setCourse(c);
       const { data: qs } = await supabase.from("quiz_questions").select("*").eq("course_id", c.id).order("sort_order");
-      setQuestions((qs ?? []) as Q[]);
+      const baseQs = (qs ?? []) as Q[];
+
+      if (language !== "en" && baseQs.length > 0) {
+        const ids = baseQs.map((q) => q.id);
+        const { data: qtrs } = await supabase
+          .from("quiz_question_translations")
+          .select("question_id, question, choices, explanation")
+          .in("question_id", ids)
+          .eq("lang", language);
+        const byId = new Map((qtrs ?? []).map((qt: any) => [qt.question_id, qt]));
+        const merged = baseQs.map((q) => {
+          const tr = byId.get(q.id);
+          if (!tr) return q;
+          // choices in translations may already be an array/json
+          const mergedQ: any = { ...q };
+          if (tr.question) mergedQ.question = tr.question;
+          if (tr.choices) mergedQ.choices = tr.choices as string[];
+          if (tr.explanation) mergedQ.explanation = tr.explanation;
+          return mergedQ as Q;
+        });
+        setQuestions(merged);
+      } else {
+        setQuestions(baseQs);
+      }
+
       if (c.video_url && user) {
         const { data: vp } = await supabase.from("course_video_progress").select("completed").eq("user_id", user.id).eq("course_id", c.id).maybeSingle();
         setVideoLocked(!vp?.completed);
       }
       setLoading(false);
     })();
-  }, [slug, user]);
+  }, [slug, user, language]);
 
   const submit = async () => {
     if (!user || !course) return;
@@ -88,7 +113,7 @@ export default function CourseQuiz() {
   return (
     <CourseLayout>
     <div className="min-h-screen bg-background flex flex-col">
-      <SeoHead lang="en" basePath="/topics" title={`${course.title} Quiz | First Aid Angel`} description="Test your knowledge and earn your certificate." />
+      <SeoHead lang={language === "en" ? "en" : language} basePath="/topics" title={`${course.title} Quiz | First Aid Angel`} description="Test your knowledge and earn your certificate." />
       <CoursesHeader />
       <main className="flex-1 container max-w-3xl mx-auto px-4 py-8">
         <Link to={`/topics/${slug}`} className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block">← {course.title}</Link>

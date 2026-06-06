@@ -13,6 +13,7 @@ import { SeoHead } from "@/components/SeoHead";
 import { buildLessonSeo } from "@/lib/lessonSeo";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { pickTranslated } from "@/lib/lmsI18n";
 
 export default function CourseLesson() {
   const { slug, lessonSlug } = useParams();
@@ -30,14 +31,33 @@ export default function CourseLesson() {
 
   useEffect(() => {
     if (!user) return;
+    let cancelled = false;
     (async () => {
       setLoading(true);
       const { data: c } = await supabase.from("courses").select("*").eq("slug", slug).maybeSingle();
       if (!c) { setLoading(false); return; }
-      setCourse(c);
+
+      // Merge course translations when available
+      let mergedCourse = c;
+      if (language !== "en") {
+        const { data: ct } = await supabase.from("course_translations").select("title").eq("course_id", c.id).eq("language", language).maybeSingle();
+        if (ct) mergedCourse = pickTranslated(c, ct, ["title"]);
+      }
+      setCourse(mergedCourse);
+
       const { data: ls } = await supabase.from("lessons").select("*").eq("course_id", c.id).order("sort_order");
-      setLessons(ls ?? []);
-      const cur = (ls ?? []).find((l: any) => l.slug === lessonSlug);
+      let lessonsRows = ls ?? [];
+
+      // Merge lesson translations when available
+      if (language !== "en" && lessonsRows.length > 0) {
+        const ids = lessonsRows.map(l => l.id);
+        const { data: ltrs } = await supabase.from("lesson_translations").select("lesson_id,title,body").in("lesson_id", ids).eq("lang", language);
+        const byId = new Map((ltrs ?? []).map((lt: any) => [lt.lesson_id, lt]));
+        lessonsRows = lessonsRows.map((r: any) => pickTranslated(r, byId.get(r.id) ?? null, ["title", "body"]));
+      }
+
+      setLessons(lessonsRows);
+      const cur = (lessonsRows ?? []).find((l: any) => l.slug === lessonSlug);
       setLesson(cur);
       if (cur) {
         const { data: prog } = await supabase.from("lesson_progress").select("id").eq("user_id", user.id).eq("lesson_id", cur.id).maybeSingle();
@@ -45,7 +65,7 @@ export default function CourseLesson() {
       }
       setLoading(false);
     })();
-  }, [slug, lessonSlug, user]);
+  }, [slug, lessonSlug, user, language]);
 
   const markComplete = async () => {
     if (!user || !lesson || done) return;

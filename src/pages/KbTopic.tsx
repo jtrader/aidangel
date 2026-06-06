@@ -10,16 +10,6 @@ import SupportUsBar from "@/components/SupportUsBar";
 
 
 import TopicCover from "@/components/TopicCover";
-import PlayAudioButton from "@/components/PlayAudioButton";
-import NearbyEducators from "@/components/NearbyEducators";
-import AngelActionDownload from "@/components/AngelActionDownload";
-import EmergencyCallButton from "@/components/EmergencyCallButton";
-import HamburgerMenu from "@/components/HamburgerMenu";
-import KBHandoffCard from "@/components/kb/KBHandoffCard";
-import KbCourseHandoff from "@/components/kb/KbCourseHandoff";
-import KbProgramHandoff from "@/components/kb/KbProgramHandoff";
-import KbKitRecommendation from "@/components/kb/KbKitRecommendation";
-
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
@@ -191,7 +181,28 @@ const KbTopic = () => {
   const homePath = localizedPath(language, "/");
   const topicPath = localizedPath(language, `/kb/${topic.slug}`);
 
+  const [ogImage, setOgImage] = useState<string | undefined>(undefined);
 
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      // Determine course slug for topic
+      if (!topic) return;
+      const courseSlug = KB_TO_COURSE[topic.slug];
+      if (!courseSlug) return;
+      const { data: course } = await supabase.from("courses").select("id,cover_url").eq("slug", courseSlug).maybeSingle();
+      let final = course?.cover_url;
+      if (language && language !== "en" && course?.id) {
+        const { data: ct } = await supabase.from("course_translations").select("cover_url").eq("course_id", course.id).eq("lang", language).maybeSingle();
+        if (ct?.cover_url) final = ct.cover_url;
+      }
+      if (!cancelled && final) {
+        const origin = (import.meta.env.VITE_SITE_URL ?? "https://firstaidangel.org").replace(/\/$/, "");
+        setOgImage(final.startsWith("http") ? final : `${origin}${final.startsWith("/") ? "" : "/"}${final}`);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [topic, language]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -200,6 +211,7 @@ const KbTopic = () => {
         basePath={`/kb/${topic.slug}`}
         title={`${translated.title} · First Aid Angel`}
         description={translated.summary}
+        ogImage={ogImage}
         ogType="article"
         jsonLd={(() => {
           const inLanguage = HREFLANG[language];

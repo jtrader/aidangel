@@ -3,6 +3,8 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { pickTranslated } from "@/lib/lmsI18n";
 
 // KB topic slug → LMS course slug
 const KB_TO_COURSE: Record<string, string> = {
@@ -46,8 +48,16 @@ const coverCache = new Map<string, string | null>();
 
 type Props = { slug: string; title: string; className?: string };
 
+function ensureAbsolute(url?: string | null) {
+  if (!url) return "";
+  if (/^https?:\/\//i.test(url)) return url;
+  const origin = (import.meta.env.VITE_SITE_URL ?? "https://firstaidangel.org").replace(/\/$/, "");
+  return `${origin}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
 export default function TopicCover({ slug, title, className }: Props) {
   const courseSlug = KB_TO_COURSE[slug];
+  const { language } = useLanguage();
   const [coverUrl, setCoverUrl] = useState<string | null>(
     courseSlug ? coverCache.get(courseSlug) ?? null : null,
   );
@@ -65,19 +75,37 @@ export default function TopicCover({ slug, title, className }: Props) {
     (async () => {
       const { data } = await supabase
         .from("courses")
-        .select("cover_url")
+        .select("id, cover_url")
         .eq("slug", courseSlug)
         .maybeSingle();
       const url = data?.cover_url ?? null;
+
+      // If non-English, prefer translated cover_url when present
+      if (language && language !== "en" && data?.id) {
+        const { data: ct } = await supabase
+          .from("course_translations")
+          .select("cover_url")
+          .eq("course_id", data.id)
+          .eq("lang", language)
+          .maybeSingle();
+        if (ct?.cover_url) {
+          coverCache.set(courseSlug, ct.cover_url);
+          if (!cancelled) setCoverUrl(ct.cover_url);
+          return;
+        }
+      }
+
       coverCache.set(courseSlug, url);
       if (!cancelled) setCoverUrl(url);
     })();
     return () => {
       cancelled = true;
     };
-  }, [courseSlug]);
+  }, [courseSlug, language]);
 
   if (!coverUrl) return null;
+
+  const abs = ensureAbsolute(coverUrl);
 
   return (
     <figure
@@ -86,16 +114,25 @@ export default function TopicCover({ slug, title, className }: Props) {
         "mb-6 overflow-hidden rounded-2xl border border-border bg-muted/30 shadow-sm"
       }
     >
-      <img
-        src={coverUrl}
-        alt={`${title} — illustration`}
-        width={1280}
-        height={720}
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
-        className="w-full h-auto block"
-      />
+      <picture>
+        <source
+          type="image/webp"
+          srcSet={`${abs}?fm=webp&w=640 640w, ${abs}?fm=webp&w=1024 1024w, ${abs}?fm=webp&w=1280 1280w`}
+          sizes="(max-width: 640px) 100vw, 1200px"
+        />
+        <img
+          src={abs}
+          alt={`${title} — illustration`}
+          width={1280}
+          height={720}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-auto block"
+          srcSet={`${abs}?w=640 640w, ${abs}?w=1024 1024w, ${abs}?w=1280 1280w`}
+          sizes="(max-width: 640px) 100vw, 1200px"
+        />
+      </picture>
     </figure>
   );
 }

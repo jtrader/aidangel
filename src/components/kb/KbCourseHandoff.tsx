@@ -8,6 +8,7 @@ import { useCountry } from "@/hooks/useCountry";
 import { courseSlugForKbTopic, SENSITIVE_KB_SLUGS } from "@/lib/kbCourseMap";
 import { fireKbCourseConversion } from "@/lib/rsp/faaAdapter";
 import { translateStrings } from "@/lib/uiTranslate";
+import { pickTranslated } from "@/lib/lmsI18n";
 
 interface Props {
   /** KB topic slug, e.g. "cpr" or "aed" */
@@ -81,7 +82,19 @@ export function KbCourseHandoff({ kbSlug, lang }: Props) {
         setLoading(false);
         return;
       }
-      setCourseTitle(course.title);
+
+      // If UI language differs, try to load a translation row and prefer its title
+      if (language !== "en") {
+        const { data: ct } = await supabase
+          .from("course_translations")
+          .select("title")
+          .eq("course_id", course.id)
+          .eq("lang", language)
+          .maybeSingle();
+        setCourseTitle(ct?.title ?? course.title);
+      } else {
+        setCourseTitle(course.title);
+      }
 
       // Check if user has already passed this topic's quiz
       if (user) {
@@ -98,7 +111,7 @@ export function KbCourseHandoff({ kbSlug, lang }: Props) {
 
       setLoading(false);
     })();
-  }, [courseSlug, user]);
+  }, [courseSlug, user, language]);
 
   // Don't render if no matching course or course doesn't exist in DB
   if (!courseSlug || loading || !courseTitle) return null;
