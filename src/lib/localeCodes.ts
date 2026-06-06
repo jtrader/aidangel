@@ -276,6 +276,7 @@ export const TARGETS = {
   aidangel: 'https://aidangel.app',
   firstaidangel: 'https://firstaidangel.org',
   lovekey: 'https://lovekeyring.org',
+  lovekeynfcqr: 'https://lovekey.com.au',
 } as const
 export type SisterSite = keyof typeof TARGETS
 

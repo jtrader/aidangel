@@ -54,4 +54,9 @@ export const KB_HANDOFF_COPY_KEYS: Record<
     body: "kbHandoffLoveKeyBody",
     cta: "kbHandoffLoveKeyCta",
   },
+  lovekeynfcqr: {
+    heading: "kbHandoffLoveKeyNfcQrHeading",
+    body: "kbHandoffLoveKeyNfcQrBody",
+    cta: "kbHandoffLoveKeyNfcQrCta",
+  },
 };
