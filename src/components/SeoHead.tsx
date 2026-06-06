@@ -42,6 +42,7 @@ export function SeoHead({ lang, basePath, title, description, ogImage, ogType, j
       <html lang={HREFLANG[lang]} dir={dirFor(lang)} />
       <title>{title}</title>
       {desc ? <meta name="description" content={desc} /> : null}
+      {noindex ? <meta name="robots" content="noindex,nofollow" /> : null}
       <link rel="canonical" href={canonical} />
       {alts.map((a) => (
         <link key={a.hreflang} rel="alternate" hrefLang={a.hreflang} href={a.href} />
