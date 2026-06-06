@@ -3,11 +3,12 @@
 import { toast } from "sonner";
 
 export const SHOPIFY_API_VERSION = "2025-07";
-export const SHOPIFY_STORE_PERMANENT_DOMAIN = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string;
-if (!SHOPIFY_STORE_PERMANENT_DOMAIN) throw new Error("VITE_SHOPIFY_STORE_DOMAIN environment variable is required");
-export const SHOPIFY_STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN as string;
-if (!SHOPIFY_STOREFRONT_TOKEN) throw new Error("VITE_SHOPIFY_STOREFRONT_TOKEN environment variable is required");
-export const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
+export const SHOPIFY_STORE_PERMANENT_DOMAIN = (import.meta.env.VITE_SHOPIFY_STORE_DOMAIN as string) ?? "";
+export const SHOPIFY_STOREFRONT_TOKEN = (import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN as string) ?? "";
+export const SHOPIFY_STOREFRONT_URL = SHOPIFY_STORE_PERMANENT_DOMAIN
+  ? `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`
+  : "";
+export const SHOPIFY_CONFIGURED = Boolean(SHOPIFY_STORE_PERMANENT_DOMAIN && SHOPIFY_STOREFRONT_TOKEN);
 
 export interface ShopifyImage {
   url: string;
@@ -37,6 +38,10 @@ export async function storefrontApiRequest<T = any>(
   query: string,
   variables: Record<string, unknown> = {},
 ): Promise<{ data?: T; errors?: Array<{ message: string }> } | undefined> {
+  if (!SHOPIFY_CONFIGURED) {
+    console.warn("Shopify not configured: missing VITE_SHOPIFY_STORE_DOMAIN / VITE_SHOPIFY_STOREFRONT_TOKEN");
+    return;
+  }
   const response = await fetch(SHOPIFY_STOREFRONT_URL, {
     method: "POST",
     headers: {
