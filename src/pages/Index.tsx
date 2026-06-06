@@ -145,7 +145,7 @@ const Index = () => {
               <button
                 onClick={() => setMessages([])}
                 className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                aria-label="Back to home"
+                aria-label={t("chatBackHome")}
               >
                 <RotateCcw className="h-5 w-5" />
               </button>
