@@ -5,7 +5,6 @@
 // integration point for the future marketing/audience routing layer.
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { ShoppingBag, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
@@ -13,18 +12,12 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
 import {
   Drawer,
   DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
   DrawerTrigger,
   DrawerClose,
 } from "@/components/ui/drawer";
