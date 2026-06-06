@@ -1,152 +1,176 @@
+// Donate pill — opens a comprehensive donate dialog (mobile: bottom sheet,
+// desktop: centered dialog) mirroring the Shop dialogue. Picks amount,
+// frequency, NGO, country and deep-links to the NGO donate page with
+// amount/frequency hints. See src/components/donate/DonateDialogContent.tsx.
+
 import { useEffect, useState } from "react";
-import { HandHeart, Check, Globe } from "lucide-react";
+import { HandHeart, X } from "lucide-react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTrigger,
+  DrawerClose,
+} from "@/components/ui/drawer";
 import { useCountry } from "@/hooks/useCountry";
-import {
-  COUNTRIES,
-  CountryCode,
-  NGOS,
-  NgoId,
-  donationUrl,
-} from "@/lib/donations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { CountryCode, NgoId } from "@/lib/donations";
 import { translateStrings } from "@/lib/uiTranslate";
-import { trackGiveClick } from "@/lib/giveAnalytics";
-import { Favicon } from "@/components/Favicon";
+import { DonateDialogContent } from "@/components/donate/DonateDialogContent";
 
 interface DonateMenuProps {
   variant?: "header" | "footer";
-  /** Restrict to a single NGO (e.g. on a CPR topic). Defaults to all three. */
+  /** Restrict to a single NGO (e.g. on a CPR topic). Defaults to all. */
   ngos?: NgoId[];
 }
 
 const STATIC = [
   "Give",
   "Donate",
-  "Support first aid worldwide",
+  "Make a donation",
+  "100% of your gift goes to the charity you choose.",
+  "Choose an amount",
+  "Other amount",
+  "One-time",
+  "Monthly",
+  "Choose a charity",
+  "Donate",
+  "national site",
+  "International site",
   "Change country",
-  "Showing donation links for",
+  "Showing donation options for",
+  "Close",
 ];
 
 export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps) {
   const { country, setCountry } = useCountry();
   const { language } = useLanguage();
-  const list = ngos ?? (Object.keys(NGOS) as NgoId[]);
+  const isMobile = useIsMobile();
+  const [open, setOpen] = useState(false);
+
   const [tr, setTr] = useState({
-    give: "Give",
-    donate: "Donate",
-    heading: "Support first aid worldwide",
-    change: "Change country",
-    showing: "Showing donation links for",
+    give: STATIC[0],
+    donate: STATIC[1],
+    heading: STATIC[2],
+    subhead: STATIC[3],
+    amountLabel: STATIC[4],
+    custom: STATIC[5],
+    once: STATIC[6],
+    monthly: STATIC[7],
+    chooseNgo: STATIC[8],
+    donateCta: STATIC[9],
+    nationalSite: STATIC[10],
+    internationalSite: STATIC[11],
+    changeCountry: STATIC[12],
+    showing: STATIC[13],
+    close: STATIC[14],
   });
 
   useEffect(() => {
-    if (language === "en") {
-      setTr({ give: STATIC[0], donate: STATIC[1], heading: STATIC[2], change: STATIC[3], showing: STATIC[4] });
-      return;
-    }
+    if (language === "en") return;
     let cancelled = false;
     translateStrings(language, STATIC).then((s) => {
       if (cancelled) return;
-      setTr({ give: s[0], donate: s[1], heading: s[2], change: s[3], showing: s[4] });
+      setTr({
+        give: s[0], donate: s[1], heading: s[2], subhead: s[3],
+        amountLabel: s[4], custom: s[5], once: s[6], monthly: s[7],
+        chooseNgo: s[8], donateCta: s[9], nationalSite: s[10],
+        internationalSite: s[11], changeCountry: s[12], showing: s[13],
+        close: s[14],
+      });
     });
     return () => { cancelled = true; };
   }, [language]);
 
   const triggerClasses =
-    variant === "header"
-      ? "inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
-      : "inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors";
+    "inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors";
+
+  const Trigger = (
+    <button
+      type="button"
+      className={triggerClasses}
+      aria-label={`${tr.give} — ${country.name}`}
+      data-analytics-event="donate_pill_click"
+    >
+      <HandHeart className="h-4 w-4" aria-hidden="true" />
+      <span className="sm:hidden" aria-hidden="true">{tr.give}</span>
+      <span className="hidden sm:inline" aria-hidden="true">{tr.donate}</span>
+    </button>
+  );
+
+  const Body = (
+    <>
+      <DonateDialogContent
+        country={country}
+        onCountryChange={(code) => setCountry(code as CountryCode)}
+        language={language}
+        ngos={ngos}
+        variant={variant}
+        labels={tr}
+      />
+      <div className="mt-5 flex justify-center">
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="inline-flex items-center justify-center h-11 px-8 rounded-full bg-muted text-foreground text-sm font-semibold hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors"
+        >
+          {tr.close}
+        </button>
+      </div>
+    </>
+  );
+
+  if (isMobile) {
+    return (
+      <Drawer open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>{Trigger}</DrawerTrigger>
+        <DrawerContent
+          className="max-h-[92vh] bg-card border-border focus:outline-none overflow-hidden"
+          lang={language}
+        >
+          <div className="px-4 pt-4 pb-[max(env(safe-area-inset-bottom),1.25rem)] overflow-y-auto overflow-x-hidden">
+            {Body}
+          </div>
+          <DrawerClose asChild>
+            <button
+              type="button"
+              aria-label={tr.close}
+              className="absolute top-3 right-3 inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            >
+              <X className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </DrawerClose>
+        </DrawerContent>
+      </Drawer>
+    );
+  }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger
-        className={triggerClasses}
-        aria-label={`${tr.give} — ${country.name}`}
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{Trigger}</DialogTrigger>
+      <DialogContent
+        className="w-[calc(100vw-2rem)] max-w-md sm:max-w-lg max-h-[88vh] flex flex-col overflow-hidden rounded-2xl bg-card border border-border shadow-xl ring-1 ring-border/50 p-5 sm:p-6 motion-reduce:animate-none"
+        lang={language}
       >
-        <HandHeart className="h-4 w-4" aria-hidden="true" />
-        <span className="sm:hidden" aria-hidden="true">{tr.give}</span>
-        <span className="hidden sm:inline" aria-hidden="true">{tr.donate}</span>
-      </DropdownMenuTrigger>
-
-      <DropdownMenuContent align="end" className="w-72 bg-popover">
-        <DropdownMenuLabel className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          {tr.heading}
-        </DropdownMenuLabel>
-        <p className="px-2 pb-2 text-[11px] text-muted-foreground">
-          {tr.showing} <span className="font-medium text-foreground">{country.flag} {country.name}</span>
-        </p>
-        <DropdownMenuSeparator />
-        {list.map((id) => {
-          const ngo = NGOS[id];
-          const url = donationUrl(country, id);
-          const isNational = !!country.donations[id];
-          return (
-            <DropdownMenuItem key={id} asChild>
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  trackGiveClick({
-                    ngoId: id,
-                    countryCode: country.code,
-                    countryName: country.name,
-                    destinationUrl: url,
-                    isNational,
-                    language,
-                    variant,
-                  })
-                }
-                data-analytics-event="give_click"
-                data-analytics-ngo={id}
-                data-analytics-country={country.code}
-                className="flex items-start gap-2.5 cursor-pointer"
-              >
-                <Favicon url={url} alt="" size={18} className="mt-0.5" />
-                <span className="flex flex-col items-start gap-0.5 min-w-0">
-                  <span className="text-sm font-medium text-foreground">{ngo.short}</span>
-                  <span className="text-[11px] text-muted-foreground inline-flex items-center gap-1">
-                    {isNational ? `${country.name} site` : (
-                      <><Globe className="h-3 w-3" /> International site</>
-                    )}
-                  </span>
-                </span>
-              </a>
-            </DropdownMenuItem>
-          );
-        })}
-        <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger className="text-xs text-muted-foreground">
-            <Globe className="h-3.5 w-3.5 mr-1.5" />
-            {tr.change}
-          </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent className="max-h-80 overflow-y-auto bg-popover">
-            {COUNTRIES.map((c) => (
-              <DropdownMenuItem
-                key={c.code}
-                onSelect={() => setCountry(c.code as CountryCode)}
-                className="cursor-pointer"
-              >
-                <span className="mr-2 text-base">{c.flag}</span>
-                <span className="flex-1 text-sm">{c.name}</span>
-                {c.code === country.code && <Check className="h-3.5 w-3.5 text-primary" />}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden">
+          {Body}
+        </div>
+        <DialogClose asChild>
+          <button
+            type="button"
+            aria-label={tr.close}
+            className="absolute top-3 right-3 inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted text-muted-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
+            <X className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </DialogClose>
+      </DialogContent>
+    </Dialog>
   );
 }
