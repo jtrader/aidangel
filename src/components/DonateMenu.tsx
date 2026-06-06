@@ -110,7 +110,6 @@ export default function DonateMenu({ variant = "header", ngos }: DonateMenuProps
         country={country}
         onCountryChange={(code) => setCountry(code as CountryCode)}
         language={language}
-        ngos={ngos}
         variant={variant}
         labels={tr}
       />
