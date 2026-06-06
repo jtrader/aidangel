@@ -38,7 +38,26 @@ export default function ShopMenu({ variant = "footer" }: ShopMenuProps) {
 
   const label = t("navShop");
 
-  // Prefetch products + cart drawer on first open for snappy UX.
+  const triggerClasses =
+    variant === "header"
+      ? "inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors"
+      : "inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 transition-colors";
+
+  const fireOpenAnalytics = () => {
+    try {
+      trackShopClick({
+        ngoId: "faa-store",
+        countryCode: country?.code ?? "",
+        countryName: country?.name ?? "",
+        destinationUrl: "/store",
+        isNational: false,
+        language: language ?? "en",
+        variant: variant === "header" ? "header" : "footer",
+      });
+    } catch {
+      /* noop */
+    }
+  };
   useEffect(() => {
     if (!open || prefetched) return;
     let cancelled = false;
