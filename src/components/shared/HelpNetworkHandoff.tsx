@@ -52,7 +52,7 @@ const NETWORK_SITES: NetworkSite[] = [
   },
   {
     key: "lovekeynfcqr",
-    label: "Love Key NFC QR",
+    label: "Love Key Ring",
     descKey: "helpNetworkLoveKeyNfcQrDesc",
     stageKey: "helpNetworkLoveKeyNfcQrStage",
   },
