@@ -44,6 +44,7 @@ export default function AdminClaims() {
   };
   useEffect(() => { load(); }, [status]);
 
+  
   const approve = async (c: Claim) => {
     const now = new Date().toISOString();
     const reviewNotes = notes[c.id] ?? null;
