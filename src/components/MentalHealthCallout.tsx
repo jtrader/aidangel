@@ -2,6 +2,7 @@ import { HeartHandshake, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
+import CallConfirmDialog from "@/components/shared/CallConfirmDialog";
 
 interface Props {
   /** Optional industry context, e.g. "construction workers" */
@@ -64,9 +65,11 @@ export default function MentalHealthCallout({ context, variant = "default" }: Pr
           </a>
           <p className="text-xs text-muted-foreground mt-2">
             {ldParts[0]}
-            <a href={`tel:${number}`} className="text-primary font-semibold hover:underline">
-              {number}
-            </a>
+            <CallConfirmDialog number={number}>
+              <button type="button" className="text-primary font-semibold hover:underline">
+                {number}
+              </button>
+            </CallConfirmDialog>
             {ldParts[1] ?? ""}
           </p>
         </div>

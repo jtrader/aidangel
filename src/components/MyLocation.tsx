@@ -161,11 +161,7 @@ function ErrorCard({
           </button>
 
           <p className="mt-4 text-xs text-muted-foreground border-t border-border pt-3">
-            Still not working? Tell the{" "}
-            <a href="tel:000" className="text-primary font-semibold underline-offset-2 hover:underline">
-              000
-            </a>{" "}
-            operator your street address, nearest intersection, suburb, and any nearby landmarks.
+            Still not working? Tell the Emergency Services operator your street address, nearest intersection, suburb, and any nearby landmarks.
           </p>
         </div>
       </div>
@@ -228,7 +224,7 @@ function getErrorState(code: number): GeoErrorState {
   }
 }
 
-export default function MyLocation() {
+export default function MyLocation({ embedded = false }: { embedded?: boolean } = {}) {
   const [coords, setCoords] = useState<Coords | null>(null);
   const [geoError, setGeoError] = useState<GeoErrorState | null>(null);
   const [busy, setBusy] = useState(false);
@@ -345,7 +341,7 @@ export default function MyLocation() {
   useEffect(() => () => clearCountdown(), [clearCountdown]);
 
   const accuracyWarning = coords && coords.accuracy > 500
-    ? { icon: "🔴", text: "Location is imprecise. Give your coordinates and what3words address to 000." }
+    ? { icon: "🔴", text: "Location is imprecise. Give your coordinates and what3words address to Emergency Services." }
     : coords && coords.accuracy > 100
     ? { icon: "⚠️", text: "Location may be approximate. Move outdoors for better GPS signal." }
     : null;
@@ -376,18 +372,20 @@ export default function MyLocation() {
   useEffect(() => { /* noop */ }, []);
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6">
+    <div className={embedded ? "" : "max-w-2xl mx-auto px-4 py-6"}>
+      {!embedded && (
       <header className="mb-5">
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground flex items-center gap-2">
           <MapPin className="h-7 w-7 text-primary" aria-hidden /> My Location
         </h1>
         <p className="text-sm sm:text-base text-muted-foreground mt-1">
-          Get your exact location to share with <a href="tel:000" className="text-primary font-semibold underline-offset-2 hover:underline">000</a> emergency services.
+          Get your exact location to share with Emergency Services.
         </p>
         <p className="text-xs text-muted-foreground mt-1">
           Tap the button, then read your what3words address or coordinates to the operator.
         </p>
       </header>
+      )}
 
       <button
         type="button"
@@ -405,15 +403,19 @@ export default function MyLocation() {
         )}
       </button>
 
+      {!embedded && (
+      <>
       <a
         href="tel:000"
         className="mt-3 w-full min-h-[56px] rounded-xl bg-primary text-primary-foreground font-bold text-lg sm:text-xl shadow-md hover:bg-primary/90 inline-flex items-center justify-center gap-2"
       >
-        <Phone className="h-5 w-5" aria-hidden /> Call 000
+        <Phone className="h-5 w-5" aria-hidden /> Call Emergency Services
       </a>
       <p className="hidden sm:block text-xs text-muted-foreground text-center mt-1">
-        In Australia, call 000 for police, fire or ambulance.
+        Call Emergency Services for police, fire or ambulance.
       </p>
+      </>
+      )}
 
       {geoError && (
         <ErrorCard
@@ -427,7 +429,7 @@ export default function MyLocation() {
       {coords && (
         <div ref={resultsRef} className="mt-6 space-y-4">
           <p className="text-sm text-muted-foreground">
-            Read these to the <a href="tel:000" className="text-primary font-semibold">000</a> operator, or tap to copy and share.
+            Read these to the Emergency Services operator, or tap to copy and share.
           </p>
 
           {/* what3words */}
@@ -457,7 +459,7 @@ export default function MyLocation() {
                   <span className="text-foreground">{w3w.data}</span>
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Say <span className="font-medium text-foreground">"what3words: {w3w.data.split(".").join(" dot ")}"</span> to the 000 operator.
+                  Say <span className="font-medium text-foreground">"what3words: {w3w.data.split(".").join(" dot ")}"</span> to the Emergency Services operator.
                 </p>
                 <a
                   href={`https://w3w.co/${w3w.data}`}

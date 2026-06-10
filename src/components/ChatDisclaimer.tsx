@@ -2,6 +2,7 @@ import { AlertTriangle, Stethoscope } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCountry } from "@/hooks/useCountry";
 import { emergencyNumberForCountry } from "@/lib/donations";
+import CallConfirmDialog from "@/components/shared/CallConfirmDialog";
 
 /**
  * Persistent AI medical disclaimer shown below the chat input on every chat screen.
@@ -23,12 +24,14 @@ const ChatDisclaimer = () => {
       <span key={i}>
         {part}
         {i < arr.length - 1 && (
-          <a
-            href={`tel:${emergencyNumber}`}
-            className="underline font-semibold hover:text-foreground transition-colors"
-          >
-            {emergencyNumber}
-          </a>
+          <CallConfirmDialog number={emergencyNumber}>
+            <button
+              type="button"
+              className="underline font-semibold hover:text-foreground transition-colors"
+            >
+              {emergencyNumber}
+            </button>
+          </CallConfirmDialog>
         )}
       </span>
     ));

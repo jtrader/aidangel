@@ -8,3 +8,5 @@ export { default as LocaleSelector } from "./LocaleSelector";
 export type { LocaleSelectorProps, Locale } from "./LocaleSelector";
 export { default as HelpNetworkHandoff } from "./HelpNetworkHandoff";
 export type { HelpNetworkHandoffProps } from "./HelpNetworkHandoff";
+export { default as CallConfirmDialog } from "./CallConfirmDialog";
+export type { CallConfirmDialogProps } from "./CallConfirmDialog";
